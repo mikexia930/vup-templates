@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./.output",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@shared/*": ["../../_shared/*"]
+    }
+  },
+  "include": ["src/**/*", "src/**/*.vue", "src/*.vue", "./auto-imports.d.ts", "src/vue-shim.d.ts"]
+}

@@ -1,0 +1,23 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "never",
+    "source.removeUnusedImports": "never",
+    "source.fixAll.eslint": "never"
+  },
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSaveMode": "file",
+  "editor.tabSize": 2,
+  "files.eol": "\n",
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "scss.lint.unknownAtRules": "ignore",
+  "eslint.enable": true,
+  "eslint.validate": ["javascript", "typescript", "vue"],
+  "eslint.workingDirectories": [".", "apps/*"],
+  "typescript.preferences.includePackageJsonAutoImports": "auto",
+  "typescript.suggest.autoImports": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.preferences.organizeImports": {
+    "enabled": false
+  }
+}

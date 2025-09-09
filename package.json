@@ -1,0 +1,59 @@
+{
+  "name": "vup-template-vue",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev:all": "pnpm --filter '*' dev",
+    "build:all": "pnpm --filter '*' build",
+    "lint:all": "pnpm --filter '*' lint",
+    "format:all": "pnpm --filter '*' format",
+    "prepare": "husky"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "vue": "^3.5.13",
+    "pinia": "^2.3.0",
+    "vue-i18n": "^11.1.11",
+    "vue-router": "^4.5.0",
+    "lodash-es": "^4.17.21",
+    "dayjs": "^1.11.13"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.34.0",
+    "@tailwindcss/vite": "^4.1.12",
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/postcss": "^4.1.12",
+    "@tailwindcss/typography": "^0.5.14",
+    "@tsconfig/node18": "^18.0.5",
+    "@typescript-eslint/eslint-plugin": "^8.41.0",
+    "@typescript-eslint/parser": "^8.41.0",
+    "@vueuse/core": "^13.8.0",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^9.34.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-vue": "^10.4.0",
+    "postcss": "^8.4.32",
+    "postcss-import": "^16.1.0",
+    "postcss-preset-env": "^10.1.0",
+    "prettier": "^3.4.2",
+    "prettier-config-airbnb": "1.0.0",
+    "prettier-plugin-tailwindcss": "^0.6.13",
+    "sass": "^1.83.4",
+    "sass-loader": "^16.0.3",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.2",
+    "unplugin-auto-import": "^20.1.0",
+    "vue-tsc": "^3.0.6",
+    "husky": "^9.1.7"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  }
+}

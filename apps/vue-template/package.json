@@ -1,0 +1,23 @@
+{
+  "name": "vue",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "lint": "eslint src/ --ext .vue,.ts,.js",
+    "lint:fix": "eslint src/ --ext .vue,.ts,.js --fix",
+    "format": "prettier --write \"src/**/*.{js,ts,vue,json,css,scss}\"",
+    "format:check": "prettier --check \"src/**/*.{js,ts,vue,json,css,scss}\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "description": "",
+  "dependencies": {},
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vitejs/plugin-vue-jsx": "^5.1.1",
+    "vite": "^6.2.0"
+  }
+}

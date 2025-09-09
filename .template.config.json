@@ -1,0 +1,22 @@
+[
+  {
+    "name": "nuxt",
+    "version": "1.0.0",
+    "path": "apps/nuxt-template"
+  },
+  {
+    "name": "vitepress",
+    "version": "1.0.0",
+    "path": "apps/vitepress-template"
+  },
+  {
+    "name": "vue",
+    "version": "1.0.0",
+    "path": "apps/vue-template"
+  },
+  {
+    "name": "wxt",
+    "version": "1.0.0",
+    "path": "apps/wxt-template"
+  }
+]
