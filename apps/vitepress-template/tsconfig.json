@@ -1,0 +1,6 @@
+{
+  "include": ["src/**/*", ".vitepress/**/*"],
+  "compilerOptions": {
+    "types": ["vitepress/client", "vue"]
+  }
+}

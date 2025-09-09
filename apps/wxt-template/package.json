@@ -1,0 +1,27 @@
+{
+  "name": "wxt",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "wxt",
+    "dev:firefox": "wxt -b firefox",
+    "build": "wxt build",
+    "build:firefox": "wxt build -b firefox",
+    "zip": "wxt zip",
+    "zip:firefox": "wxt zip -b firefox",
+    "postinstall": "wxt prepare",
+    "lint": "eslint src/ --ext .vue,.ts,.js",
+    "lint:fix": "eslint src/ --ext .vue,.ts,.js --fix",
+    "format": "prettier --write \"src/**/*.{js,ts,vue,json,css,scss}\"",
+    "format:check": "prettier --check \"src/**/*.{js,ts,vue,json,css,scss}\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "@wxt-dev/module-vue": "^1.0.2",
+    "wxt": "^0.20.8"
+  },
+  "devDependencies": {}
+}

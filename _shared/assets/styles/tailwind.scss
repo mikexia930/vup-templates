@@ -1,0 +1,9 @@
+@reference "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.base-style {
+  @apply text-lg font-bold text-red-500;
+}
