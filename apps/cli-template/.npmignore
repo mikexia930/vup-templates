@@ -1,0 +1,48 @@
+# Source files
+src/
+*.ts
+*.tsx
+
+# Development files
+.eslintrc.json
+.prettierrc
+tsconfig.json
+
+# Dependencies
+node_modules/
+pnpm-lock.yaml
+
+# Development scripts
+.vscode/
+.idea/
+
+# Test files
+test/
+tests/
+__tests__/
+*.test.*
+*.spec.*
+
+# Documentation
+README.md
+docs/
+
+# Git
+.git/
+.gitignore
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Build artifacts (keep dist/)
+*.map

@@ -14,7 +14,11 @@ export default defineNuxtConfig({
       postcss: '../../postcss.config.js',
       preprocessorOptions: {
         scss: {
-          additionalData: '@reference "tailwindcss";',
+          additionalData: `
+            @use "tailwindcss/base";
+            @use "tailwindcss/components";
+            @use "tailwindcss/utilities";
+          `,
         },
       },
     },

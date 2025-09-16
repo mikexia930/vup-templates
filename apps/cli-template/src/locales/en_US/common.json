@@ -1,0 +1,45 @@
+{
+  "error": {
+    "unknown": "Unknown error",
+    "unknownCommand": "Unknown command: {{cmd}}",
+    "unknownOption": "Unknown option: {{option}}",
+    "missingArgument": "Missing required argument: {{arg}}",
+    "projectNotFound": "Please confirm the directory is correct, the current directory does not exist the project basic structure"
+  },
+  "language": {
+    "description": "View/set language",
+    "options": {
+      "current": "Current language",
+      "reset": "Reset language"
+    },
+    "current": "Current language",
+    "available": "Available languages",
+    "success": "Language set to {{lang}}",
+    "failed": "Language set failed: {{message}}"
+  },
+  "git": {
+    "branch": "Branch: {{branch}}, depth: {{depth}}",
+    "getBranchFailed": "Get branch information failed: {{message}}",
+    "getRemoteUrlFailed": "Get remote repository information failed: {{message}}",
+    "hasUpdatesFailed": "Check update failed: {{message}}",
+    "notFound": "Repository does not exist or has no access: {{repo}}",
+    "authenticationFailed": "Authentication failed, please check the access permissions",
+    "authenticationRequired": "Authentication required, please configure Git credentials",
+    "cloneAndClean": "Cloning and cleaning repository from {{repo}}...",
+    "clone": {
+      "begin": "Cloning repository from {{repo}}...",
+      "success": "Repository cloned successfully",
+      "failed": "Clone failed: {{message}}"
+    }
+  },
+  "version": {
+    "description": "View current version number"
+  },
+  "action": {
+    "select": "Please select",
+    "overwrite": "Overwrite",
+    "cancel": "Cancel",
+    "next": "Next:",
+    "canceled": "Operation canceled"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "name": "cli",
+  "version": "1.0.0",
+  "main": "./.output/index.js",
+  "bin": {
+    "vup": "./.output/index.js"
+  },
+  "files": [
+    "./.output"
+  ],
+  "scripts": {
+    "dev": "NODE_ENV=development tsx src/index.ts",
+    "build": "NODE_ENV=production node esbuild.config.js",
+    "build:dev": "NODE_ENV=development node esbuild.config.js --dev",
+    "build:watch": "NODE_ENV=development node esbuild.config.js --dev --watch",
+    "start": "node dist/index.js",
+    "prepublishOnly": "npm run build",
+    "publish:npm": "npm publish",
+    "publish:beta": "npm publish --tag beta"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "description": "",
+  "repository": {
+    "type": "",
+    "url": ""
+  },
+  "homepage": "",
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^22.18.0",
+    "@types/prompts": "^2.4.5",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.20.5",
+    "esbuild": "^0.25.9"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^11.0.0",
+    "fs-extra": "^11.3.0",
+    "prompts": "^2.4.2",
+    "simple-git": "^3.28.0",
+    "i18next": "^25.5.2",
+    "i18next-fs-backend": "^2.6.0"
+  }
+}

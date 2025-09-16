@@ -1,0 +1,38 @@
+{
+  "name": "capacitor",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "lint": "eslint src/ --ext .vue,.ts,.js",
+    "lint:fix": "eslint src/ --ext .vue,.ts,.js --fix",
+    "format": "prettier --write \"src/**/*.{js,ts,vue,json,css,scss}\"",
+    "format:check": "prettier --check \"src/**/*.{js,ts,vue,json,css,scss}\"",
+    "ios:add": "npx cap add ios",
+    "ios:build": "pnpm build && npx cap sync ios",
+    "ios:open": "npx cap open ios",
+    "ios": "pnpm ios:build && pnpm ios:open",
+    "android:add": "npx cap add android",
+    "android:build": "pnpm build && npx cap sync android",
+    "android:open": "npx cap open android",
+    "android": "pnpm android:build && pnpm android:open"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "@capacitor/android": "^7.4.3",
+    "@capacitor/camera": "latest",
+    "@capacitor/core": "latest",
+    "@capacitor/ios": "^7.4.3",
+    "@capacitor/splash-screen": "latest"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "latest",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vitejs/plugin-vue-jsx": "^5.1.1",
+    "vite": "^6.2.0"
+  }
+}

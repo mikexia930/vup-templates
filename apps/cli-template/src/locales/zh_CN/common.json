@@ -1,0 +1,45 @@
+{
+  "error": {
+    "unknown": "未知错误",
+    "unknownCommand": "未知命令: {{cmd}}",
+    "unknownOption": "未知选项: {{option}}",
+    "missingArgument": "缺少必需参数: {{arg}}",
+    "projectNotFound": "请确认目录是否正确，当前目录不存在项目基础结构"
+  },
+  "language": {
+    "description": "查看/设置语言",
+    "options": {
+      "current": "当前语言",
+      "reset": "重设语言"
+    },
+    "current": "当前语言",
+    "available": "可用语言",
+    "success": "语言设置为 {{lang}}",
+    "failed": "语言设置失败: {{message}}"
+  },
+  "git": {
+    "branch": "分支: {{branch}}, 深度: {{depth}}",
+    "getBranchFailed": "获取分支信息失败: {{message}}",
+    "getRemoteUrlFailed": "获取远程仓库信息失败: {{message}}",
+    "hasUpdatesFailed": "检查更新失败: {{message}}",
+    "notFound": "仓库不存在或无权访问",
+    "authenticationFailed": "认证失败，请检查访问权限",
+    "authenticationRequired": "需要认证，请配置 Git 凭据",
+    "cloneAndClean": "正在从 {{repo}} 克隆并清理仓库...",
+    "clone": {
+      "begin": "正在克隆仓库...",
+      "success": "仓库克隆成功",
+      "failed": "克隆失败: {{message}}"
+    }
+  },
+  "version": {
+    "description": "查看当前版本号"
+  },
+  "action": {
+    "select": "请选择",
+    "overwrite": "覆盖",
+    "cancel": "取消",
+    "next": "下一步：",
+    "canceled": "操作已取消"
+  }
+}
