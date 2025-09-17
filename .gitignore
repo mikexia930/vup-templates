@@ -106,3 +106,6 @@ out/
 .cache/
 ios/
 android/
+
+# Changesets
+!.changeset/config.json
