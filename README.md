@@ -1,65 +1,89 @@
-# 🚀 Vue Template - 现代化开发模板
+# 🚀 Vue Project Templates - 多框架开发模板集合
 
-一个基于 Vue 3 + TypeScript +
-Vite 的现代化开发模板，集成了路由管理、状态管理、国际化、代码规范等核心功能，让你快速开始开发。
+一个基于 pnpm
+monorepo 的多框架开发模板集合，包含 Vue、Nuxt、VitePress、NestJS、UniApp、Capacitor、WXT 等多种技术栈的完整开发模板，让你快速开始不同类型的项目开发。
 
 ## ✨ 特性
 
-- 🎯 **Vue 3** - 使用最新的 Composition API
+- 🏗️ **Monorepo 架构** - 基于 pnpm workspace 的多包管理
+- 🎯 **多框架支持** - Vue、Nuxt、VitePress、NestJS、UniApp 等
 - 🔧 **TypeScript** - 完整的类型支持
-- ⚡ **Vite** - 极速的开发体验
-- 🌐 **Vue Router 4** - 现代化路由系统
-- 📦 **Pinia** - 轻量级状态管理
-- 🌍 **Vue I18n** - 国际化解决方案
-- 🎨 **Tailwind CSS** - 原子化CSS框架
-- 📝 **ESLint 9** - 代码质量检查
-- 🎨 **Prettier** - 代码格式化
-- 📱 **响应式设计** - 支持移动端
+- ⚡ **现代化工具链** - Vite、ESLint、Prettier、Tailwind CSS
+- 📦 **统一依赖管理** - 共享依赖，减少重复安装
+- 🌍 **国际化支持** - 多语言开发模板
+- 🚀 **一键部署** - 集成 Vercel、Docker 等部署方案
+- 📱 **跨平台开发** - Web、移动端、桌面端全覆盖
+- 🔄 **版本管理** - 集成 Changeset 进行版本控制
+- 🎨 **代码规范** - 统一的 ESLint 和 Prettier 配置
 
 ## 🛠️ 技术栈
 
-| 技术         | 版本 | 说明                 |
-| ------------ | ---- | -------------------- |
-| Vue          | 3.5+ | 渐进式JavaScript框架 |
-| TypeScript   | 5.0+ | JavaScript的超集     |
-| Vite         | 5.0+ | 下一代前端构建工具   |
-| Vue Router   | 4.0+ | Vue.js官方路由管理器 |
-| Pinia        | 2.0+ | Vue的状态管理库      |
-| Vue I18n     | 9.0+ | Vue国际化插件        |
-| Tailwind CSS | 3.0+ | 实用优先的CSS框架    |
-| ESLint       | 9.0+ | 代码质量检查工具     |
-| Prettier     | 3.0+ | 代码格式化工具       |
+### 前端框架
+
+| 技术      | 版本 | 说明                    |
+| --------- | ---- | ----------------------- |
+| Vue       | 3.5+ | 渐进式JavaScript框架    |
+| Nuxt      | 3.0+ | Vue.js全栈框架          |
+| VitePress | 2.0+ | Vue驱动的静态站点生成器 |
+| UniApp    | 3.0+ | 跨平台应用开发框架      |
+| Capacitor | 7.0+ | 混合应用开发平台        |
+| WXT       | 3.0+ | 浏览器扩展开发框架      |
+
+### 后端框架
+
+| 技术   | 版本  | 说明              |
+| ------ | ----- | ----------------- |
+| NestJS | 11.0+ | Node.js企业级框架 |
+
+### 开发工具
+
+| 技术         | 版本 | 说明                         |
+| ------------ | ---- | ---------------------------- |
+| TypeScript   | 5.0+ | JavaScript的超集             |
+| Vite         | 6.0+ | 下一代前端构建工具           |
+| pnpm         | 8.0+ | 快速、节省磁盘空间的包管理器 |
+| ESLint       | 9.0+ | 代码质量检查工具             |
+| Prettier     | 3.0+ | 代码格式化工具               |
+| Tailwind CSS | 3.0+ | 实用优先的CSS框架            |
+| Changeset    | 2.0+ | 版本管理和发布工具           |
 
 ## 📁 项目结构
 
 ```
 project-vue/
-├── _shared/                 # 共享资源
-├── apps/                    # 应用目录
-│   └── demo/               # 示例应用
-│       ├── src/
-│       │   ├── assets/     # 静态资源
-│       │   ├── components/ # 组件
-│       │   ├── locales/    # 国际化文件
-│       │   ├── router/     # 路由配置
-│       │   ├── stores/     # 状态管理
-│       │   ├── views/      # 页面组件
-│       │   ├── App.vue     # 根组件
-│       │   └── main.ts     # 入口文件
-│       ├── index.html      # HTML模板
-│       ├── package.json    # 应用依赖
-│       └── vite.config.js  # Vite配置
-├── eslint.config.js        # ESLint配置
-├── .prettierrc            # Prettier配置
-├── tailwind.config.js     # Tailwind配置
-├── tsconfig.json          # TypeScript配置
-├── vite.config.base.js    # 基础Vite配置
-└── package.json           # 根目录依赖
+├── _shared/                    # 共享资源
+│   ├── assets/                # 共享静态资源
+│   └── styles/                # 共享样式文件
+├── apps/                      # 应用目录
+│   ├── vue-template/          # Vue 3 + Vite 模板
+│   ├── nuxt-template/         # Nuxt 3 全栈模板
+│   ├── vitepress-template/    # VitePress 文档模板
+│   ├── nest-template/         # NestJS 后端模板
+│   ├── uniapp-template/       # UniApp 跨平台模板
+│   ├── capacitor-template/    # Capacitor 混合应用模板
+│   └── wxt-template/          # WXT 浏览器扩展模板
+├── .github/                   # GitHub 配置
+│   └── workflows/             # GitHub Actions 工作流
+├── .changeset/                # Changeset 版本管理
+├── eslint.config.js           # ESLint 配置
+├── prettier.config.js         # Prettier 配置
+├── tailwind.config.js         # Tailwind CSS 配置
+├── postcss.config.js          # PostCSS 配置
+├── tsconfig.json              # TypeScript 配置
+├── pnpm-workspace.yaml        # pnpm workspace 配置
+└── package.json               # 根目录依赖
 ```
 
 ## 🚀 快速开始
 
-### 1. 安装依赖
+### 1. 克隆项目
+
+```bash
+git clone <repository-url>
+cd project-vue
+```
+
+### 2. 安装依赖
 
 ```bash
 # 使用 pnpm (推荐)
@@ -67,240 +91,223 @@ pnpm install
 
 # 或使用 npm
 npm install
-
-# 或使用 yarn
-yarn install
 ```
 
-### 2. 启动开发服务器
+### 3. 选择模板并启动
 
 ```bash
-# 启动demo应用
+# Vue 3 模板
+cd apps/vue-template
 pnpm dev
 
-# 或指定应用
-pnpm dev:demo
+# Nuxt 3 模板
+cd apps/nuxt-template
+pnpm dev
+
+# VitePress 文档模板
+cd apps/vitepress-template
+pnpm dev
+
+# NestJS 后端模板
+cd apps/nest-template
+pnpm dev
+
+# UniApp 跨平台模板
+cd apps/uniapp-template
+pnpm dev
+
+# Capacitor 混合应用模板
+cd apps/capacitor-template
+pnpm dev
+
+# WXT 浏览器扩展模板
+cd apps/wxt-template
+pnpm dev
 ```
 
-### 3. 构建生产版本
+### 4. 构建生产版本
 
 ```bash
-# 构建demo应用
+# 构建所有应用
+pnpm build:all
+
+# 或构建指定应用
+cd apps/vue-template
 pnpm build
-
-# 或指定应用
-pnpm build:demo
 ```
 
-## 📖 使用指南
+## 📖 模板说明
 
-### 路由管理
+### Vue 3 模板
 
-```typescript
-// 路由配置
-import { createRouter, createWebHistory } from 'vue-router';
+- **技术栈**: Vue 3 + Vite + TypeScript + Pinia + Vue Router
+- **特性**: 自动导入、国际化、Tailwind CSS、代码规范
+- **适用场景**: SPA 应用、管理后台、企业级前端项目
 
-const routes = [
-  { path: '/', component: Home },
-  { path: '/content/:id', component: Content },
-];
+### Nuxt 3 模板
 
-const router = createRouter({
-  history: createWebHistory(),
-  routes,
-});
+- **技术栈**: Nuxt 3 + Vue 3 + TypeScript + Tailwind CSS
+- **特性**: SSR/SSG、自动路由、服务端渲染
+- **适用场景**: 全栈应用、SEO 友好的网站、博客
 
-// 在组件中使用
-import { useRoute, useRouter } from 'vue-router';
+### VitePress 模板
 
-const route = useRoute();
-const router = useRouter();
-```
+- **技术栈**: VitePress + Vue 3 + Markdown
+- **特性**: 静态站点生成、主题定制、搜索功能
+- **适用场景**: 文档网站、技术博客、产品介绍
 
-### 状态管理
+### NestJS 模板
 
-```typescript
-// 定义store
-import { defineStore } from 'pinia';
+- **技术栈**: NestJS + TypeScript + Prisma + Docker
+- **特性**: 模块化架构、依赖注入、微服务支持
+- **适用场景**: API 服务、微服务、企业级后端
 
-export const useCounter = defineStore('counter', () => {
-  const count = ref(0);
+### UniApp 模板
 
-  const increment = () => {
-    count.value++;
-  };
+- **技术栈**: UniApp + Vue 3 + TypeScript
+- **特性**: 跨平台开发、原生性能、丰富组件
+- **适用场景**: 移动应用、小程序、H5 应用
 
-  return { count, increment };
-});
+### Capacitor 模板
 
-// 在组件中使用
-import { useCounter } from '@/stores/counter';
+- **技术栈**: Capacitor + Vue 3 + TypeScript
+- **特性**: 混合应用、原生插件、跨平台部署
+- **适用场景**: 混合移动应用、桌面应用
 
-const counter = useCounter();
-```
+### WXT 模板
 
-### 国际化
+- **技术栈**: WXT + Vue 3 + TypeScript
+- **特性**: 浏览器扩展开发、多浏览器支持
+- **适用场景**: Chrome 扩展、Firefox 插件、Edge 扩展
 
-```typescript
-// 语言配置
-const messages = {
-  'zh-CN': {
-    hello: '你好',
-    welcome: '欢迎使用',
-  },
-  'en-US': {
-    hello: 'Hello',
-    welcome: 'Welcome',
-  },
-};
+## 🔧 开发工具
 
-// 在模板中使用
-{
-  {
-    t('hello');
-  }
-}
-{
-  {
-    t('welcome');
-  }
-}
-
-// 切换语言
-const { locale } = useI18n();
-locale.value = 'en-US';
-```
-
-### 自动导入
-
-项目配置了自动导入，以下API无需手动导入：
-
-- Vue API: `ref`, `reactive`, `computed`, `watch` 等
-- Vue Router: `useRouter`, `useRoute` 等
-- Pinia: `defineStore`, `storeToRefs` 等
-
-```typescript
-// 无需导入，直接使用
-export const useCounter = defineStore('counter', () => {
-  const count = ref(0); // ref 自动导入
-  const increment = () => count.value++;
-  return { count, increment };
-});
-```
-
-## 🎨 样式开发
-
-### Tailwind CSS
-
-```vue
-<template>
-  <div class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
-    Button
-  </div>
-</template>
-```
-
-### 自定义样式
-
-```scss
-// 使用 SCSS
-.custom-component {
-  @apply bg-gray-100 p-4;
-
-  &:hover {
-    @apply bg-gray-200;
-  }
-}
-```
-
-## 🔧 代码规范
-
-### ESLint
+### 代码规范
 
 ```bash
-# 检查代码
-pnpm lint
+# 检查所有应用代码
+pnpm lint:all
 
-# 自动修复
+# 修复所有应用代码
 pnpm lint:fix
+
+# 格式化所有应用代码
+pnpm format:all
 ```
 
-### Prettier
+### 版本管理
 
 ```bash
-# 格式化代码
-pnpm format
+# 创建 changeset
+pnpm changeset
 
-# 检查格式
-pnpm format:check
+# 更新版本
+pnpm changeset version
+
+# 发布（如果配置了发布）
+pnpm changeset publish
 ```
 
-## 📱 响应式设计
+### 构建和部署
 
-项目使用 Tailwind CSS 的响应式前缀，支持不同屏幕尺寸：
+```bash
+# 构建所有应用
+pnpm build:all
 
-- `sm:` - 640px+
-- `md:` - 768px+
-- `lg:` - 1024px+
-- `xl:` - 1280px+
-- `2xl:` - 1536px+
+# 部署 VitePress 到 Vercel
+pnpm deploy:vitepress
+
+# 启动 NestJS 的 Docker 环境
+cd apps/nest-template
+pnpm docker:up
+```
+
+## 🚀 部署方案
+
+### 前端应用
+
+- **Vercel**: VitePress、Vue、Nuxt 应用
+- **Netlify**: 静态站点
+- **GitHub Pages**: 文档站点
+
+### 后端应用
+
+- **Docker**: NestJS 应用容器化部署
+- **Railway**: 无服务器部署
+- **Heroku**: 传统云平台部署
+
+### 移动应用
+
+- **App Store**: iOS 应用
+- **Google Play**: Android 应用
+- **小程序平台**: 微信、支付宝等
 
 ## 🌟 最佳实践
 
-### 1. 组件命名
+### 1. Monorepo 管理
 
-- 使用 PascalCase 命名组件
-- 组件文件名与组件名保持一致
+- 使用 pnpm workspace 管理依赖
+- 共享配置和工具链
+- 统一的代码规范
 
-### 2. 文件组织
+### 2. 版本控制
 
-- 按功能模块组织文件
-- 使用 index.ts 作为模块入口
+- 使用 Changeset 管理版本
+- 语义化版本号
+- 自动化发布流程
 
-### 3. 类型定义
+### 3. 代码质量
 
-- 为所有函数添加返回类型
-- 使用接口定义数据结构
+- ESLint + Prettier 统一代码风格
+- TypeScript 类型安全
+- 自动化测试和 CI/CD
 
-### 4. 状态管理
+### 4. 部署策略
 
-- 按功能模块拆分 store
-- 使用组合式API定义 store
+- 环境变量管理
+- 自动化部署流程
+- 多环境配置
 
-## 🚀 部署
+## 📚 文档
 
-### 构建
-
-```bash
-pnpm build
-```
-
-### 部署到静态服务器
-
-构建完成后，`dist` 目录包含所有静态文件，可以部署到：
-
-- Netlify
-- Vercel
-- GitHub Pages
-- 任何静态文件服务器
+- [Vue 3 模板文档](./apps/vue-template/README.md)
+- [Nuxt 3 模板文档](./apps/nuxt-template/README.md)
+- [VitePress 模板文档](./apps/vitepress-template/README.md)
+- [NestJS 模板文档](./apps/nest-template/README.md)
+- [UniApp 模板文档](./apps/uniapp-template/README.md)
+- [Capacitor 模板文档](./apps/capacitor-template/README.md)
+- [WXT 模板文档](./apps/wxt-template/README.md)
 
 ## 🤝 贡献
 
 欢迎提交 Issue 和 Pull Request！
 
+### 贡献指南
+
+1. Fork 本仓库
+2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 打开 Pull Request
+
 ## 📄 许可证
 
-MIT License
+MIT License - 查看 [LICENSE](LICENSE) 文件了解详情
 
 ## 🙏 致谢
 
 感谢以下开源项目的支持：
 
-- [Vue.js](https://vuejs.org/)
-- [Vite](https://vitejs.dev/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Pinia](https://pinia.vuejs.org/)
-- [Vue Router](https://router.vuejs.org/)
+- [Vue.js](https://vuejs.org/) - 渐进式 JavaScript 框架
+- [Nuxt](https://nuxt.com/) - Vue.js 全栈框架
+- [VitePress](https://vitepress.dev/) - Vue 驱动的静态站点生成器
+- [NestJS](https://nestjs.com/) - Node.js 企业级框架
+- [UniApp](https://uniapp.dcloud.net.cn/) - 跨平台应用开发框架
+- [Capacitor](https://capacitorjs.com/) - 混合应用开发平台
+- [WXT](https://wxt.dev/) - 浏览器扩展开发框架
+- [Vite](https://vitejs.dev/) - 下一代前端构建工具
+- [Tailwind CSS](https://tailwindcss.com/) - 实用优先的 CSS 框架
+- [pnpm](https://pnpm.io/) - 快速、节省磁盘空间的包管理器
 
 ---
 
