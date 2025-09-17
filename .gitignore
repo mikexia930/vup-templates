@@ -108,4 +108,4 @@ ios/
 android/
 
 # Changesets
-!.changeset/config.json
+.changeset/*.md   

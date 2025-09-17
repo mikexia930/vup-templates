@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- 配置changeset 的全局发布
+- 配置 changeset 的全局日志
 
 ## 1.1.0
 
