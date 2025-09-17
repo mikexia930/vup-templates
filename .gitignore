@@ -97,4 +97,12 @@ build/Release
 # Electron-Forge
 out/
 
-.husky/
+# Capacitor
+.capacitor/
+.output/
+.data/
+.nuxt/
+.nitro/
+.cache/
+ios/
+android/

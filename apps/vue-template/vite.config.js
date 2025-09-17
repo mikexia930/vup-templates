@@ -1,6 +1,5 @@
 import path from 'path';
 
-import tailwindcss from '@tailwindcss/vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import AutoImport from 'unplugin-auto-import/vite';
@@ -12,7 +11,6 @@ export default mergeConfig(
     plugins: [
       vue(),
       vueJsx(),
-      tailwindcss(),
       AutoImport({
         imports: ['vue', 'vue-router', 'pinia'],
         dts: path.resolve(__dirname, 'auto-imports.d.ts'),
@@ -35,10 +33,9 @@ export default mergeConfig(
       preprocessorOptions: {
         scss: {
           additionalData: `
-            @reference "tailwindcss";
-            @tailwind base;
-            @tailwind components;
-            @tailwind utilities;
+            @use "tailwindcss/base";
+            @use "tailwindcss/components";
+            @use "tailwindcss/utilities";
           `,
         },
       },

@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  mariadb:
+    image: mariadb:11.3
+    container_name: nest-mariadb
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - '${MYSQL_PORT:-9306}:3306' # 默认值 9306
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - nest-network
+
+  redis:
+    image: redis:7.2-alpine
+    container_name: nest-redis
+    restart: unless-stopped
+    ports:
+      - '${REDIS_PORT:-9379}:6379' # 默认值 9379
+    volumes:
+      - redis_data:/data
+    networks:
+      - nest-network
+
+volumes:
+  mariadb_data:
+  redis_data:
+
+networks:
+  nest-network:
+    driver: bridge

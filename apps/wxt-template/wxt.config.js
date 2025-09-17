@@ -23,17 +23,16 @@ export default defineConfig({
         preprocessorOptions: {
           scss: {
             additionalData: `
-              @reference "tailwindcss";
-              @tailwind base;
-              @tailwind components;
-              @tailwind utilities;
+              @use "tailwindcss/base";
+              @use "tailwindcss/components";
+              @use "tailwindcss/utilities";
             `,
           },
         },
       },
       resolve: {
         alias: {
-          '@shared': '../../_shared',
+          '@shared': path.resolve(__dirname, '../../_shared'),
         },
       },
     };
