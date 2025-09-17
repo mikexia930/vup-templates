@@ -1,6 +1,6 @@
 {
   "name": "vup-template-vue",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -10,8 +10,7 @@
     "format:all": "pnpm --filter '*' format",
     "prepare": "husky",
     "changeset": "changeset",
-    "version-packages": "changeset version",
-    "release": "changeset publish"
+    "version-packages": "changeset version"
   },
   "keywords": [],
   "author": "",
