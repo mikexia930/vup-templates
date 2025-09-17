@@ -1,6 +1,6 @@
 {
   "name": "vup-template-vue",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -8,9 +8,10 @@
     "build:all": "pnpm --filter '*' build",
     "lint:all": "pnpm --filter '*' lint",
     "format:all": "pnpm --filter '*' format",
-    "deploy:vitepress": "cd apps/vitepress-template && pnpm deploy",
-    "deploy:vitepress:preview": "cd apps/vitepress-template && pnpm deploy:preview",
-    "prepare": "husky"
+    "prepare": "husky",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "changeset publish"
   },
   "keywords": [],
   "author": "",
@@ -51,7 +52,8 @@
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.2",
     "unplugin-auto-import": "^20.1.0",
-    "vue-tsc": "^3.0.6"
+    "vue-tsc": "^3.0.6",
+    "@changesets/cli": "^2.29.7"
   },
   "engines": {
     "node": ">=18.0.0",
