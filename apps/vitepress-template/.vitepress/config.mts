@@ -8,23 +8,18 @@ export default defineConfig({
   title: 'My Awesome Project',
   description: 'A VitePress Site',
 
-  // Vite 配置，支持 Tailwind v4
   vite: {
     css: {
-      postcss: '../../postcss.config.js',
+      postcss: '../../../../postcss.config.js',
       preprocessorOptions: {
         scss: {
-          additionalData: `
-            @use "tailwindcss/base";
-            @use "tailwindcss/components";
-            @use "tailwindcss/utilities";
-          `,
+          silenceDeprecations: ['legacy-js-api', 'import'],
         },
       },
     },
     resolve: {
       alias: {
-        '@shared': '../../_shared',
+        '@_shared': '../../../../_shared',
       },
     },
     server: {

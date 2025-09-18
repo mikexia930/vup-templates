@@ -1,4 +1,8 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+# 生成 apps 列表
 node .husky/scripts/generate-apps-list.js
+
+# 将生成的文件添加到暂存区
+git add .template.config.json

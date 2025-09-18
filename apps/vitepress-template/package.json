@@ -1,6 +1,11 @@
 {
   "name": "vitepress",
   "version": "1.0.0",
+  "description": "VitePress development",
+  "private": true,
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
   "scripts": {
     "dev": "vitepress dev",
     "build": "vitepress build",
@@ -12,11 +17,9 @@
     "deploy": "vercel --prod",
     "deploy:preview": "vercel"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "devDependencies": {
-    "vitepress": "2.0.0-alpha.12"
+    "vitepress": "2.0.0-alpha.12",
+    "eslint": "^9.34.0",
+    "prettier": "^3.4.2"
   }
 }

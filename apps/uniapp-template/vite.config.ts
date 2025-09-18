@@ -16,10 +16,11 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         additionalData: `
-          @use "tailwindcss/base";
-          @use "tailwindcss/components";
-          @use "tailwindcss/utilities";
+          @import "tailwindcss/base";
+          @import "tailwindcss/components";
+          @import "tailwindcss/utilities";
         `,
+        silenceDeprecations: ['legacy-js-api', 'import'],
       },
     },
   },
