@@ -22,6 +22,7 @@ fs.readdirSync(appsDir, { withFileTypes: true }).forEach((dirent) => {
       apps.push({
         name: packageJson.name,
         version: packageJson.version,
+        description: packageJson.description,
         path: `apps/${dirent.name}`,
       });
     }

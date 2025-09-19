@@ -1,7 +1,12 @@
 {
   "name": "capacitor",
   "version": "1.0.0",
+  "description": "Cross-platform mobile app development using Capacitor framework",
+  "private": true,
   "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
@@ -18,10 +23,6 @@
     "android:open": "npx cap open android",
     "android": "pnpm android:build && pnpm android:open"
   },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
-  "description": "",
   "dependencies": {
     "@capacitor/android": "^7.4.3",
     "@capacitor/camera": "latest",
@@ -31,8 +32,9 @@
   },
   "devDependencies": {
     "@capacitor/cli": "latest",
-    "@vitejs/plugin-vue": "^6.0.1",
-    "@vitejs/plugin-vue-jsx": "^5.1.1",
-    "vite": "^6.2.0"
+    "typescript": "^5.7.2",
+    "vite": "^6.2.0",
+    "eslint": "^9.34.0",
+    "prettier": "^3.4.2"
   }
 }

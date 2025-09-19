@@ -1,9 +1,14 @@
 {
   "name": "cli",
   "version": "1.0.0",
+  "description": "Command Line Interface development",
+  "private": true,
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
   "main": "./.output/index.js",
   "bin": {
-    "vup": "./.output/index.js"
+    "cli": "./.output/index.js"
   },
   "files": [
     "./.output"
@@ -16,12 +21,12 @@
     "start": "node dist/index.js",
     "prepublishOnly": "npm run build",
     "publish:npm": "npm publish",
-    "publish:beta": "npm publish --tag beta"
+    "publish:beta": "npm publish --tag beta",
+    "lint": "eslint src/ --ext .ts,.js",
+    "lint:fix": "eslint src/ --ext .ts,.js --fix",
+    "format": "prettier --write \"src/**/*.{js,ts,vue,json,css,scss}\"",
+    "format:check": "prettier --check \"src/**/*.{js,ts,vue,json,css,scss}\""
   },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
-  "description": "",
   "repository": {
     "type": "",
     "url": ""
@@ -29,11 +34,12 @@
   "homepage": "",
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^22.18.0",
     "@types/prompts": "^2.4.5",
     "ts-node": "^10.9.2",
     "tsx": "^4.20.5",
-    "esbuild": "^0.25.9"
+    "esbuild": "^0.25.9",
+    "eslint": "^9.34.0",
+    "prettier": "^3.4.2"
   },
   "dependencies": {
     "chalk": "^5.3.0",

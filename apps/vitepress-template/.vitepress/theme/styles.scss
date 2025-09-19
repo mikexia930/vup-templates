@@ -1,7 +1,5 @@
 // VitePress 主题 SCSS 文件
 
-
-
 // 变量定义
 $primary-color: #646cff;
 $secondary-color: #747bff;
@@ -19,7 +17,7 @@ $transition: all 0.3s ease;
   border: none;
   cursor: pointer;
   transition: $transition;
-  
+
   &:hover {
     opacity: 0.9;
     transform: translateY(-2px);
@@ -33,7 +31,7 @@ $transition: all 0.3s ease;
   padding: 1.5rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   transition: $transition;
-  
+
   &:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
@@ -44,15 +42,15 @@ $transition: all 0.3s ease;
   .btn-primary {
     @include button-style($primary-color);
   }
-  
+
   .btn-secondary {
     @include button-style($secondary-color);
   }
-  
+
   .card {
     @include card-style;
   }
-  
+
   .text-gradient {
     background: linear-gradient(135deg, $primary-color, $secondary-color);
     -webkit-background-clip: text;
@@ -85,12 +83,12 @@ $transition: all 0.3s ease;
   .text-balance {
     text-wrap: balance;
   }
-  
+
   .container-responsive {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1rem;
-    
+
     @include mobile {
       padding: 0 0.5rem;
     }

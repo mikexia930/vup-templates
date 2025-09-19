@@ -1,6 +1,11 @@
 {
   "name": "uniapp",
   "version": "1.0.0",
+  "description": "Mobile Apps & Mini Programs Development",
+  "private": true,
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
   "scripts": {
     "dev:custom": "uni -p",
     "dev": "uni",
@@ -32,7 +37,11 @@
     "build:quickapp-webview": "uni build -p quickapp-webview",
     "build:quickapp-webview-huawei": "uni build -p quickapp-webview-huawei",
     "build:quickapp-webview-union": "uni build -p quickapp-webview-union",
-    "type-check": "vue-tsc --noEmit"
+    "type-check": "vue-tsc --noEmit",
+    "lint": "eslint src/ --ext .vue,.ts,.js",
+    "lint:fix": "eslint src/ --ext .vue,.ts,.js --fix",
+    "format": "prettier --write \"src/**/*.{js,ts,vue,json,css,scss}\"",
+    "format:check": "prettier --check \"src/**/*.{js,ts,vue,json,css,scss}\""
   },
   "dependencies": {
     "@dcloudio/uni-app": "3.0.0-4030620241128001",
@@ -59,8 +68,8 @@
     "@dcloudio/vite-plugin-uni": "3.0.0-4030620241128001",
     "@vue/tsconfig": "^0.1.3",
     "@vue/runtime-core": "^3.4.21",
-    "@vitejs/plugin-vue": "^6.0.1",
-    "@vitejs/plugin-vue-jsx": "^5.1.1",
-    "vite": "^6.2.0"
+    "vite": "^6.2.0",
+    "eslint": "^9.34.0",
+    "prettier": "^3.4.2"
   }
 }

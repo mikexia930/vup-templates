@@ -8,23 +8,19 @@ export default defineNuxtConfig({
     strict: true,
     typeCheck: true,
   },
-  css: ['@shared/assets/styles/tailwind.scss'],
+  css: ['@_shared/assets/styles/tailwind.scss'],
   vite: {
     css: {
       postcss: '../../postcss.config.js',
       preprocessorOptions: {
         scss: {
-          additionalData: `
-            @use "tailwindcss/base";
-            @use "tailwindcss/components";
-            @use "tailwindcss/utilities";
-          `,
+          silenceDeprecations: ['legacy-js-api', 'import'],
         },
       },
     },
     resolve: {
       alias: {
-        '@shared': '../../../_shared',
+        '@_shared': '../../../_shared',
       },
     },
   },

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <img src="@shared/assets/images/logo.svg" alt="Logo" class="w-10 h-10" />
-    <div class="base-style">1</div>
+    <img src="@_shared/assets/images/logo.svg" alt="Logo" class="w-10 h-10" />
+    <div class="font-bold text-red-500">测试</div>
     <div class="info">23</div>
   </div>
   <NuxtPage />
@@ -13,6 +13,6 @@ console.log('App');
 
 <style scoped lang="scss">
 .info {
-  @apply text-green-500;
+  @apply text-red-500 font-bold;
 }
 </style>

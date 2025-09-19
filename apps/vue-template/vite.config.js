@@ -32,11 +32,7 @@ export default mergeConfig(
       postcss: path.resolve(__dirname, '../../postcss.config.js'),
       preprocessorOptions: {
         scss: {
-          additionalData: `
-            @use "tailwindcss/base";
-            @use "tailwindcss/components";
-            @use "tailwindcss/utilities";
-          `,
+          silenceDeprecations: ['legacy-js-api', 'import'],
         },
       },
     },
