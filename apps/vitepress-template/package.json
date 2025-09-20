@@ -12,10 +12,7 @@
     "preview": "vitepress preview",
     "lint": "eslint src/ --ext .vue,.ts,.js",
     "lint:fix": "eslint src/ --ext .vue,.ts,.js --fix",
-    "format": "prettier --write \"src/**/*.{js,ts,vue,json,css,scss}\"",
-    "format:check": "prettier --check \"src/**/*.{js,ts,vue,json,css,scss}\"",
-    "deploy": "vercel --prod",
-    "deploy:preview": "vercel"
+    "format": "prettier --write \"src/**/*.{js,ts,vue,json,css,scss}\""
   },
   "devDependencies": {
     "vitepress": "2.0.0-alpha.12",
