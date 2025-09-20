@@ -1,7 +1,7 @@
 {
   "name": "nuxt",
   "version": "1.0.0",
-  "description": "Nuxt.js development",
+  "description": "Web App Development Template",
   "type": "module",
   "private": true,
   "keywords": [],

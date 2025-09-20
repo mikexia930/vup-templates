@@ -1,8 +1,19 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-# 生成 apps 列表
-node .husky/scripts/generate-apps-list.js
+# 检查 .template.config.json 是否存在且是最新的
+if [ ! -f ".template.config.json" ] || [ "apps" -nt ".template.config.json" ]; then
+  echo "⚠️  .template.config.json 需要更新，请运行："
+  echo "   pnpm run generate:apps"
+  echo "   或者等待 push 时自动生成"
+  echo ""
+fi
 
-# 将生成的文件添加到暂存区
-git add .template.config.json
+# changeset 检查
+if [ -n "$(git diff --cached --name-only)" ]; then
+  if [ -z "$(find .changeset -name "*.md" -newer .git/COMMIT_EDITMSG 2>/dev/null)" ]; then
+    echo "⚠️  检测到代码变更，请考虑是否需要创建 changeset："
+    echo "   pnpm changeset"
+    echo ""
+  fi
+fi

@@ -1,9 +1,8 @@
 {
-  "buildCommand": "pnpm build",
-  "outputDirectory": ".output",
-  "framework": null,
-  "installCommand": "pnpm install --frozen-lockfile",
-  "devCommand": "pnpm dev",
+  "buildCommand": "cd apps/{project_name} && pnpm build",
+  "outputDirectory": "apps/{project_name}/.output",
+  "installCommand": "pnpm install --no-frozen-lockfile && cd apps/{project_name} && pnpm install --no-frozen-lockfile",
+  "devCommand": "cd apps/{project_name} && pnpm dev",
   "rewrites": [
     {
       "source": "/(.*)",
