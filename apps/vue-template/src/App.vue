@@ -5,5 +5,13 @@
 </template>
 
 <script setup lang="ts" name="App">
-console.log('App');
+const { locale } = useI18n();
+// 语言切换
+const currentLocale = computed(() => locale.value);
+const switchLanguage = (lang: string) => {
+  locale.value = lang;
+};
+
+provide('currentLocale', currentLocale);
+provide('switchLanguage', switchLanguage);
 </script>

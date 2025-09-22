@@ -1,4 +1,4 @@
-name: Deploy VitePress to Vercel
+name: Deploy App to Vercel
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
   pull_request:
     branches: [main, master]
     paths:
-      - 'apps/vitepress-template/**'
+      - 'apps/{project_name}/**'
       - '_shared/**'
 
 jobs:
@@ -23,20 +23,20 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '21'
           cache: 'pnpm'
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
 
-      - name: Build VitePress
+      - name: Build App
         run: |
-          cd apps/vitepress-template
+          cd apps/{project_name}
           pnpm build
 
       - name: Deploy to Vercel

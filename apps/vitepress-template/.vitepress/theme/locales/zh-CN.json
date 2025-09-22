@@ -1,0 +1,19 @@
+{
+  "quickstart": {
+    "title": "快速开始",
+    "dev": { "title": "开发服务器", "description": "启动开发服务器，支持热重载" },
+    "build": { "title": "构建项目", "description": "构建生产版本" },
+    "lint": { "title": "代码检查", "description": "运行 ESLint 检查代码质量" },
+    "format": { "title": "代码格式化", "description": "使用 Prettier 格式化代码" }
+  },
+  "techstack": {
+    "title": "技术栈",
+    "description": "基于现代化的技术栈，开箱即用",
+    "vitepress": { "description": "基于 Vite 的静态站点生成器", "link": "VitePress 文档" },
+    "pnpm": { "description": "快速、节省磁盘空间的包管理器", "link": "pnpm 文档" },
+    "eslint": { "description": "可插拔的 JavaScript 代码检查工具", "link": "ESLint 文档" },
+    "prettier": { "description": "代码格式化工具", "link": "Prettier 文档" },
+    "scss": { "description": "CSS 预处理器，增强样式编写能力", "link": "SCSS 文档" },
+    "tailwind": { "description": "实用优先的 CSS 框架", "link": "Tailwind CSS 文档" }
+  }
+}
