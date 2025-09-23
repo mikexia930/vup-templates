@@ -1,5 +1,13 @@
 # vup-template-vue
 
+## 1.3.0
+
+### Minor Changes
+
+- vitepress 和 vue 的启动页
+- vercel 发布脚本优化
+- 优化各个应用的启动页
+
 ## 1.2.0
 
 ### Minor Changes
