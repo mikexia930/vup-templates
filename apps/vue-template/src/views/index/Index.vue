@@ -4,8 +4,8 @@
     <div class="success-section">
       <div class="success-content">
         <div class="success-visual">
-          <img src="@/assets/images/logo.svg" alt="Vue Logo" class="vue-logo" />
-          <img src="@_shared/assets/images/logo.svg" alt="VUP Logo" class="vup-logo" />
+          <img src="@/assets/images/vue.svg" alt="Vue Logo" class="vue-logo" />
+          <img src="@_shared/assets/images/vup.svg" alt="VUP Logo" class="vup-logo" />
           <div class="speed-badge">×1.5</div>
         </div>
         <div class="success-text">

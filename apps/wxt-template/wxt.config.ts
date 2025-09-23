@@ -1,23 +1,18 @@
 import path from 'path';
-
-import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'wxt';
 
 export default defineConfig({
   srcDir: 'src',
   modules: ['@wxt-dev/module-vue'],
-  alias: {
-    '@_shared': path.resolve(__dirname, '../../_shared'),
-  },
   dev: {
     server: {
-      port: 9002,
+      port: 9306,
       host: '0.0.0.0',
     },
   },
   vite: () => {
     return {
-      plugins: [tailwindcss()],
+      plugins: [],
       css: {
         postcss: path.resolve(__dirname, '../../postcss.config.js'),
         preprocessorOptions: {
@@ -33,7 +28,7 @@ export default defineConfig({
       },
       resolve: {
         alias: {
-          '@shared': path.resolve(__dirname, '../../_shared'),
+          '@_shared': path.resolve(__dirname, '../../_shared'),
         },
       },
     };
