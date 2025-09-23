@@ -109,3 +109,6 @@ android/
 
 # Changesets
 .changeset/*.md   
+
+# Husky 内部文件
+.husky/_

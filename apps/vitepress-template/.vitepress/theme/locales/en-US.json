@@ -1,0 +1,28 @@
+{
+  "quickstart": {
+    "title": "Quick Start",
+    "dev": {
+      "title": "Development Server",
+      "description": "Start development server with hot reload"
+    },
+    "build": { "title": "Build Project", "description": "Build for production" },
+    "lint": { "title": "Code Linting", "description": "Run ESLint to check code quality" },
+    "format": { "title": "Code Formatting", "description": "Format code with Prettier" }
+  },
+  "techstack": {
+    "title": "Tech Stack",
+    "description": "Built with modern technologies, ready to use out of the box",
+    "vitepress": {
+      "description": "Static site generator powered by Vite",
+      "link": "VitePress Docs"
+    },
+    "pnpm": { "description": "Fast, disk space efficient package manager", "link": "pnpm Docs" },
+    "eslint": { "description": "Pluggable JavaScript linting utility", "link": "ESLint Docs" },
+    "prettier": { "description": "Code formatter", "link": "Prettier Docs" },
+    "scss": {
+      "description": "CSS preprocessor that extends CSS capabilities",
+      "link": "SCSS Docs"
+    },
+    "tailwind": { "description": "Utility-first CSS framework", "link": "Tailwind CSS Docs" }
+  }
+}

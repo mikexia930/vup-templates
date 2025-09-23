@@ -5,11 +5,12 @@ import zh_CN from './zh_CN';
 
 export default createI18n({
   legacy: false,
-  locale: 'zh_CN',
-  fallbackLocale: 'zh_CN',
+  locale: 'en_US',
+  fallbackLocale: 'en_US',
   allowComposition: true,
+  globalInjection: true,
   messages: {
-    zh_CN,
     en_US,
+    zh_CN,
   },
 });

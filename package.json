@@ -1,16 +1,21 @@
 {
   "name": "vup-template-vue",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "dev:all": "pnpm --filter '*' dev",
     "build:all": "pnpm --filter '*' build",
     "lint:all": "pnpm --filter '*' lint",
+    "lint:fix:all": "pnpm --filter '*' lint:fix",
     "format:all": "pnpm --filter '*' format",
+    "format:check:all": "pnpm --filter '*' format:check",
+    "type-check:all": "pnpm --filter '*' type-check",
     "prepare": "husky",
     "changeset": "changeset",
-    "version-packages": "changeset version"
+    "version-packages": "changeset version",
+    "deploy": "vercel --prod",
+    "deploy:preview": "vercel"
   },
   "keywords": [],
   "author": "",
@@ -55,10 +60,11 @@
     "@changesets/cli": "^2.29.7",
     "@vitejs/plugin-vue": "^6.0.1",
     "@vitejs/plugin-vue-jsx": "^5.1.1",
-    "vite": "^6.0.1"
+    "vite": "^6.0.1",
+    "vercel": "^48.0.3"
   },
   "engines": {
-    "node": ">=18.0.0",
-    "pnpm": ">=8.0.0"
+    "node": ">=21.0.0",
+    "pnpm": ">=10.0.0"
   }
 }

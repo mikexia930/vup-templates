@@ -1,8 +1,7 @@
-import type { Component } from 'vue';
 export default [
   {
     path: '/',
-    redirect: { name: 'index' },
+    redirect: { name: 'docs' },
   },
   {
     path: '/index',
@@ -10,9 +9,14 @@ export default [
     component: (): Promise<Component> => import('@/views/index/Index.vue'),
     children: [
       {
-        path: '/content/:id?',
-        name: 'content',
-        component: (): Promise<Component> => import('@/views/content/Content.vue'),
+        path: '/docs/:id?',
+        name: 'docs',
+        component: (): Promise<Component> => import('@/views/docs/Docs.vue'),
+      },
+      {
+        path: '/demo/:id?',
+        name: 'demo',
+        component: (): Promise<Component> => import('@/views/demo/Demo.vue'),
       },
     ],
   },

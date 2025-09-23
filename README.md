@@ -1,10 +1,12 @@
-# 🚀 Vue Project Templates - 多框架开发模板集合
+# 🚀 VUP CLI Templates - 多框架开发模板集合
 
-一个基于 pnpm
-monorepo 的多框架开发模板集合，包含 Vue、Nuxt、VitePress、NestJS、UniApp、Capacitor、WXT 等多种技术栈的完整开发模板，让你快速开始不同类型的项目开发。
+VUP
+CLI 的多框架开发模板集合，包含 Vue、Nuxt、VitePress、NestJS、UniApp、Capacitor、WXT 等多种技术栈的完整开发模板。通过
+`vup add` 命令快速创建项目，让你专注于业务逻辑开发。
 
 ## ✨ 特性
 
+- 🚀 **VUP CLI 集成** - 通过 `vup add` 命令快速创建项目
 - 🏗️ **Monorepo 架构** - 基于 pnpm workspace 的多包管理
 - 🎯 **多框架支持** - Vue、Nuxt、VitePress、NestJS、UniApp 等
 - 🔧 **TypeScript** - 完整的类型支持
@@ -39,6 +41,7 @@ monorepo 的多框架开发模板集合，包含 Vue、Nuxt、VitePress、NestJS
 
 | 技术         | 版本 | 说明                         |
 | ------------ | ---- | ---------------------------- |
+| VUP CLI      | 1.0+ | 项目创建和管理工具           |
 | TypeScript   | 5.0+ | JavaScript的超集             |
 | Vite         | 6.0+ | 下一代前端构建工具           |
 | pnpm         | 8.0+ | 快速、节省磁盘空间的包管理器 |
@@ -76,109 +79,56 @@ project-vue/
 
 ## 🚀 快速开始
 
-### 1. 克隆项目
+### 1. 安装 VUP CLI
 
 ```bash
-git clone <repository-url>
-cd project-vue
+# 全局安装 vup-cli
+npm install -g vup-cli
 ```
 
-### 2. 安装依赖
+### 2. 创建项目
 
 ```bash
-# 使用 pnpm (推荐)
+# 初始项目
+vup init my-project
+# 添加新项目
+vup add my-app
+
+# 选择模板类型
+? 请选择项目模板:
+  ❯ Vue 3 模板 (vue-template)
+    Nuxt 3 模板 (nuxt-template)
+    VitePress 文档模板 (vitepress-template)
+    NestJS 后端模板 (nest-template)
+    UniApp 跨平台模板 (uniapp-template)
+    Capacitor 混合应用模板 (capacitor-template)
+    WXT 浏览器扩展模板 (wxt-template)
+```
+
+### 3. 启动开发服务器
+
+```bash
+# 进入项目目录
+cd my-project
+
+# 安装依赖
 pnpm install
 
-# 或使用 npm
-npm install
-```
-
-### 3. 选择模板并启动
-
-```bash
-# Vue 3 模板
-cd apps/vue-template
-pnpm dev
-
-# Nuxt 3 模板
-cd apps/nuxt-template
-pnpm dev
-
-# VitePress 文档模板
-cd apps/vitepress-template
-pnpm dev
-
-# NestJS 后端模板
-cd apps/nest-template
-pnpm dev
-
-# UniApp 跨平台模板
-cd apps/uniapp-template
-pnpm dev
-
-# Capacitor 混合应用模板
-cd apps/capacitor-template
-pnpm dev
-
-# WXT 浏览器扩展模板
-cd apps/wxt-template
+# 启动开发服务器
 pnpm dev
 ```
 
-### 4. 构建生产版本
+## 📖 模板概览
 
-```bash
-# 构建所有应用
-pnpm build:all
-
-# 或构建指定应用
-cd apps/vue-template
-pnpm build
-```
-
-## 📖 模板说明
-
-### Vue 3 模板
-
-- **技术栈**: Vue 3 + Vite + TypeScript + Pinia + Vue Router
-- **特性**: 自动导入、国际化、Tailwind CSS、代码规范
-- **适用场景**: SPA 应用、管理后台、企业级前端项目
-
-### Nuxt 3 模板
-
-- **技术栈**: Nuxt 3 + Vue 3 + TypeScript + Tailwind CSS
-- **特性**: SSR/SSG、自动路由、服务端渲染
-- **适用场景**: 全栈应用、SEO 友好的网站、博客
-
-### VitePress 模板
-
-- **技术栈**: VitePress + Vue 3 + Markdown
-- **特性**: 静态站点生成、主题定制、搜索功能
-- **适用场景**: 文档网站、技术博客、产品介绍
-
-### NestJS 模板
-
-- **技术栈**: NestJS + TypeScript + Prisma + Docker
-- **特性**: 模块化架构、依赖注入、微服务支持
-- **适用场景**: API 服务、微服务、企业级后端
-
-### UniApp 模板
-
-- **技术栈**: UniApp + Vue 3 + TypeScript
-- **特性**: 跨平台开发、原生性能、丰富组件
-- **适用场景**: 移动应用、小程序、H5 应用
-
-### Capacitor 模板
-
-- **技术栈**: Capacitor + Vue 3 + TypeScript
-- **特性**: 混合应用、原生插件、跨平台部署
-- **适用场景**: 混合移动应用、桌面应用
-
-### WXT 模板
-
-- **技术栈**: WXT + Vue 3 + TypeScript
-- **特性**: 浏览器扩展开发、多浏览器支持
-- **适用场景**: Chrome 扩展、Firefox 插件、Edge 扩展
+| 模板                   | 技术栈                         | 适用场景                             | 文档                                            |
+| ---------------------- | ------------------------------ | ------------------------------------ | ----------------------------------------------- |
+| **vue-template**       | Vue 3 + Vite + TypeScript      | SPA 应用、管理后台、企业级前端       | [查看文档](./apps/vue-template/README.md)       |
+| **nuxt-template**      | Nuxt 3 + Vue 3 + TypeScript    | 全栈应用、SEO 友好网站、博客         | [查看文档](./apps/nuxt-template/README.md)      |
+| **vitepress-template** | VitePress + Vue 3 + Markdown   | 文档网站、技术博客、产品介绍         | [查看文档](./apps/vitepress-template/README.md) |
+| **nest-template**      | NestJS + TypeScript + Prisma   | API 服务、微服务、企业级后端         | [查看文档](./apps/nest-template/README.md)      |
+| **uniapp-template**    | UniApp + Vue 3 + TypeScript    | 移动应用、小程序、H5 应用            | [查看文档](./apps/uniapp-template/README.md)    |
+| **capacitor-template** | Capacitor + Vue 3 + TypeScript | 混合移动应用、桌面应用               | [查看文档](./apps/capacitor-template/README.md) |
+| **wxt-template**       | WXT + Vue 3 + TypeScript       | Chrome 扩展、Firefox 插件、Edge 扩展 | [查看文档](./apps/wxt-template/README.md)       |
 
 ## 🔧 开发工具
 
@@ -222,25 +172,92 @@ cd apps/nest-template
 pnpm docker:up
 ```
 
+## 🌍 环境变量配置
+
+### 使用方法
+
+1. 复制 `.env.example` 为 `.env.local`：
+
+```bash
+cp .env.example .env.local
+```
+
+2. 根据实际需求修改 `.env.local` 中的配置
+
+### Vite 环境变量规则
+
+- **客户端变量**：必须以 `VITE_` 开头
+- **服务端变量**：可以任意命名（如 `NODE_ENV`）
+
+### 变量优先级（从高到低）
+
+1. `.env.local`（本地环境，不提交到 Git）
+2. `.env.development`（开发环境）
+3. `.env.production`（生产环境）
+4. `.env`（通用环境）
+
+### 常用配置
+
+```bash
+# 应用基础配置
+VITE_APP_TITLE=应用标题
+VITE_APP_DESCRIPTION=应用描述
+VITE_API_BASE_URL=https://api.example.com
+
+# 功能开关
+VITE_ENABLE_MOCK=true
+VITE_ENABLE_DEVTOOLS=true
+VITE_ENABLE_ANALYTICS=false
+```
+
 ## 🚀 部署方案
 
-### 前端应用
+### 前端应用部署
 
-- **Vercel**: VitePress、Vue、Nuxt 应用
+- **Vercel**: VitePress、Vue、Nuxt 应用（推荐）
 - **Netlify**: 静态站点
 - **GitHub Pages**: 文档站点
 
-### 后端应用
+### 后端应用部署
 
 - **Docker**: NestJS 应用容器化部署
 - **Railway**: 无服务器部署
 - **Heroku**: 传统云平台部署
 
-### 移动应用
+### 移动应用发布
 
 - **App Store**: iOS 应用
 - **Google Play**: Android 应用
 - **小程序平台**: 微信、支付宝等
+
+### Vercel 自动部署
+
+#### 配置说明
+
+项目已配置 `vercel.json` 文件，支持多应用部署：
+
+```json
+{
+  "buildCommand": "cd apps/{project_name} && pnpm build",
+  "outputDirectory": "apps/{project_name}/.output",
+  "installCommand": "pnpm install --no-frozen-lockfile && cd apps/{project_name} && pnpm install --no-frozen-lockfile",
+  "devCommand": "cd apps/{project_name} && pnpm dev"
+}
+```
+
+#### 部署步骤
+
+1. **在 Vercel 控制台创建项目**
+2. **设置环境变量**：
+   - `PROJECT_NAME`: 要部署的应用名称（如 `vitepress-template`）
+3. **连接 GitHub 仓库**
+4. **自动部署**：推送到 main 分支即可自动部署
+
+#### 支持的应用
+
+- `vitepress-template` - 文档网站
+- `vue-template` - Vue 3 应用
+- `nuxt-template` - Nuxt 3 应用
 
 ## 🌟 最佳实践
 
@@ -270,13 +287,15 @@ pnpm docker:up
 
 ## 📚 文档
 
-- [Vue 3 模板文档](./apps/vue-template/README.md)
-- [Nuxt 3 模板文档](./apps/nuxt-template/README.md)
-- [VitePress 模板文档](./apps/vitepress-template/README.md)
-- [NestJS 模板文档](./apps/nest-template/README.md)
-- [UniApp 模板文档](./apps/uniapp-template/README.md)
-- [Capacitor 模板文档](./apps/capacitor-template/README.md)
-- [WXT 模板文档](./apps/wxt-template/README.md)
+每个模板都有详细的文档说明，包含技术栈、使用方法、配置说明等：
+
+- [Vue 3 模板文档](./apps/vue-template/README.md) - SPA 应用开发
+- [Nuxt 3 模板文档](./apps/nuxt-template/README.md) - 全栈应用开发
+- [VitePress 模板文档](./apps/vitepress-template/README.md) - 文档网站开发
+- [NestJS 模板文档](./apps/nest-template/README.md) - 后端 API 开发
+- [UniApp 模板文档](./apps/uniapp-template/README.md) - 跨平台移动应用
+- [Capacitor 模板文档](./apps/capacitor-template/README.md) - 混合应用开发
+- [WXT 模板文档](./apps/wxt-template/README.md) - 浏览器扩展开发
 
 ## 🤝 贡献
 
@@ -298,6 +317,7 @@ MIT License - 查看 [LICENSE](LICENSE) 文件了解详情
 
 感谢以下开源项目的支持：
 
+- [VUP CLI](https://github.com/vup-cli/vup) - 项目创建和管理工具
 - [Vue.js](https://vuejs.org/) - 渐进式 JavaScript 框架
 - [Nuxt](https://nuxt.com/) - Vue.js 全栈框架
 - [VitePress](https://vitepress.dev/) - Vue 驱动的静态站点生成器

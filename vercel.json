@@ -1,0 +1,23 @@
+{
+  "buildCommand": "cd apps/{project_name} && pnpm build",
+  "outputDirectory": "apps/{project_name}/.output",
+  "installCommand": "pnpm install --no-frozen-lockfile && cd apps/{project_name} && pnpm install --no-frozen-lockfile",
+  "devCommand": "cd apps/{project_name} && pnpm dev",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
+}

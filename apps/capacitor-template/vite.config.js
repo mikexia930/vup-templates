@@ -12,7 +12,7 @@ export default mergeConfig(
       vue(),
       vueJsx(),
       AutoImport({
-        imports: ['vue', 'vue-router', 'pinia'],
+        imports: ['vue', 'vue-router', 'pinia', 'vue-i18n'],
         dts: path.resolve(__dirname, 'auto-imports.d.ts'),
         vueTemplate: true,
         eslintrc: {
@@ -61,7 +61,7 @@ export default mergeConfig(
     },
     server: {
       host: '0.0.0.0',
-      port: 9010,
+      port: 9305,
       open: false,
       cors: true,
       hmr: {

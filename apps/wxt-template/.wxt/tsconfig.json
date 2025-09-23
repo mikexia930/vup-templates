@@ -10,8 +10,6 @@
     "strict": true,
     "skipLibCheck": true,
     "paths": {
-      "@_shared": ["../../../_shared"],
-      "@_shared/*": ["../../../_shared/*"],
       "@": ["../src"],
       "@/*": ["../src/*"],
       "~": ["../src"],

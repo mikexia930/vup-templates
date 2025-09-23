@@ -1,6 +1,6 @@
 {
   "name": "component",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Tool Components & Vue 3 Library",
   "private": true,
   "type": "module",
