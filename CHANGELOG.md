@@ -1,5 +1,11 @@
 # vup-template-vue
 
+## 1.4.1
+
+### Patch Changes
+
+- 优化eslint依赖
+
 ## 1.4.0
 
 ### Minor Changes

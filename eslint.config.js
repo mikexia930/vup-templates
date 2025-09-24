@@ -7,38 +7,6 @@ export default antfu({
   stylistic: false,
   // 针对不同项目的特殊配置
   overrides: [
-    // Vue 项目配置
-    {
-      files: ['apps/vue-template/**/*.{js,ts,vue}'],
-      rules: {
-        // Vue 特定规则
-      },
-    },
-
-    // Nuxt 项目配置
-    {
-      files: ['apps/nuxt-template/**/*.{js,ts,vue}'],
-      rules: {
-        'no-undef': 'off', // Nuxt 全局函数
-      },
-    },
-
-    // NestJS 项目配置
-    {
-      files: ['apps/nest-template/**/*.{js,ts}'],
-      rules: {
-        // NestJS 特定规则
-      },
-    },
-
-    // UniApp 项目配置
-    {
-      files: ['apps/uniapp-template/**/*.{js,ts,vue}'],
-      rules: {
-        // UniApp 特定规则
-      },
-    },
-
     // 配置文件特殊处理
     {
       files: [
