@@ -18,6 +18,12 @@
     "path": "apps/component-template"
   },
   {
+    "name": "electron",
+    "version": "1.0.0",
+    "description": "Desktop application template",
+    "path": "apps/electron-template"
+  },
+  {
     "name": "nest",
     "version": "1.1.0",
     "description": "Backend Development Template",
