@@ -1,6 +1,9 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+# 运行 ESLint 和 Prettier
+pnpm lint-staged
+
 # 检查 .template.config.json 是否存在且是最新的
 if [ ! -f ".template.config.json" ] || [ "apps" -nt ".template.config.json" ]; then
   echo "⚠️  .template.config.json 需要更新，请运行："
