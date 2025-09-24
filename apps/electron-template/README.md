@@ -172,7 +172,7 @@ pnpm store prune
 # 重新安装
 pnpm install
 
-# 手动运行 Electron 安装脚本
+# 如果 Electron 安装不完整，缺少二进制文件，需要手动运行 Electron 安装脚本
 cd node_modules/electron && node install.js
 
 # 回到项目根目录
