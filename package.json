@@ -1,6 +1,6 @@
 {
   "name": "vup-templates",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -14,7 +14,7 @@
     "prepare": "husky",
     "lint-staged": "lint-staged",
     "changeset": "changeset",
-    "version-packages": "changeset version",
+    "changeset:version": "changeset version",
     "deploy:prod": "vercel --prod",
     "deploy:preview": "vercel"
   },

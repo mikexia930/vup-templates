@@ -1,0 +1,36 @@
+{
+  "name": "electron",
+  "productName": "electron-project",
+  "version": "1.0.0",
+  "description": "Desktop application template",
+  "main": ".vite/build/main.js",
+  "author": "",
+  "keywords": [],
+  "license": "MIT",
+  "scripts": {
+    "dev": "electron-forge start",
+    "build": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "eslint src/ --ext .vue,.ts,.js",
+    "lint:fix": "eslint src/ --ext .vue,.ts,.js --fix",
+    "format": "prettier --write \"src/**/*.{js,ts,vue,json,css,scss}\"",
+    "format:check": "prettier --check \"src/**/*.{js,ts,vue,json,css,scss}\""
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^7.9.0",
+    "@electron-forge/maker-deb": "^7.9.0",
+    "@electron-forge/maker-rpm": "^7.9.0",
+    "@electron-forge/maker-squirrel": "^7.9.0",
+    "@electron-forge/maker-zip": "^7.9.0",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.9.0",
+    "@electron-forge/plugin-fuses": "^7.9.0",
+    "@electron-forge/plugin-vite": "^7.9.0",
+    "@electron/fuses": "^1.8.0",
+    "@types/electron-squirrel-startup": "^1.0.2",
+    "electron": "38.1.2"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.1"
+  }
+}
