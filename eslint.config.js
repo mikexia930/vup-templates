@@ -5,6 +5,13 @@ export default antfu({
   typescript: true,
   vue: true,
   stylistic: false,
+
+  // 规则配置
+  rules: {
+    'ts/no-empty-object-type': 'off',
+    'node/prefer-global/process': 'off',
+  },
+
   // 针对不同项目的特殊配置
   overrides: [
     // 配置文件特殊处理

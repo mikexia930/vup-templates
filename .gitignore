@@ -106,6 +106,8 @@ out/
 .cache/
 ios/
 android/
+.vite/
+out/
 
 # Changesets
 .changeset/*.md   

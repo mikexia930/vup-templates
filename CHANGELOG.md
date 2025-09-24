@@ -1,5 +1,11 @@
 # vup-template-vue
 
+## 1.5.0
+
+### Minor Changes
+
+- 增加 electron 模版
+
 ## 1.4.1
 
 ### Patch Changes
