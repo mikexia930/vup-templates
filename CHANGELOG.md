@@ -1,5 +1,11 @@
 # vup-template-vue
 
+## 1.4.0
+
+### Minor Changes
+
+- eslint 改用 @antfu/eslint-config
+
 ## 1.3.0
 
 ### Minor Changes

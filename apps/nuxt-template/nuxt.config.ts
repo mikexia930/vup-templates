@@ -1,5 +1,4 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
@@ -32,7 +31,7 @@ export default defineNuxtConfig({
     port: 9303,
   },
 
-  modules: ['@nuxtjs/i18n'],
+  modules: ['@nuxtjs/i18n', '@pinia/nuxt'],
 
   i18n: {
     defaultLocale: 'en-US',
