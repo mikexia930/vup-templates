@@ -10,6 +10,7 @@ export default antfu({
   rules: {
     'ts/no-empty-object-type': 'off',
     'node/prefer-global/process': 'off',
+    'no-console': 'off',
   },
 
   // 针对不同项目的特殊配置
