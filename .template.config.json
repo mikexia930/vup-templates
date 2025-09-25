@@ -7,7 +7,7 @@
   },
   {
     "name": "cli",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "description": "Command Line Interface development",
     "path": "apps/cli-template"
   },
