@@ -1,6 +1,9 @@
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import i18next from 'i18next';
 import Backend from 'i18next-fs-backend';
-import { join } from 'path';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const initI18n = async () => {
   // 获取语言设置，支持多种格式

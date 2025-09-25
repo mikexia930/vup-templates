@@ -1,18 +1,27 @@
 {
   "name": "cli",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Command Line Interface development",
   "private": true,
   "keywords": [],
   "author": "",
   "license": "MIT",
+  "type": "module",
   "main": "./.output/index.js",
   "bin": {
-    "cli": "./.output/index.js"
+    "cli": "./bin/cli.js"
   },
   "files": [
     "./.output"
   ],
+  "repository": {
+    "type": "",
+    "url": ""
+  },
+  "homepage": "",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "dev": "NODE_ENV=development tsx src/index.ts",
     "build": "NODE_ENV=production node esbuild.config.js",
@@ -27,11 +36,6 @@
     "format": "prettier --write \"src/**/*.{js,ts,vue,json,css,scss}\"",
     "format:check": "prettier --check \"src/**/*.{js,ts,vue,json,css,scss}\""
   },
-  "repository": {
-    "type": "",
-    "url": ""
-  },
-  "homepage": "",
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
     "@types/prompts": "^2.4.5",

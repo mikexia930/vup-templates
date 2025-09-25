@@ -1,5 +1,5 @@
+import { existsSync, mkdirSync } from 'node:fs';
 import { build } from 'esbuild';
-import { existsSync, mkdirSync } from 'fs';
 
 const config = {
   entryPoints: ['src/index.ts'],
@@ -8,7 +8,7 @@ const config = {
   target: 'node18',
   outfile: './.output/index.js',
   minify: true,
-  format: 'cjs',
+  format: 'esm',
   external: [
     'fs-extra',
     'prompts',
@@ -41,7 +41,7 @@ async function buildCLI() {
   try {
     // 清理并创建 .output 目录
     if (existsSync('./.output')) {
-      const { rmSync } = await import('fs');
+      const { rmSync } = await import('node:fs');
       rmSync('./.output', { recursive: true });
     }
     mkdirSync('./.output', { recursive: true });
@@ -64,7 +64,7 @@ async function buildCLI() {
     const localesDest = './.output/locales';
 
     if (existsSync(localesSource)) {
-      const { cpSync } = await import('fs');
+      const { cpSync } = await import('node:fs');
       cpSync(localesSource, localesDest, { recursive: true });
       console.log('✅ Locales copied successfully');
     }
