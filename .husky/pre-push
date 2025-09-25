@@ -1,15 +1,5 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-# 生成 apps 列表
-echo "🔄 正在生成最新的 apps 列表..."
-node .husky/scripts/generate-apps-list.js
-
-# 将生成的文件添加到暂存区
-git add .template.config.json
-
-# 如果有新的变更，合并到当前 commit
-if [ -n "$(git diff --cached --name-only)" ]; then
-  echo "📝 将 .template.config.json 更新合并到当前 commit..."
-  git commit --amend --no-edit --no-verify
-fi
+# pre-push 钩子现在只做推送前的检查
+echo "✅ 准备推送到远程仓库..."
