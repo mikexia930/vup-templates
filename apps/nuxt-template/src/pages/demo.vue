@@ -1,3 +1,43 @@
+<script setup lang="ts">
+// 使用 Nuxt i18n composables
+const { t } = useI18n();
+
+// 计数器状态
+const count = ref(0);
+const lastUpdated = ref<string | null>(null);
+
+// 计算属性
+const double = computed(() => count.value * 2);
+
+// 计数器方法
+const increment = () => {
+  count.value++;
+  lastUpdated.value = new Date().toLocaleTimeString();
+};
+
+const decrement = () => {
+  count.value--;
+  lastUpdated.value = new Date().toLocaleTimeString();
+};
+
+const reset = () => {
+  count.value = 0;
+  lastUpdated.value = new Date().toLocaleTimeString();
+};
+
+// 消息列表状态
+const newMessage = ref('');
+const messages = ref<string[]>([]);
+
+// 添加消息
+const addMessage = () => {
+  if (newMessage.value.trim()) {
+    messages.value.push(newMessage.value.trim());
+    newMessage.value = '';
+  }
+};
+</script>
+
 <template>
   <div class="docs-page">
     <div class="container">
@@ -43,13 +83,13 @@
               </div>
             </div>
             <div class="counter-actions">
-              <button @click="increment" class="btn btn-primary">
+              <button class="btn btn-primary" @click="increment">
                 {{ t('content.store.increment') }}
               </button>
-              <button @click="decrement" class="btn btn-secondary">
+              <button class="btn btn-secondary" @click="decrement">
                 {{ t('content.store.decrement') }}
               </button>
-              <button @click="reset" class="btn btn-danger">
+              <button class="btn btn-danger" @click="reset">
                 {{ t('content.store.reset') }}
               </button>
             </div>
@@ -68,7 +108,7 @@
                 class="message-input"
                 @keyup.enter="addMessage"
               />
-              <button @click="addMessage" class="btn btn-primary">
+              <button class="btn btn-primary" @click="addMessage">
                 {{ t('content.reactivity.add') }}
               </button>
             </div>
@@ -83,46 +123,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-// 使用 Nuxt i18n composables
-const { t } = useI18n();
-
-// 计数器状态
-const count = ref(0);
-const lastUpdated = ref<string | null>(null);
-
-// 计算属性
-const double = computed(() => count.value * 2);
-
-// 计数器方法
-const increment = () => {
-  count.value++;
-  lastUpdated.value = new Date().toLocaleTimeString();
-};
-
-const decrement = () => {
-  count.value--;
-  lastUpdated.value = new Date().toLocaleTimeString();
-};
-
-const reset = () => {
-  count.value = 0;
-  lastUpdated.value = new Date().toLocaleTimeString();
-};
-
-// 消息列表状态
-const newMessage = ref('');
-const messages = ref<string[]>([]);
-
-// 添加消息
-const addMessage = () => {
-  if (newMessage.value.trim()) {
-    messages.value.push(newMessage.value.trim());
-    newMessage.value = '';
-  }
-};
-</script>
 
 <style lang="scss" scoped>
 .docs-page {

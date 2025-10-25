@@ -36,6 +36,12 @@
     "path": "apps/nuxt-template"
   },
   {
+    "name": "qiankun",
+    "version": "0.1.0",
+    "description": "Micro-Frontend Template",
+    "path": "apps/qiankun-template"
+  },
+  {
     "name": "uniapp",
     "version": "1.1.0",
     "description": "Mobile Apps & Mini Programs Development",

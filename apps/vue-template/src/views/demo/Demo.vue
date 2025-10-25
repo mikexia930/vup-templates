@@ -1,3 +1,21 @@
+<script setup lang="ts">
+import { storeDemo } from './stores/demo';
+
+const { t } = useI18n();
+const demoStore = storeDemo();
+
+// 响应式数据演示
+const localMessage = ref('');
+const messages = ref<string[]>([]);
+
+const addMessage = () => {
+  if (localMessage.value.trim()) {
+    messages.value.push(localMessage.value.trim());
+    localMessage.value = '';
+  }
+};
+</script>
+
 <template>
   <div class="demo-page">
     <!-- Demo Header -->
@@ -31,13 +49,13 @@
           </div>
 
           <div class="counter-actions">
-            <button @click="demoStore.increment" class="demo-btn primary">
+            <button class="demo-btn primary" @click="demoStore.increment">
               {{ t('content.pinia.increment') }}
             </button>
-            <button @click="demoStore.decrement" class="demo-btn secondary">
+            <button class="demo-btn secondary" @click="demoStore.decrement">
               {{ t('content.pinia.decrement') }}
             </button>
-            <button @click="demoStore.reset" class="demo-btn danger">
+            <button class="demo-btn danger" @click="demoStore.reset">
               {{ t('content.pinia.reset') }}
             </button>
           </div>
@@ -58,7 +76,7 @@
               :placeholder="t('content.reactivity.placeholder')"
               class="message-input"
             />
-            <button @click="addMessage" class="demo-btn primary">
+            <button class="demo-btn primary" @click="addMessage">
               {{ t('content.reactivity.add') }}
             </button>
           </div>
@@ -72,27 +90,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { storeDemo } from './stores/demo';
-
-const route = useRoute();
-const { t } = useI18n();
-const demoStore = storeDemo();
-
-const { id } = route.params;
-
-// 响应式数据演示
-const localMessage = ref('');
-const messages = ref<string[]>([]);
-
-const addMessage = () => {
-  if (localMessage.value.trim()) {
-    messages.value.push(localMessage.value.trim());
-    localMessage.value = '';
-  }
-};
-</script>
 
 <style lang="scss" scoped>
 .demo-page {

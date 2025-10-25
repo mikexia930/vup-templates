@@ -8,7 +8,6 @@ const LANGUAGES = [
 ];
 /**
  * 处理语言切换
- * @param lang 语言
  * @returns 操作类型和新的语言
  */
 async function handleSelectLanguage(): Promise<string> {

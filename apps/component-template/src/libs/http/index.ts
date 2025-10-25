@@ -130,7 +130,7 @@ export class HttpClient {
 
       // 检查是否需要重试
       if (attempt < this.config.retries && this.shouldRetry(error as Error)) {
-        await this.delay(this.config.retryDelay * Math.pow(2, attempt)); // 指数退避
+        await this.delay(this.config.retryDelay * 2 ** attempt); // 指数退避
         return this.requestWithRetry<T>(url, options, attempt + 1);
       }
 

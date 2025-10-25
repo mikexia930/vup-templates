@@ -1,3 +1,15 @@
+<script setup lang="ts">
+// 使用 Nuxt i18n composables
+const { t, locale } = useI18n();
+
+// 语言切换函数
+const switchLanguage = (lang: 'zh-CN' | 'en-US') => {
+  // 使用 $i18n.setLocale 方法
+  const { $i18n } = useNuxtApp();
+  $i18n.setLocale(lang);
+};
+</script>
+
 <template>
   <div class="nuxt-demo-container">
     <Head>
@@ -22,7 +34,8 @@
           <div class="action-buttons">
             <NuxtLink
               to="/demo"
-              :class="['action-btn', 'secondary', { active: $route.path === '/demo' }]"
+              class="action-btn secondary"
+              :class="[{ active: $route.path === '/demo' }]"
             >
               {{ t('success.examples') }}
             </NuxtLink>
@@ -34,16 +47,16 @@
     <!-- Language Switcher -->
     <div class="language-switcher">
       <button
-        @click="switchLanguage('en-US')"
         :class="{ active: locale === 'en-US' }"
         class="lang-btn"
+        @click="switchLanguage('en-US')"
       >
         English
       </button>
       <button
-        @click="switchLanguage('zh-CN')"
         :class="{ active: locale === 'zh-CN' }"
         class="lang-btn"
+        @click="switchLanguage('zh-CN')"
       >
         中文
       </button>
@@ -53,18 +66,6 @@
     <Demo />
   </div>
 </template>
-
-<script setup lang="ts">
-// 使用 Nuxt i18n composables
-const { t, locale } = useI18n();
-
-// 语言切换函数
-const switchLanguage = (lang: 'zh-CN' | 'en-US') => {
-  // 使用 $i18n.setLocale 方法
-  const { $i18n } = useNuxtApp();
-  $i18n.setLocale(lang);
-};
-</script>
 
 <style lang="scss" scoped>
 .nuxt-demo-container {

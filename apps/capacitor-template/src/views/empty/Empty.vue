@@ -1,21 +1,3 @@
-<template>
-  <div class="empty-page">
-    <div class="empty-content">
-      <div class="empty-icon">📄</div>
-      <h1>{{ t('empty.title') }}</h1>
-      <p>{{ t('empty.description') }}</p>
-      <div class="empty-actions">
-        <router-link to="/" class="back-button">
-          {{ t('empty.backHome') }}
-        </router-link>
-        <button @click="goBack" class="back-button secondary">
-          {{ t('empty.goBack') }}
-        </button>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
@@ -27,6 +9,24 @@ const goBack = () => {
   router.go(-1);
 };
 </script>
+
+<template>
+  <div class="empty-page">
+    <div class="empty-content">
+      <div class="empty-icon">📄</div>
+      <h1>{{ t('empty.title') }}</h1>
+      <p>{{ t('empty.description') }}</p>
+      <div class="empty-actions">
+        <router-link to="/" class="back-button">
+          {{ t('empty.backHome') }}
+        </router-link>
+        <button class="back-button secondary" @click="goBack">
+          {{ t('empty.goBack') }}
+        </button>
+      </div>
+    </div>
+  </div>
+</template>
 
 <style lang="scss" scoped>
 .empty-page {
