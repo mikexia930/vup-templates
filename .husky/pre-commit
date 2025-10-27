@@ -10,12 +10,3 @@ node .husky/scripts/generate-apps-list.js
 
 # 将生成的文件添加到暂存区
 git add .template.config.json
-
-# changeset 检查
-if [ -n "$(git diff --cached --name-only)" ]; then
-  if [ -z "$(find .changeset -name "*.md" -newer .git/COMMIT_EDITMSG 2>/dev/null)" ]; then
-    echo "⚠️  检测到代码变更，请考虑是否需要创建 changeset："
-    echo "   pnpm changeset"
-    echo ""
-  fi
-fi
