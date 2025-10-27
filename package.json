@@ -1,6 +1,6 @@
 {
   "name": "vup-templates",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -82,7 +82,11 @@
     },
     "git": {
       "commitMessage": "chore: release v${version}",
-      "requireCleanWorkingDir": false
+      "requireCleanWorkingDir": false,
+      "requireUpstream": false,
+      "commit": true,
+      "tag": true,
+      "push": false
     },
     "npm": {
       "publish": false
