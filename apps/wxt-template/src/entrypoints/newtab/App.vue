@@ -1,3 +1,15 @@
+<script setup lang="ts">
+// 打开扩展弹窗
+const openPopup = () => {
+  chrome.action.openPopup?.();
+};
+
+// 打开扩展设置页面
+const openOptions = () => {
+  chrome.runtime.openOptionsPage?.();
+};
+</script>
+
 <template>
   <div class="newtab-container">
     <!-- 成功消息 -->
@@ -16,8 +28,8 @@
           </div>
           <p class="success-description">跳过复杂配置，专注于浏览器扩展开发。</p>
           <div class="action-buttons">
-            <button @click="openPopup" class="action-btn primary">打开扩展</button>
-            <button @click="openOptions" class="action-btn secondary">扩展设置</button>
+            <button class="action-btn primary" @click="openPopup">打开扩展</button>
+            <button class="action-btn secondary" @click="openOptions">扩展设置</button>
           </div>
         </div>
       </div>
@@ -87,19 +99,9 @@
   </div>
 </template>
 
-<script setup lang="ts">
-// 打开扩展弹窗
-const openPopup = () => {
-  chrome.action.openPopup?.();
-};
+<style lang="scss" scoped>
+@reference "tailwindcss";
 
-// 打开扩展设置页面
-const openOptions = () => {
-  chrome.runtime.openOptionsPage?.();
-};
-</script>
-
-<style scoped>
 .newtab-container {
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -179,7 +181,7 @@ const openOptions = () => {
 
 /* 功能展示区域 */
 .features-section {
-  @apply py-16 px-4 bg-white bg-opacity-10;
+  @apply py-16 px-4 bg-white/10;
 }
 
 .section-title {
@@ -191,7 +193,7 @@ const openOptions = () => {
 }
 
 .feature-card {
-  @apply bg-white bg-opacity-20 rounded-2xl p-6 text-center;
+  @apply bg-white/20 rounded-2xl p-6 text-center;
   @apply backdrop-blur-sm;
   @apply transition-transform duration-300 hover:scale-105;
 }
@@ -218,7 +220,7 @@ const openOptions = () => {
 }
 
 .tech-item {
-  @apply flex items-start space-x-4 p-6 bg-white bg-opacity-20 rounded-xl;
+  @apply flex items-start space-x-4 p-6 bg-white/20 rounded-xl;
   @apply backdrop-blur-sm;
   @apply transition-transform duration-300 hover:scale-105;
 }

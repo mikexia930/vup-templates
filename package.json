@@ -1,6 +1,6 @@
 {
   "name": "vup-templates",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -13,10 +13,9 @@
     "type-check:all": "pnpm --filter '*' type-check",
     "prepare": "husky",
     "lint-staged": "lint-staged",
-    "changeset": "changeset",
-    "changeset:version": "changeset version",
     "deploy:prod": "vercel --prod",
-    "deploy:preview": "vercel"
+    "deploy:preview": "vercel",
+    "release": "release-it"
   },
   "keywords": [],
   "author": "",
@@ -31,33 +30,39 @@
     "vue-router": "^4.5.0"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^5.4.1",
+    "@release-it/conventional-changelog": "^10.0.1",
     "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/postcss": "^4.1.15",
     "@tailwindcss/typography": "^0.5.14",
     "@tsconfig/node18": "^18.0.5",
     "@types/node": "^24.4.0",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vitejs/plugin-vue-jsx": "^5.1.1",
     "@vueuse/core": "^13.9.0",
     "autoprefixer": "^10.4.16",
     "eslint": "^9.34.0",
     "husky": "^9.1.7",
+    "lint-staged": "^15.5.2",
     "postcss": "^8.4.32",
     "postcss-import": "^16.1.0",
     "postcss-preset-env": "^10.1.0",
     "prettier": "^3.4.2",
     "prettier-config-airbnb": "1.0.0",
     "prettier-plugin-tailwindcss": "^0.6.13",
+    "release-it": "^19.0.5",
     "sass": "^1.83.4",
     "sass-loader": "^16.0.3",
-    "tailwindcss": "^3.4.17",
+    "tailwindcss": "^4.1.15",
     "typescript": "^5.7.2",
     "unplugin-auto-import": "^20.1.0",
-    "vue-tsc": "^3.0.6",
-    "@changesets/cli": "^2.29.7",
-    "@vitejs/plugin-vue": "^6.0.1",
-    "@vitejs/plugin-vue-jsx": "^5.1.1",
-    "vite": "^6.0.1",
     "vercel": "^48.0.3",
-    "lint-staged": "^15.5.2",
-    "@antfu/eslint-config": "^5.4.1"
+    "vite": "^6.0.1",
+    "vite-plugin-qiankun": "^1.0.15",
+    "vue-tsc": "^3.0.6"
+  },
+  "overrides": {
+    "readdirp": "^4.0.3"
   },
   "lint-staged": {
     "*.{js,ts,tsx,vue}": [
@@ -68,8 +73,27 @@
       "prettier --write"
     ]
   },
+  "release-it": {
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "angular",
+        "infile": "CHANGELOG.md"
+      }
+    },
+    "git": {
+      "commitMessage": "chore: release v${version}",
+      "requireCleanWorkingDir": false,
+      "requireUpstream": false,
+      "commit": true,
+      "tag": true,
+      "push": false
+    },
+    "npm": {
+      "publish": false
+    }
+  },
   "engines": {
-    "node": ">=21.0.0",
-    "pnpm": ">=10.0.0"
+    "node": ">=18.0.0",
+    "pnpm": ">=7.0.0"
   }
 }

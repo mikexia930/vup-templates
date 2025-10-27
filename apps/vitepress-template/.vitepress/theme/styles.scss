@@ -1,7 +1,5 @@
 // VitePress 主题 SCSS 文件
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
 // 变量定义
 $primary-color: #646cff;

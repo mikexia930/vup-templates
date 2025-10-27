@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import uni from '@dcloudio/vite-plugin-uni';
-import path from 'path';
+import path from 'node:path';
 import { UnifiedViteWeappTailwindcssPlugin as uvwt } from 'weapp-tailwindcss/vite';
 import AutoImport from 'unplugin-auto-import/vite';
 
@@ -29,7 +29,7 @@ export default defineConfig({
   css: {
     postcss: {
       plugins: [
-        require('tailwindcss')({ config: './tailwind.config.js' }),
+        require('@tailwindcss/postcss')({ config: './tailwind.config.js' }),
         require('autoprefixer'),
       ],
     },

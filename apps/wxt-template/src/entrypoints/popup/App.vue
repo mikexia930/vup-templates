@@ -1,41 +1,3 @@
-<template>
-  <div class="popup-container">
-    <!-- 成功消息 -->
-    <div class="success-section">
-      <div class="success-visual">
-        <img src="/wxt.svg" alt="WXT Logo" class="wxt-logo" />
-        <img src="@_shared/assets/images/vup.svg" alt="VUP Logo" class="vup-logo" />
-        <div class="speed-badge">×1.5</div>
-      </div>
-      <div class="success-text">
-        <div class="speed-title">
-          <span class="speed-left">VUP</span>
-          <span class="speed-arrow"> -> </span>
-          <span class="speed-right">1.5x</span>
-        </div>
-        <p class="success-description">跳过复杂配置，专注于浏览器扩展开发。</p>
-      </div>
-    </div>
-
-    <!-- 功能按钮 -->
-    <div class="action-buttons">
-      <button @click="openNewTab" class="action-btn primary">打开新标签页</button>
-      <button @click="openOptions" class="action-btn secondary">扩展设置</button>
-    </div>
-
-    <!-- 快速功能 -->
-    <div class="quick-actions">
-      <h3>快速功能</h3>
-      <div class="quick-buttons">
-        <button @click="toggleFeature" class="quick-btn">
-          {{ isFeatureEnabled ? '禁用' : '启用' }} 功能
-        </button>
-        <button @click="showInfo" class="quick-btn">查看信息</button>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue';
 
@@ -74,7 +36,46 @@ onMounted(() => {
 });
 </script>
 
-<style scoped>
+<template>
+  <div class="popup-container">
+    <!-- 成功消息 -->
+    <div class="success-section">
+      <div class="success-visual">
+        <img src="/wxt.svg" alt="WXT Logo" class="wxt-logo" />
+        <img src="@_shared/assets/images/vup.svg" alt="VUP Logo" class="vup-logo" />
+        <div class="speed-badge">×1.5</div>
+      </div>
+      <div class="success-text">
+        <div class="speed-title">
+          <span class="speed-left">VUP</span>
+          <span class="speed-arrow"> -> </span>
+          <span class="speed-right">1.5x</span>
+        </div>
+        <p class="success-description">跳过复杂配置，专注于浏览器扩展开发。</p>
+      </div>
+    </div>
+
+    <!-- 功能按钮 -->
+    <div class="action-buttons">
+      <button class="action-btn primary" @click="openNewTab">打开新标签页</button>
+      <button class="action-btn secondary" @click="openOptions">扩展设置</button>
+    </div>
+
+    <!-- 快速功能 -->
+    <div class="quick-actions">
+      <h3>快速功能</h3>
+      <div class="quick-buttons">
+        <button class="quick-btn" @click="toggleFeature">
+          {{ isFeatureEnabled ? '禁用' : '启用' }} 功能
+        </button>
+        <button class="quick-btn" @click="showInfo">查看信息</button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+@reference "tailwindcss";
 .popup-container {
   width: 400px;
   min-height: 500px;
@@ -149,7 +150,7 @@ onMounted(() => {
 }
 
 .quick-actions {
-  @apply bg-white bg-opacity-20 rounded-xl p-4;
+  @apply bg-white rounded-xl p-4;
   @apply backdrop-blur-sm;
 }
 
@@ -163,7 +164,7 @@ onMounted(() => {
 
 .quick-btn {
   @apply px-4 py-2 rounded-lg text-xs font-medium;
-  @apply bg-white bg-opacity-30 text-white;
-  @apply transition-all duration-300 hover:bg-opacity-40;
+  @apply bg-white text-white;
+  @apply transition-all duration-300;
 }
 </style>

@@ -1,5 +1,5 @@
-import fs from "fs-extra";
-import path from "path";
+import fs from 'fs-extra';
+import path from 'node:path';
 
 export default class FileManager {
   static async ensureDir(dirPath: string): Promise<void> {
@@ -8,7 +8,7 @@ export default class FileManager {
 
   static async writeFile(filePath: string, content: string): Promise<void> {
     await fs.ensureDir(path.dirname(filePath));
-    await fs.writeFile(filePath, content, "utf-8");
+    await fs.writeFile(filePath, content, 'utf-8');
   }
 
   static async exists(filePath: string): Promise<boolean> {
@@ -36,7 +36,7 @@ export default class FileManager {
   }
 
   static async readFile(filePath: string): Promise<string> {
-    return fs.readFile(filePath, "utf-8");
+    return fs.readFile(filePath, 'utf-8');
   }
 
   static async readdir(filePath: string): Promise<string[]> {

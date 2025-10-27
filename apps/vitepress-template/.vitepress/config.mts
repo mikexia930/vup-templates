@@ -100,6 +100,7 @@ export default defineConfig({
       postcss: '../../postcss.config.js',
       preprocessorOptions: {
         scss: {
+          additionalData: `@reference "tailwindcss";`,
           silenceDeprecations: ['legacy-js-api', 'import'],
         },
       },

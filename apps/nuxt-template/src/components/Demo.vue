@@ -1,3 +1,8 @@
+<script setup>
+// 使用 Nuxt i18n composables
+const { t } = useI18n();
+</script>
+
 <template>
   <div class="demo-container">
     <!-- Quick Start Section -->
@@ -134,11 +139,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-// 使用 Nuxt i18n composables
-const { t } = useI18n();
-</script>
 
 <style lang="scss">
 /* 主容器 */

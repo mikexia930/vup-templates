@@ -1,7 +1,8 @@
-import simpleGit, { SimpleGit } from "simple-git";
-import i18next from "../i18n";
-import FileManager from "./file";
-import Logger from "./logger";
+import type { SimpleGit } from 'simple-git';
+import simpleGit from 'simple-git';
+import i18next from '../i18n';
+import FileManager from './file';
+import Logger from './logger';
 
 export interface GitConfig {
   url: string;
@@ -20,29 +21,26 @@ export default class GitManager {
    * 克隆仓库
    */
   async clone(config: GitConfig, targetPath: string): Promise<void> {
-    const { url, branch = "main", depth = 1 } = config;
+    const { url, branch = 'main', depth = 1 } = config;
 
-    Logger.step(i18next.t("git.clone.begin"));
+    Logger.step(i18next.t('git.clone.begin'));
     // Logger.info(i18next.t("git.branch", { branch, depth }));
 
     try {
-      const options = ["--branch", branch, "--depth", depth.toString()];
+      const options = ['--branch', branch, '--depth', depth.toString()];
       await this.git.clone(url, targetPath, options);
-      Logger.success(i18next.t("git.clone.success"));
+      Logger.success(i18next.t('git.clone.success'));
     } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : i18next.t("error.unknown");
+      const errorMessage = error instanceof Error ? error.message : i18next.t('error.unknown');
 
-      if (errorMessage.includes("Repository not found")) {
-        throw new Error(i18next.t("git.notFound"));
-      } else if (errorMessage.includes("Authentication failed")) {
-        throw new Error(i18next.t("git.authenticationFailed"));
-      } else if (errorMessage.includes("could not read Username")) {
-        throw new Error(i18next.t("git.error.authenticationRequired"));
+      if (errorMessage.includes('Repository not found')) {
+        throw new Error(i18next.t('git.notFound'));
+      } else if (errorMessage.includes('Authentication failed')) {
+        throw new Error(i18next.t('git.authenticationFailed'));
+      } else if (errorMessage.includes('could not read Username')) {
+        throw new Error(i18next.t('git.error.authenticationRequired'));
       } else {
-        throw new Error(
-          i18next.t("git.clone.failed", { message: errorMessage }),
-        );
+        throw new Error(i18next.t('git.clone.failed', { message: errorMessage }));
       }
     }
   }
@@ -50,16 +48,15 @@ export default class GitManager {
   /**
    * 拉取最新代码
    */
-  async pull(branch: string = "main"): Promise<void> {
-    Logger.step(i18next.t("git.pull.begin", { branch }));
+  async pull(branch: string = 'main'): Promise<void> {
+    Logger.step(i18next.t('git.pull.begin', { branch }));
     try {
-      await this.git.pull("origin", branch);
-      Logger.success(i18next.t("git.pull.success"));
+      await this.git.pull('origin', branch);
+      Logger.success(i18next.t('git.pull.success'));
     } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : i18next.t("error.unknown");
-      Logger.error(i18next.t("git.pull.failed", { message: errorMessage }));
-      throw new Error(i18next.t("git.pull.failed", { message: errorMessage }));
+      const errorMessage = error instanceof Error ? error.message : i18next.t('error.unknown');
+      Logger.error(i18next.t('git.pull.failed', { message: errorMessage }));
+      throw new Error(i18next.t('git.pull.failed', { message: errorMessage }));
     }
   }
 
@@ -84,12 +81,11 @@ export default class GitManager {
       return branches.current;
     } catch (error) {
       Logger.error(
-        i18next.t("git.getBranchFailed", {
-          message:
-            error instanceof Error ? error.message : i18next.t("error.unknown"),
-        }),
+        i18next.t('git.getBranchFailed', {
+          message: error instanceof Error ? error.message : i18next.t('error.unknown'),
+        })
       );
-      return "main";
+      return 'main';
     }
   }
 
@@ -99,15 +95,12 @@ export default class GitManager {
   async getRemoteUrl(): Promise<string | null> {
     try {
       const remotes = await this.git.getRemotes(true);
-      return (
-        remotes.find((remote) => remote.name === "origin")?.refs?.fetch || null
-      );
+      return remotes.find((remote) => remote.name === 'origin')?.refs?.fetch || null;
     } catch (error) {
       Logger.error(
-        i18next.t("git.getRemoteUrlFailed", {
-          message:
-            error instanceof Error ? error.message : i18next.t("error.unknown"),
-        }),
+        i18next.t('git.getRemoteUrlFailed', {
+          message: error instanceof Error ? error.message : i18next.t('error.unknown'),
+        })
       );
       return null;
     }
@@ -123,10 +116,9 @@ export default class GitManager {
       return status.behind > 0;
     } catch (error) {
       Logger.warning(
-        i18next.t("git.hasUpdatesFailed", {
-          message:
-            error instanceof Error ? error.message : i18next.t("error.unknown"),
-        }),
+        i18next.t('git.hasUpdatesFailed', {
+          message: error instanceof Error ? error.message : i18next.t('error.unknown'),
+        })
       );
       return false;
     }
@@ -136,7 +128,7 @@ export default class GitManager {
    * 删除 .git 目录
    */
   async removeGitDir(repoPath: string): Promise<void> {
-    const gitDir = FileManager.join(repoPath, ".git");
+    const gitDir = FileManager.join(repoPath, '.git');
     if (await FileManager.exists(gitDir)) {
       await FileManager.remove(gitDir);
     }

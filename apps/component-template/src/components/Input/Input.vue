@@ -1,36 +1,9 @@
-<template>
-  <div class="input-wrapper">
-    <input
-      :class="inputClasses"
-      :type="showPassword ? 'text' : type"
-      :disabled="disabled"
-      :readonly="readonly"
-      :placeholder="placeholder"
-      :value="value"
-      :maxlength="maxlength"
-      :minlength="minlength"
-      @input="handleInput"
-      @change="handleChange"
-      @focus="handleFocus"
-      @blur="handleBlur"
-    />
-    <button v-if="clearable && value" class="input-clear" @click="handleClear">✕</button>
-    <button
-      v-if="type === 'password' && showPassword !== undefined"
-      class="input-password-toggle"
-      @click="togglePassword"
-    >
-      {{ showPassword ? '👁️' : '👁️‍🗨️' }}
-    </button>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { computed } from 'vue';
 import type { InputProps, InputEmit } from './types';
 
 defineOptions({
-  name: 'Input',
+  name: 'VInput',
 });
 
 const props = withDefaults(defineProps<InputProps>(), {
@@ -78,11 +51,27 @@ const handleBlur = (event: FocusEvent) => {
 const handleClear = () => {
   emit('update:value', '');
 };
-
-const togglePassword = () => {
-  emit('update:showPassword', !props.showPassword);
-};
 </script>
+
+<template>
+  <div class="input-wrapper">
+    <input
+      :class="inputClasses"
+      :type="showPassword ? 'text' : type"
+      :disabled="disabled"
+      :readonly="readonly"
+      :placeholder="placeholder"
+      :value="value"
+      :maxlength="maxlength"
+      :minlength="minlength"
+      @input="handleInput"
+      @change="handleChange"
+      @focus="handleFocus"
+      @blur="handleBlur"
+    />
+    <button v-if="clearable && value" class="input-clear" @click="handleClear">✕</button>
+  </div>
+</template>
 
 <style scoped>
 .input-wrapper {

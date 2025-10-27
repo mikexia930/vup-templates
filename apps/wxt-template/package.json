@@ -25,8 +25,7 @@
     "chrome-types": "^0.1.290"
   },
   "devDependencies": {
-    "eslint": "^9.34.0",
-    "prettier": "^3.4.2",
-    "@types/chrome": "^0.1.12"
+    "@types/chrome": "^0.1.12",
+    "@antfu/eslint-config": "^5.4.1"
   }
 }

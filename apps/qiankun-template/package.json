@@ -1,0 +1,21 @@
+{
+  "name": "qiankun",
+  "version": "0.1.0",
+  "description": "Micro-Frontend Template",
+  "private": true,
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "qiankun": "^2.10.6"
+  },
+  "devDependencies": {
+    "vite-plugin-qiankun": "^1.0.15"
+  }
+}

@@ -1,3 +1,10 @@
+<script setup lang="ts">
+const { t } = useI18n();
+
+const currentLocale = inject('currentLocale');
+const switchLanguage = inject('switchLanguage');
+</script>
+
 <template>
   <div class="vue-demo-container">
     <!-- Success Message -->
@@ -18,13 +25,15 @@
           <div class="action-buttons">
             <router-link
               to="/docs"
-              :class="['action-btn', 'primary', { active: $route.path === '/docs' }]"
+              class="action-btn primary"
+              :class="[{ active: $route.path === '/docs' }]"
             >
               {{ t('success.documentation') }}
             </router-link>
             <router-link
               to="/demo"
-              :class="['action-btn', 'secondary', { active: $route.path === '/demo' }]"
+              class="action-btn secondary"
+              :class="[{ active: $route.path === '/demo' }]"
             >
               {{ t('success.examples') }}
             </router-link>
@@ -36,16 +45,16 @@
     <!-- Language Switcher -->
     <div class="language-switcher">
       <button
-        @click="switchLanguage('en_US')"
         :class="{ active: currentLocale === 'en_US' }"
         class="lang-btn"
+        @click="switchLanguage('en_US')"
       >
         English
       </button>
       <button
-        @click="switchLanguage('zh_CN')"
         :class="{ active: currentLocale === 'zh_CN' }"
         class="lang-btn"
+        @click="switchLanguage('zh_CN')"
       >
         中文
       </button>
@@ -54,13 +63,6 @@
     <router-view />
   </div>
 </template>
-
-<script setup lang="ts">
-const { t } = useI18n();
-
-const currentLocale = inject('currentLocale');
-const switchLanguage = inject('switchLanguage');
-</script>
 
 <style lang="scss" scoped>
 .vue-demo-container {

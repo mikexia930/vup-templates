@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "description": "Desktop application template",
   "main": ".vite/build/main.js",
+  "private": true,
   "author": "",
   "keywords": [],
   "license": "MIT",

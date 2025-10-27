@@ -1,3 +1,7 @@
+<script setup lang="ts">
+const { t } = useI18n();
+</script>
+
 <template>
   <!-- Quick Start -->
   <div class="quick-start-section">
@@ -160,10 +164,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-const { t } = useI18n();
-</script>
 
 <style scoped lang="scss">
 // Quick Start Section

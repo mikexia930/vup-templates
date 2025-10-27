@@ -1,4 +1,4 @@
-import path from 'path';
+import path from 'node:path';
 import { defineConfig } from 'wxt';
 
 export default defineConfig({
@@ -17,11 +17,7 @@ export default defineConfig({
         postcss: path.resolve(__dirname, '../../postcss.config.js'),
         preprocessorOptions: {
           scss: {
-            additionalData: `
-              @import "tailwindcss/base";
-              @import "tailwindcss/components";
-              @import "tailwindcss/utilities";
-            `,
+            additionalData: `@reference "tailwindcss";`,
             silenceDeprecations: ['legacy-js-api', 'import'],
           },
         },
