@@ -1,49 +1,3 @@
-<template>
-  <div class="options-container">
-    <div class="options-header">
-      <h1>VUP 1.5x 扩展设置</h1>
-      <p>配置您的浏览器扩展</p>
-    </div>
-
-    <div class="options-content">
-      <div class="settings-section">
-        <h2>基本设置</h2>
-        <div class="setting-item">
-          <label>
-            <input type="checkbox" v-model="settings.enableNotifications" />
-            启用通知
-          </label>
-        </div>
-        <div class="setting-item">
-          <label>
-            <input type="checkbox" v-model="settings.enableAutoUpdate" />
-            自动更新
-          </label>
-        </div>
-      </div>
-
-      <div class="settings-section">
-        <h2>外观设置</h2>
-        <div class="setting-item">
-          <label>
-            主题颜色
-            <select v-model="settings.themeColor">
-              <option value="blue">蓝色</option>
-              <option value="green">绿色</option>
-              <option value="purple">紫色</option>
-            </select>
-          </label>
-        </div>
-      </div>
-
-      <div class="settings-actions">
-        <button @click="saveSettings" class="save-btn">保存设置</button>
-        <button @click="resetSettings" class="reset-btn">重置</button>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 
@@ -80,7 +34,54 @@ onMounted(() => {
 });
 </script>
 
-<style scoped>
+<template>
+  <div class="options-container">
+    <div class="options-header">
+      <h1>VUP 1.5x 扩展设置</h1>
+      <p>配置您的浏览器扩展</p>
+    </div>
+
+    <div class="options-content">
+      <div class="settings-section">
+        <h2>基本设置</h2>
+        <div class="setting-item">
+          <label>
+            <input v-model="settings.enableNotifications" type="checkbox" />
+            启用通知
+          </label>
+        </div>
+        <div class="setting-item">
+          <label>
+            <input v-model="settings.enableAutoUpdate" type="checkbox" />
+            自动更新
+          </label>
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <h2>外观设置</h2>
+        <div class="setting-item">
+          <label>
+            主题颜色
+            <select v-model="settings.themeColor">
+              <option value="blue">蓝色</option>
+              <option value="green">绿色</option>
+              <option value="purple">紫色</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div class="settings-actions">
+        <button class="save-btn" @click="saveSettings">保存设置</button>
+        <button class="reset-btn" @click="resetSettings">重置</button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+@reference "tailwindcss";
 .options-container {
   min-height: 100vh;
   background: #f5f5f5;

@@ -13,7 +13,7 @@ async function main() {
   const program = new Command();
 
   // 自定义错误处理
-  program.exitOverride((err) => {
+  program.exitOverride((err: any) => {
     if (err.code === 'commander.missingArgument') {
       // 从错误消息中提取参数名
       const match = err.message.match(/missing required argument '(\w+)'/);

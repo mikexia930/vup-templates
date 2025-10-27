@@ -51,10 +51,6 @@ const handleBlur = (event: FocusEvent) => {
 const handleClear = () => {
   emit('update:value', '');
 };
-
-const togglePassword = () => {
-  emit('update:showPassword', !props.showPassword);
-};
 </script>
 
 <template>
@@ -74,13 +70,6 @@ const togglePassword = () => {
       @blur="handleBlur"
     />
     <button v-if="clearable && value" class="input-clear" @click="handleClear">✕</button>
-    <button
-      v-if="type === 'password' && showPassword !== undefined"
-      class="input-password-toggle"
-      @click="togglePassword"
-    >
-      {{ showPassword ? '👁️' : '👁️‍🗨️' }}
-    </button>
   </div>
 </template>
 
