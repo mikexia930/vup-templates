@@ -1,3 +1,11 @@
+<script setup>
+import { useData } from 'vitepress';
+import { createI18n } from '../locales';
+
+const { lang } = useData();
+const { t } = createI18n(lang.value);
+</script>
+
 <template>
   <div class="demo-container">
     <!-- Quick Start Section -->
@@ -105,15 +113,8 @@
   </div>
 </template>
 
-<script setup>
-import { useData } from 'vitepress';
-import { createI18n } from '../locales';
-
-const { lang } = useData();
-const { t } = createI18n(lang.value);
-</script>
-
 <style lang="scss" scoped>
+@reference 'tailwindcss';
 /* 主容器 */
 .demo-container {
   @apply max-w-6xl mx-auto p-8;

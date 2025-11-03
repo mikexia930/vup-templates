@@ -22,6 +22,8 @@ export default antfu({
     'perfectionist/sort-array-includes': 'off',
     'perfectionist/sort-object-types': 'off',
     'perfectionist/sort-union-types': 'off',
+    'vue/attributes-order': 'off',
+    'unused-imports/no-unused-vars': 'off',
   },
 
   // 针对不同项目的特殊配置
@@ -38,6 +40,13 @@ export default antfu({
         'no-undef': 'off',
       },
     },
+    {
+      files: ['**/*.d.ts'],
+      rules: {
+        'ts/no-explicit-any': 'off',
+        'ts/ban-ts-comment': 'off',
+      },
+    },
   ],
 
   // 忽略文件
@@ -50,5 +59,7 @@ export default antfu({
     '**/.nitro/**',
     '**/.vitepress/cache/**',
     '**/.wxt/**',
+    '**/auto-imports.d.ts',
+    '**/.wxt/types/**',
   ],
 });

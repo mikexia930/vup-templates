@@ -220,7 +220,7 @@ const { t } = useI18n();
 </template>
 
 <style scoped lang="scss">
-// Quick Start Section
+@reference 'tailwindcss';
 .quick-start-section {
   @apply py-16 px-4;
   @apply bg-white;

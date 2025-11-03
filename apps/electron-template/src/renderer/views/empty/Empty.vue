@@ -29,6 +29,7 @@ const goBack = () => {
 </template>
 
 <style lang="scss" scoped>
+@reference 'tailwindcss';
 .empty-page {
   @apply flex items-center justify-center min-h-full p-8;
 

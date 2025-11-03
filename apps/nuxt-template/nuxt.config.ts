@@ -14,12 +14,6 @@ export default defineNuxtConfig({
   vite: {
     css: {
       postcss: '../../postcss.config.js',
-      preprocessorOptions: {
-        scss: {
-          additionalData: `@reference "tailwindcss";`,
-          silenceDeprecations: ['legacy-js-api', 'import'],
-        },
-      },
     },
     resolve: {
       alias: {

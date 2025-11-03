@@ -141,6 +141,7 @@ const { t } = useI18n();
 </template>
 
 <style lang="scss">
+@reference 'tailwindcss';
 /* 主容器 */
 .demo-container {
   @apply max-w-6xl mx-auto p-8;
