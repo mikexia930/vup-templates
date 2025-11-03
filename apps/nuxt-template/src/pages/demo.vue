@@ -125,6 +125,7 @@ const addMessage = () => {
 </template>
 
 <style lang="scss" scoped>
+@reference 'tailwindcss';
 .docs-page {
   min-height: 100vh;
   background: #ffffff;

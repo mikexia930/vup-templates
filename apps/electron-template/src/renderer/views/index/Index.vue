@@ -1,8 +1,8 @@
 <script setup lang="ts">
 const { t } = useI18n();
 
-const currentLocale = inject('currentLocale');
-const switchLanguage = inject('switchLanguage');
+const currentLocale = inject('currentLocale') as Ref<string>;
+const switchLanguage = inject('switchLanguage') as (lang: string) => void;
 </script>
 
 <template>
@@ -67,6 +67,7 @@ const switchLanguage = inject('switchLanguage');
 </template>
 
 <style lang="scss" scoped>
+@reference 'tailwindcss';
 .vue-demo-container {
   min-height: 100vh;
   background: #ffffff;

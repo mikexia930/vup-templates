@@ -13,15 +13,6 @@ export default defineConfig({
   vite: () => {
     return {
       plugins: [],
-      css: {
-        postcss: path.resolve(__dirname, '../../postcss.config.js'),
-        preprocessorOptions: {
-          scss: {
-            additionalData: `@reference "tailwindcss";`,
-            silenceDeprecations: ['legacy-js-api', 'import'],
-          },
-        },
-      },
       resolve: {
         alias: {
           '@_shared': path.resolve(__dirname, '../../_shared'),

@@ -92,6 +92,7 @@ const addMessage = () => {
 </template>
 
 <style lang="scss" scoped>
+@reference 'tailwindcss';
 .demo-page {
   @apply py-16 px-4;
   @apply bg-gradient-to-br from-slate-50 to-blue-50;

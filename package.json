@@ -1,6 +1,6 @@
 {
   "name": "vup-templates",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -44,9 +44,7 @@
     "eslint": "^9.34.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.5.2",
-    "postcss": "^8.4.32",
-    "postcss-import": "^16.1.0",
-    "postcss-preset-env": "^10.1.0",
+    "postcss": "^8.5.6",
     "prettier": "^3.4.2",
     "prettier-config-airbnb": "1.0.0",
     "prettier-plugin-tailwindcss": "^0.6.13",

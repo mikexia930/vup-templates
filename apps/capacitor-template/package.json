@@ -31,10 +31,6 @@
     "@capacitor/splash-screen": "latest"
   },
   "devDependencies": {
-    "@capacitor/cli": "latest",
-    "typescript": "^5.7.2",
-    "vite": "^6.2.0",
-    "eslint": "^9.34.0",
-    "prettier": "^3.4.2"
+    "@capacitor/cli": "latest"
   }
 }

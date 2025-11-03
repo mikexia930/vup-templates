@@ -68,6 +68,7 @@ const switchLanguage = (lang: 'zh-CN' | 'en-US') => {
 </template>
 
 <style lang="scss" scoped>
+@reference 'tailwindcss';
 .nuxt-demo-container {
   min-height: 100vh;
   background: #ffffff;

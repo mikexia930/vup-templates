@@ -3,10 +3,9 @@ const { t } = useI18n();
 </script>
 
 <template>
-  <!-- Quick Start -->
   <div class="quick-start-section">
     <div class="quick-start-container">
-      <h2 class="section-title">{{ t('quickstart.title') }}</h2>
+      <h2 class="section-title text-red">{{ t('quickstart.title') }} -1</h2>
       <div class="commands-grid">
         <div class="command-item">
           <div class="command-icon">🚀</div>
@@ -166,7 +165,7 @@ const { t } = useI18n();
 </template>
 
 <style scoped lang="scss">
-// Quick Start Section
+@reference 'tailwindcss';
 .quick-start-section {
   @apply py-16 px-4;
   @apply bg-white;
@@ -175,7 +174,7 @@ const { t } = useI18n();
     @apply max-w-6xl mx-auto;
 
     .section-title {
-      @apply text-3xl font-bold text-slate-900 text-center mb-12;
+      @apply text-3xl font-bold text-slate-900 text-center mb-12 p-10;
     }
 
     .commands-grid {

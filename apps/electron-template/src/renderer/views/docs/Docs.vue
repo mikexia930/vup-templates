@@ -3,7 +3,7 @@ const { t } = useI18n();
 </script>
 
 <template>
-  <!-- Quick Start -->
+  <h1 class="text-3xl underline">Hello world!</h1>
   <div class="quick-start-section">
     <div class="quick-start-container">
       <h2 class="section-title">
@@ -102,7 +102,7 @@ const { t } = useI18n();
 </template>
 
 <style scoped lang="scss">
-// Quick Start Section
+@reference 'tailwindcss';
 .quick-start-section {
   @apply py-16 px-4;
   @apply bg-white;

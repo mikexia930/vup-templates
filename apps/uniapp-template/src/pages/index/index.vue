@@ -1,3 +1,90 @@
+<script setup lang="ts">
+import { useI18n } from 'vue-i18n';
+import { switchLanguage, getCurrentLocale } from '@/locales';
+import { computed } from 'vue';
+
+const { t } = useI18n();
+const currentLocale = computed(() => getCurrentLocale());
+
+// 技术栈链接配置
+const techLinks = {
+  uniapp: 'https://uniapp.dcloud.net.cn/',
+  vue: 'https://cn.vuejs.org/',
+  typescript: 'https://www.typescriptlang.org/',
+  vite: 'https://vitejs.dev/',
+};
+
+// 处理技术栈链接点击
+const openTechLink = (tech: keyof typeof techLinks) => {
+  const url = techLinks[tech];
+
+  // #ifdef H5
+  window.open(url, '_blank');
+  // #endif
+
+  // #ifndef H5
+  uni.showModal({
+    title: t(`techstack.${tech}.title`),
+    content: `${t(`techstack.${tech}.desc`)}\n\n文档链接：${url}`,
+    showCancel: false,
+    confirmText: '知道了',
+  });
+  // #endif
+};
+
+// 快速启动命令配置
+const quickstartCommands = {
+  dev: 'pnpm dev',
+  build: 'pnpm build',
+  lint: 'pnpm lint',
+  format: 'pnpm format',
+};
+
+// 处理命令复制
+const copyCommand = (command: keyof typeof quickstartCommands) => {
+  const cmd = quickstartCommands[command];
+
+  // #ifdef H5
+  // 在H5平台复制到剪贴板
+  if (navigator.clipboard) {
+    navigator.clipboard
+      .writeText(cmd)
+      .then(() => {
+        uni.showToast({
+          title: '命令已复制',
+          icon: 'success',
+          duration: 2000,
+        });
+      })
+      .catch(() => {
+        uni.showToast({
+          title: '复制失败',
+          icon: 'none',
+        });
+      });
+  } else {
+    // 降级方案
+    uni.showModal({
+      title: t(`quickstart.${command}.title`),
+      content: `命令：${cmd}\n\n请手动复制此命令`,
+      showCancel: false,
+      confirmText: '知道了',
+    });
+  }
+  // #endif
+
+  // #ifndef H5
+  // 在其他平台显示命令
+  uni.showModal({
+    title: t(`quickstart.${command}.title`),
+    content: `命令：${cmd}\n\n${t(`quickstart.${command}.desc`)}`,
+    showCancel: false,
+    confirmText: '知道了',
+  });
+  // #endif
+};
+</script>
+
 <template>
   <view class="uniapp-demo-container">
     <!-- 成功消息区域 -->
@@ -127,93 +214,10 @@
   </view>
 </template>
 
-<script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-import { switchLanguage, getCurrentLocale } from '@/locales';
-
-const { t } = useI18n();
-const currentLocale = computed(() => getCurrentLocale());
-
-// 技术栈链接配置
-const techLinks = {
-  uniapp: 'https://uniapp.dcloud.net.cn/',
-  vue: 'https://cn.vuejs.org/',
-  typescript: 'https://www.typescriptlang.org/',
-  vite: 'https://vitejs.dev/',
-};
-
-// 处理技术栈链接点击
-const openTechLink = (tech: keyof typeof techLinks) => {
-  const url = techLinks[tech];
-
-  // #ifdef H5
-  window.open(url, '_blank');
-  // #endif
-
-  // #ifndef H5
-  uni.showModal({
-    title: t(`techstack.${tech}.title`),
-    content: `${t(`techstack.${tech}.desc`)}\n\n文档链接：${url}`,
-    showCancel: false,
-    confirmText: '知道了',
-  });
-  // #endif
-};
-
-// 快速启动命令配置
-const quickstartCommands = {
-  dev: 'pnpm dev',
-  build: 'pnpm build',
-  lint: 'pnpm lint',
-  format: 'pnpm format',
-};
-
-// 处理命令复制
-const copyCommand = (command: keyof typeof quickstartCommands) => {
-  const cmd = quickstartCommands[command];
-
-  // #ifdef H5
-  // 在H5平台复制到剪贴板
-  if (navigator.clipboard) {
-    navigator.clipboard
-      .writeText(cmd)
-      .then(() => {
-        uni.showToast({
-          title: '命令已复制',
-          icon: 'success',
-          duration: 2000,
-        });
-      })
-      .catch(() => {
-        uni.showToast({
-          title: '复制失败',
-          icon: 'none',
-        });
-      });
-  } else {
-    // 降级方案
-    uni.showModal({
-      title: t(`quickstart.${command}.title`),
-      content: `命令：${cmd}\n\n请手动复制此命令`,
-      showCancel: false,
-      confirmText: '知道了',
-    });
-  }
-  // #endif
-
-  // #ifndef H5
-  // 在其他平台显示命令
-  uni.showModal({
-    title: t(`quickstart.${command}.title`),
-    content: `命令：${cmd}\n\n${t(`quickstart.${command}.desc`)}`,
-    showCancel: false,
-    confirmText: '知道了',
-  });
-  // #endif
-};
-</script>
-
 <style lang="scss" scoped>
+.test-area {
+  @apply text-3xl underline text-red-500;
+}
 .uniapp-demo-container {
   min-height: 100vh;
   background: #ffffff;

@@ -27,15 +27,6 @@ export default defineConfig({
       '@_shared': path.resolve(__dirname, '../../_shared'),
     },
   },
-  css: {
-    postcss: path.resolve(__dirname, '../../postcss.config.js'),
-    preprocessorOptions: {
-      scss: {
-        additionalData: `@reference "tailwindcss";`,
-        silenceDeprecations: ['legacy-js-api', 'import'],
-      },
-    },
-  },
   build: {
     target: 'es2015',
     minify: 'esbuild',

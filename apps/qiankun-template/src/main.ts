@@ -3,6 +3,7 @@ import App from './App.vue';
 import router from './router';
 import type { MicroAppStateActions } from 'qiankun';
 import { registerMicroApps, start, initGlobalState } from 'qiankun';
+import '@_shared/assets/styles/tailwind.scss';
 
 const app = createApp(App);
 app.use(router);
