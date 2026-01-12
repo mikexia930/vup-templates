@@ -3,3 +3,4 @@ packages:
   - 'packages/*'
   - '!apps/wxt-*'
   - '!apps/uniapp-*'
+  - '!apps/nuxt-*'

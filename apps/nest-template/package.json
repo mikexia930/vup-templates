@@ -25,14 +25,22 @@
     "docker:build": "docker-compose build",
     "docker:logs": "docker-compose logs -f",
     "docker:db": "docker-compose up -d mariadb redis",
-    "docker:app": "docker-compose up app"
+    "docker:app": "docker-compose up app",
+    "migration:generate": "ts-node --compiler-options '{\"module\":\"commonjs\",\"experimentalDecorators\":true,\"emitDecoratorMetadata\":true}' -r tsconfig-paths/register -r reflect-metadata ./node_modules/typeorm/cli.js migration:generate -d src/database/data-source.ts",
+    "migration:run": "ts-node --compiler-options '{\"module\":\"commonjs\",\"experimentalDecorators\":true,\"emitDecoratorMetadata\":true}' -r tsconfig-paths/register -r reflect-metadata ./node_modules/typeorm/cli.js migration:run -d src/database/data-source.ts",
+    "migration:revert": "ts-node --compiler-options '{\"module\":\"commonjs\",\"experimentalDecorators\":true,\"emitDecoratorMetadata\":true}' -r tsconfig-paths/register -r reflect-metadata ./node_modules/typeorm/cli.js migration:revert -d src/database/data-source.ts",
+    "migration:show": "ts-node --compiler-options '{\"module\":\"commonjs\",\"experimentalDecorators\":true,\"emitDecoratorMetadata\":true}' -r tsconfig-paths/register -r reflect-metadata ./node_modules/typeorm/cli.js migration:show -d src/database/data-source.ts",
+    "migration:run:prod": "node ./node_modules/typeorm/cli.js migration:run -d /app/.output/database/data-source.js",
+    "migration:revert:prod": "node ./node_modules/typeorm/cli.js migration:revert -d /app/.output/database/data-source.js",
+    "migration:show:prod": "node ./node_modules/typeorm/cli.js migration:show -d /app/.output/database/data-source.js"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
     "@nestjs/core": "^11.0.1",
     "@nestjs/platform-express": "^11.0.1",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "typeorm": "^0.3.27"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",

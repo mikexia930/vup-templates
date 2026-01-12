@@ -1,0 +1,245 @@
+# 生产环境配置（使用 Volume 映射，无需 build）
+# 适用于 DAU ≤ 5000
+# 优势：更新时只需替换文件并重启，无需 rebuild 镜像
+
+services:
+  # MariaDB 数据库 - 优化配置
+  mariadb:
+    image: mariadb:11.3
+    container_name: vup-mariadb
+    restart: unless-stopped
+    init: true # 使用 init 进程确保子进程正确回收，防止僵尸进程
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      TZ: UTC
+    volumes:
+      - mariadb_data:/var/lib/mysql
+      - ./backups/mariadb:/backups
+    ports:
+      # 暴露数据库端口，允许外部连接（如 Navicat）
+      # 格式：宿主机端口:容器端口
+      # 默认使用 3306，可以通过环境变量 MYSQL_PORT 自定义
+      - '${MYSQL_PORT:-3306}:3306'
+    networks:
+      - vup-network
+    healthcheck:
+      test: ['CMD-SHELL', 'mysqladmin ping -h localhost || exit 1']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    # 进程数限制，防止 fork 资源耗尽
+    ulimits:
+      nproc: 256 # 限制最多 256 个进程
+      nofile:
+        soft: 65535
+        hard: 65535
+    # 资源限制（仅保留内存上限，防止内存泄漏）
+    deploy:
+      resources:
+        limits:
+          cpus: '0.8' # CPU 上限：0.8 核
+          memory: 1G # 内存上限：1GB
+        reservations:
+          cpus: '0.4' # CPU 预留：0.4 核
+          memory: 512M # 内存预留：512MB
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: '10m'
+        max-file: '3'
+        labels: 'service=mariadb'
+
+  # API 服务（使用 Volume 映射）
+  api:
+    image: node:20-alpine
+    container_name: vup-api
+    restart: unless-stopped
+    working_dir: /app
+    # 优化：只在 node_modules 不存在时才安装，避免每次重启都执行 npm install
+    command: sh -c "if [ ! -d 'node_modules' ] || [ ! -f 'node_modules/.package-lock.json' ]; then npm install --production --no-optional; fi && node .output/main"
+    environment:
+      NODE_ENV: production
+      APP_PORT: 9310
+      GLOBAL_PREFIX: api
+      CORS_ORIGIN: ${CORS_ORIGIN}
+      CORS_CREDENTIALS: 'true'
+      MYSQL_HOST: mariadb
+      MYSQL_PORT: 3306
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-7d}
+      JWT_REFRESH_EXPIRES_IN: ${JWT_REFRESH_EXPIRES_IN:-30d}
+      UPLOAD_MAX_FILE_SIZE: ${UPLOAD_MAX_FILE_SIZE:-1073741824}
+      # 上传文件访问的基础 URL（通过 nginx 静态服务访问）
+      # 格式：https://yourdomain.com/uploads（不要带末尾斜杠）
+      # 对应 nginx 配置：location /uploads/
+      UPLOAD_BASE_URL: ${UPLOAD_BASE_URL}
+      NODE_OPTIONS: '--max-old-space-size=384'
+    volumes:
+      - ./builds/api:/app # 直接映射构建产物目录
+      - api_uploads:/app/uploads
+      - ./logs/api:/app/logs
+      - ./backups/api:/backups
+    depends_on:
+      - mariadb
+    networks:
+      - vup-network
+    # 进程数限制，防止 fork 资源耗尽
+    ulimits:
+      nproc: 512 # 限制最多 512 个进程
+      nofile:
+        soft: 65535
+        hard: 65535
+    # 资源限制（仅保留内存上限，防止内存泄漏）
+    deploy:
+      resources:
+        limits:
+          cpus: '0.6' # CPU 上限：0.6 核（从 0.8 降低）
+          memory: 512M # 内存上限：512MB（保持不变）
+        reservations:
+          cpus: '0.2' # CPU 预留：0.2 核（从 0.3 降低）
+          memory: 256M # 内存预留：256MB（保持不变）
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: '10m'
+        max-file: '3'
+        labels: 'service=api'
+
+  # Admin 前端服务（使用 Volume 映射）
+  admin:
+    image: node:20-alpine
+    container_name: vup-admin
+    restart: unless-stopped
+    working_dir: /app
+    command: node .output/server/index.mjs
+    environment:
+      NODE_ENV: production
+      API_BASE_URL: ${API_BASE_URL}
+      NUXT_PUBLIC_API_BASE: ${API_BASE_URL}
+      NUXT_APP_BASE_URL: ${APP_BASE_URL}
+      NODE_OPTIONS: '--max-old-space-size=256'
+    volumes:
+      - ./builds/admin:/app # 直接映射构建产物目录
+      - ./logs/admin:/app/logs # Admin 日志目录
+    depends_on:
+      - api
+    networks:
+      - vup-network
+    # 进程数限制，防止 fork 资源耗尽
+    ulimits:
+      nproc: 256 # 限制最多 256 个进程
+      nofile:
+        soft: 65535
+        hard: 65535
+    # 资源限制（仅保留内存上限，防止内存泄漏）
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2' # CPU 上限：0.2 核
+          memory: 256M # 内存上限：256MB
+        reservations:
+          cpus: '0.1' # CPU 预留：0.1 核
+          memory: 128M # 内存预留：128MB
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: '10m'
+        max-file: '3'
+        labels: 'service=admin'
+
+  # 数据库迁移容器（使用 Volume 映射）
+  migration:
+    image: node:20-alpine
+    working_dir: /app
+    # 优化：只在 node_modules 不存在时才安装
+    command: sh -c "if [ ! -d 'node_modules' ] || [ ! -f 'node_modules/.package-lock.json' ]; then npm install --production --no-optional; fi && npm run migration:run:prod"
+    environment:
+      NODE_ENV: production
+      MYSQL_HOST: mariadb
+      MYSQL_PORT: 3306
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    volumes:
+      - ./builds/api:/app # 直接映射构建产物目录
+    depends_on:
+      - mariadb
+    networks:
+      - vup-network
+    # 进程数限制，防止 fork 资源耗尽
+    ulimits:
+      nproc: 256 # 限制最多 256 个进程
+      nofile:
+        soft: 65535
+        hard: 65535
+    profiles:
+      - migration # 使用 profile，不会自动启动
+
+  # Nginx 反向代理
+  nginx:
+    image: nginx:alpine
+    container_name: vup-nginx
+    restart: unless-stopped
+    ports:
+      - '${HTTP_PORT:-80}:80'
+      - '${HTTPS_PORT:-443}:443'
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - ./nginx/logs:/var/log/nginx
+      - api_uploads:/usr/share/nginx/html/uploads:ro
+    depends_on:
+      - api
+      - admin
+    networks:
+      - vup-network
+    # 资源限制（仅保留内存上限，防止内存泄漏）
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2' # CPU 上限：0.2 核
+          memory: 128M # 内存上限：128MB
+        reservations:
+          cpus: '0.1' # CPU 预留：0.1 核
+          memory: 64M # 内存预留：64MB
+    # 进程数限制，防止 fork 资源耗尽
+    ulimits:
+      nproc: 128 # 限制最多 128 个进程
+      nofile:
+        soft: 65535
+        hard: 65535
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: '10m'
+        max-file: '3'
+        labels: 'service=nginx'
+
+volumes:
+  mariadb_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/data/mariadb
+  api_uploads:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/data/uploads
+
+networks:
+  vup-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
