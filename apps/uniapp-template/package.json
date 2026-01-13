@@ -41,8 +41,7 @@
     "lint": "eslint src/ --ext .vue,.ts,.js",
     "lint:fix": "eslint src/ --ext .vue,.ts,.js --fix",
     "format": "prettier --write \"src/**/*.{js,ts,vue,json,css,scss}\"",
-    "format:check": "prettier --check \"src/**/*.{js,ts,vue,json,css,scss}\"",
-    "postinstall": "weapp-tw patch"
+    "format:check": "prettier --check \"src/**/*.{js,ts,vue,json,css,scss}\""
   },
   "dependencies": {
     "@dcloudio/uni-app": "3.0.0-4030620241128001",
@@ -59,7 +58,8 @@
     "@dcloudio/uni-mp-toutiao": "3.0.0-4030620241128001",
     "@dcloudio/uni-mp-weixin": "3.0.0-4030620241128001",
     "@dcloudio/uni-mp-xhs": "3.0.0-4030620241128001",
-    "@dcloudio/uni-quickapp-webview": "3.0.0-4030620241128001"
+    "@dcloudio/uni-quickapp-webview": "3.0.0-4030620241128001",
+    "vue-i18n": "^9.14.5"
   },
   "devDependencies": {
     "@dcloudio/types": "^3.4.8",
