@@ -1,0 +1,17 @@
+{
+  "name": "@vup/richeditor",
+  "description": "Rich Editor Component, based on WangEditor",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "dependencies": {
+    "@vup/ui": "workspace:*"
+  },
+  "peerDependencies": {
+    "@wangeditor/editor": "^5.1.23",
+    "@wangeditor/editor-for-vue": "^5.1.12"
+  },
+  "devDependencies": {}
+}

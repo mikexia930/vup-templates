@@ -3,66 +3,105 @@
     "name": "capacitor",
     "version": "1.1.0",
     "description": "Cross-platform mobile app development using Capacitor framework",
-    "path": "apps/capacitor-template"
+    "path": "apps/capacitor-template",
+    "type": "app"
   },
   {
     "name": "cli",
     "version": "1.2.0",
     "description": "Command Line Interface development",
-    "path": "apps/cli-template"
+    "path": "apps/cli-template",
+    "type": "app"
   },
   {
     "name": "component",
     "version": "1.1.0",
     "description": "Tool Components & Vue 3 Library",
-    "path": "apps/component-template"
+    "path": "apps/component-template",
+    "type": "app"
   },
   {
     "name": "electron",
     "version": "1.0.0",
     "description": "Desktop application template",
-    "path": "apps/electron-template"
+    "path": "apps/electron-template",
+    "type": "app"
   },
   {
     "name": "nest",
     "version": "1.1.0",
     "description": "Backend Development Template",
-    "path": "apps/nest-template"
+    "path": "apps/nest-template",
+    "type": "app"
   },
   {
     "name": "nuxt",
     "version": "1.1.0",
     "description": "Web App Development Template",
-    "path": "apps/nuxt-template"
+    "path": "apps/nuxt-template",
+    "type": "app"
   },
   {
     "name": "qiankun",
     "version": "0.1.0",
     "description": "Micro-Frontend Template",
-    "path": "apps/qiankun-template"
+    "path": "apps/qiankun-template",
+    "type": "app"
   },
   {
     "name": "uniapp",
     "version": "1.1.0",
     "description": "Mobile Apps & Mini Programs Development",
-    "path": "apps/uniapp-template"
+    "path": "apps/uniapp-template",
+    "type": "app"
   },
   {
     "name": "vitepress",
     "version": "1.1.0",
     "description": "VitePress development",
-    "path": "apps/vitepress-template"
+    "path": "apps/vitepress-template",
+    "type": "app"
   },
   {
     "name": "vue",
     "version": "1.1.0",
     "description": "Vue3 development",
-    "path": "apps/vue-template"
+    "path": "apps/vue-template",
+    "type": "app"
   },
   {
     "name": "wxt",
     "version": "1.1.0",
     "description": "Chrome Extension development",
-    "path": "apps/wxt-template"
+    "path": "apps/wxt-template",
+    "type": "app"
+  },
+  {
+    "name": "demo",
+    "version": "1.0.0",
+    "description": "Package Demo",
+    "path": "packages/demo",
+    "type": "package"
+  },
+  {
+    "name": "@vup/nest-upload",
+    "version": "1.0.0",
+    "description": "NestJS Upload Module, support multer",
+    "path": "packages/nest-upload",
+    "type": "package"
+  },
+  {
+    "name": "@vup/richeditor",
+    "version": "1.0.0",
+    "description": "Rich Editor Component, based on WangEditor",
+    "path": "packages/richeditor",
+    "type": "package"
+  },
+  {
+    "name": "@vup/ui",
+    "version": "1.0.0",
+    "description": "Vue 3 UI Components, based on Element Plus",
+    "path": "packages/ui",
+    "type": "package"
   }
 ]
