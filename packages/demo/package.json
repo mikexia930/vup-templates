@@ -1,0 +1,28 @@
+{
+  "name": "demo",
+  "description": "Package Demo",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "lint": "eslint src/ --ext .vue,.ts,.js",
+    "lint:fix": "eslint src/ --ext .vue,.ts,.js --fix",
+    "format": "prettier --write \"src/**/*.{js,ts,vue,json,css,scss}\"",
+    "format:check": "prettier --check \"src/**/*.{js,ts,vue,json,css,scss}\""
+  },
+  "dependencies": {
+    "@vup/ui": "workspace:*",
+    "@vup/richeditor": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vite": "^6.2.0",
+    "eslint": "^9.34.0",
+    "prettier": "^3.4.2"
+  }
+}

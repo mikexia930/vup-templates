@@ -1,0 +1,71 @@
+@use './base-colors.scss';
+@use './base-size.scss';
+
+:root {
+  /* Semantic palettes (0-9) mapped from base colors */
+  --vup-primary-0: var(--vup-blue-0);
+  --vup-primary-1: var(--vup-blue-1);
+  --vup-primary-2: var(--vup-blue-2);
+  --vup-primary-3: var(--vup-blue-3);
+  --vup-primary-4: var(--vup-blue-4);
+  --vup-primary-5: var(--vup-blue-5);
+  --vup-primary-6: var(--vup-blue-6);
+  --vup-primary-7: var(--vup-blue-7);
+  --vup-primary-8: var(--vup-blue-8);
+  --vup-primary-9: var(--vup-blue-9);
+
+  --vup-success-0: var(--vup-green-0);
+  --vup-success-1: var(--vup-green-1);
+  --vup-success-2: var(--vup-green-2);
+  --vup-success-3: var(--vup-green-3);
+  --vup-success-4: var(--vup-green-4);
+  --vup-success-5: var(--vup-green-5);
+  --vup-success-6: var(--vup-green-6);
+  --vup-success-7: var(--vup-green-7);
+  --vup-success-8: var(--vup-green-8);
+  --vup-success-9: var(--vup-green-9);
+
+  --vup-warning-0: var(--vup-gold-0);
+  --vup-warning-1: var(--vup-gold-1);
+  --vup-warning-2: var(--vup-gold-2);
+  --vup-warning-3: var(--vup-gold-3);
+  --vup-warning-4: var(--vup-gold-4);
+  --vup-warning-5: var(--vup-gold-5);
+  --vup-warning-6: var(--vup-gold-6);
+  --vup-warning-7: var(--vup-gold-7);
+  --vup-warning-8: var(--vup-gold-8);
+  --vup-warning-9: var(--vup-gold-9);
+
+  --vup-error-0: var(--vup-red-0);
+  --vup-error-1: var(--vup-red-1);
+  --vup-error-2: var(--vup-red-2);
+  --vup-error-3: var(--vup-red-3);
+  --vup-error-4: var(--vup-red-4);
+  --vup-error-5: var(--vup-red-5);
+  --vup-error-6: var(--vup-red-6);
+  --vup-error-7: var(--vup-red-7);
+  --vup-error-8: var(--vup-red-8);
+  --vup-error-9: var(--vup-red-9);
+
+  --vup-info-0: var(--vup-gray-0);
+  --vup-info-1: var(--vup-gray-1);
+  --vup-info-2: var(--vup-gray-2);
+  --vup-info-3: var(--vup-gray-3);
+  --vup-info-4: var(--vup-gray-4);
+  --vup-info-5: var(--vup-gray-5);
+  --vup-info-6: var(--vup-gray-6);
+  --vup-info-7: var(--vup-gray-7);
+  --vup-info-8: var(--vup-gray-8);
+  --vup-info-9: var(--vup-gray-9);
+
+  --vup-neutral-0: var(--vup-gray-0);
+  --vup-neutral-1: var(--vup-gray-1);
+  --vup-neutral-2: var(--vup-gray-2);
+  --vup-neutral-3: var(--vup-gray-3);
+  --vup-neutral-4: var(--vup-gray-4);
+  --vup-neutral-5: var(--vup-gray-5);
+  --vup-neutral-6: var(--vup-gray-6);
+  --vup-neutral-7: var(--vup-gray-7);
+  --vup-neutral-8: var(--vup-gray-8);
+  --vup-neutral-9: var(--vup-gray-9);
+}

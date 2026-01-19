@@ -1,6 +1,6 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 // 获取 __dirname 的 ES 模块等价物
 const __filename = fileURLToPath(import.meta.url);
@@ -24,6 +24,28 @@ fs.readdirSync(appsDir, { withFileTypes: true }).forEach((dirent) => {
         version: packageJson.version,
         description: packageJson.description,
         path: `apps/${dirent.name}`,
+        type: 'app',
+      });
+    }
+  }
+});
+
+// 读取 pakcages 目录
+const packagesDir = path.join(_rootDir, './packages');
+
+// 遍历 pakcages 目录
+fs.readdirSync(packagesDir, { withFileTypes: true }).forEach((dirent) => {
+  if (dirent.isDirectory()) {
+    const packagePath = path.join(packagesDir, dirent.name);
+    const packageJsonPath = path.join(packagePath, 'package.json');
+    if (fs.existsSync(packageJsonPath)) {
+      const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+      apps.push({
+        name: packageJson.name,
+        version: packageJson.version,
+        description: packageJson.description,
+        path: `packages/${dirent.name}`,
+        type: 'package',
       });
     }
   }

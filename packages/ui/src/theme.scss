@@ -1,0 +1,15 @@
+:root {
+  /* Semantic -> Element Plus mapping */
+  --el-color-primary: var(--vup-primary-5);
+  --el-color-success: var(--vup-success-5);
+  --el-color-warning: var(--vup-warning-5);
+  --el-color-danger: var(--vup-error-5);
+  --el-color-info: var(--vup-info-5);
+
+  --el-color-primary-light-3: var(--vup-primary-4);
+  --el-color-primary-light-5: var(--vup-primary-3);
+  --el-color-primary-light-7: var(--vup-primary-2);
+  --el-color-primary-light-8: var(--vup-primary-1);
+  --el-color-primary-light-9: var(--vup-primary-0);
+  --el-color-primary-dark-2: var(--vup-primary-6);
+}

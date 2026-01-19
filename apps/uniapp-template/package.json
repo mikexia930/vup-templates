@@ -58,8 +58,7 @@
     "@dcloudio/uni-mp-toutiao": "3.0.0-4030620241128001",
     "@dcloudio/uni-mp-weixin": "3.0.0-4030620241128001",
     "@dcloudio/uni-mp-xhs": "3.0.0-4030620241128001",
-    "@dcloudio/uni-quickapp-webview": "3.0.0-4030620241128001",
-    "vue-i18n": "^9.14.5"
+    "@dcloudio/uni-quickapp-webview": "3.0.0-4030620241128001"
   },
   "devDependencies": {
     "@dcloudio/types": "^3.4.8",
@@ -69,5 +68,11 @@
     "@dcloudio/vite-plugin-uni": "3.0.0-4030620241128001",
     "@vue/runtime-core": "^3.4.21",
     "@vue/tsconfig": "^0.1.3"
+  },
+  "pnpm": {
+    "overrides": {
+      "vue-i18n": "9.14.5",
+      "@intlify/*": "9.14.5"
+    }
   }
 }
