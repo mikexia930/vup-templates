@@ -5,6 +5,7 @@ import '@_shared/assets/styles/tailwind.scss';
 import App from './App.vue';
 import i18n from './locales';
 import router from './router';
+// 注册微应用，若果不是微应用，这段 qiankun 代码可删除
 import { renderWithQiankun, qiankunWindow } from 'vite-plugin-qiankun/dist/helper';
 
 let app: any = null;

@@ -1,7 +1,7 @@
 {
   "name": "electron",
   "productName": "electron-project",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Desktop application template",
   "main": ".vite/build/main.js",
   "private": true,
@@ -32,6 +32,10 @@
     "electron": "38.1.2"
   },
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.1"
+    "electron-squirrel-startup": "^1.0.1",
+    "vue-i18n": "^11.1.11",
+    "pinia": "^2.3.0",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
   }
 }

@@ -18,7 +18,7 @@ router.isReady().then(() => {
         name: 'vue-template',
         entry: 'http://localhost:9301',
         container: '#auto-app-container',
-        activeRule: '/auto/vue/',
+        activeRule: '/auto/vue',
         props: {
           name: 'vue-template-atuo',
           baseRoute: '/auto/vue',
