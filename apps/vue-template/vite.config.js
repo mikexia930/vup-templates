@@ -4,6 +4,8 @@ import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import AutoImport from 'unplugin-auto-import/vite';
 import { defineConfig, mergeConfig } from 'vite';
+// 注册微应用，若果不是微应用，这段 qiankun 代码可删除
+import qiankun from 'vite-plugin-qiankun';
 
 export default mergeConfig(
   defineConfig({
@@ -21,6 +23,8 @@ export default mergeConfig(
           globalsPropValue: true,
         },
       }),
+      // 注册微应用，若果不是微应用，这段 qiankun 代码可删除
+      qiankun('vue-template', { useDevMode: true }),
     ],
     resolve: {
       alias: {

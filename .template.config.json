@@ -1,77 +1,77 @@
 [
   {
     "name": "capacitor",
-    "version": "1.1.0",
+    "version": "2.0.0",
     "description": "Cross-platform mobile app development using Capacitor framework",
     "path": "apps/capacitor-template",
     "type": "app"
   },
   {
     "name": "cli",
-    "version": "1.2.0",
+    "version": "2.0.0",
     "description": "Command Line Interface development",
     "path": "apps/cli-template",
     "type": "app"
   },
   {
     "name": "component",
-    "version": "1.1.0",
+    "version": "2.0.0",
     "description": "Tool Components & Vue 3 Library",
     "path": "apps/component-template",
     "type": "app"
   },
   {
     "name": "electron",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "Desktop application template",
     "path": "apps/electron-template",
     "type": "app"
   },
   {
     "name": "nest",
-    "version": "1.1.0",
+    "version": "2.0.0",
     "description": "Backend Development Template",
     "path": "apps/nest-template",
     "type": "app"
   },
   {
     "name": "nuxt",
-    "version": "1.1.0",
+    "version": "2.0.0",
     "description": "Web App Development Template",
     "path": "apps/nuxt-template",
     "type": "app"
   },
   {
     "name": "qiankun",
-    "version": "0.1.0",
+    "version": "2.0.0",
     "description": "Micro-Frontend Template",
     "path": "apps/qiankun-template",
     "type": "app"
   },
   {
     "name": "uniapp",
-    "version": "1.1.0",
+    "version": "2.0.0",
     "description": "Mobile Apps & Mini Programs Development",
     "path": "apps/uniapp-template",
     "type": "app"
   },
   {
     "name": "vitepress",
-    "version": "1.1.0",
+    "version": "2.0.0",
     "description": "VitePress development",
     "path": "apps/vitepress-template",
     "type": "app"
   },
   {
     "name": "vue",
-    "version": "1.1.0",
+    "version": "2.0.0",
     "description": "Vue3 development",
     "path": "apps/vue-template",
     "type": "app"
   },
   {
     "name": "wxt",
-    "version": "1.1.0",
+    "version": "2.0.0",
     "description": "Chrome Extension development",
     "path": "apps/wxt-template",
     "type": "app"

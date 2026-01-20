@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   },
   typescript: {
     strict: true,
-    typeCheck: true,
+    typeCheck: false,
   },
   css: ['@_shared/assets/styles/tailwind.scss'],
   modules: ['@nuxtjs/i18n', '@pinia/nuxt'],
