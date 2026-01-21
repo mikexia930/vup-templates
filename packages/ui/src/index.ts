@@ -1,10 +1,10 @@
 import 'element-plus/dist/index.css';
 import '../../../_shared/assets/styles/theme.scss';
+import type { App, Component } from 'vue';
 
 import './theme.scss';
 
 import VModal from './modal/VModal.vue';
-import VIconFont from './iconfont/VIconFont.vue';
 import VButton from './button/VButton.vue';
 import VMenu from './menu/VMenu.vue';
 import VMessage from './message/VMessage';
@@ -37,10 +37,9 @@ import VLink from './link/VLink.vue';
 import VDropdown from './dropdown/VDropdown.vue';
 import VFileModal from './fileManager/VFileModal.vue';
 import VFileList from './fileManager/VFileList.vue';
-import { EFileType, VFileTypeSuffixes } from './fileManager/types';
+import { EFileType, FileTypeSuffixes } from './fileManager/types';
 
-export {
-  EFileType,
+const components: Record<string, Component> = {
   VBadge,
   VButton,
   VCard,
@@ -52,8 +51,40 @@ export {
   VEmpty,
   VFileList,
   VFileModal,
-  VFileTypeSuffixes,
-  VIconFont,
+  VImage,
+  VInput,
+  VInputNumber,
+  VLink,
+  VMenu,
+  VModal,
+  VPagination,
+  VPopconfirm,
+  VPopover,
+  VRadio,
+  VRadioGroup,
+  VScrollbar,
+  VSelect,
+  VSwitch,
+  VTag,
+  VText,
+  VTooltip,
+  VUpload,
+};
+
+export {
+  EFileType,
+  FileTypeSuffixes,
+  VBadge,
+  VButton,
+  VCard,
+  VCheckbox,
+  VCheckboxGroup,
+  VDatePicker,
+  VDrawer,
+  VDropdown,
+  VEmpty,
+  VFileList,
+  VFileModal,
   VImage,
   VInput,
   VInputNumber,
@@ -78,9 +109,16 @@ export {
   VUpload,
 };
 
-export type { VIconFontProps } from './iconfont/types';
 export type { VMenuProps } from './menu/types';
 export type { VSelectProps } from './select/types';
 export type { VRadioGroupProps } from './radio/types';
 export type { VCheckboxGroupProps } from './checkbox/types';
 export type { IFileSelectItem, VFileProps } from './fileManager/types';
+
+export default {
+  install(app: App) {
+    Object.entries(components).forEach(([name, component]) => {
+      app.component(name, component);
+    });
+  },
+};

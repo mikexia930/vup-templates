@@ -9,7 +9,7 @@ const menus: VMenuProps['menus'] = [
   {
     key: 'base',
     label: '基础组件',
-    icon: { type: 'icon', name: 'Plus' },
+    icon: 'Plus',
     children: [
       {
         key: 'button',
@@ -96,7 +96,7 @@ const menus: VMenuProps['menus'] = [
   {
     key: 'custom',
     label: '自定义组件',
-    icon: { type: 'iconfont', name: 'shuidi' },
+    icon: 'Plus',
     children: [
       {
         key: 'richeditor',
@@ -123,17 +123,30 @@ const handleSelect = (key: string) => {
 </script>
 
 <template>
-  <div class="flex gap-4">
-    <div style="width: 200px">
-      <VMenu
-        default-active="2"
-        class="el-menu-vertical-demo"
-        :menus="menus"
-        @select="handleSelect"
-      />
+  <div class="flex flex-col gap-4">
+    <div
+      style="height: 60px"
+      class="bg-neutral-5 flex items-center justify-between box-border px-12 py-4"
+    >
+      <div class="text-neutral-7 text-sm">UI</div>
+      <div class="text-neutral-7 text-sm">
+        <VButton type="primary" @click="router.push('/')">
+          <span>Back</span>
+        </VButton>
+      </div>
     </div>
-    <div class="flex-1 box-border p-4">
-      <router-view />
+    <div class="flex gap-4">
+      <div style="width: 200px">
+        <VMenu
+          default-active="2"
+          class="el-menu-vertical-demo"
+          :menus="menus"
+          @select="handleSelect"
+        />
+      </div>
+      <div class="flex-1 box-border p-4">
+        <router-view />
+      </div>
     </div>
   </div>
 </template>

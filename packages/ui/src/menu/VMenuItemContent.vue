@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import type { VMenuIconProps } from './types';
-import VIconFont from '../iconfont/VIconFont.vue';
 import VIcon from '../icon/VIcon.vue';
 
 defineProps<{
-  icon?: VMenuIconProps | undefined;
+  icon?: string | undefined;
   label: string;
 }>();
 </script>
@@ -12,8 +10,7 @@ defineProps<{
 <template>
   <div>
     <template v-if="icon">
-      <VIconFont v-if="icon.type === 'iconfont'" :icon="icon.name" />
-      <VIcon v-if="icon.type === 'icon'" :icon="icon.name" />
+      <VIcon :icon="icon" />
     </template>
     <span>{{ label }}</span>
   </div>

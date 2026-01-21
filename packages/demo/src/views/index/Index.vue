@@ -6,7 +6,8 @@ const router = useRouter();
 </script>
 
 <template>
-  <div class="flex flex-col items-center justify-center h-screen p-4">
+  <div class="flex items-center justify-center h-screen p-4 gap-6">
+    <VButton @click="router.push('/iconfont')">IconFont Demo</VButton>
     <VButton @click="router.push('/ui')">UI Demo</VButton>
   </div>
 </template>

@@ -273,6 +273,12 @@ pnpm build
 - 避免过深的组件嵌套
 - 使用条件编译优化代码
 
+## ⚠️ 常见问题
+
+- 如果 HBuilderX /
+  CLI 编译版本 与 手机端运行的 SDK 版本不匹配，请在 uniapp 项目目录执行：
+  `npx @dcloudio/uvm@latest`
+
 ## 📚 相关文档
 
 - [UniApp 官方文档](https://uniapp.dcloud.net.cn/)

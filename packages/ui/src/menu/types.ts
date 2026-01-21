@@ -13,13 +13,8 @@ export interface VMenuItemProps {
   key: string;
   label: string;
   path?: RouteLocationRaw;
-  icon?: VMenuIconProps;
+  icon?: string;
   disabled?: boolean;
   group?: VMenuGroupProps;
   children?: VMenuItemProps[];
-}
-
-export interface VMenuIconProps {
-  type: 'iconfont' | 'icon';
-  name: string;
 }
