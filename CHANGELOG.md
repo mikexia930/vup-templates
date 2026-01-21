@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.3.0](/compare/v3.2.1...v3.3.0) (2026-01-21)
+
+### Features
+
+- 拆分iconfont为单独的package d88279d
+
 ## [3.2.0](/compare/v1.8.0...v3.2.0) (2026-01-19)
 
 ### Bug Fixes
