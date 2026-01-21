@@ -84,6 +84,13 @@
     "type": "package"
   },
   {
+    "name": "@vup/iconfont",
+    "version": "1.0.0",
+    "description": "IconFont Components",
+    "path": "packages/iconfont",
+    "type": "package"
+  },
+  {
     "name": "@vup/nest-upload",
     "version": "1.0.0",
     "description": "NestJS Upload Module, support multer",

@@ -4,7 +4,7 @@ export enum EFileType {
   FILE = 'file',
 }
 
-export const VFileTypeSuffixes = {
+export const FileTypeSuffixes: Record<EFileType, string[]> = {
   [EFileType.IMAGE]: ['png', 'jpg', 'jpeg', 'gif', 'webp'],
   [EFileType.MEDIA]: ['mp4', 'avi', 'mov', 'wmv', 'flv', 'webm', 'mp3'],
   [EFileType.FILE]: [

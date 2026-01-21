@@ -1,5 +1,7 @@
 import { createPinia } from 'pinia';
 import { createApp } from 'vue';
+import VIconFont from '@vup/iconfont';
+import VUI from '@vup/ui';
 
 import '@_shared/assets/styles/tailwind.scss';
 import App from './App.vue';
@@ -15,6 +17,8 @@ function render(props: any = {}) {
   app.use(createPinia());
   app.use(router(baseRoute ?? '/'));
   app.use(i18n);
+  app.use(VIconFont);
+  app.use(VUI);
 
   app.mount(container ? container.querySelector('#app') : '#app');
 }

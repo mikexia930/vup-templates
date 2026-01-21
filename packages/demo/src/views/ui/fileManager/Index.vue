@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { VFileModal, EFileType, VFileTypeSuffixes, VButton } from '@vup/ui';
+import { VFileModal, EFileType, FileTypeSuffixes, VButton } from '@vup/ui';
 import type { VFileProps, IFileSelectItem } from '@vup/ui';
 import { ref } from 'vue';
 
 const fileProps: VFileProps = {
   type: EFileType.IMAGE,
-  suffixes: VFileTypeSuffixes[EFileType.IMAGE],
+  suffixes: FileTypeSuffixes[EFileType.IMAGE],
   limit: 1,
   selected: [],
   list: [],

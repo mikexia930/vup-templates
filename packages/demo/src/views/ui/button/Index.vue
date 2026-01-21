@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import { VButton } from '@vup/ui';
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="flex gap-2">
@@ -10,7 +8,5 @@ import { VButton } from '@vup/ui';
     <VButton type="warning">Warning</VButton>
     <VButton type="danger">Danger</VButton>
     <VButton type="info">Info</VButton>
-    <VButton type="text">Text</VButton>
-    <VButton type="link">Link</VButton>
   </div>
 </template>

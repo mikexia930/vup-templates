@@ -2,7 +2,11 @@
 import type { VIconFontProps } from './types';
 import { computed } from 'vue';
 
-import './assets/iconfont.css';
+import '../assets/iconfont.css';
+
+defineOptions({
+  name: 'VIconFont',
+});
 
 const props = withDefaults(defineProps<VIconFontProps>(), {
   size: '16px',

@@ -20,9 +20,9 @@ nginx/
 ### 路由配置
 
 - `/api/` → `http://api:9310/api/` - API 服务
-- `/admin/` → `http://admin:3000/` - Admin 前端服务
+- `/frontend/` → `http://frontend:3000/` - Admin 前端服务
 - `/uploads/` → 静态文件服务（从 volume 挂载）
-- `/` → 重定向到 `/admin/`
+- `/` → 重定向到 `/frontend/`
 - `/health` → 健康检查端点
 
 ### 功能特性
@@ -95,7 +95,7 @@ tail -f nginx/logs/error.log
 ### 502 Bad Gateway
 
 - 检查 API 或 Admin 服务是否正常运行
-- 检查服务名称是否正确（`api`、`admin`）
+- 检查服务名称是否正确（`api`、`frontend`）
 - 检查端口是否正确（API: 9310, Admin: 3000）
 
 ### 403 Forbidden
