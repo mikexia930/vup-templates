@@ -1,0 +1,37 @@
+<!-- public/login.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>登录 - My MCP Service</title>
+  <style>
+    body { font-family: sans-serif; max-width: 500px; margin: 100px auto; }
+    button { padding: 10px 20px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <h2>登录到 My App</h2>
+  <p>点击下方按钮模拟登录（实际应跳转 OAuth 或表单）</p>
+  <button onclick="simulateLogin()">模拟登录 (Alice)</button>
+
+  <script>
+    async function simulateLogin() {
+      // 模拟获取 JWT（实际应调用 /api/login）
+      const fakeJwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.' +
+                      'eyJzdWIiOiJ1c2VyX2FsaWNlIiwiaWF0IjoxNTE2MjM5MDIyfQ.' +
+                      'SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
+
+      // 通知 AI 客户端（如 Cursor）
+      if (window.opener) {
+        window.opener.postMessage({
+          type: 'mcp_auth_success',
+          token: fakeJwt,
+          origin: 'my-mcp-service'
+        }, '*');
+        window.close();
+      } else {
+        alert('请在 AI 客户端（如 Cursor）中打开此页面');
+      }
+    }
+  </script>
+</body>
+</html>
