@@ -1,7 +1,7 @@
 # 🚀 VUP CLI Templates - 多框架开发模板集合
 
 VUP
-CLI 的多框架开发模板集合，包含 Vue、Nuxt、VitePress、NestJS、Qiankun、UniApp、Capacitor、Electron、WXT、CLI、Component 等多种技术栈的完整开发模板。通过
+CLI 的多框架开发模板集合，包含 Vue、Nuxt、VitePress、NestJS、Qiankun、UniApp、Capacitor、Electron、WXT、CLI、Component、MCP 等多种技术栈的完整开发模板。通过
 `vup add` 命令快速创建项目，让你专注于业务逻辑开发。
 
 ## ✨ 特性
@@ -39,9 +39,10 @@ CLI 的多框架开发模板集合，包含 Vue、Nuxt、VitePress、NestJS、Qi
 
 ### 后端框架
 
-| 技术   | 版本  | 说明              |
-| ------ | ----- | ----------------- |
-| NestJS | 11.0+ | Node.js企业级框架 |
+| 技术                      | 版本  | 说明              |
+| ------------------------- | ----- | ----------------- |
+| NestJS                    | 11.0+ | Node.js企业级框架 |
+| @modelcontextprotocol/sdk | -     | MCP 协议 SDK      |
 
 ### 开发工具
 
@@ -121,6 +122,7 @@ vup add my-app
     WXT 浏览器扩展模板 (wxt-template)
     CLI 命令行工具模板 (cli-template)
     Component 组件库模板 (component-template)
+    MCP 服务器模板 (mcp-template)
 ```
 
 ### 3. 启动开发服务器
@@ -151,6 +153,7 @@ pnpm dev
 | **wxt-template**       | WXT + Vue 3 + TypeScript       | Chrome 扩展、Firefox 插件、Edge 扩展 | [查看文档](./apps/wxt-template/README.md)       |
 | **cli-template**       | Node.js CLI                    | 命令行工具模板                       | [查看文档](./apps/cli-template/README.md)       |
 | **component-template** | Vue 3 + TypeScript             | 组件/组件库模板                      | [查看文档](./apps/component-template/README.md) |
+| **mcp-template**       | MCP + TypeScript               | MCP 服务器开发框架                   | [查看文档](./apps/mcp-template/README.md)       |
 
 ### 4. 添加功能包
 
@@ -396,6 +399,7 @@ VITE_ENABLE_ANALYTICS=false
 - [WXT 模板文档](./apps/wxt-template/README.md) - 浏览器扩展开发
 - [CLI 模板文档](./apps/cli-template/README.md) - 命令行工具开发
 - [Component 模板文档](./apps/component-template/README.md) - 组件库开发
+- [MCP 模板文档](./apps/mcp-template/README.md) - MCP 服务器开发
 
 ### 功能包文档
 

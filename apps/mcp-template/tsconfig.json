@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./.output",
+    "baseUrl": ".",
+    "moduleResolution": "bundler",
+    "skipLibCheck": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@shared/*": ["../../_shared/*"]
+    }
+  },
+  "include": ["src/**/*"]
+}

@@ -28,6 +28,13 @@
     "type": "app"
   },
   {
+    "name": "mcp",
+    "version": "1.0.0",
+    "description": "",
+    "path": "apps/mcp-template",
+    "type": "app"
+  },
+  {
     "name": "nest",
     "version": "2.0.0",
     "description": "Backend Development Template",
