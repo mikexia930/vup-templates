@@ -37,7 +37,7 @@ log_error() {
 if [ -z "$BACKUP_FILE" ]; then
     log_error "请指定备份文件路径"
     echo "用法: $0 <备份文件路径>"
-    echo "示例: $0 backups/postgres/backup_20240101_020000.sql.gz"
+    echo "示例: $0 backups/mariadb/backup_20240101_020000.sql.gz"
     exit 1
 fi
 

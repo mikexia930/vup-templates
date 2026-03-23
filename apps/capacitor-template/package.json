@@ -25,16 +25,12 @@
   },
   "dependencies": {
     "@capacitor/android": "^7.4.3",
-    "@capacitor/camera": "latest",
-    "@capacitor/core": "latest",
+    "@capacitor/camera": "^7.0.5",
+    "@capacitor/core": "^7.6.0",
     "@capacitor/ios": "^7.4.3",
-    "@capacitor/splash-screen": "latest",
-    "pinia": "^2.3.0",
-    "vue": "^3.5.13",
-    "vue-router": "^4.5.0",
-    "vue-i18n": "^11.1.11"
+    "@capacitor/splash-screen": "^7.0.5"
   },
   "devDependencies": {
-    "@capacitor/cli": "latest"
+    "@capacitor/cli": "^7.6.0"
   }
 }

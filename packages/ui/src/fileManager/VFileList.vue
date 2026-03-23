@@ -3,16 +3,18 @@ import { ref, toRaw, computed, reactive } from 'vue';
 import { EFileType } from './types';
 import type { IFileSelectItem, VFileProps } from './types';
 import type { UploadProps, UploadRawFile, UploadRequestOptions } from 'element-plus';
-import VIcon from '../icon/VIcon.vue';
-import VMessage from '../message/VMessage';
-import VEmpty from '../empty/VEmpty.vue';
-import VPagination from '../pagination/VPagination.vue';
-import VButton from '../button/VButton.vue';
-import VTooltip from '../tooltip/VTooltip.vue';
-import VPopconfirm from '../popconfirm/VPopconfirm.vue';
-import VImage from '../image/VImage.vue';
-import VInput from '../input/VInput.vue';
-import VUpload from '../upload/VUpload.vue';
+import { ElMessage } from 'element-plus';
+import { Document, VideoPlay, Search } from '@element-plus/icons-vue';
+import {
+  VInput,
+  VPagination,
+  VButton,
+  VTooltip,
+  VPopconfirm,
+  VIcon,
+  VEmpty,
+  VUpload,
+} from '../index';
 
 const props = withDefaults(defineProps<VFileProps>(), {
   limit: 1,
@@ -71,7 +73,10 @@ const handleSelect = (item: IFileSelectItem) => {
 
 const handleCopy = (item: IFileSelectItem) => {
   navigator.clipboard.writeText(item.path);
-  VMessage.success('复制成功');
+  ElMessage({
+    message: '复制成功',
+    type: 'success',
+  });
 };
 
 const handlePreview = (item: IFileSelectItem) => {
@@ -97,7 +102,9 @@ defineExpose({
     <div class="flex items-center gap-2">
       <VInput v-model="searchData.keyword" placeholder="搜索文件">
         <template #prefix>
-          <VIcon icon="Search" />
+          <VIcon>
+            <Search />
+          </VIcon>
         </template>
       </VInput>
       <VUpload
@@ -115,38 +122,41 @@ defineExpose({
         </template>
       </VUpload>
     </div>
-    <div class="flex justify-center items-center" v-if="list.length === 0">
+    <div class="flex items-center justify-center" v-if="list.length === 0">
       <VEmpty :image-size="200" />
     </div>
     <div v-else class="grid grid-cols-4 gap-4">
       <div
-        class="border border-gray-200 rounded-md flex flex-col items-center justify-center"
+        class="flex flex-col items-center justify-center rounded-md border border-gray-200"
         v-for="item in list"
         :key="item.id"
         :class="{ selected: curSelectIds.includes(item.id) }"
       >
         <div
-          class="w-full cursor-pointer flex flex-col items-center justify-center"
+          class="flex w-full cursor-pointer flex-col items-center justify-center"
           @click="handleSelect(item)"
         >
           <div
             v-if="type !== EFileType.IMAGE"
             style="width: 100px; height: 100px"
-            class="flex items-center justify-center bg-gray-100 flex-col text-gray-400"
+            class="flex flex-col items-center justify-center bg-gray-100 text-gray-400"
           >
-            <VIcon :icon="type === EFileType.MEDIA ? 'VideoPlay' : 'Document'" size="36" />
+            <VIcon size="36">
+              <VideoPlay v-if="type === EFileType.MEDIA" />
+              <Document v-else />
+            </VIcon>
             <div>{{ item.suffix.toUpperCase() }}</div>
           </div>
           <VImage v-else :src="item.name" style="width: 180px; height: 100px" fit="contain" />
           <div
-            class="w-full text-gray-500 bg-gray-100 text-sm p-2 break-all line-clamp-2 overflow-hidden text-ellipsis"
+            class="line-clamp-2 w-full overflow-hidden bg-gray-100 p-2 text-sm break-all text-ellipsis text-gray-500"
             style="height: 50px"
             :title="item.originalName"
           >
             {{ item.originalName }}
           </div>
         </div>
-        <div class="w-full bg-gray-100 flex items-center justify-center p-2 gap-1">
+        <div class="flex w-full items-center justify-center gap-1 bg-gray-100 p-2">
           <VTooltip effect="dark" content="复制链接" placement="top">
             <VButton size="small" @click="handleCopy(item)">
               {{ '复制' }}

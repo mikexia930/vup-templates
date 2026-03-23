@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import VModal from '../modal/VModal.vue';
-import VButton from '../button/VButton.vue';
 import VFileList from './VFileList.vue';
 import type { VFileProps } from './types';
+import { VDialog, VButton } from '../index';
 
 defineOptions({ inheritAttrs: false });
 const props = defineProps<VFileProps>();
@@ -34,7 +33,7 @@ defineExpose({
 </script>
 
 <template>
-  <VModal v-model="visible" title="文件管理" :width="800" destroy-on-close>
+  <VDialog v-model="visible" title="文件管理" :width="800" destroy-on-close>
     <div style="height: 680px">
       <VFileList ref="fileListRef" v-bind="props" v-on="$attrs" />
     </div>
@@ -42,5 +41,5 @@ defineExpose({
       <VButton @click="handleCancel">取消</VButton>
       <VButton type="primary" @click="handleSelected">确定</VButton>
     </template>
-  </VModal>
+  </VDialog>
 </template>

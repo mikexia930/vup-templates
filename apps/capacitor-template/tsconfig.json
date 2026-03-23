@@ -5,7 +5,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@shared/*": ["../../_shared/*"]
+      "@_shared/*": ["../../_shared/*"]
     }
   },
   "include": ["src/**/*", "src/**/*.vue", "src/*.vue", "./auto-imports.d.ts", "src/vue-shim.d.ts"]

@@ -77,11 +77,11 @@ else
 fi
 
 # 2. 备份上传文件（如果存在）
-if [ -d "data/api/uploads" ] && [ "$(ls -A data/api/uploads 2>/dev/null)" ]; then
+if [ -d "data/uploads" ] && [ "$(ls -A data/uploads 2>/dev/null)" ]; then
     log_info "备份上传文件..."
     UPLOAD_BACKUP="$API_BACKUP_DIR/uploads_${TIMESTAMP}.tar.gz"
     
-    if tar -czf "$UPLOAD_BACKUP" -C data/api uploads; then
+    if tar -czf "$UPLOAD_BACKUP" -C data uploads; then
         UPLOAD_SIZE=$(du -h "$UPLOAD_BACKUP" | cut -f1)
         log_info "文件备份完成: $UPLOAD_BACKUP (大小: $UPLOAD_SIZE)"
     else

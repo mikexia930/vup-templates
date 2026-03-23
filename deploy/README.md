@@ -49,13 +49,13 @@ deploy/
 │   └── monitor.sh        # 监控脚本
 ├── builds/               # 构建产物目录（需手动创建）
 │   ├── api/              # API 构建产物
-│   └── frontend/         # 前端构建产物
+│   └── admin/            # 前端构建产物
 ├── data/                 # 数据目录（自动创建）
 │   ├── mariadb/          # 数据库数据
 │   └── uploads/          # 上传文件
 ├── logs/                 # 日志目录（自动创建）
 │   ├── api/              # API 日志
-│   ├── frontend/         # Frontend 日志
+│   ├── admin/            # Admin 日志
 │   └── nginx/            # Nginx 日志
 └── backups/              # 备份目录（自动创建）
     ├── mariadb/          # 数据库备份

@@ -30,12 +30,7 @@ export default antfu({
   overrides: [
     // 配置文件特殊处理
     {
-      files: [
-        '**/*.config.{js,ts}',
-        '**/vite.config.*',
-        '**/nuxt.config.*',
-        '**/tailwind.config.*',
-      ],
+      files: ['**/*.config.{js,ts}', '**/vite.config.*', '**/nuxt.config.*'],
       rules: {
         'no-undef': 'off',
       },
