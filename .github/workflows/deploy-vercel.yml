@@ -4,7 +4,7 @@ on:
   push:
     branches: [main, master]
     paths:
-      - 'apps/vitepress-template/**'
+      - 'apps/{project_name}/**'
       - '_shared/**'
   pull_request:
     branches: [main, master]
@@ -23,7 +23,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '21'
+          node-version: '22'
           cache: 'pnpm'
 
       - name: Setup pnpm
@@ -45,5 +45,5 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          working-directory: apps/vitepress-template
+          working-directory: apps/{project_name}
           vercel-args: '--prod'

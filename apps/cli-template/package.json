@@ -40,7 +40,6 @@
     "@types/fs-extra": "^11.0.4",
     "@types/prompts": "^2.4.5",
     "ts-node": "^10.9.2",
-    "tsx": "^4.20.5",
     "esbuild": "^0.25.9"
   },
   "dependencies": {

@@ -7,13 +7,9 @@
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "scripts": {
-    "build:tsup": "tsup",
-    "dev:tsup": "tsup --watch",
-    "type-check:tsup": "tsc --noEmit",
-    "build:vite": "vite build",
-    "dev:vite": "vite build --watch",
-    "type-check:vite": "vue-tsc --noEmit",
-    "build": "npm run build:tsup && npm run build:vite",
+    "dev": "vite build --watch",
+    "build": "vite build",
+    "type-check": "vue-tsc --noEmit",
     "lint": "eslint src/ --ext .vue,.ts,.js",
     "lint:fix": "eslint src/ --ext .vue,.ts,.js --fix",
     "format": "prettier --write \"src/**/*.{js,ts,vue,json,css,scss}\"",
@@ -27,8 +23,5 @@
     "element-plus": "^2.9.10",
     "@element-plus/icons-vue": "^2.3.1"
   },
-  "devDependencies": {
-    "tsup": "^8.0.0",
-    "vite-plugin-dts": "^4.5.4"
-  }
+  "devDependencies": {}
 }

@@ -37,7 +37,7 @@ export function requireAuth(handler: ToolHandler): ToolHandler {
           {
             mode: 'url',
             message: '请先登录以访问此功能',
-            elicitationId: `auth-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+            elicitationId: `auth-${Date.now()}-${Math.random().toString(36).substring(2, 11)}`,
             url: authConfig.loginUrl,
           },
         ],

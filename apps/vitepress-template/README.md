@@ -217,7 +217,7 @@ export default {
 
 // 自定义样式
 .custom-class {
-  @apply bg-white rounded-lg shadow-md p-4;
+  @apply rounded-lg bg-white p-4 shadow-md;
 }
 ```
 
@@ -346,7 +346,7 @@ pnpm build
 ```json
 {
   "buildCommand": "pnpm build",
-  "outputDirectory": ".vitepress/dist",
+  "outputDirectory": ".output",
   "framework": "vitepress"
 }
 ```
@@ -356,7 +356,7 @@ pnpm build
 ```toml
 [build]
   command = "pnpm build"
-  publish = ".vitepress/dist"
+  publish = ".output"
 
 [build.environment]
   NODE_VERSION = "18"
@@ -384,7 +384,7 @@ jobs:
       - run: pnpm build
       - uses: actions/deploy-pages@v2
         with:
-          path: .vitepress/dist
+          path: .output
 ```
 
 ## 🔍 搜索功能

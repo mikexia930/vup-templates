@@ -39,7 +39,7 @@ export default defineConfig({
         // 处理资源文件
         assetFileNames: (assetInfo) => {
           if (assetInfo.name?.endsWith('.css')) {
-            return 'iconfont.css';
+            return 'richeditor.css';
           }
           if (assetInfo.name?.match(/\.(woff2?|ttf)$/)) {
             return '[name][extname]';

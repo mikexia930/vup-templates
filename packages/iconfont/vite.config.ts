@@ -38,7 +38,7 @@ export default defineConfig({
       entry: {
         index: resolve(__dirname, 'src/index.ts'),
       },
-      name: 'VupUI',
+      name: 'VupIconFont',
       fileName: (format: string, entryName: string) => `${entryName}.${format}.js`,
     },
     rollupOptions: {

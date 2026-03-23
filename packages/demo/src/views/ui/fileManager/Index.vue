@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { VFileModal, EFileType, FileTypeSuffixes, VButton } from '@vup/ui';
+import { VFileModal, EFileType, FileTypeSuffixes } from '@vup/ui';
 import type { VFileProps, IFileSelectItem } from '@vup/ui';
 import { ref } from 'vue';
 

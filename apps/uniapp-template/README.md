@@ -149,7 +149,6 @@ uniapp-template/
 ├── index.html               # H5 入口文件
 ├── package.json             # 依赖配置
 ├── vite.config.ts           # Vite 配置
-├── tailwind.config.js       # Tailwind 配置
 └── tsconfig.json            # TypeScript 配置
 ```
 

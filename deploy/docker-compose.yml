@@ -55,7 +55,7 @@ services:
 
   # API 服务（使用 Volume 映射）
   api:
-    image: node:20-alpine
+    image: node:22-alpine
     container_name: vup-api
     restart: unless-stopped
     working_dir: /app
@@ -114,7 +114,7 @@ services:
 
   # Admin 前端服务（使用 Volume 映射）
   admin:
-    image: node:20-alpine
+    image: node:22-alpine
     container_name: vup-admin
     restart: unless-stopped
     working_dir: /app
@@ -156,7 +156,7 @@ services:
 
   # 数据库迁移容器（使用 Volume 映射）
   migration:
-    image: node:20-alpine
+    image: node:22-alpine
     working_dir: /app
     # 优化：只在 node_modules 不存在时才安装
     command: sh -c "if [ ! -d 'node_modules' ] || [ ! -f 'node_modules/.package-lock.json' ]; then npm install --production --no-optional; fi && npm run migration:run:prod"

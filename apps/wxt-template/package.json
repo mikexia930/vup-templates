@@ -25,7 +25,6 @@
     "chrome-types": "^0.1.290"
   },
   "devDependencies": {
-    "@types/chrome": "^0.1.12",
-    "@antfu/eslint-config": "^5.4.1"
+    "@types/chrome": "^0.1.12"
   }
 }

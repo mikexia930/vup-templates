@@ -34,7 +34,7 @@ if [ -f .env ]; then
 fi
 
 echo -e "${BLUE}========================================${NC}"
-echo -e "${BLUE}      CMS 系统监控报告${NC}"
+echo -e "${BLUE}      VUP 系统监控报告${NC}"
 echo -e "${BLUE}========================================${NC}"
 echo ""
 
@@ -111,7 +111,7 @@ echo ""
 
 # 9. 健康检查
 echo -e "${GREEN}[健康检查]${NC}"
-for service in mariadb api-blue admin nginx; do
+for service in mariadb api admin nginx; do
     if docker-compose ps "$service" | grep -q "Up"; then
         echo -e "  ${GREEN}✓${NC} $service: 运行中"
     else
@@ -144,7 +144,7 @@ if ! docker-compose ps | grep -q "Up.*mariadb"; then
     WARNINGS=$((WARNINGS + 1))
 fi
 
-if ! docker-compose ps | grep -q "Up.*api-blue"; then
+if ! docker-compose ps | grep -q "Up.*api"; then
     echo -e "  ${RED}⚠${NC} API 服务未运行"
     WARNINGS=$((WARNINGS + 1))
 fi
