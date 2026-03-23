@@ -1,5 +1,16 @@
 # Changelog
 
+# [3.4.0](/compare/v3.3.0...v3.4.0) (2026-03-23)
+
+### Bug Fixes
+
+- 优化依赖关系 6be3b9b
+
+### Features
+
+- 增加skills 821e7cb
+- mcp-template 45f24d1
+
 # [3.3.0](/compare/v3.2.1...v3.3.0) (2026-01-21)
 
 ### Features
