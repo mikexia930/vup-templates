@@ -25,22 +25,30 @@ pnpm --filter my-website dev       # 默认端口 9303
 
 ## 目录结构
 
+Nuxt 的 `pages/`、`components/`、`composables/`
+受框架约定约束（自动导入），不能移入 modules。业务 store 和 API 按模块拆分（参考
+`module-structure` rule 的 Nuxt 例外）：
+
 ```
 apps/my-website/
 ├── src/
 │   ├── app.vue                    # 根组件
-│   ├── pages/                     # 文件系统路由
+│   ├── pages/                     # 文件系统路由（Nuxt 约定）
 │   │   ├── index.vue              # /
 │   │   ├── login.vue              # /login（需自建）
 │   │   └── dashboard/
 │   │       └── index.vue          # /dashboard
-│   ├── components/                # 自动导入组件
-│   ├── composables/               # 自动导入组合函数
-│   ├── stores/                    # Pinia store
+│   ├── components/                # 自动导入组件（Nuxt 约定）
+│   ├── composables/               # 自动导入组合函数（Nuxt 约定）
+│   ├── stores/                    # Pinia store（按模块拆分子目录）
+│   │   ├── auth.ts                # 全局 auth store
+│   │   ├── permission.ts          # 全局 permission store
+│   │   └── user/                  # 业务模块 store
+│   │       └── index.ts
 │   ├── api/
 │   │   ├── request.ts             # ofetch 封装
-│   │   ├── types.ts
-│   │   └── modules/
+│   │   ├── types.ts               # ApiResponse 等通用类型
+│   │   └── user.ts                # 业务模块 API（按模块拆分文件）
 │   ├── utils/
 │   │   └── tokenStorage.ts        # Token 存储（useCookie）
 │   ├── middleware/                 # 路由中间件

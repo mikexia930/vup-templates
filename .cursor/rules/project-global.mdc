@@ -1,0 +1,33 @@
+---
+description: Global project constraints — protected files, dependency management, environment safety
+alwaysApply: true
+---
+
+# 全局项目约束
+
+## 禁止修改的文件
+
+以下文件由 vup-cli 或基座管理，不要修改：
+- `.template.config.json`（vup-cli 模板清单）
+- `pnpm-workspace.yaml`（workspace 排除规则）
+- 根 `eslint.config.js`（全局 lint 配置）
+- 根 `postcss.config.js`（全局 PostCSS 配置）
+
+## 依赖管理
+
+- **新增依赖加到子应用的 `package.json`**，不要加到根目录——除非是所有应用共用的基础依赖
+- 安装后确认 `pnpm install` 能正常执行
+- `uniapp-*` 应用独立于 workspace，在应用目录内单独 `pnpm install`
+
+## 环境变量
+
+- **不要提交 `.env` 文件**，只提交 `.env.example` 作为模板
+- 敏感信息（API 密钥、JWT Secret、数据库密码）绝对不能写入代码或提交到仓库
+- 前端变量前缀：`VITE_`（Vue 系）、`NUXT_PUBLIC_`（Nuxt）
+- 后端变量无前缀限制，通过 `process.env` 读取
+
+## 代码风格
+
+- 注释用中文，代码用英文（变量名、函数名、类名）
+- 提交前由 lint-staged 自动执行 ESLint fix + Prettier format，不要手动关闭
+- 调试用的 `console.log` 在提交前应清理（ESLint 未强制禁用，但不应残留在最终代码中）

@@ -35,11 +35,12 @@ SPA 和 Nuxt 应用。
 src/
 ├── layouts/
 │   └── AdminLayout.vue            # 布局主组件
-├── components/
-│   ├── layout/
-│   │   ├── AppSidebar.vue         # 侧边栏（VMenu + 菜单渲染）
-│   │   ├── AppHeader.vue          # 顶栏（折叠按钮 + 面包屑 + 用户信息）
-│   │   └── AppBreadcrumb.vue      # 面包屑
+├── shared/
+│   └── components/
+│       └── layout/
+│           ├── AppSidebar.vue     # 侧边栏（VMenu + 菜单渲染）
+│           ├── AppHeader.vue      # 顶栏（折叠按钮 + 面包屑 + 用户信息）
+│           └── AppBreadcrumb.vue  # 面包屑
 ```
 
 ## AdminLayout.vue
@@ -74,8 +75,8 @@ src/
 
 <script setup lang="ts">
 import { Expand, Fold } from '@element-plus/icons-vue';
-import AppSidebar from '@/components/layout/AppSidebar.vue';
-import AppBreadcrumb from '@/components/layout/AppBreadcrumb.vue';
+import AppSidebar from '@/shared/components/layout/AppSidebar.vue';
+import AppBreadcrumb from '@/shared/components/layout/AppBreadcrumb.vue';
 
 const isCollapsed = ref(false);
 const authStore = useAuthStore();
@@ -145,7 +146,7 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    component: () => import('@/views/login/index.vue'),
+    component: () => import('@/modules/auth/views/login.vue'),
   },
   {
     path: '/',
@@ -157,7 +158,7 @@ const routes = [
       {
         path: 'dashboard',
         name: 'dashboard',
-        component: () => import('@/views/dashboard/index.vue'),
+        component: () => import('@/modules/dashboard/views/index.vue'),
         meta: { title: '首页' },
       },
       // 动态路由由 permission store 通过 addRoute 注入到此处
@@ -166,7 +167,7 @@ const routes = [
   {
     path: '/:pathMatch(.*)*',
     name: 'not-found',
-    component: () => import('@/views/error/404.vue'),
+    component: () => import('@/shared/components/Error404.vue'),
   },
 ];
 ```

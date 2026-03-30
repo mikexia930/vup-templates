@@ -25,6 +25,8 @@ pnpm --filter my-admin dev         # 默认端口 9301
 
 ## 目录结构
 
+按业务模块聚合，每个模块可独立剥离（参考 `module-structure` rule）：
+
 ```
 apps/my-admin/
 ├── src/
@@ -32,20 +34,30 @@ apps/my-admin/
 │   ├── App.vue
 │   ├── router/
 │   │   ├── index.ts               # createRouter 工厂函数
-│   │   └── routes.ts              # 静态路由表
-│   ├── views/
-│   │   ├── login/index.vue        # 登录页（需自建）
-│   │   └── <module>/
-│   │       ├── Index.vue          # 页面组件
-│   │       └── stores/<name>.ts   # 页面级 store
-│   ├── stores/                    # 全局 store（auth、permission 等）
+│   │   └── routes.ts              # 静态路由 + 动态路由注册
+│   ├── layouts/
+│   │   └── AdminLayout.vue        # 后台布局
+│   ├── modules/                   # 业务模块（按功能聚合）
+│   │   ├── user/                  # 用户管理模块
+│   │   │   ├── views/
+│   │   │   ├── components/
+│   │   │   ├── stores/
+│   │   │   ├── api/
+│   │   │   └── types/
+│   │   ├── order/                 # 订单模块
+│   │   │   ├── ...
+│   │   └── dashboard/             # 首页模块
+│   │       ├── ...
+│   ├── shared/                    # 跨模块共享
+│   │   ├── components/
+│   │   ├── composables/
+│   │   └── utils/
+│   │       └── tokenStorage.ts    # Token 存储（localStorage）
+│   ├── stores/                    # 全局 store（仅 auth、permission、app）
 │   ├── api/
 │   │   ├── request.ts             # axios 实例 + 拦截器
-│   │   ├── types.ts               # ApiResponse 等类型
-│   │   └── modules/               # 按业务模块拆分
-│   ├── utils/
-│   │   └── tokenStorage.ts        # Token 存储（localStorage）
-│   ├── directives/                # 自定义指令（v-permission 等）
+│   │   └── types.ts               # ApiResponse 等通用类型
+│   ├── directives/                # 全局指令（v-permission 等）
 │   ├── locales/                   # i18n 语言包
 │   └── assets/
 ├── vite.config.js
@@ -62,7 +74,7 @@ apps/my-admin/
 ```typescript
 // src/api/request.ts
 import axios from 'axios';
-import { tokenStorage } from '@/utils/tokenStorage';
+import { tokenStorage } from '@/shared/utils/tokenStorage';
 
 const request = axios.create({
   baseURL: import.meta.env.VITE_API_BASE || '',
@@ -92,7 +104,7 @@ export default request;
 ### Token 存储：localStorage
 
 ```typescript
-// src/utils/tokenStorage.ts
+// src/shared/utils/tokenStorage.ts
 const TOKEN_KEY = 'access_token';
 const REFRESH_KEY = 'refresh_token';
 
@@ -140,11 +152,11 @@ VITE_API_BASE=https://api.example.com
 
 ## Store 约定
 
-- 全局 store 放 `src/stores/`：`auth.ts`、`permission.ts`、`app.ts`
-- 页面级 store 放 `src/views/<module>/stores/`
+- 全局 store 放 `src/stores/`：仅限 `auth.ts`、`permission.ts`、`app.ts`
+- 业务 store 放模块内 `src/modules/<name>/stores/`
+- 命名：`use*Store`（如 `useUserStore`）
 - 使用 Pinia 组合式写法（`defineStore('name', () => { ... })`）
-- 由于配置了 `unplugin-auto-import`，`defineStore`、`ref`、`computed`
-  等无需手动 import
+- `defineStore`、`ref`、`computed` 等无需手动 import（auto-import 已配置）
 
 ## qiankun 微前端
 

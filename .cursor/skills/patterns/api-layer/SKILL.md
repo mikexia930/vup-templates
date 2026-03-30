@@ -23,13 +23,19 @@ description: >-
 ```
 src/
 ├── api/
-│   ├── request.ts              # 客户端实例 + 拦截器
-│   ├── types.ts                # 通用响应类型
-│   └── modules/
-│       ├── auth.ts             # 认证相关接口
-│       ├── user.ts             # 用户模块接口
-│       └── ...
+│   ├── request.ts              # 客户端实例 + 拦截器（全局基础设施）
+│   └── types.ts                # ApiResponse 等通用类型
+├── modules/
+│   ├── user/
+│   │   └── api/user.ts         # 用户模块接口（跟随业务模块）
+│   └── order/
+│       └── api/order.ts        # 订单模块接口
+├── stores/
+│   └── auth.ts                 # 全局 auth store 中的登录接口可放此处
 ```
+
+业务 API 跟随模块走（`src/modules/<name>/api/`），只有 HTTP 客户端实例和通用类型放
+`src/api/`。
 
 ## 通用响应类型
 
@@ -76,7 +82,7 @@ interface ApiResponse<T = any> {
 每个模块文件导出具名函数，函数名以 HTTP 方法为前缀或用语义化动词：
 
 ```typescript
-// src/api/modules/user.ts
+// src/modules/user/api/user.ts
 import request from '@/api/request';
 import type { ApiResponse } from '@/api/types';
 
