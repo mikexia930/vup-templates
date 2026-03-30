@@ -24,10 +24,11 @@ Token 模式，token 通过平台适配层存储。
 
 ## Token 存储适配层
 
-统一接口，各平台实现不同：
+统一接口，各平台实现不同（具体路径见各 app skill）：
 
 ```typescript
-// src/utils/tokenStorage.ts
+// Vue / Electron / Capacitor → src/shared/utils/tokenStorage.ts
+// Nuxt / WXT / uni-app → src/utils/tokenStorage.ts
 export interface TokenStorage {
   getToken(): string | null;
   setToken(token: string): void;
@@ -104,7 +105,7 @@ router.beforeEach(async (to, from, next) => {
 ## 登录页约定
 
 - 路由路径：`/login`
-- 文件位置：`src/views/login/index.vue`
+- 文件位置：`src/modules/auth/views/login.vue`
 - 登录成功后跳转 `route.query.redirect` 或默认首页
 
 ## 后端（Nest）

@@ -56,6 +56,7 @@ import {
   ElProgress,
   ElResult,
   ElSkeleton,
+  ElSkeletonItem,
   ElTimeline,
   ElTimelineItem,
   ElDialog,
@@ -138,6 +139,7 @@ export { ElImage as VImage } from 'element-plus';
 export { ElProgress as VProgress } from 'element-plus';
 export { ElResult as VResult } from 'element-plus';
 export { ElSkeleton as VSkeleton } from 'element-plus';
+export { ElSkeletonItem as VSkeletonItem } from 'element-plus';
 export { ElTimeline as VTimeline } from 'element-plus';
 export { ElTimelineItem as VTimelineItem } from 'element-plus';
 
@@ -231,6 +233,7 @@ const components: Record<string, Component> = {
   VProgress: ElProgress,
   VResult: ElResult,
   VSkeleton: ElSkeleton,
+  VSkeletonItem: ElSkeletonItem,
   VTimeline: ElTimeline,
   VTimelineItem: ElTimelineItem,
   VDialog: ElDialog,

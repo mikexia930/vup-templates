@@ -207,5 +207,5 @@ findAll() { ... }
 - 登出时必须调用 `permissionStore.reset()` 清除动态路由，避免角色切换后残留
 - 刷新页面时 store 丢失，路由守卫中通过 `dynamicRoutes.length === 0`
   判断并重新拉取
-- menus 的 `component` 字段存的是相对路径（如 `views/user/index`），前端用
-  `import.meta.glob` 动态映射
+- menus 的 `component` 字段存的是相对路径（如
+  `modules/user/views/index`），前端用 `import.meta.glob` 动态映射

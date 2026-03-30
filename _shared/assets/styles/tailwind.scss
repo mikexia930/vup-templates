@@ -1,8 +1,11 @@
 @use 'tailwindcss';
 @use './theme.scss';
 
+/*
+use this plugins to add forms and typography support
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
+*/
 
 @theme {
   /* Primary */
@@ -74,6 +77,8 @@
   --color-neutral-5: var(--vup-neutral-5);
   --color-neutral-6: var(--vup-neutral-6);
   --color-neutral-7: var(--vup-neutral-7);
+  --color-neutral-8: var(--vup-neutral-8);
+  --color-neutral-9: var(--vup-neutral-9);
 
   /* Spacing */
   --spacing-0: var(--vup-space-0);

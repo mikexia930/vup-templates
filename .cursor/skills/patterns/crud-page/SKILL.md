@@ -16,14 +16,18 @@ description: >-
 每个 CRUD 模块包含以下文件：
 
 ```
-前端：
-src/
-├── views/user/
-│   ├── index.vue                  # 页面主体（搜索 + 表格 + 分页）
-│   ├── components/
-│   │   └── UserFormDialog.vue     # 新增/编辑弹窗
-│   └── stores/user.ts            # 页面级 store
-├── api/modules/user.ts            # API 接口定义
+前端（模块化结构）：
+src/modules/user/
+├── views/
+│   └── index.vue                  # 页面主体（搜索 + 表格 + 分页）
+├── components/
+│   └── UserFormDialog.vue         # 新增/编辑弹窗
+├── stores/
+│   └── user.ts                    # 模块 store
+├── api/
+│   └── user.ts                    # 模块 API 接口
+└── types/
+    └── index.ts                   # 模块类型
 
 后端（Nest）：
 src/user/
@@ -41,7 +45,7 @@ src/user/
 ## 前端：页面主体
 
 ```vue
-<!-- src/views/user/index.vue -->
+<!-- src/modules/user/views/index.vue -->
 <template>
   <div class="space-y-4">
     <!-- 搜索栏 -->
@@ -119,7 +123,7 @@ src/user/
 </template>
 
 <script setup lang="ts">
-import UserFormDialog from './components/UserFormDialog.vue';
+import UserFormDialog from '../components/UserFormDialog.vue';
 
 const userStore = useUserStore();
 const formDialogRef = ref();
@@ -160,7 +164,7 @@ onMounted(() => userStore.fetchList());
 ## 前端：表单弹窗
 
 ```vue
-<!-- src/views/user/components/UserFormDialog.vue -->
+<!-- src/modules/user/components/UserFormDialog.vue -->
 <template>
   <VDialog
     v-model="visible"
@@ -267,7 +271,7 @@ defineExpose({ open });
 ## 前端：页面 Store
 
 ```typescript
-// src/views/user/stores/user.ts
+// src/modules/user/stores/user.ts
 export const useUserStore = defineStore('user', () => {
   const list = ref<any[]>([]);
   const loading = ref(false);
@@ -295,7 +299,7 @@ export const useUserStore = defineStore('user', () => {
 ## 前端：API 接口
 
 ```typescript
-// src/api/modules/user.ts
+// src/modules/user/api/user.ts
 import request from '@/api/request';
 import type { ApiResponse } from '@/api/types';
 

@@ -31,18 +31,31 @@ pnpm --filter my-mobile-app android:add
 
 ## 目录结构
 
+与 vue-template 一致采用模块化结构（参考 `module-structure` rule）：
+
 ```
 apps/my-mobile-app/
-├── src/                           # 与 vue-template 结构一致
+├── src/
 │   ├── main.ts
 │   ├── App.vue
 │   ├── router/
-│   ├── views/
-│   ├── stores/
+│   ├── layouts/
+│   ├── modules/                   # 业务模块（按功能聚合）
+│   │   └── <name>/
+│   │       ├── views/
+│   │       ├── components/
+│   │       ├── stores/
+│   │       ├── api/
+│   │       └── types/
+│   ├── shared/                    # 跨模块共享
+│   │   ├── components/
+│   │   ├── composables/
+│   │   └── utils/
+│   │       └── tokenStorage.ts    # @capacitor/preferences
+│   ├── stores/                    # 全局 store（auth、permission、app）
 │   ├── api/
-│   │   └── request.ts            # axios 实例
-│   ├── utils/
-│   │   └── tokenStorage.ts       # @capacitor/preferences
+│   │   ├── request.ts             # axios 实例
+│   │   └── types.ts
 │   ├── locales/
 │   └── assets/
 ├── ios/                           # iOS 原生工程（cap add 后生成）
@@ -71,7 +84,7 @@ apps/my-mobile-app/
 ```typescript
 // src/api/request.ts
 import axios from 'axios';
-import { tokenStorage } from '@/utils/tokenStorage';
+import { tokenStorage } from '@/shared/utils/tokenStorage';
 
 const request = axios.create({
   baseURL: import.meta.env.VITE_API_BASE,
@@ -90,7 +103,7 @@ request.interceptors.request.use(async (config) => {
 移动端使用原生安全存储，API 为异步：
 
 ```typescript
-// src/utils/tokenStorage.ts
+// src/shared/utils/tokenStorage.ts
 import { Preferences } from '@capacitor/preferences';
 
 const TOKEN_KEY = 'access_token';

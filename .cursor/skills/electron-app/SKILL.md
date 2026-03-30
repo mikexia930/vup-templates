@@ -24,6 +24,9 @@ pnpm --filter my-desktop dev       # electron-forge start
 
 ## 目录结构
 
+渲染进程内采用模块化结构（参考 `module-structure` rule），`@/` 指向
+`src/renderer/`：
+
 ```
 apps/my-desktop/
 ├── src/
@@ -35,12 +38,23 @@ apps/my-desktop/
 │       ├── router/
 │       │   ├── index.ts           # Hash 路由
 │       │   └── routes.ts
-│       ├── views/
-│       ├── stores/
+│       ├── layouts/
+│       ├── modules/               # 业务模块（按功能聚合）
+│       │   └── <name>/
+│       │       ├── views/
+│       │       ├── components/
+│       │       ├── stores/
+│       │       ├── api/
+│       │       └── types/
+│       ├── shared/                # 跨模块共享
+│       │   ├── components/
+│       │   ├── composables/
+│       │   └── utils/
+│       │       └── tokenStorage.ts # electron-store
+│       ├── stores/                # 全局 store（auth、permission、app）
 │       ├── api/
-│       │   └── request.ts         # axios 实例
-│       ├── utils/
-│       │   └── tokenStorage.ts    # electron-store
+│       │   ├── request.ts         # axios 实例
+│       │   └── types.ts
 │       ├── locales/
 │       └── assets/
 ├── forge.config.ts                # Electron Forge 打包配置
@@ -85,7 +99,7 @@ apps/my-desktop/
 ```typescript
 // src/renderer/api/request.ts
 import axios from 'axios';
-import { tokenStorage } from '@/utils/tokenStorage';
+import { tokenStorage } from '@/shared/utils/tokenStorage';
 
 const request = axios.create({
   baseURL: import.meta.env.VITE_API_BASE,
@@ -102,10 +116,7 @@ request.interceptors.request.use((config) => {
 ### Token 存储：electron-store
 
 ```typescript
-// src/renderer/utils/tokenStorage.ts
-// 方案一：通过 preload 暴露 electron-store（推荐，更安全）
-// 方案二：渲染进程直接用 localStorage（简单场景可用）
-
+// src/renderer/shared/utils/tokenStorage.ts
 const TOKEN_KEY = 'access_token';
 const REFRESH_KEY = 'refresh_token';
 

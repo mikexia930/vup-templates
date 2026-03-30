@@ -120,6 +120,28 @@ CLI 安装后通过 `vup` 命令操作：
 | `pnpm deploy:prod`         | Vercel 生产部署 |
 | `pnpm deploy:preview`      | Vercel 预览部署 |
 
+## Skill 覆盖说明
+
+以下模板有专属 Skill 指导开发：
+
+| 模板      | Skill           |
+| --------- | --------------- |
+| vue       | `vue-app`       |
+| nuxt      | `nuxt-app`      |
+| electron  | `electron-app`  |
+| capacitor | `capacitor-app` |
+| uniapp    | `uniapp-app`    |
+| nest      | `nest-api`      |
+| wxt       | `wxt-extension` |
+
+以下模板暂无专属 Skill，开发时参考模板自身代码和通用 patterns：
+
+- `qiankun-template`（微前端主应用，参考 `vue-app` + qiankun 文档）
+- `mcp-template`（MCP 服务，使用 Fastify + 自有 JWT，独立于其他模板认证体系）
+- `vitepress-template`（文档站，按 VitePress 官方约定开发）
+- `component-template`（组件库，参考 `@vup/ui` 包结构）
+- `cli-template`（Node CLI 工具，按 Node 标准开发）
+
 ## 注意事项
 
 - `uniapp-template`
