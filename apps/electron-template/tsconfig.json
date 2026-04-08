@@ -11,6 +11,18 @@
     "baseUrl": ".",
     "outDir": "dist",
     "moduleResolution": "node",
-    "resolveJsonModule": true
-  }
+    "resolveJsonModule": true,
+    "paths": {
+      "@/*": ["src/renderer/*"],
+      "@_shared/*": ["../../_shared/*"],
+      "@vup/http": ["../../packages/http/src/index.ts"],
+      "@vup/ui": ["../../packages/ui/src/index.ts"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "auto-imports.d.ts"],
+  "exclude": [
+    "src/renderer/views/index/Index.vue",
+    "src/renderer/views/docs/Docs.vue",
+    "src/renderer/views/demo/Demo.vue"
+  ]
 }

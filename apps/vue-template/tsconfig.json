@@ -5,8 +5,17 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@_shared/*": ["../../_shared/*"]
+      "@_shared/*": ["../../_shared/*"],
+      "@vup/http": ["../../packages/http/src/index.ts"],
+      "@vup/ui": ["../../packages/ui/src/index.ts"]
     }
   },
-  "include": ["src/**/*", "src/**/*.vue", "src/*.vue", "./auto-imports.d.ts", "src/vue-shim.d.ts"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.vue",
+    "auto-imports.d.ts",
+    "src/vue-shim.d.ts"
+  ],
+  "exclude": ["src/views/index/Index.vue", "src/views/docs/Docs.vue", "src/views/demo/Demo.vue"]
 }

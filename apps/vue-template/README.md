@@ -1,156 +1,127 @@
-# Vue 3 开发模板
+# Vue SPA 模板
 
-基于 Vue 3 + TypeScript +
-Vite 的现代化前端开发模板，开箱即用，让你告别繁琐的配置，专注业务逻辑的开发。
+基于 Vue 3 + TypeScript + Vite 的 SPA 模板，默认包含：
 
-## 🚀 技术栈
+- 模块化示例（`src/modules/demo`）
+- 基础请求层（`@vup/http` + `src/api/request.ts`）
+- UI 封装层（`@vup/ui`，`V*` 组件）
+- qiankun 子应用兼容入口（可按需保留）
 
-- **Vue 3** - 渐进式 JavaScript 框架
-- **TypeScript** - JavaScript 的超集，提供类型安全
-- **Vite** - 下一代前端构建工具
-- **Vue Router** - Vue.js 官方路由管理器
-- **Pinia** - Vue 3 官方状态管理库
-- **Vue i18n** - Vue.js 国际化插件
-- **Tailwind CSS** - 实用优先的 CSS 框架
-- **SCSS** - CSS 预处理器，增强样式编写能力
-- **ESLint** - 可插拔的 JavaScript 代码检查工具
-- **Prettier** - 代码格式化工具
-- **pnpm** - 快速、节省磁盘空间的包管理器
+## 模板定位
 
-## 📚 文档地址
+- **主语是 Vue SPA 工程结构**，用于后台、Dashboard、企业应用。
+- **请求层按三层分离**：共享能力、应用适配、模块接口。
+- **业务代码按模块聚合**：页面、组件、store、api、types、locales 就近放在模块目录。
 
-- [Vue 3 官方文档](https://vuejs.org/)
-- [TypeScript 官方文档](https://www.typescriptlang.org/)
-- [Vite 官方文档](https://vitejs.dev/)
-- [Vue Router 官方文档](https://router.vuejs.org/)
-- [Pinia 官方文档](https://pinia.vuejs.org/)
-- [Vue i18n 官方文档](https://vue-i18n.intlify.dev/)
-- [Tailwind CSS 官方文档](https://tailwindcss.com/)
-- [SCSS 官方文档](https://sass-lang.com/)
-- [ESLint 官方文档](https://eslint.org/)
-- [Prettier 官方文档](https://prettier.io/)
-- [pnpm 官方文档](https://pnpm.io/)
-
-## 🛠️ 使用方式
-
-### 安装依赖
+## 快速开始
 
 ```bash
 pnpm install
-```
-
-### 开发服务器
-
-```bash
 pnpm dev
 ```
 
-启动开发服务器，支持热重载，访问 http://localhost:9301
+默认访问：`http://localhost:9301`
 
-### 构建项目
+## 常用命令
 
 ```bash
 pnpm build
-```
-
-构建生产版本，输出到 `.output` 目录
-
-### 代码检查
-
-```bash
 pnpm lint
-```
-
-运行 ESLint 检查代码质量
-
-```bash
 pnpm lint:fix
-```
-
-自动修复 ESLint 发现的问题
-
-### 代码格式化
-
-```bash
 pnpm format
-```
-
-使用 Prettier 格式化代码
-
-```bash
 pnpm format:check
 ```
 
-检查代码格式是否符合 Prettier 规范
+## 当前目录结构（已同步）
 
-## 📁 项目结构
-
-```
-vue-template/
-├── public/                 # 静态资源
-├── src/
-│   ├── assets/            # 资源文件
-│   ├── components/        # 组件
-│   ├── locales/           # 国际化文件
-│   ├── router/            # 路由配置
-│   ├── stores/            # Pinia 状态管理
-│   ├── views/             # 页面组件
-│   ├── App.vue            # 根组件
-│   └── main.ts            # 入口文件
-├── .eslintrc-auto-import.json  # ESLint 自动导入配置
-├── auto-imports.d.ts      # 自动导入类型声明
-├── index.html             # HTML 模板
-├── package.json           # 项目配置
-├── tsconfig.json          # TypeScript 配置
-├── vite.config.js         # Vite 配置
-└── README.md              # 项目说明
+```txt
+src/
+├── api/
+│   ├── request.ts                # 应用侧请求适配层（基于 @vup/http）
+│   └── types.ts
+├── locales/                      # 根语言包（全局公共文案）
+├── modules/
+│   └── demo/
+│       ├── views/                # DemoLayout / DemoGuidePage / DemoExamplePage
+│       ├── components/
+│       ├── stores/
+│       ├── api/
+│       ├── types/
+│       └── locales/
+├── router/
+│   └── routes.ts                 # /demo/guide + /demo/example
+├── views/empty/Empty.vue
+├── App.vue
+└── main.ts                       # 包含 @vup/ui 与 qiankun 兼容入口
 ```
 
-## ✨ 特性
+## 请求层约定
 
-- 🎯 **TypeScript 支持** - 完整的类型安全
-- 🚀 **Vite 构建** - 极速的开发体验
-- 🎨 **Tailwind CSS** - 实用优先的样式框架
-- 🌍 **国际化支持** - 多语言切换
-- 📱 **响应式设计** - 适配各种设备
-- 🔧 **代码规范** - ESLint + Prettier
-- 📦 **自动导入** - 无需手动导入 Vue API
-- 🏪 **状态管理** - Pinia 状态管理
-- 🛣️ **路由管理** - Vue Router 路由系统
+当前模板使用 `@vup/http` 作为共享基础请求能力，应用侧保留 `src/api/request.ts`
+做适配：
 
-## 🎨 样式系统
+- token、语言、401 行为放应用层
+- 业务接口函数放 `src/modules/<name>/api`
+- 不在基础请求文件里堆业务细节
 
-项目使用 Tailwind CSS 作为主要样式框架，配合 SCSS 预处理器：
+### 开发期 Mock（MSW）
 
-- 使用 `@apply` 指令在 SCSS 中应用 Tailwind 类
-- 支持响应式设计
-- 自定义主题配置
-- 组件级别的样式隔离
+- 共享 mock 包：`@vup/mock`
+- 开关：`VITE_ENABLE_MOCK=true`
+- 启用后会拦截 `/api/template-demo/*`，用于模板演示与前后端并行开发
+- 语义说明：`/demo/*` 表示页面路由；`/api/template-demo/*` 表示接口前缀
 
-## 🌍 国际化
+### 请求取消（推荐场景）
 
-项目内置了中英文国际化支持：
+对于搜索联想、筛选快速切换、分页连续点击这类“只关心最后一次结果”的查询接口，建议启用取消能力：
 
-- 使用 Vue i18n 进行国际化
-- 支持语言切换
-- 类型安全的翻译键
-- 懒加载语言包
+```ts
+request.get('/api/template-demo/tasks', {
+  mode: 'takeLatest',
+  cancelKey: 'demo:task-list:load',
+  cancelScope: 'demo:task-list',
+});
+```
 
-## 📱 响应式设计
+- 页面离开时可按作用域取消：`request.cancelAll('demo:task-list')`
+- 主动取消默认静默处理，不会被当作全局异常提示
 
-- 移动端优先的设计理念
-- 适配各种屏幕尺寸
-- 触摸友好的交互设计
-- 优化的移动端性能
+## UI 约定
 
-## 🔧 开发工具
+- 统一使用 `@vup/ui` 的 `V*` 组件
+- 页面层尽量保持结构清晰，样式轻量
+- 组件命名和封装边界优先于“炫技样式”
 
-- **ESLint** - 代码质量检查
-- **Prettier** - 代码格式化
-- **TypeScript** - 类型检查
-- **Vite HMR** - 热模块替换
-- **自动导入** - 无需手动导入常用 API
+## 路由与 demo 说明
 
-## 📄 许可证
+- 默认首页重定向到 `demo-guide`
+- `demo` 模块采用 layout + 子路由结构：
+  - `demo-guide`
+  - `demo-example`
+- `empty` 页面用于兜底路由
 
-MIT License
+## qiankun 兼容说明
+
+模板内置了 qiankun 子应用生命周期代码（`main.ts`）：
+
+- 作为普通 SPA 使用时可直接运行
+- 不需要微前端时，可按需移除相关代码
+
+## 文档地址
+
+### 框架与工程
+
+- [Vue 3](https://vuejs.org/)
+- [Vite](https://vitejs.dev/)
+- [Vue Router](https://router.vuejs.org/)
+- [Pinia](https://pinia.vuejs.org/)
+- [Vue i18n](https://vue-i18n.intlify.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [qiankun](https://qiankun.umijs.org/)
+
+### 项目内相关文档
+
+- [根目录 README](../../README.md)
+- [@vup/http 文档](../../packages/http/README.md)
+- [@vup/ui 文档](../../packages/ui/README.md)

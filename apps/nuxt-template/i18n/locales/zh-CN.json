@@ -1,107 +1,125 @@
 {
-  "page": {
-    "title": "Nuxt 3 项目模板 - VUP 1.5x 加速开发",
-    "description": "基于 Nuxt 3 的现代化项目模板，包含 TypeScript、Tailwind CSS、ESLint、Prettier 等工具链，VUP 1.5x 加速开发体验"
-  },
-  "success": {
-    "title": "VUP -> 1.5x",
-    "description": "跳过复杂配置，专注于业务逻辑开发。",
-    "documentation": "文档",
-    "examples": "示例"
-  },
-  "quickstart": {
-    "title": "快速开始",
-    "dev": {
-      "title": "开发服务器",
-      "description": "启动开发服务器，支持热重载"
-    },
-    "build": {
-      "title": "构建项目",
-      "description": "构建生产版本"
-    },
-    "lint": {
-      "title": "代码检查",
-      "description": "运行 ESLint 检查代码质量"
-    },
-    "format": {
-      "title": "代码格式化",
-      "description": "使用 Prettier 格式化代码"
-    }
-  },
-  "techstack": {
-    "title": "技术栈",
-    "description": "基于现代化技术栈构建，开箱即用",
-    "nuxt": {
-      "description": "基于 Vue 3 的全栈框架",
-      "link": "Nuxt 文档"
-    },
-    "vue": {
-      "description": "渐进式 JavaScript 框架",
-      "link": "Vue.js 文档"
-    },
-    "typescript": {
-      "description": "JavaScript 的超集，提供类型安全",
-      "link": "TypeScript 文档"
-    },
-    "nitro": {
-      "description": "基于 Nitro 的服务器引擎",
-      "link": "Nitro 文档"
-    },
-    "pnpm": {
-      "description": "快速、节省磁盘空间的包管理器",
-      "link": "pnpm 文档"
-    },
-    "eslint": {
-      "description": "可插拔的 JavaScript 代码检查工具",
-      "link": "ESLint 文档"
-    },
-    "prettier": {
-      "description": "代码格式化工具",
-      "link": "Prettier 文档"
-    },
-    "scss": {
-      "description": "CSS 预处理器，增强样式编写能力",
-      "link": "SCSS 文档"
-    },
-    "tailwind": {
-      "description": "实用优先的 CSS 框架",
-      "link": "Tailwind CSS 文档"
-    }
-  },
   "demo": {
-    "title": "功能演示",
-    "description": "体验 Nuxt 3 核心功能和现代开发工具"
-  },
-  "content": {
-    "title": "内容页面",
-    "description": "这是一个动态路由页面，演示路由参数和状态管理",
-    "route": {
-      "title": "路由信息",
-      "param": "路由参数",
-      "path": "当前路径",
-      "name": "路由名称"
+    "layout": {
+      "title": "Nuxt 模板演示",
+      "description": "该演示在遵循 Nuxt 目录约定的前提下，展示请求分层与 Element Plus Nuxt 模块集成方式。",
+      "tabs": {
+        "guide": "使用指引",
+        "example": "业务示例"
+      }
     },
-    "store": {
-      "title": "Nuxt Store 状态管理",
-      "count": "计数器",
-      "double": "双倍值",
-      "lastUpdated": "最后更新",
-      "never": "从未更新",
-      "increment": "增加",
-      "decrement": "减少",
-      "reset": "重置"
+    "guide": {
+      "quickStart": {
+        "title": "快速开始命令",
+        "items": {
+          "dev": { "description": "启动 Nuxt 开发服务，支持热更新。" },
+          "build": { "description": "构建 SSR 生产产物。" },
+          "generate": { "description": "生成静态站点（SSG）。" },
+          "lint": { "description": "提交前运行静态检查。" }
+        }
+      },
+      "firstEdit": {
+        "title": "推荐优先查看的文件",
+        "items": {
+          "config": "Nuxt 模块与运行时配置入口。",
+          "layout": "Demo 布局页（Tab 与语言切换）。",
+          "guide": "指引页（面向新用户的阅读入口）。",
+          "example": "示例页（连接 store 与组件）。",
+          "request": "基于 ofetch 的请求适配层。",
+          "store": "模块状态模型与异步动作边界。"
+        }
+      },
+      "readOrder": {
+        "title": "推荐阅读顺序",
+        "items": {
+          "step1": "先看 nuxt.config.ts，了解模块和运行时配置。",
+          "step2": "再看 src/pages/demo.vue，理解 demo 布局入口。",
+          "step3": "再看 src/pages/demo/guide.vue 与 example.vue，理解页面职责。",
+          "step4": "再看 src/stores/demo/index.ts，理解状态流转。",
+          "step5": "最后看 src/api/request.ts 与 src/api/demo.ts，理解请求分层（接口前缀为 /api/template-demo/*）。"
+        }
+      }
     },
-    "reactivity": {
-      "title": "Vue 响应式系统",
-      "description": "输入消息并添加到列表中，体验 Vue 的响应式数据绑定",
-      "placeholder": "输入消息...",
-      "add": "添加消息"
+    "example": {
+      "title": "最小业务示例",
+      "description": "通过任务看板演示状态流转、筛选能力与模块职责边界。",
+      "searchPlaceholder": "按标题、描述或标签搜索",
+      "filters": {
+        "all": "全部",
+        "pending": "待处理",
+        "inProgress": "进行中",
+        "done": "已完成"
+      },
+      "status": {
+        "pending": "待处理",
+        "inProgress": "进行中",
+        "done": "已完成"
+      },
+      "priority": {
+        "low": "低优先级",
+        "medium": "中优先级",
+        "high": "高优先级"
+      },
+      "actions": {
+        "reload": "重新加载",
+        "retry": "重试",
+        "simulateError": "模拟错误",
+        "resetFilters": "重置筛选",
+        "markDone": "标记完成",
+        "reopen": "重新打开",
+        "updating": "更新中..."
+      },
+      "fields": {
+        "title": "任务",
+        "owner": "负责人",
+        "updatedAt": "更新时间",
+        "tags": "标签",
+        "noTags": "无标签",
+        "actions": "操作"
+      },
+      "stats": {
+        "total": "总数",
+        "pending": "待处理",
+        "inProgress": "进行中",
+        "done": "已完成"
+      },
+      "state": {
+        "loading": {
+          "title": "正在加载示例数据",
+          "description": "任务列表正在从模块 API mock 数据源加载。"
+        },
+        "error": {
+          "title": "请求失败"
+        },
+        "empty": {
+          "description": "当前筛选条件下没有任务，可尝试重置筛选。"
+        }
+      },
+      "fileMap": {
+        "title": "文件职责映射",
+        "items": {
+          "page": {
+            "title": "src/pages/demo/example.vue",
+            "description": "负责页面分区组织，并连接 store 与组件。"
+          },
+          "component": {
+            "title": "src/components/demo/DemoTaskBoard.vue",
+            "description": "负责交互 UI 呈现，并通过事件向上层抛出动作。"
+          },
+          "store": {
+            "title": "src/stores/demo/index.ts",
+            "description": "负责状态、筛选、异步加载与任务状态流转。"
+          },
+          "api": {
+            "title": "src/api/demo.ts",
+            "description": "负责模块接口函数定义，靠近业务上下文（当前示例前缀：/api/template-demo/*）。"
+          },
+          "types": {
+            "title": "src/api/types.ts",
+            "description": "负责 API 通用响应类型定义。"
+          }
+        }
+      }
     }
-  },
-  "empty": {
-    "title": "空白页面",
-    "description": "这是一个空白页面，用于演示路由功能",
-    "backHome": "返回首页",
-    "goBack": "返回"
   }
 }

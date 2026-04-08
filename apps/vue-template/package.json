@@ -15,6 +15,12 @@
     "format": "prettier --write \"src/**/*.{js,ts,vue,json,css,scss}\"",
     "format:check": "prettier --check \"src/**/*.{js,ts,vue,json,css,scss}\""
   },
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "@vup/http": "workspace:*",
+    "@vup/mock": "workspace:*",
+    "@vup/ui": "workspace:*"
+  },
+  "devDependencies": {
+    "vite-plugin-qiankun": "^1.0.15"
+  }
 }

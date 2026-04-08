@@ -19,9 +19,10 @@
     "format:check": "prettier --check \"src/**/*.{js,ts,vue,json,css,scss}\""
   },
   "dependencies": {
-    "nuxt": "^4.1.0",
+    "@element-plus/nuxt": "^1.1.5",
     "@nuxtjs/i18n": "^10.0.6",
-    "@pinia/nuxt": "^0.11.2"
-  },
-  "devDependencies": {}
+    "@pinia/nuxt": "^0.11.2",
+    "@vup/mock": "workspace:*",
+    "nuxt": "^4.1.0"
+  }
 }

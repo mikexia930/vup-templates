@@ -1,6 +1,6 @@
 {
   "name": "vup-templates",
-  "version": "3.4.1",
+  "version": "3.4.3",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -59,15 +59,6 @@
   },
   "overrides": {
     "readdirp": "^4.0.3"
-  },
-  "lint-staged": {
-    "*.{js,ts,tsx,vue}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{json,md}": [
-      "prettier --write"
-    ]
   },
   "release-it": {
     "plugins": {

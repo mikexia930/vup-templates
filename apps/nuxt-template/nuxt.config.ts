@@ -10,7 +10,7 @@ export default defineNuxtConfig({
     typeCheck: false,
   },
   css: ['@_shared/assets/styles/tailwind.scss'],
-  modules: ['@nuxtjs/i18n', '@pinia/nuxt'],
+  modules: ['@nuxtjs/i18n', '@pinia/nuxt', '@element-plus/nuxt'],
   // 自动导入类型
   imports: {
     dirs: ['types/**'],
@@ -25,6 +25,12 @@ export default defineNuxtConfig({
         { name: 'description', content: '' },
         { name: 'keywords', content: '' },
       ],
+    },
+  },
+  runtimeConfig: {
+    public: {
+      apiBase: process.env.NUXT_PUBLIC_API_BASE || '',
+      useMock: process.env.NUXT_PUBLIC_USE_MOCK !== 'false',
     },
   },
   i18n: {

@@ -101,6 +101,16 @@ request.interceptors.response.use(
 export default request;
 ```
 
+#### 请求治理建议（SPA 高频交互重点）
+
+- 搜索、筛选、分页切换等查询请求优先 `mode: 'takeLatest'`
+- 写请求保持 `mode: 'parallel'`，避免误取消造成状态歧义
+- 高频触发必须加防抖/节流，避免无意义请求风暴
+- `ERR_CANCELED` 默认静默处理，不作为用户可见异常
+- 首次进入页面可用全局 loading 预取关键稳定数据，首次后切换为局部 loading
+- 全局 loading 需有退出条件和超时兜底，避免整页长期被遮挡
+- 对字典、列表、详情等读请求，按业务设置缓存（含 TTL 与失效策略）
+
 ### Token 存储：localStorage
 
 ```typescript
