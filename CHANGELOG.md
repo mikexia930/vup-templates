@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.5.1](/compare/v3.5.0...v3.5.1) (2026-04-09)
+
+### Bug Fixes
+
+- iconfont支持自定义前缀和fontfamily 54f2eed
+
 # [3.5.0](/compare/v3.4.0...v3.5.0) (2026-04-08)
 
 ### Features
