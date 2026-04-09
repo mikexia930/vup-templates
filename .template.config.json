@@ -99,7 +99,7 @@
   },
   {
     "name": "@vup/iconfont",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "IconFont Components",
     "path": "packages/iconfont",
     "type": "package"

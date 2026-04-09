@@ -11,6 +11,8 @@ defineOptions({
 const props = withDefaults(defineProps<VIconFontProps>(), {
   size: '16px',
   color: 'inherit',
+  prefix: 'icon',
+  fontfamily: 'iconfont',
 });
 
 // 计算样式
@@ -24,7 +26,7 @@ const iconStyle = computed(() => {
 // 计算类名
 // iconfont.css 中的类名格式是：.icon-{name}
 const iconClass = computed(() => {
-  return ['iconfont', `icon-${props.icon}`, props.customClass].filter(Boolean);
+  return [props.fontfamily, `${props.prefix}-${props.icon}`, props.customClass].filter(Boolean);
 });
 </script>
 
