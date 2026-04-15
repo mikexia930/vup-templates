@@ -1,19 +1,19 @@
 :root {
   /* Spacing scale */
-  --vup-space-0: 0;
-  --vup-space-2: 2px;
-  --vup-space-4: 4px;
-  --vup-space-6: 6px;
-  --vup-space-8: 8px;
-  --vup-space-10: 10px;
-  --vup-space-12: 12px;
-  --vup-space-16: 16px;
-  --vup-space-20: 20px;
-  --vup-space-24: 24px;
-  --vup-space-32: 32px;
-  --vup-space-40: 40px;
-  --vup-space-48: 48px;
-  --vup-space-64: 64px;
+  --vup-space-0: 0rem;
+  --vup-space-2: 0.5rem;
+  --vup-space-4: 1rem;
+  --vup-space-6: 1.5rem;
+  --vup-space-8: 2rem;
+  --vup-space-10: 2.5rem;
+  --vup-space-12: 3rem;
+  --vup-space-16: 4rem;
+  --vup-space-20: 5rem;
+  --vup-space-24: 6rem;
+  --vup-space-32: 8rem;
+  --vup-space-40: 10rem;
+  --vup-space-48: 12rem;
+  --vup-space-64: 16rem;
 
   /* Border radius */
   --vup-radius-xs: 2px;
@@ -23,12 +23,12 @@
   --vup-radius-xl: 12px;
 
   /* Font size */
-  --vup-font-size-xs: 12px;
-  --vup-font-size-sm: 13px;
-  --vup-font-size-md: 14px;
-  --vup-font-size-lg: 16px;
-  --vup-font-size-xl: 18px;
-  --vup-font-size-2xl: 20px;
+  --vup-font-size-xs: 0.75rem;
+  --vup-font-size-sm: 0.8125rem;
+  --vup-font-size-md: 0.875rem;
+  --vup-font-size-lg: 1rem;
+  --vup-font-size-xl: 1.125rem;
+  --vup-font-size-2xl: 1.25rem;
 
   /* Line height */
   --vup-line-height-xs: 1.2;
@@ -37,9 +37,9 @@
   --vup-line-height-lg: 1.8;
 
   /* Control heights */
-  --vup-control-height-xs: 24px;
-  --vup-control-height-sm: 28px;
-  --vup-control-height-md: 32px;
-  --vup-control-height-lg: 36px;
-  --vup-control-height-xl: 40px;
+  --vup-control-height-xs: 1.5rem;
+  --vup-control-height-sm: 1.75rem;
+  --vup-control-height-md: 2rem;
+  --vup-control-height-lg: 2.25rem;
+  --vup-control-height-xl: 2.5rem;
 }

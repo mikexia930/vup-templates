@@ -1,0 +1,33 @@
+---
+description: Request governance — mode strategy, frequency control, loading blocking, and cache policy
+alwaysApply: true
+---
+
+# 请求治理规范
+
+## 并发与取消
+
+- 查询类请求（GET）默认使用 `mode: 'takeLatest'`，避免旧响应覆盖新状态
+- 写请求（POST/PUT/PATCH/DELETE）默认使用 `mode: 'parallel'`，避免误取消造成业务歧义
+- 高频交互必须显式设置 `cancelKey`，推荐格式：`模块:页面:动作[:参数]`
+- 页面离开或作用域切换时，按 `cancelScope` 调用 `cancelAll(scope)` 清理在途请求
+
+## 频次控制
+
+- 搜索联想、筛选输入、滚动触发加载等高频触发场景，必须加防抖/节流
+- 重复点击提交按钮时，必须有 `loading` 或锁状态，防止重复请求
+- 不允许在 `watch` / `watchEffect` 中无条件触发请求；必须有变更条件与清理逻辑
+
+## 反馈与遮挡
+
+- 首次进入页面（cold start）可使用全局 loading，一次性拉取关键且相对稳定的数据并写入缓存
+- 首次加载完成后（warm state）优先局部 loading（表格骨架、区域 spinner），避免全屏遮挡影响可操作性
+- 全局 loading 必须有退出条件与超时兜底，禁止因单个慢请求长期遮挡
+- `ERR_CANCELED` 属于受控行为，默认静默处理，不给用户展示错误提示
+
+## 缓存策略
+
+- 列表、字典、详情等可复用查询应优先考虑缓存（内存或 store）
+- 新增列表页时，必须明确声明“是否缓存、缓存 TTL、何时失效”
+- 缓存需包含过期策略（TTL）与失效机制（写操作后主动失效）
+- 缓存键必须稳定、可预测，避免把临时对象直接作为缓存键

@@ -98,6 +98,16 @@ request.interceptors.request.use(async (config) => {
 });
 ```
 
+#### 请求治理建议（移动端重点）
+
+- 查询类请求优先 `mode: 'takeLatest'`，避免网络抖动下旧响应回写
+- 写请求默认 `mode: 'parallel'`，避免误取消导致用户误判“未提交”
+- 输入联想、筛选切换等高频行为必须加防抖/节流，降低弱网下请求堆积
+- `ERR_CANCELED` 视为受控行为，默认静默，不弹错误提示
+- 首次进入页面可用整屏 loading 预取关键稳定数据，首次后优先局部 loading
+- 整屏 loading 必须有退出条件和超时兜底，避免弱网下长时间遮挡
+- 可复用查询建议加缓存（含 TTL），并在写操作后主动失效
+
 ### Token 存储：@capacitor/preferences
 
 移动端使用原生安全存储，API 为异步：

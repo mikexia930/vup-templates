@@ -1,107 +1,125 @@
 {
-  "page": {
-    "title": "Nuxt 3 Project Template - VUP 1.5x Accelerated Development",
-    "description": "Modern project template based on Nuxt 3, including TypeScript, Tailwind CSS, ESLint, Prettier and other toolchains, VUP 1.5x accelerated development experience"
-  },
-  "success": {
-    "title": "VUP -> 1.5x",
-    "description": "Skip complex configurations, focus on business logic development.",
-    "documentation": "Documentation",
-    "examples": "Examples"
-  },
-  "quickstart": {
-    "title": "Quick Start",
-    "dev": {
-      "title": "Development Server",
-      "description": "Start development server with hot reload"
-    },
-    "build": {
-      "title": "Build Project",
-      "description": "Build for production"
-    },
-    "lint": {
-      "title": "Code Linting",
-      "description": "Run ESLint to check code quality"
-    },
-    "format": {
-      "title": "Code Formatting",
-      "description": "Format code with Prettier"
-    }
-  },
-  "techstack": {
-    "title": "Tech Stack",
-    "description": "Built with modern technologies, ready to use out of the box",
-    "nuxt": {
-      "description": "Full-stack framework based on Vue 3",
-      "link": "Nuxt Docs"
-    },
-    "vue": {
-      "description": "Progressive JavaScript framework",
-      "link": "Vue.js Docs"
-    },
-    "typescript": {
-      "description": "JavaScript superset with type safety",
-      "link": "TypeScript Docs"
-    },
-    "nitro": {
-      "description": "Server engine based on Nitro",
-      "link": "Nitro Docs"
-    },
-    "pnpm": {
-      "description": "Fast, disk space efficient package manager",
-      "link": "pnpm Docs"
-    },
-    "eslint": {
-      "description": "Pluggable JavaScript linting utility",
-      "link": "ESLint Docs"
-    },
-    "prettier": {
-      "description": "Code formatter",
-      "link": "Prettier Docs"
-    },
-    "scss": {
-      "description": "CSS preprocessor that extends CSS capabilities",
-      "link": "SCSS Docs"
-    },
-    "tailwind": {
-      "description": "Utility-first CSS framework",
-      "link": "Tailwind CSS Docs"
-    }
-  },
   "demo": {
-    "title": "Feature Demo",
-    "description": "Experience Nuxt 3 core features and modern development tools"
-  },
-  "content": {
-    "title": "Content Page",
-    "description": "This is a dynamic route page demonstrating route parameters and state management",
-    "route": {
-      "title": "Route Information",
-      "param": "Route Parameter",
-      "path": "Current Path",
-      "name": "Route Name"
+    "layout": {
+      "title": "Nuxt Template Demo",
+      "description": "Nuxt demo keeps framework conventions while showing API layering and Element Plus Nuxt module integration.",
+      "tabs": {
+        "guide": "Guide",
+        "example": "Example"
+      }
     },
-    "store": {
-      "title": "Nuxt Store State Management",
-      "count": "Counter",
-      "double": "Double Value",
-      "lastUpdated": "Last Updated",
-      "never": "Never Updated",
-      "increment": "Increment",
-      "decrement": "Decrement",
-      "reset": "Reset"
+    "guide": {
+      "quickStart": {
+        "title": "Quick Start Commands",
+        "items": {
+          "dev": { "description": "Start Nuxt dev server with HMR." },
+          "build": { "description": "Build production SSR output." },
+          "generate": { "description": "Generate static site output (SSG)." },
+          "lint": { "description": "Run lint checks before commit." }
+        }
+      },
+      "firstEdit": {
+        "title": "Recommended First Edit Locations",
+        "items": {
+          "config": "Nuxt modules and runtime config entry.",
+          "layout": "Demo layout with tab and locale controls.",
+          "guide": "Guide page for onboarding and conventions.",
+          "example": "Business example page that wires store and component.",
+          "request": "Nuxt request adapter based on ofetch.",
+          "store": "Module state model and async action boundaries."
+        }
+      },
+      "readOrder": {
+        "title": "Suggested Read Order",
+        "items": {
+          "step1": "Read nuxt.config.ts to understand module/runtime setup.",
+          "step2": "Read src/pages/demo.vue for layout and route shell.",
+          "step3": "Read src/pages/demo/guide.vue and example.vue for page responsibilities.",
+          "step4": "Read src/stores/demo/index.ts for state and flow.",
+          "step5": "Read src/api/request.ts and src/api/demo.ts for API layering (endpoint prefix: /api/template-demo/*)."
+        }
+      }
     },
-    "reactivity": {
-      "title": "Vue Reactivity System",
-      "description": "Enter messages and add them to the list to experience Vue's reactive data binding",
-      "placeholder": "Enter message...",
-      "add": "Add Message"
+    "example": {
+      "title": "Minimal Business Example",
+      "description": "A task board demo to illustrate status transitions, filters, and module boundaries.",
+      "searchPlaceholder": "Search by title, summary, or tag",
+      "filters": {
+        "all": "All",
+        "pending": "Pending",
+        "inProgress": "In Progress",
+        "done": "Done"
+      },
+      "status": {
+        "pending": "Pending",
+        "inProgress": "In Progress",
+        "done": "Done"
+      },
+      "priority": {
+        "low": "Low Priority",
+        "medium": "Medium Priority",
+        "high": "High Priority"
+      },
+      "actions": {
+        "reload": "Reload",
+        "retry": "Retry",
+        "simulateError": "Simulate Error",
+        "resetFilters": "Reset Filters",
+        "markDone": "Mark Done",
+        "reopen": "Reopen",
+        "updating": "Updating..."
+      },
+      "fields": {
+        "title": "Task",
+        "owner": "Owner",
+        "updatedAt": "Updated At",
+        "tags": "Tags",
+        "noTags": "No tags",
+        "actions": "Actions"
+      },
+      "stats": {
+        "total": "Total",
+        "pending": "Pending",
+        "inProgress": "In Progress",
+        "done": "Done"
+      },
+      "state": {
+        "loading": {
+          "title": "Loading Demo Data",
+          "description": "Task list is loading from module API mocks."
+        },
+        "error": {
+          "title": "Request Failed"
+        },
+        "empty": {
+          "description": "No tasks match current filters. Try reset filters."
+        }
+      },
+      "fileMap": {
+        "title": "File Responsibility Map",
+        "items": {
+          "page": {
+            "title": "src/pages/demo/example.vue",
+            "description": "Compose sections and connect store state with UI component."
+          },
+          "component": {
+            "title": "src/components/demo/DemoTaskBoard.vue",
+            "description": "Render interaction UI and expose events to page/store."
+          },
+          "store": {
+            "title": "src/stores/demo/index.ts",
+            "description": "Handle state, filtering, async loading, and status transitions."
+          },
+          "api": {
+            "title": "src/api/demo.ts",
+            "description": "Define module API functions close to business context (current demo prefix: /api/template-demo/*)."
+          },
+          "types": {
+            "title": "src/api/types.ts",
+            "description": "Provide shared response types for API layer."
+          }
+        }
+      }
     }
-  },
-  "empty": {
-    "title": "Empty Page",
-    "description": "This is an empty page for demonstrating routing functionality",
-    "backHome": "Back to Home",
-    "goBack": "Go Back"
   }
 }

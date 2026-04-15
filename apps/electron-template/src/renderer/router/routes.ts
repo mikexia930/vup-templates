@@ -1,22 +1,25 @@
 export default [
   {
     path: '/',
-    redirect: { name: 'docs' },
+    redirect: { name: 'demo-guide' },
   },
   {
-    path: '/index',
-    name: 'index',
-    component: (): Promise<Component> => import('@/views/index/Index.vue'),
+    path: '/demo',
+    component: (): Promise<Component> => import('@/modules/demo/views/DemoLayout.vue'),
     children: [
       {
-        path: '/docs/:id?',
-        name: 'docs',
-        component: (): Promise<Component> => import('@/views/docs/Docs.vue'),
+        path: '',
+        redirect: { name: 'demo-guide' },
       },
       {
-        path: '/demo/:id?',
-        name: 'demo',
-        component: (): Promise<Component> => import('@/views/demo/Demo.vue'),
+        path: 'guide',
+        name: 'demo-guide',
+        component: (): Promise<Component> => import('@/modules/demo/views/DemoGuidePage.vue'),
+      },
+      {
+        path: 'example',
+        name: 'demo-example',
+        component: (): Promise<Component> => import('@/modules/demo/views/DemoExamplePage.vue'),
       },
     ],
   },

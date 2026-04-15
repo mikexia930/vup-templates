@@ -91,10 +91,24 @@
     "type": "package"
   },
   {
-    "name": "@vup/iconfont",
+    "name": "@vup/http",
     "version": "1.0.0",
+    "description": "Shared axios-based HTTP client utilities for vup templates",
+    "path": "packages/http",
+    "type": "package"
+  },
+  {
+    "name": "@vup/iconfont",
+    "version": "1.0.1",
     "description": "IconFont Components",
     "path": "packages/iconfont",
+    "type": "package"
+  },
+  {
+    "name": "@vup/mock",
+    "version": "1.0.0",
+    "description": "Shared MSW handlers and bootstrap utilities for vup templates",
+    "path": "packages/mock",
     "type": "package"
   },
   {
@@ -116,6 +130,13 @@
     "version": "1.0.0",
     "description": "Vue 3 UI Components, based on Element Plus",
     "path": "packages/ui",
+    "type": "package"
+  },
+  {
+    "name": "@vup/ui-mobile",
+    "version": "1.0.0",
+    "description": "Mobile UI wrapper based on Ionic Vue",
+    "path": "packages/ui-mobile",
     "type": "package"
   }
 ]

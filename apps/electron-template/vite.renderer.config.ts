@@ -25,6 +25,8 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src/renderer'),
       '@_shared': path.resolve(__dirname, '../../_shared'),
+      '@vup/http': path.resolve(__dirname, '../../packages/http/src/index.ts'),
+      '@vup/ui': path.resolve(__dirname, '../../packages/ui/src/index.ts'),
     },
   },
   build: {

@@ -19,12 +19,11 @@
     "publish:beta": "npm publish --tag beta"
   },
   "peerDependencies": {
-    "vue": "^3.0.0",
+    "vue": "^3.0.0"
+  },
+  "dependencies": {
     "element-plus": "^2.9.10",
     "@element-plus/icons-vue": "^2.3.1"
   },
-  "devDependencies": {
-    "element-plus": "^2.9.10",
-    "@element-plus/icons-vue": "^2.3.1"
-  }
+  "devDependencies": {}
 }

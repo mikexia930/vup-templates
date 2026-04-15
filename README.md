@@ -26,7 +26,7 @@ CLI 的多框架开发模板集合，包含 Vue、Nuxt、VitePress、NestJS、Qi
 | 技术       | 版本 | 说明                    |
 | ---------- | ---- | ----------------------- |
 | Vue        | 3.5+ | 渐进式JavaScript框架    |
-| Nuxt       | 3.0+ | Vue.js全栈框架          |
+| Nuxt       | 4.0+ | Vue.js全栈框架          |
 | VitePress  | 2.0+ | Vue驱动的静态站点生成器 |
 | UniApp     | 3.0+ | 跨平台应用开发框架      |
 | Capacitor  | 7.0+ | 混合应用开发平台        |
@@ -46,17 +46,17 @@ CLI 的多框架开发模板集合，包含 Vue、Nuxt、VitePress、NestJS、Qi
 
 ### 开发工具
 
-| 技术         | 版本 | 说明                         |
-| ------------ | ---- | ---------------------------- |
-| VUP CLI      | 1.0+ | 项目创建和管理工具           |
-| TypeScript   | 5.0+ | JavaScript的超集             |
-| Vite         | 6.0+ | 下一代前端构建工具           |
-| pnpm         | 8.0+ | 快速、节省磁盘空间的包管理器 |
-| ESLint       | 9.0+ | 代码质量检查工具             |
-| Prettier     | 3.0+ | 代码格式化工具               |
-| Tailwind CSS | 3.0+ | 实用优先的CSS框架            |
-| SCSS         | -    | CSS 预处理器                 |
-| release-it   | -    | 版本管理和发布工具           |
+| 技术         | 版本  | 说明                         |
+| ------------ | ----- | ---------------------------- |
+| VUP CLI      | 1.0+  | 项目创建和管理工具           |
+| TypeScript   | 5.0+  | JavaScript的超集             |
+| Vite         | 6.0+  | 下一代前端构建工具           |
+| pnpm         | 10.0+ | 快速、节省磁盘空间的包管理器 |
+| ESLint       | 9.0+  | 代码质量检查工具             |
+| Prettier     | 3.0+  | 代码格式化工具               |
+| Tailwind CSS | 4.0+  | 实用优先的CSS框架            |
+| SCSS         | -     | CSS 预处理器                 |
+| release-it   | -     | 版本管理和发布工具           |
 
 ## 📁 项目结构
 
@@ -64,7 +64,12 @@ CLI 的多框架开发模板集合，包含 Vue、Nuxt、VitePress、NestJS、Qi
 project-vue/
 ├── apps/       # 应用模板
 ├── packages/   # 功能包
-│   └── demo/   # 功能包演示项目
+│   ├── demo/   # 功能包演示项目
+│   ├── http/   # 共享请求层（@vup/http）
+│   ├── mock/   # 共享 Mock 能力（@vup/mock，MSW）
+│   ├── ui-mobile/ # 移动端 UI 封装（@vup/ui-mobile）
+│   ├── ui/     # UI 组件库（@vup/ui）
+│   └── ...     # 其他共享包
 ├── deploy/     # Docker 部署配置
 └── _shared/    # 共享资源与主题
 ```
@@ -143,9 +148,9 @@ pnpm dev
 | 模板                   | 技术栈                         | 适用场景                             | 文档                                            |
 | ---------------------- | ------------------------------ | ------------------------------------ | ----------------------------------------------- |
 | **vue-template**       | Vue 3 + Vite + TypeScript      | SPA 应用、管理后台、企业级前端       | [查看文档](./apps/vue-template/README.md)       |
-| **nuxt-template**      | Nuxt 3 + Vue 3 + TypeScript    | 全栈应用、SEO 友好网站、博客         | [查看文档](./apps/nuxt-template/README.md)      |
+| **nuxt-template**      | Nuxt 4 + Vue 3 + TypeScript    | 全栈应用、SEO 友好网站、博客         | [查看文档](./apps/nuxt-template/README.md)      |
 | **vitepress-template** | VitePress + Vue 3 + Markdown   | 文档网站、技术博客、产品介绍         | [查看文档](./apps/vitepress-template/README.md) |
-| **nest-template**      | NestJS + TypeScript + Prisma   | API 服务、微服务、企业级后端         | [查看文档](./apps/nest-template/README.md)      |
+| **nest-template**      | NestJS + TypeScript + TypeORM  | API 服务、微服务、企业级后端         | [查看文档](./apps/nest-template/README.md)      |
 | **qiankun-template**   | Qiankun + Vue 3 + Vite         | 微前端应用、子应用模板               | [查看文档](./apps/qiankun-template/README.md)   |
 | **uniapp-template**    | UniApp + Vue 3 + TypeScript    | 移动应用、小程序、H5 应用            | [查看文档](./apps/uniapp-template/README.md)    |
 | **capacitor-template** | Capacitor + Vue 3 + TypeScript | 混合移动应用、桌面应用               | [查看文档](./apps/capacitor-template/README.md) |
@@ -174,12 +179,72 @@ vup use my-package
 `packages/`
 目录用于沉淀可复用的功能包（组件库、业务组件、服务模块），供各应用按需引用：
 
-| 包名                 | 技术栈/说明          | 适用场景                  | 文档                                         |
-| -------------------- | -------------------- | ------------------------- | -------------------------------------------- |
-| **@vup/ui**          | Element Plus + Vue 3 | UI 组件封装、组件库适配层 | [查看文档](./packages/ui/README.md)          |
-| **@vup/iconfont**    | Iconfont + Vue 3     | 图标字体组件封装          | [查看文档](./packages/iconfont/README.md)    |
-| **@vup/richeditor**  | WangEditor + Vue 3   | 富文本编辑器封装          | [查看文档](./packages/richeditor/README.md)  |
-| **@vup/nest-upload** | NestJS + TypeORM     | 文件上传模块（可复用）    | [查看文档](./packages/nest-upload/README.md) |
+| 包名                 | 技术栈/说明          | 适用场景                   | 文档                                         |
+| -------------------- | -------------------- | -------------------------- | -------------------------------------------- |
+| **@vup/ui**          | Element Plus + Vue 3 | UI 组件封装、组件库适配层  | [查看文档](./packages/ui/README.md)          |
+| **@vup/ui-mobile**   | Ionic Vue + Vue 3    | 移动端 UI 组件封装层       | [查看文档](./packages/ui-mobile/README.md)   |
+| **@vup/iconfont**    | Iconfont + Vue 3     | 图标字体组件封装           | [查看文档](./packages/iconfont/README.md)    |
+| **@vup/richeditor**  | WangEditor + Vue 3   | 富文本编辑器封装           | [查看文档](./packages/richeditor/README.md)  |
+| **@vup/nest-upload** | NestJS + TypeORM     | 文件上传模块（可复用）     | [查看文档](./packages/nest-upload/README.md) |
+| **@vup/http**        | Axios + TypeScript   | 统一请求层、拦截器与解包   | [查看文档](./packages/http/README.md)        |
+| **@vup/mock**        | MSW + TypeScript     | 开发期接口模拟、联调前验证 | [查看文档](./packages/mock/README.md)        |
+
+## 🌐 请求层分层约定（推荐）
+
+为保证模板可维护性与 AI 可学习性，建议按三层组织请求代码：
+
+1. `packages/http`：沉淀共享能力（axios 实例工厂、通用拦截器、统一错误处理、响应解包）。
+2. `apps/*/src/api/request.ts`：应用侧适配层（环境变量、token、locale、401 行为）。
+3. `src/modules/<name>/api/`：模块业务接口（就近管理，避免把业务细节堆到基础层）。
+
+参考文档：
+
+- [@vup/http 使用说明](./packages/http/README.md)
+- [vue-template 请求适配示例](./apps/vue-template/src/api/request.ts)
+
+## 🧪 Mock 约定（基座推荐）
+
+为保证模板在“真实项目开发场景”下可直接复用，建议统一采用 `@vup/mock`（MSW）：
+
+- 真实请求路径保持不变（例如 `/api/template-demo/*`）
+- 开发环境通过开关启用 mock 拦截，生产环境关闭
+- 业务接口函数不内嵌 `wait + 本地数组`，统一走请求层
+- 术语区分：`/demo/*` 是页面路由；`/api/template-demo/*` 是演示接口前缀
+
+### 开关约定
+
+- Vue / Capacitor：`VITE_ENABLE_MOCK=true`（默认开启，设为 `false` 可关闭）
+- Nuxt：`NUXT_PUBLIC_USE_MOCK=true`（默认开启，设为 `false` 可关闭）
+- Electron：demo 默认使用本地内存数据，不依赖 mock 开关
+
+### 典型流程
+
+1. 开发联调前：开启 mock，前端先跑通页面和状态流转。
+2. 后端联调时：关闭 mock，直连真实接口，不改业务代码。
+3. 回归测试：可按场景切换 mock，稳定复现错误分支与慢请求。
+
+## 🧭 Nuxt 模块化例外（重要）
+
+Nuxt 受框架约定影响，`pages/components/composables` 不应强行迁移到
+`modules/`。推荐采用“拆散式模块化”：
+
+- `pages/<domain>/*`：页面入口与路由
+- `components/<domain>/*`：业务组件
+- `stores/<domain>/*`：业务状态
+- `api/<domain>.ts`：业务接口
+- i18n 使用 `<domain>.*` 命名空间
+
+该方式既保留 Nuxt 约定收益，也能维持业务域边界清晰。
+
+## ✅ 模板验收清单（建议）
+
+在新增/调整模板后，建议至少完成以下检查：
+
+- 路由：`/demo/guide`、`/demo/example` 可正常访问与切换
+- i18n：中英文切换正常
+- 示例交互：列表加载、筛选、状态切换、错误分支可验证
+- 请求分层：`packages/http` + `app/api/request.ts` + `module/api/*` 边界清晰
+- Mock 开关：开启/关闭后行为符合预期
 
 ## 🔧 开发工具
 
@@ -190,7 +255,7 @@ vup use my-package
 pnpm lint:all
 
 # 修复所有应用代码
-pnpm lint:fix
+pnpm lint:fix:all
 
 # 格式化所有应用代码
 pnpm format:all
@@ -209,8 +274,11 @@ pnpm release
 # 构建所有应用
 pnpm build:all
 
-# 部署 VitePress 到 Vercel
-pnpm deploy:vitepress
+# Vercel 预览部署
+pnpm deploy:preview
+
+# Vercel 生产部署
+pnpm deploy:prod
 
 # 启动 NestJS 的 Docker 环境
 cd apps/nest-template

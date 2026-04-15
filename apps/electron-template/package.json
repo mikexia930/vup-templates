@@ -32,6 +32,8 @@
     "electron": "38.1.2"
   },
   "dependencies": {
+    "@vup/http": "workspace:*",
+    "@vup/ui": "workspace:*",
     "electron-squirrel-startup": "^1.0.1"
   }
 }

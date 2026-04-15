@@ -5,7 +5,10 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@_shared/*": ["../../_shared/*"]
+      "@_shared/*": ["../../_shared/*"],
+      "@vup/http": ["../../packages/http/src/index.ts"],
+      "@vup/mock": ["../../packages/mock/src/index.ts"],
+      "@vup/ui-mobile": ["../../packages/ui-mobile/src/index.ts"]
     }
   },
   "include": ["src/**/*", "src/**/*.vue", "src/*.vue", "./auto-imports.d.ts", "src/vue-shim.d.ts"]
