@@ -118,7 +118,7 @@ export default {
       items: {
         api: {
           description: '模块自己的数据访问入口，后续接真实接口时直接替换这里。',
-          title: 'modules/demo/api/taskService.ts',
+          title: 'modules/demo/api/task.ts',
         },
         component: {
           description: '负责列表、筛选、状态呈现等 UI 编排，不直接维护业务数据源。',

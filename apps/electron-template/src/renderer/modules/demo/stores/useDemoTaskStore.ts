@@ -1,4 +1,4 @@
-import { listDemoTasks, updateDemoTaskStatus } from '../api/taskService';
+import { listDemoTasks, updateDemoTaskStatus } from '../api/task';
 import type { DemoTask, DemoTaskFilter, DemoTaskStats } from '../types/task';
 
 interface LoadDemoTasksOptions {

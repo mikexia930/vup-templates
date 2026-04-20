@@ -24,6 +24,7 @@
     "android": "pnpm android:build && pnpm android:open"
   },
   "dependencies": {
+    "@capacitor/preferences": "^7.6.2",
     "@capacitor/android": "^7.4.3",
     "@capacitor/camera": "^7.0.5",
     "@capacitor/core": "^7.6.0",
