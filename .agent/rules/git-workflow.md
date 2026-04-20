@@ -80,4 +80,22 @@ release/<version>              发布分支（配合 release-it）
 - `husky`：pre-commit 钩子自动跑 lint-staged
 - `release-it` + `@release-it/conventional-changelog`：版本发布 +
   CHANGELOG 自动生成（angular preset）
-- `pnpm release`：触发版本发布流程"
+- `pnpm release`：触发版本发布流程
+
+## 版本发布规则
+
+### 触发条件
+
+当用户提到「发布」「上线」「版本号」「changelog」「tag」任一关键词时，AI
+**必须**提醒用户 `pnpm release` 流程，而不是手动改版本号或手动打 tag。
+
+### 收尾条件
+
+若本次任务包含生产发布动作，AI 在结束前**必须**问一句：
+
+> "是否需要执行 `pnpm release` 生成版本与 changelog？"
+
+### 禁忌
+
+AI **不得**只做 `git commit` + `deploy` 就结束发布任务。必须走 `pnpm release`
+流程，除非用户明确说"本次跳过 release"。"
