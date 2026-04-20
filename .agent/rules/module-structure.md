@@ -65,6 +65,8 @@ Nuxt 的 `pages/`、`components/`、`composables/`
 
 ## 核心原则
 
+AI 创建新文件、移动文件或修改 import 时，必须对照以下原则。**违反任一条必须停下修正，不得继续。**
+
 - **模块间禁止互相 import**：如需共享，提取到 `shared/` 或 `common/`
 - **全局 store 仅限 app 级**（auth、permission、app 设置），业务 store 跟模块走
 - **新增业务功能 = 新增一个 module 目录**，不要往已有模块里混入无关逻辑

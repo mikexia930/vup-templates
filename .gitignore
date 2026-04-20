@@ -6,6 +6,7 @@
 .cache
 dist
 **/.vitepress/cache
+**/.vitepress/.temp
 **/.nitro
 **/.output
 **/.nuxt

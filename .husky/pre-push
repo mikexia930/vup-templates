@@ -1,5 +1,2 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
 # pre-push 钩子现在只做推送前的检查
 echo "✅ 准备推送到远程仓库..."

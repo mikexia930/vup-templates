@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.5.4](/compare/v3.5.3...v3.5.4) (2026-04-20)
+
+### Performance Improvements
+
+- 优化 rules 129cca6
+
 ## [3.5.3](/compare/v3.5.2...v3.5.3) (2026-04-20)
 
 ### Bug Fixes
