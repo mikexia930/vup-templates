@@ -108,7 +108,7 @@ export default {
           description: 'Handle state, filtering, async loading, and task status transitions.',
         },
         api: {
-          title: 'src/modules/demo/api/taskService.ts',
+          title: 'src/modules/demo/api/task.ts',
           description: 'Define module API functions close to business context.',
         },
         types: {

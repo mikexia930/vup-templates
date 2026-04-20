@@ -107,7 +107,7 @@ export default {
           description: '负责状态、筛选、异步加载与任务状态流转。',
         },
         api: {
-          title: 'src/modules/demo/api/taskService.ts',
+          title: 'src/modules/demo/api/task.ts',
           description: '负责模块接口函数定义，靠近业务上下文。',
         },
         types: {

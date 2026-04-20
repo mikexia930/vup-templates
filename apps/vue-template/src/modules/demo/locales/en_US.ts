@@ -128,7 +128,7 @@ export default {
         api: {
           description:
             'Module-level data access entry. Replace this file when you connect a real backend.',
-          title: 'modules/demo/api/taskService.ts',
+          title: 'modules/demo/api/task.ts',
         },
         component: {
           description: 'Handles list, filters, and state rendering without owning the data source.',
