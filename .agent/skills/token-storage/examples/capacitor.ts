@@ -1,4 +1,4 @@
-// 范例：apps/<app>/src/shared/utils/tokenStorage.ts
+// 范例：apps/<app>/src/common/utils/tokenStorage.ts
 //
 // 适用：capacitor（移动端）
 // 底层：@capacitor/preferences

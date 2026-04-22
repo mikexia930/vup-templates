@@ -17,7 +17,7 @@ import {
   setTokens,
   removeTokens,
   syncTokenFromStorage,
-} from '@/shared/utils/tokenStorage';
+} from '@/common/utils/tokenStorage';
 import {
   login as loginApi,
   logout as logoutApi,

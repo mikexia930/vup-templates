@@ -14,7 +14,7 @@ src/
 │       ├── api/                     # 模块 API 接口
 │       ├── types/                   # 模块类型
 │       └── composables/             # 模块 composable（可选）
-├── shared/                          # 跨模块共享代码
+├── common/                          # 跨模块共享代码（app 内公用，勿与仓库根 _shared/ 混淆）
 │   ├── components/                  # 公共组件
 │   ├── composables/                 # 公共 composable
 │   ├── utils/                       # 工具函数（含 tokenStorage）
@@ -67,7 +67,8 @@ Nuxt 的 `pages/`、`components/`、`composables/`
 
 AI 创建新文件、移动文件或修改 import 时，必须对照以下原则。**违反任一条必须停下修正，不得继续。**
 
-- **模块间禁止互相 import**：如需共享，提取到 `shared/` 或 `common/`
+- **模块间禁止互相 import**：如需共享，Vue 侧提取到 `src/common/`，Nest 侧提取到
+  `src/common/`（见上节「后端模块结构」）
 - **全局 store 仅限 app 级**（auth、permission、app 设置），业务 store 跟模块走
 - **新增业务功能 = 新增一个 module 目录**，不要往已有模块里混入无关逻辑
 - **模块 API 跟模块走**：基础设施放 `src/api/`，业务请求函数放

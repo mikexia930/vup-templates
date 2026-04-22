@@ -12,7 +12,7 @@
 
 import { createHttpClient } from '@vup/http';
 // 由 token-storage skill 按平台提供具体实现
-import { getAccessToken, removeAccessToken } from '@/shared/utils/tokenStorage';
+import { getAccessToken, removeAccessToken } from '@/common/utils/tokenStorage';
 
 const request = createHttpClient({
   baseURL: import.meta.env.VITE_API_BASE || '',

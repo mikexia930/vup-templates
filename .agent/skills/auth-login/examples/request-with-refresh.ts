@@ -17,7 +17,7 @@
 
 import type { AxiosError, AxiosRequestConfig } from 'axios';
 import { createHttpClient } from '@vup/http';
-import { getAccessToken, removeAccessToken } from '@/shared/utils/tokenStorage';
+import { getAccessToken, removeAccessToken } from '@/common/utils/tokenStorage';
 
 // ============ Step 1: 创建基础实例（http-client skill） ============
 

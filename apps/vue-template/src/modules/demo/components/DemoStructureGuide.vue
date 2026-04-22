@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { t } = useI18n();
 
-const structureItemKeys = ['base', 'module', 'shared'] as const;
+const structureItemKeys = ['base', 'module', 'common'] as const;
 const structureRuleKeys = ['moduleApi', 'moduleLocales', 'moduleStore', 'optional'] as const;
 
 const directoryTree = `src/

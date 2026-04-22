@@ -82,7 +82,7 @@ export default {
       items: {
         base: 'src/api、src/locales、src/router 保留全局基础设施。',
         module: 'modules/demo 下聚合页面、组件、store、api、types、locales。',
-        shared: '只有明确跨模块复用的代码才放到 shared，不为了抽象而抽象。',
+        common: '只有明确跨模块复用的代码才放到 common，不为了抽象而抽象。',
       },
       rules: {
         moduleApi: '模块自己的请求函数跟模块走，不再散落在全局目录。',

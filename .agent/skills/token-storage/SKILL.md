@@ -155,7 +155,7 @@ export async function setAccessToken(token: string) {
 
 ## 产出位置
 
-- `apps/<app>/src/shared/utils/tokenStorage.ts` —— 统一文件名，方便 http-client
+- `apps/<app>/src/common/utils/tokenStorage.ts` —— 统一文件名，方便 http-client
   / auth skill 引用
 - 异步实现需在 `main.ts` / 各 entrypoint 入口 await `syncTokenFromStorage()`
 

@@ -14,7 +14,7 @@
 
 import { createRouter, createWebHistory } from 'vue-router';
 import type { RouteLocationNormalized } from 'vue-router';
-import { getAccessToken } from '@/shared/utils/tokenStorage';
+import { getAccessToken } from '@/common/utils/tokenStorage';
 
 // 白名单：无需登录即可访问
 const WHITELIST = ['/login', '/register', '/forgot-password'];

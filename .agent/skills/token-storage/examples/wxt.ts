@@ -1,4 +1,4 @@
-// 范例：apps/<wxt-extension>/src/shared/utils/tokenStorage.ts
+// 范例：apps/<wxt-extension>/src/common/utils/tokenStorage.ts
 //
 // 适用：wxt（浏览器扩展）
 // 底层：browser.storage.local

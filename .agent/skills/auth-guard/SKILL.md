@@ -94,7 +94,7 @@ export const WHITELIST = ['/login', '/register', '/forgot-password'];
 
 - vue 系：`apps/<app>/src/router/index.ts`（或拆 `src/router/guard.ts`）
 - Nuxt：`apps/<nuxt>/middleware/auth.global.ts`
-- wxt：`apps/<wxt>/src/shared/utils/authSync.ts`
+- wxt：`apps/<wxt>/src/common/utils/authSync.ts`
 
 ## 引用关系
 

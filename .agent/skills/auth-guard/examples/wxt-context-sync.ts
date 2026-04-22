@@ -1,4 +1,4 @@
-// 范例：apps/<wxt-extension>/src/shared/utils/authSync.ts
+// 范例：apps/<wxt-extension>/src/common/utils/authSync.ts
 //
 // 适用：wxt（浏览器扩展）
 // 角色：跨 context 同步登录态 + popup/options 内的登录守卫
@@ -14,7 +14,7 @@
 //   - 收到 'auth:logout' 消息：所有 context 清缓存 + 跳登录页
 //   - background 是事实源（推荐 HTTP 请求统一从 background 发）
 //
-// AI 使用：把以下函数加入 src/shared/utils/authSync.ts
+// AI 使用：把以下函数加入 src/common/utils/authSync.ts
 //   各 entrypoint 入口（popup/options/background）都要 setupAuthSync()
 
 import { browser } from 'wxt/browser';
@@ -75,6 +75,6 @@ export async function broadcastLogout() {
 // });
 //
 // 入口（如 entrypoints/popup/main.ts）：
-//   import { setupAuthSync } from '@/shared/utils/authSync';
+//   import { setupAuthSync } from '@/common/utils/authSync';
 //   await setupAuthSync();
 //   // ... 创建 Vue app
