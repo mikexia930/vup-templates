@@ -186,7 +186,7 @@ pnpm --filter <wxt-extension> zip              # 打包 zip（上传商店）
 ## 产出位置
 
 - Entrypoints：`apps/<wxt>/src/entrypoints/`
-- 共享代码：`apps/<wxt>/src/composables/` + `src/shared/`
+- 共享代码：`apps/<wxt>/src/composables/` + `src/common/`
 - 静态资源：`apps/<wxt>/public/`
 - 配置：`apps/<wxt>/wxt.config.ts`
 

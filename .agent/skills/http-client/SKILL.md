@@ -65,7 +65,7 @@ description: >-
 
 参考 `examples/request.ts` 的结构。**不要直接复制**，需要：
 
-- token 函数从 `@/shared/utils/tokenStorage` 导入（先按 token-storage
+- token 函数从 `@/common/utils/tokenStorage` 导入（先按 token-storage
   skill 实现该文件）
 - locale 来源按当前 app 的 i18n 方案实现
 - 401 跳转按当前 app 的路由方案实现

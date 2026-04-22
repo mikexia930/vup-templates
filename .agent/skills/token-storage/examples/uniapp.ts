@@ -1,4 +1,4 @@
-// 范例：apps/<uniapp-app>/src/shared/utils/tokenStorage.ts
+// 范例：apps/<uniapp-app>/src/common/utils/tokenStorage.ts
 //
 // 适用：uniapp（H5 / 小程序 / App 多端）
 // 底层：uni.setStorageSync / uni.getStorageSync / uni.removeStorageSync

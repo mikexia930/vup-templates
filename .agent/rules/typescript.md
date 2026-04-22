@@ -21,11 +21,11 @@ const { t } = useI18n();
 
 ```typescript
 // ✅ 用 @ 别名
-import { tokenStorage } from '@/shared/utils/tokenStorage';
+import { tokenStorage } from '@/common/utils/tokenStorage';
 import UserCard from '@/modules/user/components/UserCard.vue';
 
 // ❌ 不要用多级相对路径
-import { tokenStorage } from '../../../shared/utils/tokenStorage';
+import { tokenStorage } from '../../../common/utils/tokenStorage';
 ```
 
 - `@/` → 当前应用的 `src/` 目录（Electron 渲染进程为 `src/renderer/`）

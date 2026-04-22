@@ -5,6 +5,19 @@
 
 ## 安装与使用（monorepo）
 
+在 **`apps/<nest-app>/package.json`**
+里声明 workspace 依赖（否则无法解析包、类型也会丢）：
+
+```json
+{
+  "dependencies": {
+    "@vup/nest-upload": "workspace:*"
+  }
+}
+```
+
+然后在仓库根目录执行 `pnpm install`。
+
 在业务模块中引入：
 
 ```ts

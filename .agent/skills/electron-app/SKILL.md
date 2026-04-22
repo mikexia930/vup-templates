@@ -51,7 +51,7 @@ apps/<electron-app>/
 │       ├── App.vue
 │       ├── router/
 │       ├── modules/
-│       ├── shared/
+│       ├── common/
 │       ├── stores/
 │       ├── api/
 │       │   └── request.ts         @vup/http 适配

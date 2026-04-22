@@ -87,7 +87,7 @@ export default {
       items: {
         base: 'Keep src/api, src/locales, and src/router as shared application infrastructure.',
         module: 'Group views, components, store, api, types, and locales inside modules/demo.',
-        shared: 'Only move code into shared when it is truly reused across modules.',
+        common: 'Only move code into common/ when it is truly reused across modules.',
       },
       rules: {
         moduleApi:
