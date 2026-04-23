@@ -1,32 +1,23 @@
-# Packages Demo 示例
+# UI Example
 
-这是 `packages` 下各组件/包的演示项目，用于本仓库内调试与展示。
+`examples/ui` 是一个只演示 `@vup/ui`、`@vup/richeditor`、`@vup/iconfont`
+的最小示例工程。
 
-## 📦 使用的 packages
-
-### 运行时依赖
+## 说明
 
 - `@vup/ui`
 - `@vup/richeditor`
 - `@vup/iconfont`
 
-## 🛠️ 使用方式
-
-### 安装依赖
+## 启动
 
 ```bash
-pnpm install
+pnpm --filter example-ui dev
 ```
 
-### 开发服务器
+默认端口：`9399`
 
-```bash
-pnpm dev
-```
+## 定位
 
-启动开发服务器，访问 http://localhost:9399
-
-## ✨ 说明
-
-- 该项目仅用于展示与验证 `packages` 内的组件/包能力。
-- 具体组件用法请参考各包的 README 或官方文档。
+- 该项目只用于展示与验证共享 UI 包能力，不作为正式模板分发。
+- 具体组件用法请参考对应 package 的 README。

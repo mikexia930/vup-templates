@@ -1,5 +1,11 @@
 # Changelog
 
+# [](/compare/v3.6.0...vnull) (2026-04-23)
+
+### Bug Fixes
+
+- config 里缺失了 example 统计 25c74f1
+
 # [3.6.0](/compare/v3.5.5...v3.6.0) (2026-04-23)
 
 ### Features

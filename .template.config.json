@@ -138,5 +138,33 @@
     "description": "Mobile UI wrapper based on Ionic Vue",
     "path": "packages/ui-mobile",
     "type": "package"
+  },
+  {
+    "name": "example-mock",
+    "version": "1.0.0",
+    "description": "MSW mock example for vup templates",
+    "path": "examples/mock",
+    "type": "example"
+  },
+  {
+    "name": "example-pwa",
+    "version": "1.0.0",
+    "description": "PWA example for vup templates",
+    "path": "examples/pwa",
+    "type": "example"
+  },
+  {
+    "name": "example-qiankun",
+    "version": "1.0.0",
+    "description": "qiankun example for vup templates",
+    "path": "examples/qiankun",
+    "type": "example"
+  },
+  {
+    "name": "example-ui",
+    "version": "1.0.0",
+    "description": "UI packages example for vup templates",
+    "path": "examples/ui",
+    "type": "example"
   }
 ]

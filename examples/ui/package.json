@@ -1,6 +1,6 @@
 {
-  "name": "demo",
-  "description": "Package Demo",
+  "name": "example-ui",
+  "description": "UI packages example for vup templates",
   "version": "1.0.0",
   "type": "module",
   "private": true,
