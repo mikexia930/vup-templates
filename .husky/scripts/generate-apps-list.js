@@ -7,49 +7,33 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const _rootDir = path.join(__dirname, '../../');
 
-// 读取 apps 目录
-const appsDir = path.join(_rootDir, './apps');
 const apps = [];
 
-// 遍历 apps 目录
-fs.readdirSync(appsDir, { withFileTypes: true }).forEach((dirent) => {
-  if (dirent.isDirectory()) {
-    const appPath = path.join(appsDir, dirent.name);
-    const packageJsonPath = path.join(appPath, 'package.json');
+function collectWorkspaceEntries(directory, type) {
+  const absoluteDir = path.join(_rootDir, directory);
+  if (!fs.existsSync(absoluteDir)) return;
 
-    if (fs.existsSync(packageJsonPath)) {
-      const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
-      apps.push({
-        name: packageJson.name,
-        version: packageJson.version,
-        description: packageJson.description,
-        path: `apps/${dirent.name}`,
-        type: 'app',
-      });
-    }
-  }
-});
+  fs.readdirSync(absoluteDir, { withFileTypes: true }).forEach((dirent) => {
+    if (!dirent.isDirectory()) return;
 
-// 读取 pakcages 目录
-const packagesDir = path.join(_rootDir, './packages');
+    const entryPath = path.join(absoluteDir, dirent.name);
+    const packageJsonPath = path.join(entryPath, 'package.json');
+    if (!fs.existsSync(packageJsonPath)) return;
 
-// 遍历 pakcages 目录
-fs.readdirSync(packagesDir, { withFileTypes: true }).forEach((dirent) => {
-  if (dirent.isDirectory()) {
-    const packagePath = path.join(packagesDir, dirent.name);
-    const packageJsonPath = path.join(packagePath, 'package.json');
-    if (fs.existsSync(packageJsonPath)) {
-      const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
-      apps.push({
-        name: packageJson.name,
-        version: packageJson.version,
-        description: packageJson.description,
-        path: `packages/${dirent.name}`,
-        type: 'package',
-      });
-    }
-  }
-});
+    const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+    apps.push({
+      name: packageJson.name,
+      version: packageJson.version,
+      description: packageJson.description,
+      path: `${directory}/${dirent.name}`,
+      type,
+    });
+  });
+}
+
+collectWorkspaceEntries('apps', 'app');
+collectWorkspaceEntries('packages', 'package');
+collectWorkspaceEntries('examples', 'example');
 
 // 写入文件
 fs.writeFileSync(path.join(_rootDir, './.template.config.json'), JSON.stringify(apps, null, 2));
