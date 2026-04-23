@@ -5,7 +5,6 @@
 - 模块化示例（`src/modules/demo`）
 - 基础请求层（`@vup/http` + `src/api/request.ts`）
 - UI 封装层（`@vup/ui`，`V*` 组件）
-- qiankun 子应用兼容入口（可按需保留）
 
 ## 模板定位
 
@@ -52,7 +51,7 @@ src/
 │   └── routes.ts                 # /demo/guide + /demo/example
 ├── views/empty/Empty.vue
 ├── App.vue
-└── main.ts                       # 包含 @vup/ui 与 qiankun 兼容入口
+└── main.ts                       # 应用入口
 ```
 
 ## 请求层约定
@@ -63,13 +62,6 @@ src/
 - token、语言、401 行为放应用层
 - 业务接口函数放 `src/modules/<name>/api`
 - 不在基础请求文件里堆业务细节
-
-### 开发期 Mock（MSW）
-
-- 共享 mock 包：`@vup/mock`
-- 开关：`VITE_ENABLE_MOCK=true`
-- 启用后会拦截 `/api/template-demo/*`，用于模板演示与前后端并行开发
-- 语义说明：`/demo/*` 表示页面路由；`/api/template-demo/*` 表示接口前缀
 
 ### 请求取消（推荐场景）
 
@@ -100,12 +92,13 @@ request.get('/api/template-demo/tasks', {
   - `demo-example`
 - `empty` 页面用于兜底路由
 
-## qiankun 兼容说明
+## 相关示例
 
-模板内置了 qiankun 子应用生命周期代码（`main.ts`）：
+专项能力示例已拆到根目录 `examples/`：
 
-- 作为普通 SPA 使用时可直接运行
-- 不需要微前端时，可按需移除相关代码
+- `examples/mock`：MSW mock 接入示例
+- `examples/pwa`：PWA 接入示例
+- `examples/qiankun`：qiankun 子应用接入示例
 
 ## 文档地址
 
@@ -118,7 +111,6 @@ request.get('/api/template-demo/tasks', {
 - [Vue i18n](https://vue-i18n.intlify.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
-- [qiankun](https://qiankun.umijs.org/)
 
 ### 项目内相关文档
 

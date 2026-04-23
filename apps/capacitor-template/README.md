@@ -68,12 +68,6 @@ src/
 - 业务代码优先 `VM*`，避免直接散用 `Ion*`。
 - 语言切换为全局操作，位于 demo 顶部区域，不与 tab 逻辑耦合。
 
-## 开发期 Mock（MSW）
-
-- 共享 mock 包：`@vup/mock`
-- 开关：`VITE_ENABLE_MOCK=true`
-- 适用于移动端 Web 调试阶段的接口模拟（后续业务 API 接入后可直接复用）
-
 ## 代码质量
 
 ```bash
@@ -91,6 +85,7 @@ pnpm build
 - [Vue 3](https://vuejs.org/)
 - [Pinia](https://pinia.vuejs.org/)
 - [Vue i18n](https://vue-i18n.intlify.dev/)
+- [examples/mock](../../examples/mock/README.md)
 
 ## 平台要求
 

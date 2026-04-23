@@ -17,10 +17,6 @@
   },
   "dependencies": {
     "@vup/http": "workspace:*",
-    "@vup/mock": "workspace:*",
     "@vup/ui": "workspace:*"
-  },
-  "devDependencies": {
-    "vite-plugin-qiankun": "^1.0.15"
   }
 }

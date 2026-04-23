@@ -60,7 +60,6 @@ export default {
     actions: {
       reload: '重新加载',
       retry: '重试',
-      simulateError: '模拟错误',
       resetFilters: '重置筛选',
       markDone: '标记完成',
       reopen: '重新打开',
@@ -82,10 +81,10 @@ export default {
     state: {
       loading: {
         title: '正在加载示例数据',
-        description: '任务列表正在从模块 API mock 数据源加载。',
+        description: '任务列表正在从模块 API 加载。',
       },
       error: {
-        title: '请求失败',
+        title: '数据加载失败',
       },
       empty: {
         description: '当前筛选条件下没有任务，可尝试重置筛选。',

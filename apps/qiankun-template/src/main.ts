@@ -16,12 +16,12 @@ router.isReady().then(() => {
     [
       {
         name: 'vue-template',
-        entry: 'http://localhost:9301',
+        entry: 'http://localhost:9393',
         container: '#auto-app-container',
-        activeRule: '/auto/vue',
+        activeRule: '/auto/',
         props: {
           name: 'vue-template-atuo',
-          baseRoute: '/auto/vue',
+          baseRoute: '/auto/',
           container: '#auto-app-container',
         },
       },
@@ -64,5 +64,9 @@ router.isReady().then(() => {
 
   // actions.offGlobalStateChange();
 
-  start();
+  start({
+    sandbox: true,
+    singular: false,
+    prefetch: true,
+  });
 });

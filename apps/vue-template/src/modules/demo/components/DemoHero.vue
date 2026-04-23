@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { t } = useI18n();
 
-const featureKeys = ['guide', 'module', 'qiankun'] as const;
+const featureKeys = ['guide', 'module', 'request'] as const;
 const scenarioKeys = ['admin', 'module', 'optional'] as const;
 </script>
 

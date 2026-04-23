@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./.output",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@_shared/*": ["../../_shared/*"],
+      "@vup/mock": ["../../packages/mock/src/index.ts"],
+      "@vup/mock/browser": ["../../packages/mock/src/browser.ts"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue", "src/vue-shim.d.ts"],
+  "exclude": []
+}

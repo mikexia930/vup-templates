@@ -2,10 +2,10 @@
 name: vue-app
 description: >-
   Use when implementing features in vue-template projects (Vue3 + Vite SPA).
-  Covers vue-specific concerns: router factory, auto-import, qiankun
-  compatibility, layouts, vite proxy/env. For cross-platform concerns (HTTP,
-  token, auth, permissions, API layer, UI), load the corresponding capability
-  skills instead of reimplementing.
+  Covers vue-specific concerns: router factory, auto-import, layouts, vite
+  proxy/env. For cross-platform concerns (HTTP, token, auth, permissions, API
+  layer, UI), load the corresponding capability skills instead of
+  reimplementing.
 ---
 
 # vue-app
@@ -15,7 +15,6 @@ description: >-
 ## 适用场景
 
 - 管理后台 / Dashboard / 官网 / Web SPA
-- qiankun 微前端子应用
 - 对应目录：`apps/<vue-app>/`
 
 ## 何时被加载
@@ -51,14 +50,13 @@ description: >-
 
 详见 `.agent/rules/typescript.md`。
 
-### 2. 路由工厂（qiankun 兼容）
+### 2. 路由工厂
 
 ```typescript
 // src/router/index.ts
 import { createRouter, createWebHistory } from 'vue-router';
 import routes from './routes';
 
-// baseRoute 参数支持 qiankun 传入子路径
 export default function router(baseRoute = '/') {
   return createRouter({
     history: createWebHistory(baseRoute),
@@ -70,17 +68,7 @@ export default function router(baseRoute = '/') {
 - 静态路由（登录 / 404）写在 `routes.ts`
 - 动态路由通过 `router.addRoute()` 注入（见 `permission-rbac` skill）
 
-### 3. qiankun 微前端
-
-`main.ts` 默认包含 qiankun 子应用兼容代码（`vite-plugin-qiankun`）。
-
-若不需要微前端：
-
-- 删除 `main.ts` 中 qiankun 相关代码
-- 删除 `vite.config.js` 中 `qiankun()` 插件
-- `router/index.ts` 的 `baseRoute` 参数简化为固定值
-
-### 4. 开发代理
+### 3. 开发代理
 
 ```javascript
 // vite.config.js
@@ -95,12 +83,11 @@ server: {
 }
 ```
 
-### 5. 环境变量
+### 4. 环境变量
 
 ```bash
 # .env.development
 VITE_API_BASE=http://localhost:3000
-VITE_ENABLE_MOCK=true
 
 # .env.production
 VITE_API_BASE=https://api.example.com
@@ -108,7 +95,7 @@ VITE_API_BASE=https://api.example.com
 
 前端变量前缀必须为 `VITE_`（Vite 约定）。
 
-### 6. 布局
+### 5. 布局
 
 后台类应用推荐使用 `AdminLayout.vue`（见 `admin-layout` pattern）：
 
@@ -117,13 +104,13 @@ src/layouts/
 └── AdminLayout.vue     侧边栏 + 顶栏 + 内容区
 ```
 
-### 7. i18n
+### 6. i18n
 
 - 全局文案：`src/locales/`
 - 模块文案：`src/modules/<name>/locales/`（跟模块走）
 - 使用 `vue-i18n`，auto-import 后直接 `const { t } = useI18n()`
 
-### 8. 构建
+### 7. 构建
 
 ```bash
 pnpm --filter <app-name> build     # 产物输出到 .output/
@@ -144,10 +131,10 @@ pnpm --filter <app-name> build     # 产物输出到 .output/
 
 ## 关键决策点（AI 必须问用户）
 
-1. **是否需要 qiankun 微前端**：保留还是删除兼容代码？
-2. **后台布局**：用 `admin-layout` pattern 还是自定义布局？
-3. **是否启用 mock**：`VITE_ENABLE_MOCK=true`（默认开启）？
-4. **路由模式**：静态路由（简单项目）还是动态路由（RBAC 权限项目）？
+1. **后台布局**：用 `admin-layout` pattern 还是自定义布局？
+2. **路由模式**：静态路由（简单项目）还是动态路由（RBAC 权限项目）？
+3. **是否需要专项能力**：若用户提到 mock / pwa / qiankun，优先引导到 `examples/`
+   或对应专项 skill，而不是默认塞进 `vue-template`
 
 ## 产出位置
 
