@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.6.0](/compare/v3.5.5...v3.6.0) (2026-04-23)
+
+### Features
+
+- example和template解藕 1dff1ed
+
 ## [3.5.5](/compare/v3.5.4...v3.5.5) (2026-04-22)
 
 ## [3.5.4](/compare/v3.5.3...v3.5.4) (2026-04-20)
