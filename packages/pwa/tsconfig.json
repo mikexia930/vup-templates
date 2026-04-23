@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./.output",
+    "baseUrl": ".",
+    "allowImportingTsExtensions": true
+  },
+  "include": ["src/**/*"]
+}

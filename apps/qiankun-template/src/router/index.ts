@@ -4,12 +4,12 @@ export default createRouter({
   history: createWebHistory(),
   routes: [
     {
-      path: '/auto/vue/:pathMatch(.*)*',
-      component: () => import('@/views/auto/Auto.vue'),
+      path: '/auto/:pathMatch(.*)*',
+      component: () => import('@/views/auto/Index.vue'),
     },
     {
-      path: '/manual/vue/:pathMatch(.*)*',
-      component: () => import('@/views/manual/Manual.vue'),
+      path: '/manual/:pathMatch(.*)*',
+      component: () => import('@/views/manual/Index.vue'),
     },
   ],
 });

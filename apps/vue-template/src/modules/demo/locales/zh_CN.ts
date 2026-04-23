@@ -6,12 +6,12 @@ export default {
     features: {
       guide: '上手路径清晰',
       module: '模块内业务聚合',
-      qiankun: '保留微前端兼容入口',
+      request: '请求分层边界明确',
     },
     scenarios: {
       admin: '适合后台管理、Dashboard、企业级 SPA',
       module: '新增业务时优先新建 modules 目录',
-      optional: 'qiankun 相关代码可按需保留或删除',
+      optional: '专项能力优先放到 examples 单独演示',
     },
     tabs: {
       example: '最佳实践示例',
@@ -33,7 +33,7 @@ export default {
       description: '第一次接手模板时，优先理解下面这些位置，改动成本最低、收益最高。',
       items: {
         locales: '调整全局公共文案，并在模块内补充自己的语言包。',
-        main: '查看应用入口、插件注册和 qiankun 兼容逻辑。',
+        main: '查看应用入口、插件注册和基础应用装配。',
         module: '以 modules/demo 为样板复制新的业务模块。',
         request: '补齐基础请求层、统一类型和错误处理。',
         router: '新增或删减路由时，从这里开始整理访问路径。',
@@ -88,7 +88,7 @@ export default {
         moduleApi: '模块自己的请求函数跟模块走，不再散落在全局目录。',
         moduleLocales: '模块自己的文案跟模块走，避免根 locales 变成大杂烩。',
         moduleStore: '业务 store 跟模块走，避免 views/demo/stores 这类误导性结构。',
-        optional: 'qiankun 兼容代码属于平台能力，业务无关时可以裁剪。',
+        optional: 'mock、pwa、qiankun 这类专项能力优先拆到 examples，保持正式模板干净。',
       },
       title: '推荐目录结构',
       treeTitle: '当前 demo 作为标准样板的目录',
@@ -102,7 +102,6 @@ export default {
       reopen: '重新打开',
       resetFilters: '清空筛选',
       retry: '重新加载',
-      simulateError: '模拟错误',
       updating: '处理中...',
     },
     description:
@@ -153,7 +152,7 @@ export default {
       },
       error: {
         description: '这里专门保留了错误态，方便你检查页面如何处理失败反馈。',
-        title: '示例接口加载失败',
+        title: '数据加载失败',
       },
       loading: {
         description: '真实业务里，loading、empty、error 都应该被明确表达。',

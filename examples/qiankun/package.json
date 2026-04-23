@@ -1,0 +1,22 @@
+{
+  "name": "example-qiankun",
+  "description": "qiankun example for vup templates",
+  "version": "2.0.0",
+  "type": "module",
+  "private": true,
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "lint": "eslint src/ --ext .vue,.ts,.js",
+    "lint:fix": "eslint src/ --ext .vue,.ts,.js --fix",
+    "format": "prettier --write \"src/**/*.{js,ts,vue,json,css,scss}\"",
+    "format:check": "prettier --check \"src/**/*.{js,ts,vue,json,css,scss}\""
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "vite-plugin-qiankun": "^1.0.15"
+  }
+}

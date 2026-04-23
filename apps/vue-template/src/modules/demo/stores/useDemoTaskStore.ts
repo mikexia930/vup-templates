@@ -1,10 +1,6 @@
 import { listDemoTasks, updateDemoTaskStatus } from '../api/task';
 import type { DemoTask, DemoTaskFilter, DemoTaskStats } from '../types/task';
 
-interface LoadDemoTasksOptions {
-  forceError?: boolean;
-}
-
 function getNextStatus(status: DemoTask['status']): DemoTask['status'] {
   if (status === 'done') return 'pending';
 
@@ -48,12 +44,12 @@ export const useDemoTaskStore = defineStore('demo-task', () => {
 
   const isUpdatingAnyTask = computed(() => updatingTaskIds.value.length > 0);
 
-  async function loadTasks(options: LoadDemoTasksOptions = {}) {
+  async function loadTasks() {
     isListLoading.value = true;
     errorMessage.value = '';
 
     try {
-      items.value = await listDemoTasks(options);
+      items.value = await listDemoTasks();
       hasLoaded.value = true;
     } catch (error) {
       items.value = [];

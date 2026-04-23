@@ -84,13 +84,6 @@
     "type": "app"
   },
   {
-    "name": "demo",
-    "version": "1.0.0",
-    "description": "Package Demo",
-    "path": "packages/demo",
-    "type": "package"
-  },
-  {
     "name": "@vup/http",
     "version": "1.0.0",
     "description": "Shared axios-based HTTP client utilities for vup templates",
@@ -116,6 +109,13 @@
     "version": "1.0.0",
     "description": "NestJS Upload Module, support multer",
     "path": "packages/nest-upload",
+    "type": "package"
+  },
+  {
+    "name": "@vup/pwa",
+    "version": "1.0.0",
+    "description": "Shared PWA preset and runtime helpers for vup templates",
+    "path": "packages/pwa",
     "type": "package"
   },
   {

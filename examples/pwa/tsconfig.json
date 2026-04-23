@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./.output",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@_shared/*": ["../../_shared/*"],
+      "@vup/pwa": ["../../packages/pwa/src/index.ts"],
+      "@vup/pwa/runtime": ["../../packages/pwa/src/runtime.ts"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue", "src/vue-shim.d.ts"],
+  "exclude": []
+}

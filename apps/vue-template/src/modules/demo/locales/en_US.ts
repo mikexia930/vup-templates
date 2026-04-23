@@ -6,12 +6,12 @@ export default {
     features: {
       guide: 'Clear onboarding path',
       module: 'Business logic grouped by module',
-      qiankun: 'Keeps qiankun compatibility entry',
+      request: 'Clear request-layer boundaries',
     },
     scenarios: {
       admin: 'Fits admin panels, dashboards, and enterprise SPA projects',
       module: 'Create a new module first when adding business features',
-      optional: 'qiankun-related code can be kept or removed as needed',
+      optional: 'Keep specialized capabilities isolated inside examples',
     },
     tabs: {
       example: 'Best Practice Example',
@@ -37,7 +37,7 @@ export default {
         'When you first take over the template, start from these locations. They are the highest-value changes with the lowest cost.',
       items: {
         locales: 'Adjust shared app messages and extend module-specific locale files in place.',
-        main: 'Review the application entry, plugin registration, and qiankun compatibility logic.',
+        main: 'Review the application entry, plugin registration, and base app wiring.',
         module: 'Use modules/demo as the sample when you create a new business module.',
         request: 'Complete the base request layer and centralize shared response handling.',
         router: 'Start here whenever you add, remove, or reorganize routes.',
@@ -97,7 +97,7 @@ export default {
         moduleStore:
           'Business stores stay with the module. Avoid misleading patterns like views/demo/stores.',
         optional:
-          'qiankun compatibility belongs to platform capability and can be removed when not needed.',
+          'Specialized capabilities such as mock, pwa, and qiankun should live in examples so formal templates stay clean.',
       },
       title: 'Recommended Directory Structure',
       treeTitle: 'Current demo directory as the standard sample',
@@ -111,7 +111,6 @@ export default {
       reopen: 'Reopen',
       resetFilters: 'Reset Filters',
       retry: 'Retry',
-      simulateError: 'Simulate Error',
       updating: 'Updating...',
     },
     description:
@@ -167,7 +166,7 @@ export default {
       error: {
         description:
           'The error state is kept on purpose so you can verify how the page handles failed requests.',
-        title: 'Example request failed',
+        title: 'Data request failed',
       },
       loading: {
         description:

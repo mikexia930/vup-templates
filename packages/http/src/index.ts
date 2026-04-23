@@ -170,8 +170,8 @@ function buildInvalidApiResponseMessage(response: AxiosResponse<unknown>) {
   if (isTemplateDemoApi) {
     return [
       `检测到 ${requestUrl} 返回结构不符合 ApiResponse 约定。`,
-      '如果你在开发环境首次运行模板，请确认已开启 Mock：VITE_ENABLE_MOCK=true（或删除该变量，默认开启）。',
-      '若关闭 Mock，请确保后端返回 { code, data, message } 结构。',
+      '该示例接口默认要求后端返回 { code, data, message } 结构。',
+      '如果当前项目没有接入示例后端，请改成你自己的接口，或参考 examples/mock 了解本地联调方式。',
     ].join(' ');
   }
 

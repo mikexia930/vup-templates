@@ -23,7 +23,6 @@ const emit = defineEmits<{
   keywordChange: [value: string];
   reload: [];
   resetFilters: [];
-  simulateError: [];
   toggleStatus: [task: DemoTask];
 }>();
 
@@ -108,9 +107,6 @@ function isTaskUpdating(taskId: DemoTask['id']) {
       <div class="flex flex-wrap gap-2">
         <VButton plain @click="emit('reload')">
           {{ t('demo.example.actions.reload') }}
-        </VButton>
-        <VButton plain @click="emit('simulateError')">
-          {{ t('demo.example.actions.simulateError') }}
         </VButton>
       </div>
     </div>

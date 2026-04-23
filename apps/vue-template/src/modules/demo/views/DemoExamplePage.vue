@@ -46,7 +46,6 @@ function handleKeywordChange(value: string) {
         @keyword-change="handleKeywordChange"
         @reload="demoTaskStore.loadTasks()"
         @reset-filters="demoTaskStore.resetFilters"
-        @simulate-error="demoTaskStore.loadTasks({ forceError: true })"
         @toggle-status="demoTaskStore.toggleTaskStatus"
       />
     </VCard>

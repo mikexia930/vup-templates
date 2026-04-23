@@ -61,7 +61,6 @@ export default {
     actions: {
       reload: 'Reload',
       retry: 'Retry',
-      simulateError: 'Simulate Error',
       resetFilters: 'Reset Filters',
       markDone: 'Mark Done',
       reopen: 'Reopen',
@@ -83,10 +82,10 @@ export default {
     state: {
       loading: {
         title: 'Loading Demo Data',
-        description: 'Task list is loading from module API mocks.',
+        description: 'Task list is loading from the module API.',
       },
       error: {
-        title: 'Request Failed',
+        title: 'Data request failed',
       },
       empty: {
         description: 'No tasks match current filters. Try reset filters.',

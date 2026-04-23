@@ -6,11 +6,11 @@ onMounted(() => {
   nextTick(() => {
     _microApp = loadMicroApp({
       name: 'vue-template',
-      entry: 'http://localhost:9301',
+      entry: 'http://localhost:9393',
       container: '#manual-app-container',
       props: {
         name: 'vue-template-manual',
-        baseRoute: '/manual/vue',
+        baseRoute: '/manual/',
         container: '#manual-app-container',
       },
     });
@@ -19,7 +19,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="p-6 space-y-4">
+  <section class="space-y-4 p-6">
     <header>
       <h1 class="text-xl font-semibold">手动加载示例</h1>
     </header>
