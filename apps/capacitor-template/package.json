@@ -30,9 +30,7 @@
     "@capacitor/core": "^7.6.0",
     "@capacitor/ios": "^7.4.3",
     "@capacitor/splash-screen": "^7.0.5",
-    "@ionic/vue-router": "^8.7.7",
-    "@vup/http": "workspace:*",
-    "@vup/ui-mobile": "workspace:*"
+    "@ionic/vue-router": "^8.7.7"
   },
   "devDependencies": {
     "@capacitor/cli": "^7.6.0"

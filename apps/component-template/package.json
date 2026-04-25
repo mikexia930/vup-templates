@@ -7,14 +7,14 @@
   "keywords": [],
   "author": "",
   "license": "MIT",
-  "main": "./.output/index.js",
-  "module": "./.output/index.mjs",
+  "main": "./.output/index.cjs",
+  "module": "./.output/index.es.js",
   "types": "./.output/index.d.ts",
   "exports": {
     ".": {
       "types": "./.output/index.d.ts",
-      "import": "./.output/index.mjs",
-      "require": "./.output/index.js"
+      "import": "./.output/index.es.js",
+      "require": "./.output/index.cjs"
     }
   },
   "files": [

@@ -1,3 +1,5 @@
+import path from 'node:path';
+
 import { defineConfig } from 'vitepress';
 
 // https://vitepress.dev/reference/site-config
@@ -98,7 +100,7 @@ export default defineConfig({
   vite: {
     resolve: {
       alias: {
-        '@_shared': '../../_shared',
+        '@_shared': path.resolve(__dirname, '../../../_shared'),
       },
     },
     server: {
@@ -109,6 +111,5 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     logo: '/images/vup.svg',
-    socialLinks: [{ icon: 'github', link: 'https://github.com/vuejs/vitepress' }],
   },
 });

@@ -24,7 +24,7 @@ import { getAccessToken, removeAccessToken } from '@/common/utils/tokenStorage';
 const request = createHttpClient({
   baseURL: import.meta.env.VITE_API_BASE || '',
   getAccessToken,
-  getLocale: () => 'en_US',
+  getLocale: () => 'en-US',
   // 401 时不在此处理（交给下面的拦截器统一管 refresh + 重放）
   // onUnauthorized 在 refresh 也失败的兜底里调用
   onResponseError: (error, message) => {

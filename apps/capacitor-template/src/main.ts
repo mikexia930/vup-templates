@@ -6,14 +6,12 @@ import { syncTokenFromStorage } from './api/request';
 import App from './App.vue';
 import i18n from './locales';
 import router from './router';
-import VMUI from '@vup/ui-mobile';
 
 async function bootstrap() {
   // 启动时把持久化的 token 加载到内存（移动端必须，详见 api/request.ts）
   await syncTokenFromStorage();
 
   const app = createApp(App);
-  app.use(VMUI);
   app.use(i18n);
   app.use(createPinia());
   app.use(router);

@@ -1,11 +1,32 @@
 import type { RouteRecordRaw } from 'vue-router';
+import type { ChildMode } from '@/qiankun/state';
 
-const routes: RouteRecordRaw[] = [
-  {
-    path: '/',
-    name: 'qiankun-intro',
-    component: () => import('@/views/IntroPage.vue'),
-  },
-];
+export function createRoutes(mode: ChildMode): RouteRecordRaw[] {
+  if (mode === 'auto') {
+    return [
+      {
+        path: '/',
+        name: 'qiankun-auto',
+        component: () => import('@/views/AutoPage.vue'),
+      },
+    ];
+  }
 
-export default routes;
+  if (mode === 'manual') {
+    return [
+      {
+        path: '/',
+        name: 'qiankun-manual',
+        component: () => import('@/views/ManualPage.vue'),
+      },
+    ];
+  }
+
+  return [
+    {
+      path: '/',
+      name: 'qiankun-intro',
+      component: () => import('@/views/IntroPage.vue'),
+    },
+  ];
+}

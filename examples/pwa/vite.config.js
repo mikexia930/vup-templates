@@ -1,8 +1,9 @@
 import path from 'node:path';
 
 import vue from '@vitejs/plugin-vue';
-import { createDefaultPwaIcons, createVupPwaPlugin } from '@vup/pwa';
 import { defineConfig } from 'vite';
+
+import { createDefaultPwaIcons, createVupPwaPlugin } from '../../packages/pwa/src/index.ts';
 
 export default defineConfig({
   root: '.',

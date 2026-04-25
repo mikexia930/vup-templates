@@ -43,9 +43,16 @@
   },
   {
     "name": "nuxt",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "description": "Web App Development Template",
     "path": "apps/nuxt-template",
+    "type": "app"
+  },
+  {
+    "name": "package",
+    "version": "1.0.0",
+    "description": "Pure TypeScript package template",
+    "path": "apps/package-template",
     "type": "app"
   },
   {

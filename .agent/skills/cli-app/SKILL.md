@@ -41,9 +41,9 @@ apps/<cli-app>/
 │   │   ├── file.ts                文件操作
 │   │   └── git.ts                 git 操作
 │   └── locales/                   多语言
-│       ├── zh_CN/
+│       ├── zh-CN/
 │       │   └── common.json
-│       └── en_US/
+│       └── en-US/
 │           └── common.json
 ├── bin/
 │   └── cli.js                     bin 入口（指向构建产物）
@@ -89,7 +89,20 @@ program
   .action(initCommand);
 ```
 
-### 3. 技术栈
+### 3. i18n
+
+语言目录与运行时语言标识统一使用 BCP 47 中划线格式：
+
+```
+src/locales/
+├── zh-CN/common.json
+└── en-US/common.json
+```
+
+`src/i18n.ts` 可以兼容读取系统环境里的 `zh_CN` / `en_US`，但内部
+`lng`、语言选择命令和新增文案目录都必须使用 `zh-CN` / `en-US`。
+
+### 4. 技术栈
 
 | 库           | 用途                |
 | ------------ | ------------------- |
@@ -101,7 +114,7 @@ program
 | `simple-git` | git 操作            |
 | `esbuild`    | 构建打包            |
 
-### 4. 构建 & 发布
+### 5. 构建 & 发布
 
 ```bash
 pnpm --filter <cli> dev           # 开发运行
@@ -112,7 +125,7 @@ pnpm --filter <cli> publish:beta  # 发布 beta 版
 
 产物输出到 `.output/`，`bin/cli.js` 指向构建产物。
 
-### 5. 错误处理
+### 6. 错误处理
 
 基座已有 Commander 错误拦截（`exitOverride`），覆盖：
 

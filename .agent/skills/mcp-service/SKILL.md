@@ -3,8 +3,9 @@ name: mcp-service
 description: >-
   Use when implementing MCP (Model Context Protocol) server services. Covers
   tool definition with defineTool, tool registration, auth guard, server
-  creation with Fastify + @modelcontextprotocol/sdk. Based on mcp-template which
-  provides a framework layer for rapid MCP development.
+  creation with Fastify + @modelcontextprotocol/sdk Streamable HTTP transport.
+  Based on mcp-template which provides a framework layer for rapid MCP
+  development.
 ---
 
 # mcp-service
@@ -29,7 +30,7 @@ description: >-
 
 ```
 apps/<mcp-service>/src/
-├── server.ts                  入口（创建 Fastify + MCP server）
+├── server.ts                  入口（创建 MCP server，通常只改配置）
 ├── framework/                 框架层（基座提供，通常不改）
 │   ├── index.ts               统一导出
 │   ├── createServer.ts        Fastify + MCP 集成
@@ -70,25 +71,33 @@ export const helloTool = defineTool({
 
 ```typescript
 // src/tools/index.ts
-import { registerTool } from '../framework';
 import { helloTool } from './demo';
 import { protectedTool } from './auth';
+import type { ToolDefinition } from '../framework';
 
-// 公开工具
-registerTool(helloTool);
-
-// 需要认证的工具
-registerTool(protectedTool, { requireAuth: true });
+export const TOOLS: ToolDefinition[] = [helloTool, protectedTool];
 ```
 
 ### 4. 认证守卫
 
-基座提供 `requireAuth` 中间件，用 Fastify JWT 校验：
+需要认证的工具在 `defineTool()` 中设置
+`requiresAuth: true`。远程 HTTP 模式下框架会从 `Authorization: Bearer <token>`
+解析 JWT，并把 `userId` 注入 `ToolContext`。
 
 ```typescript
-// 受保护的工具会自动校验 token
-// token 通过 MCP 请求的 meta 传入
-registerTool(myTool, { requireAuth: true });
+export const protectedTool = defineTool({
+  name: 'protected_tool',
+  description: '需要登录后调用的工具',
+  inputSchema: {
+    properties: {},
+  },
+  requiresAuth: true,
+  handler: async (_args, context) => {
+    return {
+      content: [{ type: 'text', text: `当前用户：${context.userId}` }],
+    };
+  },
+});
 ```
 
 ### 5. 启动模式
@@ -97,7 +106,7 @@ registerTool(myTool, { requireAuth: true });
 # 本地开发（stdio 模式，直接连接 AI 客户端）
 pnpm dev
 
-# 远程模式（HTTP，通过 Fastify 暴露）
+# 远程模式（Streamable HTTP，通过 Fastify 暴露 /mcp）
 pnpm dev:remote
 
 # 生产构建
@@ -118,8 +127,9 @@ pnpm start:remote    # HTTP 模式
 1. 与用户确认工具名称、描述、输入参数
 2. 在 `src/tools/` 新建文件，用 `defineTool` 定义
 3. 在 `src/tools/index.ts` 注册
-4. `pnpm dev` 本地测试
-5. 每完成一个工具 Gate 一次
+4. 在 `src/tools/index.ts` 的 `TOOLS` 数组中导出
+5. `pnpm dev` 本地测试；远程调用用 `pnpm dev:remote`
+6. 每完成一个工具 Gate 一次
 
 ## 关键决策点（AI 必须问用户）
 
@@ -127,6 +137,8 @@ pnpm start:remote    # HTTP 模式
 2. **认证**：哪些工具需要认证？认证方式（JWT token）？
 3. **部署模式**：stdio（本地）还是 HTTP（远程）？
 4. **外部依赖**：工具需要调用哪些外部 API / 数据库？
+5. **是否需要拆包**：可复用的纯 TS SDK / client / parser 应放到
+   `package-template`，MCP 模板只承载服务入口、工具定义和协议适配
 
 ## 产出位置
 

@@ -18,7 +18,7 @@ const request = createHttpClient({
   baseURL: import.meta.env.VITE_API_BASE || '',
   getAccessToken,
   // locale 实现见对应 stack skill 的 i18n 章节
-  getLocale: () => 'en_US',
+  getLocale: () => 'en-US',
   // 401 处理：清 token + 跳登录页（跳转方式见对应 stack skill 的 router 章节）
   onUnauthorized: () => {
     removeAccessToken();

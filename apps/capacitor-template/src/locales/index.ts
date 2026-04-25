@@ -1,16 +1,16 @@
 import { createI18n } from 'vue-i18n';
 
-import en_US from './en_US';
-import zh_CN from './zh_CN';
+import enUS from './en-US';
+import zhCN from './zh-CN';
 
 export default createI18n({
   legacy: false,
-  locale: 'en_US',
-  fallbackLocale: 'en_US',
+  locale: 'en-US',
+  fallbackLocale: 'en-US',
   allowComposition: true,
   globalInjection: true,
   messages: {
-    en_US,
-    zh_CN,
+    'en-US': enUS,
+    'zh-CN': zhCN,
   },
 });

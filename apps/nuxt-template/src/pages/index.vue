@@ -1,5 +1,5 @@
 <script setup lang="ts">
-await navigateTo('/demo/guide', { replace: true });
+await navigateTo('/demo', { replace: true });
 </script>
 
 <template>

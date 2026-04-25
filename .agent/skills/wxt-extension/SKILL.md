@@ -35,6 +35,20 @@ description: >-
 
 ## WXT 平台特有约定
 
+### 0. Demo 与目录边界
+
+模板面向用户新项目，默认保持低侵入：
+
+- `newtab` 可作为完整展示页，并按模块组织
+- `popup` 和 `options` 保持轻量，不承担复杂 demo
+- `background` 和 `content` 保留最小入口和必要注释
+- 跨多个 entrypoint 共享的能力放 `src/common/`
+- 只服务 newtab 展示页的内容放 `src/entrypoints/newtab/common/` 或
+  `newtab/modules/`
+- 不为了演示 props 或复用幻想强行抽象
+- UI 优先使用 Tailwind CSS 与 `_shared/assets/styles/theme` 语义 token
+- 默认不申请 `<all_urls>`，权限按需添加
+
 ### 1. Entrypoints（核心概念）
 
 WXT 用 entrypoints 目录组织各 context 入口：

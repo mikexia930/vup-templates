@@ -8,7 +8,7 @@
 - 🚀 **简化 API** - 使用 `defineTool()` 一行代码定义工具
 - 🔐 **自动认证** - 通过 `requiresAuth: true` 自动处理认证流程
 - 📦 **工具注册表** - 自动管理工具注册和调用
-- 🌐 **双模式支持** - STDIO（本地）和 SSE（远程）模式
+- 🌐 **双模式支持** - STDIO（本地）和 Streamable HTTP（远程）模式
 - 🎯 **类型安全** - 完整的 TypeScript 类型支持
 
 ## 🚀 快速开始
@@ -63,7 +63,7 @@ export const TOOLS = [my_tool];
 # STDIO 模式（本地，供 Cursor 直接调用）
 pnpm dev
 
-# SSE 模式（远程）
+# HTTP 模式（远程）
 pnpm dev:remote
 ```
 
@@ -126,7 +126,7 @@ createMcpServer(
   {
     name: 'mcp-server',
     version: '1.0.0',
-    mode: 'stdio', // 或 'sse'
+    mode: 'stdio', // 或 'sse'，模板内会走 Streamable HTTP 远程传输
     port: 9316,
     auth: {
       loginUrl: 'http://localhost:9316/login.html',
@@ -147,7 +147,7 @@ createMcpServer(
 pnpm dev
 ```
 
-### SSE 模式（远程）
+### HTTP 模式（远程）
 
 用于远程服务器部署：
 
@@ -157,15 +157,15 @@ pnpm dev:remote
 
 访问：
 
-- MCP 端点: `http://localhost:3000/mcp`
-- 登录页: `http://localhost:3000/login.html`
+- MCP 端点: `http://localhost:9316/mcp`
+- 登录页: `http://localhost:9316/login.html`
 
 ## 📁 项目结构
 
 ```
 mcp-template/
 ├── src/
-│   ├── framework/              # 框架核心
+│   ├── framework/              # 框架核心，业务通常不改
 │   │   ├── defineTool.ts      # 工具定义辅助函数
 │   │   ├── requireAuth.ts     # 认证处理
 │   │   ├── toolRegistry.ts    # 工具注册表
@@ -177,7 +177,7 @@ mcp-template/
 │   │   ├── public.ts          # 公开工具（简单示例）
 │   │   ├── demo.ts            # 示例工具（文档搜索，完整实现）
 │   │   └── index.ts           # 工具导出
-│   └── server.ts              # 服务器入口
+│   └── server.ts              # 服务器入口，通常只改配置
 ├── public/
 │   └── login.html             # 登录页面
 └── package.json
@@ -247,6 +247,18 @@ search_docs({ query: '前端', limit: 5 });
 - `demo.ts` 是一个完整的示例，展示如何实现复杂的工具逻辑
 - `public.ts` 是一个简单的示例，展示最基本的工具定义
 - 你可以参考 `demo.ts` 来实现自己的工具
+
+## 🧱 开发约定
+
+- 业务工具放在 `src/tools/`，用 `defineTool()` 定义。
+- 新增工具后，在 `src/tools/index.ts` 的 `TOOLS`
+  数组中导出，不需要改框架层注册逻辑。
+- 需要认证的工具在定义时设置
+  `requiresAuth: true`，不要在 handler 中重复写认证判断。
+- `src/framework/`
+  是模板框架层，除非要扩展 MCP 传输、认证或工具注册机制，否则业务功能不要修改。
+- 如果要抽出可复用的纯 TypeScript SDK / client / parser，优先拆到
+  `package-template`，不要塞进 MCP 服务模板。
 
 ## 🔐 认证机制
 

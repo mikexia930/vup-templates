@@ -1,69 +1,89 @@
 <script setup lang="ts">
-const route = useRoute();
-const { locale, t } = useI18n();
+import DemoFeatures from '../components/DemoFeatures.vue';
+import DemoHero from '../components/DemoHero.vue';
+import DemoQuickStart from '../components/DemoQuickStart.vue';
+import DemoRuntime from '../components/DemoRuntime.vue';
+import DemoStructure from '../components/DemoStructure.vue';
+import { useDemoRuntimeStore } from '../stores/useDemoRuntimeStore';
 
-const tabs = [
-  { name: 'demo-guide', to: '/demo/guide', labelKey: 'guide' },
-  { name: 'demo-example', to: '/demo/example', labelKey: 'example' },
+const { locale, t } = useI18n();
+const demoRuntimeStore = useDemoRuntimeStore();
+
+const navigationItems = [
+  { id: 'hero', labelKey: 'overview' },
+  { id: 'quickstart', labelKey: 'quickstart' },
+  { id: 'features', labelKey: 'features' },
+  { id: 'structure', labelKey: 'structure' },
+  { id: 'runtime', labelKey: 'runtime' },
 ] as const;
 
-const currentLocale = computed(() => locale.value);
+onMounted(() => {
+  const savedLocale = localStorage.getItem('locale');
+  if (savedLocale === 'zh-CN' || savedLocale === 'en-US') {
+    demoRuntimeStore.setLanguage(savedLocale);
+  }
+  locale.value = demoRuntimeStore.demoLanguage;
+  void demoRuntimeStore.loadRuntimeInfo();
+});
 
-function switchLanguage(language: 'en_US' | 'zh_CN') {
-  locale.value = language;
-}
-
-function isActiveRoute(routeName: string) {
-  return route.name === routeName;
+function scrollToSection(id: string) {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 </script>
 
 <template>
-  <div class="min-h-screen bg-slate-50 px-4 py-8">
-    <div class="mx-auto flex max-w-6xl flex-col gap-4">
-      <VCard shadow="never">
-        <div class="grid gap-3">
-          <h1 class="text-2xl font-semibold tracking-tight text-slate-900">
-            {{ t('demo.layout.title') }}
-          </h1>
-          <p class="text-sm leading-relaxed text-slate-600">
-            {{ t('demo.layout.description') }}
-          </p>
-        </div>
-      </VCard>
-
-      <VCard shadow="never">
-        <div
-          class="mb-5 flex flex-col gap-4 border-b border-slate-200 pb-5 lg:flex-row lg:items-center lg:justify-between"
+  <main class="bg-neutral-1 text-neutral-9 min-h-screen">
+    <header
+      class="border-neutral-3 bg-neutral-1/95 sticky top-0 z-10 border-b backdrop-blur-md backdrop-saturate-150"
+    >
+      <div
+        class="mx-auto flex min-h-[68px] w-full max-w-[1200px] items-center gap-4 px-6 max-[820px]:px-4"
+      >
+        <strong
+          class="text-neutral-8 mr-auto flex items-center gap-3 text-[19px] font-[850] whitespace-nowrap"
         >
-          <nav aria-label="Demo pages" class="flex flex-wrap gap-2">
-            <router-link v-for="tab in tabs" :key="tab.name" :to="tab.to">
-              <VButton :type="isActiveRoute(tab.name) ? 'primary' : 'default'" plain>
-                {{ t(`demo.layout.tabs.${tab.labelKey}`) }}
-              </VButton>
-            </router-link>
-          </nav>
+          <span
+            class="from-primary-5 to-info-5 text-neutral-0 grid size-[38px] place-items-center rounded-lg bg-linear-to-br text-[18px] font-[850]"
+          >
+            E
+          </span>
+          {{ t('demo.layout.title') }}
+        </strong>
+        <nav aria-label="Demo navigation" class="flex items-center gap-1 max-[820px]:hidden">
+          <button
+            v-for="item in navigationItems"
+            :key="item.id"
+            type="button"
+            class="text-neutral-7 hover:bg-primary-0 hover:text-primary-6 rounded-md px-3 py-2 text-sm font-semibold"
+            @click="scrollToSection(item.id)"
+          >
+            {{ t(`demo.layout.nav.${item.labelKey}`) }}
+          </button>
+        </nav>
+        <span class="bg-primary-0 text-primary-6 rounded-full px-3 py-1 text-xs font-bold"
+          >v2.0.0</span
+        >
+      </div>
+    </header>
 
-          <div class="flex gap-2">
-            <VButton
-              :plain="currentLocale !== 'en_US'"
-              :type="currentLocale === 'en_US' ? 'primary' : 'default'"
-              @click="switchLanguage('en_US')"
-            >
-              English
-            </VButton>
-            <VButton
-              :plain="currentLocale !== 'zh_CN'"
-              :type="currentLocale === 'zh_CN' ? 'primary' : 'default'"
-              @click="switchLanguage('zh_CN')"
-            >
-              中文
-            </VButton>
-          </div>
-        </div>
-
-        <router-view />
-      </VCard>
+    <div class="mx-auto w-full max-w-[1200px] px-6 max-[820px]:px-4">
+      <DemoHero id="hero" />
+      <DemoQuickStart />
+      <DemoFeatures />
+      <DemoStructure />
+      <DemoRuntime
+        :active-tab="demoRuntimeStore.activeTab"
+        :counter="demoRuntimeStore.counter"
+        :counter-history="demoRuntimeStore.counterHistory"
+        :demo-language="demoRuntimeStore.demoLanguage"
+        :is-loading-runtime="demoRuntimeStore.isLoadingRuntime"
+        :runtime-info="demoRuntimeStore.runtimeInfo"
+        @load-runtime-info="demoRuntimeStore.loadRuntimeInfo"
+        @reset-counter="demoRuntimeStore.resetCounter"
+        @set-active-tab="demoRuntimeStore.setActiveTab"
+        @set-language="demoRuntimeStore.setLanguage"
+        @update-counter="demoRuntimeStore.updateCounter"
+      />
     </div>
-  </div>
+  </main>
 </template>

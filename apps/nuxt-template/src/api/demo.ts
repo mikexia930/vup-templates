@@ -19,18 +19,9 @@ interface ListDemoTasksOptions {
 }
 
 export async function listDemoTasks(options: ListDemoTasksOptions = {}) {
-  return request<DemoTask[]>('/api/template-demo/tasks', {
+  return request<DemoTask[]>('/template-demo/tasks', {
     query: {
       forceError: options.forceError ? '1' : undefined,
-    },
-  });
-}
-
-export async function updateDemoTaskStatus(taskId: number, status: DemoTaskStatus) {
-  return request<DemoTask>(`/api/template-demo/tasks/${taskId}/status`, {
-    method: 'PATCH',
-    body: {
-      status,
     },
   });
 }

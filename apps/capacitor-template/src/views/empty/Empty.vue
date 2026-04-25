@@ -1,10 +1,4 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router';
-import { useI18n } from 'vue-i18n';
-
-const router = useRouter();
-const { t } = useI18n();
-
 const goBack = () => {
   router.go(-1);
 };
@@ -14,14 +8,14 @@ const goBack = () => {
   <div class="empty-page">
     <div class="empty-content">
       <div class="empty-icon">📄</div>
-      <h1>{{ t('empty.title') }}</h1>
-      <p>{{ t('empty.description') }}</p>
+      <h1>{{ t('common.empty.title') }}</h1>
+      <p>{{ t('common.empty.description') }}</p>
       <div class="empty-actions">
         <router-link to="/" class="back-button">
-          {{ t('empty.backHome') }}
+          {{ t('common.empty.backHome') }}
         </router-link>
         <button class="back-button secondary" @click="goBack">
-          {{ t('empty.goBack') }}
+          {{ t('common.empty.goBack') }}
         </button>
       </div>
     </div>
@@ -31,29 +25,29 @@ const goBack = () => {
 <style lang="scss" scoped>
 @reference 'tailwindcss';
 .empty-page {
-  @apply flex items-center justify-center min-h-full p-8;
+  @apply flex min-h-full items-center justify-center p-8;
 
   .empty-content {
     @apply text-center text-gray-900;
 
     .empty-icon {
-      @apply text-6xl mb-4 opacity-60;
+      @apply mb-4 text-6xl opacity-60;
     }
 
     h1 {
-      @apply text-3xl font-semibold mb-4 text-gray-900;
+      @apply mb-4 text-3xl font-semibold text-gray-900;
     }
 
     p {
-      @apply text-lg mb-8 text-gray-600 max-w-md mx-auto;
+      @apply mx-auto mb-8 max-w-md text-lg text-gray-600;
     }
 
     .empty-actions {
-      @apply flex gap-4 justify-center flex-wrap;
+      @apply flex flex-wrap justify-center gap-4;
 
       .back-button {
-        @apply px-6 py-3 rounded-lg font-medium no-underline;
-        @apply transition-all duration-200 focus:outline-none focus:ring-2;
+        @apply rounded-lg px-6 py-3 font-medium no-underline;
+        @apply transition-all duration-200 focus:ring-2 focus:outline-none;
 
         &:not(.secondary) {
           @apply bg-blue-600 text-white hover:bg-blue-700;
@@ -61,7 +55,7 @@ const goBack = () => {
         }
 
         &.secondary {
-          @apply bg-gray-100 text-gray-700 border border-gray-300;
+          @apply border border-gray-300 bg-gray-100 text-gray-700;
           @apply hover:bg-gray-200 focus:ring-gray-500;
         }
       }

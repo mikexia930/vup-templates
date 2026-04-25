@@ -4,6 +4,10 @@ export default createRouter({
   history: createWebHistory(),
   routes: [
     {
+      path: '/',
+      redirect: '/auto/',
+    },
+    {
       path: '/auto/:pathMatch(.*)*',
       component: () => import('@/views/auto/Index.vue'),
     },

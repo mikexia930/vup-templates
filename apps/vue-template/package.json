@@ -15,8 +15,5 @@
     "format": "prettier --write \"src/**/*.{js,ts,vue,json,css,scss}\"",
     "format:check": "prettier --check \"src/**/*.{js,ts,vue,json,css,scss}\""
   },
-  "dependencies": {
-    "@vup/http": "workspace:*",
-    "@vup/ui": "workspace:*"
-  }
+  "dependencies": {}
 }

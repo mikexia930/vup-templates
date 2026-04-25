@@ -1,0 +1,44 @@
+{
+  "name": "package",
+  "version": "1.0.0",
+  "description": "Pure TypeScript package template",
+  "private": true,
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "main": "./.output/index.cjs",
+  "module": "./.output/index.js",
+  "types": "./.output/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./.output/index.d.ts",
+      "import": "./.output/index.js",
+      "require": "./.output/index.cjs"
+    },
+    "./http": {
+      "types": "./.output/http/index.d.ts",
+      "import": "./.output/http/index.js",
+      "require": "./.output/http/index.cjs"
+    }
+  },
+  "files": [
+    "./.output"
+  ],
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint src/ --ext .ts,.js",
+    "lint:fix": "eslint src/ --ext .ts,.js --fix",
+    "format": "prettier --write \"src/**/*.{js,ts,json}\"",
+    "format:check": "prettier --check \"src/**/*.{js,ts,json}\"",
+    "prepublishOnly": "npm run build",
+    "publish:npm": "npm publish",
+    "publish:beta": "npm publish --tag beta"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "tsup": "^8.3.5"
+  }
+}

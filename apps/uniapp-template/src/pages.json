@@ -4,12 +4,14 @@
       "path": "pages/index/index",
       "name": "index",
       "style": {
+        "navigationStyle": "custom",
         "navigationBarTitleText": "uni-app"
       }
     }
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
+    "navigationStyle": "custom",
     "navigationBarTitleText": "uni-app",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"

@@ -1,6 +1,6 @@
 export default defineContentScript({
-  matches: ['*://*.google.com/*'],
+  matches: ['https://example.com/*'],
   main() {
-    console.log('Hello content.');
+    console.info('[wxt-template] content script loaded', window.location.href);
   },
 });

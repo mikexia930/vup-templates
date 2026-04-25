@@ -2,14 +2,15 @@
 name: capacitor-app
 description: >-
   Use when implementing features in capacitor-template projects (Capacitor +
-  Vue3 + Ionic Vue). Covers capacitor-specific concerns: native plugins, Ionic
-  Router, platform detection, iOS/Android build, PrivacyInfo.xcprivacy. For
+  Vue3). Covers capacitor-specific concerns: native plugins, Ionic Router,
+  platform detection, iOS/Android build, PrivacyInfo.xcprivacy. For
   cross-platform concerns, load the corresponding capability skills.
 ---
 
 # capacitor-app
 
-基于 `capacitor-template` 的移动端应用开发。**只管 Capacitor 平台特有的事**。
+基于 `capacitor-template`
+的 Capacitor 应用开发。**只管 Capacitor 平台特有的事**。
 
 ## 适用场景
 
@@ -32,7 +33,7 @@ description: >-
 | 登录 / 登出  | `auth-login`                                            |                        |
 | 路由守卫     | `auth-guard`（vue-router beforeEach）                   |                        |
 | API 文件组织 | `api-layer`                                             |                        |
-| UI 组件      | `vup-ui`（@vup/ui-mobile，VM\* 前缀）                   |                        |
+| UI 组件      | `vup-ui`（按需：@vup/ui-mobile，VM\* 前缀）             | demo 默认不依赖        |
 
 ## Capacitor 平台特有约定
 
@@ -51,7 +52,9 @@ export default createRouter({
 });
 ```
 
-页面容器用 `<VMRouterOutlet>` 而非 `<RouterView>`。
+基座可使用 Ionic Router Outlet（例如 `<VMRouterOutlet>`
+或项目封装后的等价组件）承载页面。业务 demo
+/ 页面内部不要为了展示模板能力而强行依赖 `VM*` 组件。
 
 ### 2. 原生插件
 
@@ -144,10 +147,13 @@ VITE_API_BASE=https://api.example.com
 
 1. 确认功能是否需要原生能力（相机 / 定位 / 推送 ...）
 2. 需要原生能力 → 安装对应 Capacitor 插件 + `cap sync`
-3. UI 使用 `VM*` 组件（Ionic Vue）
-4. 路由用 `@ionic/vue-router`
-5. 业务代码结构同 vue-app（modules / stores / api）
-6. 每完成一个文件 Gate 一次
+3. 路由用 `@ionic/vue-router`
+4. 业务代码结构同 vue-app（modules / views / components / stores / api / types /
+   locales）
+5. UI 方案按需求选择：模板 demo 使用原生 HTML/CSS；明确需要移动端组件库时再使用
+   `@vup/ui-mobile` 的 `VM*`
+6. 页面默认做响应式适配：桌面 Web 预览可用，窄屏再收敛为移动端布局
+7. 每完成一个文件 Gate 一次
 
 ## 关键决策点（AI 必须问用户）
 

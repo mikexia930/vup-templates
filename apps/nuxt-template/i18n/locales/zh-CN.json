@@ -1,124 +1,114 @@
 {
   "demo": {
-    "layout": {
-      "title": "Nuxt 模板演示",
-      "description": "该演示在遵循 Nuxt 目录约定的前提下，展示请求分层与 Element Plus Nuxt 模块集成方式。",
+    "nav": {
+      "quickstart": "快速开始",
+      "features": "特性",
+      "structure": "目录结构",
+      "runtime": "演示"
+    },
+    "hero": {
+      "badge": "SSR Ready",
+      "title": "Nuxt App\nTemplate",
+      "description": "基于 Nuxt 4 的应用模板，保留框架目录约定，同时展示文件路由、i18n、Pinia 状态、ofetch 请求分层和 MSW mock 集成。",
+      "primaryAction": "查看快速开始",
+      "secondaryAction": "查看目录结构"
+    },
+    "quickstart": {
+      "title": "快速开始",
+      "description": "使用 Nuxt 原生命令完成开发、SSR 构建、SSG 输出和质量检查。",
+      "items": {
+        "dev": {
+          "title": "开发预览",
+          "description": "启动支持 HMR 的 Nuxt 开发服务器。"
+        },
+        "build": {
+          "title": "SSR 构建",
+          "description": "构建生产环境 Nitro 服务端产物。"
+        },
+        "generate": {
+          "title": "静态输出",
+          "description": "当项目目标是 SSG 时生成静态页面。"
+        },
+        "lint": {
+          "title": "质量检查",
+          "description": "提交前运行 lint 检查。"
+        }
+      }
+    },
+    "features": {
+      "title": "核心能力",
+      "description": "展示 Nuxt 模板最应该优先说明的框架能力。",
+      "titles": {
+        "routing": "文件路由",
+        "i18n": "Nuxt i18n",
+        "pinia": "Pinia 状态",
+        "api": "ofetch 请求层",
+        "mock": "MSW Mock",
+        "modules": "Nuxt Modules"
+      },
+      "items": {
+        "routing": "页面保留在 src/pages 中，让路由继续遵守 Nuxt 框架约定。",
+        "i18n": "语言文件使用 BCP 47 命名，并由 Nuxt i18n 处理本地化路由。",
+        "pinia": "运行时交互状态放在 src/stores/demo 中，通过明确 action 流转。",
+        "api": "src/api/request.ts 封装 ofetch，业务请求放在 src/api/demo.ts。",
+        "mock": "共享 mock 包可在本地开发时拦截 /api/template-demo/*。",
+        "modules": "Pinia、i18n、Element Plus 通过 Nuxt modules 注册，不使用 app.use。"
+      }
+    },
+    "structure": {
+      "title": "目录结构",
+      "description": "Nuxt 保留框架目录，模块化通过 pages、components、stores、api 的边界体现。",
+      "table": {
+        "layer": "层级",
+        "directory": "目录",
+        "responsibility": "职责"
+      },
+      "layers": {
+        "pages": {
+          "badge": "Pages",
+          "directory": "src/pages",
+          "responsibility": "文件路由和页面组合。"
+        },
+        "components": {
+          "badge": "UI",
+          "directory": "src/components/demo",
+          "responsibility": "高内聚 demo 区块，展示数据放在组件内部。"
+        },
+        "state": {
+          "badge": "State",
+          "directory": "src/stores/demo",
+          "responsibility": "Pinia 运行时状态、action 和交互流。"
+        },
+        "api": {
+          "badge": "API",
+          "directory": "src/api",
+          "responsibility": "ofetch 适配、通用响应类型和业务接口函数。"
+        }
+      }
+    },
+    "runtime": {
+      "title": "运行时演示",
+      "description": "用轻量交互展示 Nuxt i18n、Pinia 状态和 API/mock 边界。",
       "tabs": {
-        "guide": "使用指引",
-        "example": "业务示例"
-      }
-    },
-    "guide": {
-      "quickStart": {
-        "title": "快速开始命令",
-        "items": {
-          "dev": { "description": "启动 Nuxt 开发服务，支持热更新。" },
-          "build": { "description": "构建 SSR 生产产物。" },
-          "generate": { "description": "生成静态站点（SSG）。" },
-          "lint": { "description": "提交前运行静态检查。" }
-        }
+        "i18n": "i18n",
+        "state": "状态",
+        "http": "请求"
       },
-      "firstEdit": {
-        "title": "推荐优先查看的文件",
-        "items": {
-          "config": "Nuxt 模块与运行时配置入口。",
-          "layout": "Demo 布局页（Tab 与语言切换）。",
-          "guide": "指引页（面向新用户的阅读入口）。",
-          "example": "示例页（连接 store 与组件）。",
-          "request": "基于 ofetch 的请求适配层。",
-          "store": "模块状态模型与异步动作边界。"
-        }
+      "i18n": {
+        "heading": "本地化 Nuxt 运行时",
+        "description": "语言切换通过 Nuxt i18n 完成，并同步更新本地化路由上下文。",
+        "current": "当前语言：中文（zh-CN）"
       },
-      "readOrder": {
-        "title": "推荐阅读顺序",
-        "items": {
-          "step1": "先看 nuxt.config.ts，了解模块和运行时配置。",
-          "step2": "再看 src/pages/demo.vue，理解 demo 布局入口。",
-          "step3": "再看 src/pages/demo/guide.vue 与 example.vue，理解页面职责。",
-          "step4": "再看 src/stores/demo/index.ts，理解状态流转。",
-          "step5": "最后看 src/api/request.ts 与 src/api/demo.ts，理解请求分层（接口前缀为 /api/template-demo/*）。"
-        }
-      }
-    },
-    "example": {
-      "title": "最小业务示例",
-      "description": "通过任务看板演示状态流转、筛选能力与模块职责边界。",
-      "searchPlaceholder": "按标题、描述或标签搜索",
-      "filters": {
-        "all": "全部",
-        "pending": "待处理",
-        "inProgress": "进行中",
-        "done": "已完成"
+      "counter": {
+        "reset": "重置",
+        "none": "暂无",
+        "history": "最近变化：{history}"
       },
-      "status": {
-        "pending": "待处理",
-        "inProgress": "进行中",
-        "done": "已完成"
-      },
-      "priority": {
-        "low": "低优先级",
-        "medium": "中优先级",
-        "high": "高优先级"
-      },
-      "actions": {
-        "reload": "重新加载",
-        "retry": "重试",
-        "simulateError": "模拟错误",
-        "resetFilters": "重置筛选",
-        "markDone": "标记完成",
-        "reopen": "重新打开",
-        "updating": "更新中..."
-      },
-      "fields": {
-        "title": "任务",
-        "owner": "负责人",
-        "updatedAt": "更新时间",
-        "tags": "标签",
-        "noTags": "无标签",
-        "actions": "操作"
-      },
-      "stats": {
-        "total": "总数",
-        "pending": "待处理",
-        "inProgress": "进行中",
-        "done": "已完成"
-      },
-      "state": {
-        "loading": {
-          "title": "正在加载示例数据",
-          "description": "任务列表正在从模块 API mock 数据源加载。"
-        },
-        "error": {
-          "title": "请求失败"
-        },
-        "empty": {
-          "description": "当前筛选条件下没有任务，可尝试重置筛选。"
-        }
-      },
-      "fileMap": {
-        "title": "文件职责映射",
-        "items": {
-          "page": {
-            "title": "src/pages/demo/example.vue",
-            "description": "负责页面分区组织，并连接 store 与组件。"
-          },
-          "component": {
-            "title": "src/components/demo/DemoTaskBoard.vue",
-            "description": "负责交互 UI 呈现，并通过事件向上层抛出动作。"
-          },
-          "store": {
-            "title": "src/stores/demo/index.ts",
-            "description": "负责状态、筛选、异步加载与任务状态流转。"
-          },
-          "api": {
-            "title": "src/api/demo.ts",
-            "description": "负责模块接口函数定义，靠近业务上下文（当前示例前缀：/api/template-demo/*）。"
-          },
-          "types": {
-            "title": "src/api/types.ts",
-            "description": "负责 API 通用响应类型定义。"
-          }
-        }
+      "http": {
+        "action": "加载 Mock 数据",
+        "loading": "加载中...",
+        "requestLine": "GET /api/template-demo/tasks",
+        "time": "ofetch 耗时 {duration}ms"
       }
     }
   }

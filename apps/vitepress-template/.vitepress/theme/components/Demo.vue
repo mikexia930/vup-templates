@@ -1,202 +1,151 @@
-<script setup>
+<script setup lang="ts">
 import { useData } from 'vitepress';
+import { computed } from 'vue';
 import { createI18n } from '../locales';
 
 const { lang } = useData();
 const { t } = createI18n(lang.value);
+
+const quickStartItems = [
+  { command: 'pnpm dev', key: 'dev', symbol: '▶' },
+  { command: 'pnpm build', key: 'build', symbol: '◆' },
+  { command: 'pnpm preview', key: 'preview', symbol: '◉' },
+];
+
+const capabilityItems = [
+  { key: 'markdown', symbol: 'MD' },
+  { key: 'frontmatter', symbol: 'FM' },
+  { key: 'i18n', symbol: '中' },
+  { key: 'theme', symbol: 'UI' },
+  { key: 'static', symbol: 'SSG' },
+  { key: 'search', symbol: '⌕' },
+];
+
+const structureRows = computed(() => [
+  {
+    layer: t('structure.rows.content.layer'),
+    path: 'src/index.md · src/docs.md',
+    responsibility: t('structure.rows.content.responsibility'),
+  },
+  {
+    layer: t('structure.rows.locale.layer'),
+    path: 'src/en/',
+    responsibility: t('structure.rows.locale.responsibility'),
+  },
+  {
+    layer: t('structure.rows.config.layer'),
+    path: '.vitepress/config.mts',
+    responsibility: t('structure.rows.config.responsibility'),
+  },
+  {
+    layer: t('structure.rows.theme.layer'),
+    path: '.vitepress/theme/',
+    responsibility: t('structure.rows.theme.responsibility'),
+  },
+]);
 </script>
 
 <template>
-  <div class="demo-container">
-    <!-- Quick Start Section -->
-    <div class="section-spacing">
-      <h2 class="section-title">
-        {{ t('quickstart.title') }}
-      </h2>
-      <div class="grid-layout">
-        <div class="card-item">
-          <div class="card-icon">🚀</div>
-          <h3 class="card-title">{{ t('quickstart.dev.title') }}</h3>
-          <p class="card-description">{{ t('quickstart.dev.description') }}</p>
-          <code class="code-block">pnpm dev</code>
-        </div>
-        <div class="card-item">
-          <div class="card-icon">🏗️</div>
-          <h3 class="card-title">{{ t('quickstart.build.title') }}</h3>
-          <p class="card-description">{{ t('quickstart.build.description') }}</p>
-          <code class="code-block">pnpm build</code>
-        </div>
-        <div class="card-item">
-          <div class="card-icon">🔍</div>
-          <h3 class="card-title">{{ t('quickstart.lint.title') }}</h3>
-          <p class="card-description">{{ t('quickstart.lint.description') }}</p>
-          <code class="code-block">pnpm lint</code>
-        </div>
-        <div class="card-item">
-          <div class="card-icon">✨</div>
-          <h3 class="card-title">{{ t('quickstart.format.title') }}</h3>
-          <p class="card-description">{{ t('quickstart.format.description') }}</p>
-          <code class="code-block">pnpm format</code>
-        </div>
+  <div
+    class="vitepress-demo mx-auto w-[min(1120px,calc(100%_-_48px))] py-[64px] max-[720px]:w-[calc(100%_-_32px)]"
+  >
+    <section class="mb-[64px]">
+      <div class="mb-[26px]">
+        <h2 class="leading-sm text-neutral-9 text-[28px] font-extrabold">
+          {{ t('quickstart.title') }}
+        </h2>
+        <p class="leading-lg text-neutral-6 mt-[8px] text-[16px]">
+          {{ t('quickstart.description') }}
+        </p>
       </div>
-    </div>
 
-    <!-- Tech Stack Section -->
-    <div class="section-spacing">
-      <h2 class="section-title">{{ t('techstack.title') }}</h2>
-      <p class="section-description">
-        {{ t('techstack.description') }}
-      </p>
-      <div class="tech-grid">
-        <div class="tech-item">
-          <div class="tech-icon">📚</div>
-          <div class="tech-content">
-            <h3 class="tech-name">VitePress</h3>
-            <p class="tech-desc">{{ t('techstack.vitepress.description') }}</p>
-            <a href="https://vitepress.dev" target="_blank" class="tech-link">{{
-              t('techstack.vitepress.link')
-            }}</a>
+      <div class="grid grid-cols-3 gap-[16px] max-[860px]:grid-cols-1">
+        <article
+          v-for="item in quickStartItems"
+          :key="item.key"
+          class="border-neutral-3 rounded-md border bg-white p-[22px]"
+        >
+          <div
+            class="bg-primary-0 text-primary-6 grid size-[42px] place-items-center rounded-md text-sm font-bold"
+          >
+            {{ item.symbol }}
           </div>
+          <h3 class="text-neutral-9 mt-[14px] text-[16px] font-bold">
+            {{ t(`quickstart.${item.key}.title`) }}
+          </h3>
+          <p class="leading-lg text-neutral-6 mt-[8px] text-sm">
+            {{ t(`quickstart.${item.key}.description`) }}
+          </p>
+          <code
+            class="bg-neutral-8 text-primary-0 mt-[16px] block rounded-md px-[10px] py-[9px] text-xs"
+          >
+            {{ item.command }}
+          </code>
+        </article>
+      </div>
+    </section>
+
+    <section class="mb-[64px]">
+      <div class="mb-[26px]">
+        <h2 class="leading-sm text-neutral-9 text-[28px] font-extrabold">
+          {{ t('capabilities.title') }}
+        </h2>
+        <p class="leading-lg text-neutral-6 mt-[8px] text-[16px]">
+          {{ t('capabilities.description') }}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-3 gap-[16px] max-[980px]:grid-cols-2 max-[640px]:grid-cols-1">
+        <article
+          v-for="item in capabilityItems"
+          :key="item.key"
+          class="border-neutral-3 rounded-md border bg-white p-[18px]"
+        >
+          <div class="flex items-center gap-[12px]">
+            <span
+              class="bg-primary-0 text-primary-6 grid size-[38px] place-items-center rounded-md text-xs font-bold"
+            >
+              {{ item.symbol }}
+            </span>
+            <h3 class="text-neutral-9 text-[16px] font-bold">
+              {{ t(`capabilities.items.${item.key}.title`) }}
+            </h3>
+          </div>
+          <p class="leading-lg text-neutral-6 mt-[12px] text-sm">
+            {{ t(`capabilities.items.${item.key}.description`) }}
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="mb-[26px]">
+        <h2 class="leading-sm text-neutral-9 text-[28px] font-extrabold">
+          {{ t('structure.title') }}
+        </h2>
+        <p class="leading-lg text-neutral-6 mt-[8px] text-[16px]">
+          {{ t('structure.description') }}
+        </p>
+      </div>
+
+      <div class="border-neutral-3 overflow-hidden rounded-xl border bg-white">
+        <div
+          class="bg-neutral-1 text-neutral-6 grid grid-cols-[0.8fr_1fr_1.4fr] px-[18px] py-[12px] text-sm font-bold max-[760px]:hidden"
+        >
+          <span>{{ t('structure.table.layer') }}</span>
+          <span>{{ t('structure.table.path') }}</span>
+          <span>{{ t('structure.table.responsibility') }}</span>
         </div>
-        <div class="tech-item">
-          <div class="tech-icon">📦</div>
-          <div class="tech-content">
-            <h3 class="tech-name">pnpm</h3>
-            <p class="tech-desc">{{ t('techstack.pnpm.description') }}</p>
-            <a href="https://pnpm.io" target="_blank" class="tech-link">{{
-              t('techstack.pnpm.link')
-            }}</a>
-          </div>
-        </div>
-        <div class="tech-item">
-          <div class="tech-icon">🔍</div>
-          <div class="tech-content">
-            <h3 class="tech-name">ESLint</h3>
-            <p class="tech-desc">{{ t('techstack.eslint.description') }}</p>
-            <a href="https://eslint.org" target="_blank" class="tech-link">{{
-              t('techstack.eslint.link')
-            }}</a>
-          </div>
-        </div>
-        <div class="tech-item">
-          <div class="tech-icon">✨</div>
-          <div class="tech-content">
-            <h3 class="tech-name">Prettier</h3>
-            <p class="tech-desc">{{ t('techstack.prettier.description') }}</p>
-            <a href="https://prettier.io" target="_blank" class="tech-link">{{
-              t('techstack.prettier.link')
-            }}</a>
-          </div>
-        </div>
-        <div class="tech-item">
-          <div class="tech-icon">🎨</div>
-          <div class="tech-content">
-            <h3 class="tech-name">SCSS</h3>
-            <p class="tech-desc">{{ t('techstack.scss.description') }}</p>
-            <a href="https://sass-lang.com" target="_blank" class="tech-link">{{
-              t('techstack.scss.link')
-            }}</a>
-          </div>
-        </div>
-        <div class="tech-item">
-          <div class="tech-icon">🎯</div>
-          <div class="tech-content">
-            <h3 class="tech-name">Tailwind CSS</h3>
-            <p class="tech-desc">{{ t('techstack.tailwind.description') }}</p>
-            <a href="https://tailwindcss.com" target="_blank" class="tech-link">{{
-              t('techstack.tailwind.link')
-            }}</a>
-          </div>
+        <div
+          v-for="row in structureRows"
+          :key="row.path"
+          class="border-neutral-3 grid grid-cols-[0.8fr_1fr_1.4fr] gap-[16px] border-t px-[18px] py-[14px] text-sm max-[760px]:grid-cols-1"
+        >
+          <strong class="text-neutral-9">{{ row.layer }}</strong>
+          <code class="text-primary-6 [overflow-wrap:anywhere]">{{ row.path }}</code>
+          <span class="leading-lg text-neutral-6">{{ row.responsibility }}</span>
         </div>
       </div>
-    </div>
+    </section>
   </div>
 </template>
-
-<style lang="scss" scoped>
-@reference 'tailwindcss';
-/* 主容器 */
-.demo-container {
-  @apply max-w-6xl mx-auto p-8;
-}
-
-/* 章节间距 */
-.section-spacing {
-  @apply mb-16;
-}
-
-/* 章节标题 */
-.section-title {
-  @apply text-3xl font-bold text-center text-slate-800;
-}
-
-/* 章节描述 */
-.section-description {
-  @apply text-lg text-slate-600 text-center mb-12;
-}
-
-/* 网格布局 */
-.grid-layout {
-  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6;
-}
-
-/* 卡片项目 */
-.card-item {
-  @apply flex flex-col items-center text-center p-6 bg-slate-50 rounded-2xl border border-slate-200 hover:shadow-lg hover:scale-105 transition-all duration-300;
-}
-
-/* 卡片图标 */
-.card-icon {
-  @apply text-4xl mb-4;
-}
-
-/* 卡片标题 */
-.card-title {
-  @apply text-xl font-semibold text-slate-900 mb-3;
-}
-
-/* 卡片描述 */
-.card-description {
-  @apply text-slate-600 mb-4;
-}
-
-/* 代码块 */
-.code-block {
-  @apply bg-slate-900 text-green-400 px-4 py-2 rounded-lg font-mono text-sm select-all;
-}
-
-/* 技术栈网格 */
-.tech-grid {
-  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6;
-}
-
-/* 技术栈项目 */
-.tech-item {
-  @apply flex items-start space-x-4 p-6 bg-white rounded-xl border border-slate-200 hover:shadow-lg hover:scale-105 transition-all duration-300;
-}
-
-/* 技术栈图标 */
-.tech-icon {
-  @apply text-3xl flex-shrink-0;
-}
-
-/* 技术栈内容 */
-.tech-content {
-  @apply flex-1;
-}
-
-/* 技术栈名称 */
-.tech-name {
-  @apply text-lg font-semibold text-slate-900 mb-2 pt-0 mt-0;
-}
-
-/* 技术栈描述 */
-.tech-desc {
-  @apply text-slate-600 text-sm mb-3;
-}
-
-/* 技术栈链接 */
-.tech-link {
-  @apply text-blue-600 hover:text-blue-800 font-medium text-sm;
-}
-</style>

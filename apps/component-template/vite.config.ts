@@ -22,7 +22,9 @@ export default defineConfig({
         index: resolve(__dirname, 'src/index.ts'),
       },
       name: 'ComponentLib',
-      fileName: (format: string, entryName: string) => `${entryName}.${format}.js`,
+      formats: ['es', 'cjs'],
+      fileName: (format: string, entryName: string) =>
+        format === 'es' ? `${entryName}.es.js` : `${entryName}.cjs`,
     },
     rollupOptions: {
       external: ['vue', 'vue-router', 'pinia'],

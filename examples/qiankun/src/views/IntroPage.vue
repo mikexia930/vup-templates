@@ -8,69 +8,39 @@ const modeLabel = computed(() =>
 </script>
 
 <template>
-  <main class="page">
-    <section class="card">
-      <p class="eyebrow">Example / qiankun</p>
-      <h1>qiankun sub-app example</h1>
-      <p class="lead">
-        This example keeps only the child-app lifecycle needed by <code>vite-plugin-qiankun</code>
-        and removes unrelated mock or PWA behavior.
+  <main
+    class="from-primary-0 to-neutral-1 grid min-h-screen place-items-center bg-linear-to-b p-[24px]"
+  >
+    <section
+      class="border-neutral-3 w-[min(760px,100%)] rounded-xl border bg-white p-[28px] shadow-sm"
+    >
+      <p class="text-primary-6 text-sm font-bold">Example / qiankun</p>
+      <h1 class="leading-xs text-neutral-9 mt-[8px] text-[36px] font-extrabold">
+        qiankun sub-app example
+      </h1>
+      <p class="leading-lg text-neutral-6 mt-[16px] text-[16px]">
+        This standalone page verifies that the child app can run by itself. When mounted by the host
+        template, the same app renders the auto or manual child route based on qiankun props.
       </p>
 
-      <ul class="facts">
-        <li><strong>Mode:</strong> {{ modeLabel }}</li>
-        <li><strong>Purpose:</strong> verify child mount / unmount integration</li>
-        <li><strong>Route shape:</strong> one intro page only</li>
-      </ul>
+      <dl class="mt-[24px] grid gap-[12px] text-sm">
+        <div class="bg-neutral-1 rounded-md p-[14px]">
+          <dt class="text-neutral-5 text-xs font-bold uppercase">mode</dt>
+          <dd class="text-neutral-9 mt-[6px] font-bold">{{ modeLabel }}</dd>
+        </div>
+        <div class="bg-neutral-1 rounded-md p-[14px]">
+          <dt class="text-neutral-5 text-xs font-bold uppercase">purpose</dt>
+          <dd class="text-neutral-6 mt-[6px]">
+            Verify standalone startup and qiankun child lifecycle compatibility.
+          </dd>
+        </div>
+        <div class="bg-neutral-1 rounded-md p-[14px]">
+          <dt class="text-neutral-5 text-xs font-bold uppercase">host routes</dt>
+          <dd class="text-neutral-6 mt-[6px]">
+            Mounted routes are selected by host props: auto or manual.
+          </dd>
+        </div>
+      </dl>
     </section>
   </main>
 </template>
-
-<style scoped>
-.page {
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  padding: 32px 16px;
-  background:
-    radial-gradient(circle at top right, rgba(16, 185, 129, 0.16), transparent 28%),
-    linear-gradient(180deg, #ecfdf5 0%, #f8fafc 100%);
-}
-
-.card {
-  width: min(760px, 100%);
-  padding: 32px;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.94);
-  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
-}
-
-.eyebrow {
-  margin: 0 0 8px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #059669;
-}
-
-h1 {
-  margin: 0;
-  font-size: 36px;
-  line-height: 1.1;
-  color: #0f172a;
-}
-
-.lead {
-  margin: 16px 0 0;
-  color: #334155;
-  line-height: 1.7;
-}
-
-.facts {
-  margin: 24px 0 0;
-  padding-left: 20px;
-  color: #0f172a;
-  line-height: 1.8;
-}
-</style>
