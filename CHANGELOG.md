@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.7.0](/compare/v3.6.1...v3.7.0) (2026-04-25)
+
+### Features
+
+- 优化模板的demo页面 de12b72
+
 # [](/compare/v3.6.0...vnull) (2026-04-23)
 
 ### Bug Fixes

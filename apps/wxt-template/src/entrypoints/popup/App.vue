@@ -1,170 +1,74 @@
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
+import { browser } from 'wxt/browser';
+import { getFeatureEnabled, setFeatureEnabled } from '@/common/extension-state';
 
 const isFeatureEnabled = ref(false);
 
-// 打开新标签页
-const openNewTab = () => {
-  chrome.tabs.create({ url: chrome.runtime.getURL('/newtab.html') });
-};
+async function openNewTab() {
+  await browser.tabs.create({ url: browser.runtime.getURL('/newtab.html') });
+}
 
-// 打开扩展设置页面
-const openOptions = () => {
-  chrome.runtime.openOptionsPage?.();
-};
+async function openOptions() {
+  await browser.runtime.openOptionsPage();
+}
 
-// 切换功能
-const toggleFeature = () => {
+async function toggleFeature() {
   isFeatureEnabled.value = !isFeatureEnabled.value;
-  chrome.storage.sync.set({ featureEnabled: isFeatureEnabled.value });
-};
+  await setFeatureEnabled(isFeatureEnabled.value);
+}
 
-// 显示信息
-const showInfo = () => {
-  alert('VUP 1.5x 扩展 - 基于 WXT + Vue 3 开发');
-};
-
-// 加载设置
-const loadSettings = () => {
-  chrome.storage.sync.get(['featureEnabled'], (result) => {
-    isFeatureEnabled.value = result.featureEnabled || false;
-  });
-};
-
-onMounted(() => {
-  loadSettings();
+onMounted(async () => {
+  isFeatureEnabled.value = await getFeatureEnabled();
 });
 </script>
 
 <template>
-  <div class="popup-container">
-    <!-- 成功消息 -->
-    <div class="success-section">
-      <div class="success-visual">
-        <img src="/wxt.svg" alt="WXT Logo" class="wxt-logo" />
-        <img src="@_shared/assets/images/vup.svg" alt="VUP Logo" class="vup-logo" />
-        <div class="speed-badge">×1.5</div>
+  <main class="bg-neutral-1 text-neutral-9 w-[360px] p-[18px]">
+    <header class="flex items-center gap-[12px]">
+      <span
+        class="bg-primary-5 grid size-[36px] place-items-center rounded-md text-sm font-bold text-white"
+        >W</span
+      >
+      <div>
+        <h1 class="leading-sm text-[18px] font-extrabold">WXT Template</h1>
+        <p class="text-neutral-6 text-sm">Popup entrypoint</p>
       </div>
-      <div class="success-text">
-        <div class="speed-title">
-          <span class="speed-left">VUP</span>
-          <span class="speed-arrow"> -> </span>
-          <span class="speed-right">1.5x</span>
+    </header>
+
+    <section class="border-neutral-3 mt-[18px] rounded-md border bg-white p-[14px]">
+      <div class="flex items-center justify-between gap-[16px]">
+        <div>
+          <h2 class="text-neutral-9 text-sm font-bold">Feature flag</h2>
+          <p class="leading-lg text-neutral-6 mt-[4px] text-xs">
+            Stored with browser.storage.local.
+          </p>
         </div>
-        <p class="success-description">跳过复杂配置，专注于浏览器扩展开发。</p>
-      </div>
-    </div>
-
-    <!-- 功能按钮 -->
-    <div class="action-buttons">
-      <button class="action-btn primary" @click="openNewTab">打开新标签页</button>
-      <button class="action-btn secondary" @click="openOptions">扩展设置</button>
-    </div>
-
-    <!-- 快速功能 -->
-    <div class="quick-actions">
-      <h3>快速功能</h3>
-      <div class="quick-buttons">
-        <button class="quick-btn" @click="toggleFeature">
-          {{ isFeatureEnabled ? '禁用' : '启用' }} 功能
+        <button
+          class="border-primary-5 text-primary-6 hover:bg-primary-0 inline-flex min-h-[34px] cursor-pointer items-center justify-center rounded-md border px-[12px] text-xs font-bold transition"
+          type="button"
+          @click="toggleFeature"
+        >
+          {{ isFeatureEnabled ? 'Enabled' : 'Disabled' }}
         </button>
-        <button class="quick-btn" @click="showInfo">查看信息</button>
       </div>
+    </section>
+
+    <div class="mt-[14px] grid grid-cols-2 gap-[10px]">
+      <button
+        class="bg-primary-5 hover:bg-primary-6 inline-flex min-h-[38px] cursor-pointer items-center justify-center rounded-md border-0 px-[14px] text-sm font-bold text-white transition"
+        type="button"
+        @click="openNewTab"
+      >
+        New Tab
+      </button>
+      <button
+        class="border-neutral-3 text-neutral-9 hover:border-primary-2 hover:text-primary-6 inline-flex min-h-[38px] cursor-pointer items-center justify-center rounded-md border bg-white px-[14px] text-sm font-bold transition"
+        type="button"
+        @click="openOptions"
+      >
+        Options
+      </button>
     </div>
-  </div>
+  </main>
 </template>
-
-<style lang="scss" scoped>
-@reference "tailwindcss";
-.popup-container {
-  width: 400px;
-  min-height: 500px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  padding: 20px;
-}
-
-.success-section {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.success-visual {
-  @apply flex items-center justify-center space-x-4 mb-6;
-  @apply relative;
-}
-
-.wxt-logo,
-.vup-logo {
-  @apply w-12 h-12;
-  @apply drop-shadow-lg;
-  @apply transition-transform duration-300 hover:scale-110;
-}
-
-.speed-badge {
-  @apply absolute -top-2 -right-2;
-  @apply bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-full;
-  @apply w-8 h-8 flex items-center justify-center;
-  @apply text-xs font-bold;
-  @apply shadow-md;
-}
-
-.speed-title {
-  @apply text-3xl font-extrabold mb-4;
-  @apply flex items-center justify-center;
-}
-
-.speed-left {
-  @apply text-blue-300;
-}
-
-.speed-arrow {
-  @apply text-white mx-2;
-}
-
-.speed-right {
-  @apply text-emerald-300;
-}
-
-.success-description {
-  @apply text-sm text-blue-100;
-}
-
-.action-buttons {
-  @apply flex flex-col space-y-3 mb-6;
-}
-
-.action-btn {
-  @apply px-6 py-3 rounded-full text-sm font-semibold;
-  @apply transition-all duration-300;
-  @apply shadow-md;
-}
-
-.action-btn.primary {
-  @apply bg-white text-blue-600 hover:bg-blue-50;
-}
-
-.action-btn.secondary {
-  @apply bg-emerald-500 text-white hover:bg-emerald-600;
-}
-
-.quick-actions {
-  @apply bg-white rounded-xl p-4;
-  @apply backdrop-blur-sm;
-}
-
-.quick-actions h3 {
-  @apply text-sm font-semibold mb-3 text-center;
-}
-
-.quick-buttons {
-  @apply flex flex-col space-y-2;
-}
-
-.quick-btn {
-  @apply px-4 py-2 rounded-lg text-xs font-medium;
-  @apply bg-white text-white;
-  @apply transition-all duration-300;
-}
-</style>

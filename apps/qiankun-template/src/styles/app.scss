@@ -1,0 +1,2 @@
+// 基座样式放在 HTML stylesheet 入口，避免 qiankun 启动后动态 style 注入顺序影响宿主样式。
+@use '@_shared/assets/styles/tailwind.scss';

@@ -1,19 +1,20 @@
 ---
 name: component-lib
 description: >-
-  Use when developing reusable component libraries or utility packages with
-  component-template (Vue3 + Vite library mode). Covers component structure,
-  typed props/emits, barrel exports, library build config, and npm publishing.
+  Use when developing reusable Vue component libraries with component-template
+  (Vue3 + Vite library mode). Covers component structure, typed props/emits,
+  barrel exports, library build config, and npm publishing.
 ---
 
 # component-lib
 
-基于 `component-template` 的组件库 / 工具库开发。**可发布到 npm 的独立包**。
+基于 `component-template` 的 Vue 组件库开发。**只处理 Vue SFC 组件库**。
+`http`、`socket`、`storage`、`utils`、SDK 这类纯 TypeScript 基建包使用
+`package-template`。
 
 ## 适用场景
 
 - 可复用 Vue 组件库
-- 纯 TypeScript 工具库
 - 业务组件抽离成独立包
 - 对应目录：`apps/<component-lib>/`
 
@@ -38,10 +39,6 @@ apps/<component-lib>/
 │   │       ├── <Name>.ts          组件逻辑（可选，复杂组件拆出）
 │   │       ├── types.ts           Props / Emits 类型
 │   │       └── index.ts           组件入口（导出组件 + 类型）
-│   └── libs/                      纯 TS 工具
-│       ├── index.ts               工具统一导出
-│       └── <util>/
-│           └── index.ts
 ├── package.json                   含 exports / types / main 字段
 └── vite.config.ts                 Vite library mode 构建
 ```
@@ -85,11 +82,9 @@ defineEmits<{
 
 ```typescript
 // src/components/index.ts — barrel 导出
-export { default as VInput } from './Input/Input.vue';
-export type { InputProps, InputEmit } from './Input/types';
+export * from './Input';
 
 // src/index.ts — 总入口
-export * from './libs';
 export * from './components';
 ```
 
@@ -97,14 +92,14 @@ export * from './components';
 
 ```json
 {
-  "main": "./.output/index.js",
-  "module": "./.output/index.mjs",
+  "main": "./.output/index.cjs",
+  "module": "./.output/index.es.js",
   "types": "./.output/index.d.ts",
   "exports": {
     ".": {
       "types": "./.output/index.d.ts",
-      "import": "./.output/index.mjs",
-      "require": "./.output/index.js"
+      "import": "./.output/index.es.js",
+      "require": "./.output/index.cjs"
     }
   },
   "peerDependencies": {
@@ -115,7 +110,7 @@ export * from './components';
 
 - `peerDependencies`：Vue 是 peer，不打包进产物
 - `types`：指向类型声明入口
-- `exports`：双格式（ESM + CJS）
+- `exports`：必须和 Vite 实际产物一致（默认 ESM + CJS）
 
 ### 5. 构建 & 发布
 
@@ -139,7 +134,7 @@ pnpm --filter <component> publish:beta  # 发布 beta 版
 
 ## 关键决策点（AI 必须问用户）
 
-1. **组件还是工具库**：Vue 组件 / 纯 TS 工具 / 两者都有？
+1. **是否确定是 Vue 组件库**：如果是纯 TS 基建包，切换到 `package-template`
 2. **是否发布 npm**：公开包还是 monorepo 内部使用（`workspace:*`）？
 3. **是否需要样式**：组件带样式还是 headless（只提供逻辑）？
 4. **依赖策略**：Vue 是 peer，还有其他 peer dependencies？
@@ -147,7 +142,6 @@ pnpm --filter <component> publish:beta  # 发布 beta 版
 ## 产出位置
 
 - 组件：`apps/<component>/src/components/<Name>/`
-- 工具：`apps/<component>/src/libs/<util>/`
 - 导出入口：`apps/<component>/src/index.ts`
 
 ## 资源

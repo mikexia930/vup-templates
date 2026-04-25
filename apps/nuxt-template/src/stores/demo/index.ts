@@ -1,119 +1,68 @@
-import { listDemoTasks, updateDemoTaskStatus } from '~/api/demo';
-import type { DemoTask as DemoTaskModel, DemoTaskPriority, DemoTaskStatus } from '~/api/demo';
+import { listDemoTasks } from '~/api/demo';
+import type { DemoTask } from '~/api/demo';
 
-export type DemoTask = DemoTaskModel;
-export type { DemoTaskPriority, DemoTaskStatus };
-export type DemoTaskFilter = 'all' | DemoTaskStatus;
+export type DemoLanguage = 'en-US' | 'zh-CN';
+export type DemoRuntimeTab = 'i18n' | 'state' | 'http';
 
-export interface DemoTaskStats {
-  total: number;
-  pending: number;
-  inProgress: number;
-  done: number;
+export interface DemoTaskResponse {
+  duration: number;
+  items: DemoTask[];
+  status: string;
 }
 
-interface LoadDemoTasksOptions {
-  forceError?: boolean;
-}
+export const useDemoRuntimeStore = defineStore('demo-runtime', () => {
+  const activeTab = ref<DemoRuntimeTab>('i18n');
+  const counter = ref(0);
+  const counterHistory = ref<string[]>([]);
+  const demoLanguage = ref<DemoLanguage>('en-US');
+  const isRequesting = ref(false);
+  const taskResponse = ref<DemoTaskResponse | null>(null);
 
-function getNextStatus(status: DemoTaskStatus): DemoTaskStatus {
-  if (status === 'done') return 'pending';
-  return 'done';
-}
+  function setActiveTab(tab: DemoRuntimeTab) {
+    activeTab.value = tab;
+  }
 
-export const useDemoTaskStore = defineStore('demo-task', () => {
-  const items = ref<DemoTask[]>([]);
-  const keyword = ref('');
-  const statusFilter = ref<DemoTaskFilter>('all');
-  const isListLoading = ref(false);
-  const updatingTaskIds = ref<number[]>([]);
-  const errorMessage = ref('');
-  const hasLoaded = ref(false);
+  function setLanguage(language: DemoLanguage) {
+    demoLanguage.value = language;
+  }
 
-  const filteredItems = computed(() => {
-    const normalizedKeyword = keyword.value.trim().toLowerCase();
+  function updateCounter(delta: number) {
+    counter.value += delta;
+    counterHistory.value = [`${delta > 0 ? '+' : ''}${delta}`, ...counterHistory.value].slice(0, 5);
+  }
 
-    return items.value.filter((item) => {
-      const matchesStatus = statusFilter.value === 'all' || item.status === statusFilter.value;
-      const matchesKeyword =
-        !normalizedKeyword ||
-        item.title.toLowerCase().includes(normalizedKeyword) ||
-        item.summary.toLowerCase().includes(normalizedKeyword) ||
-        item.tags.some((tag) => tag.toLowerCase().includes(normalizedKeyword));
+  function resetCounter() {
+    counter.value = 0;
+    counterHistory.value = [];
+  }
 
-      return matchesStatus && matchesKeyword;
-    });
-  });
-
-  const stats = computed<DemoTaskStats>(() => ({
-    done: items.value.filter((item) => item.status === 'done').length,
-    inProgress: items.value.filter((item) => item.status === 'in_progress').length,
-    pending: items.value.filter((item) => item.status === 'pending').length,
-    total: items.value.length,
-  }));
-
-  const isEmpty = computed(
-    () => !isListLoading.value && !errorMessage.value && filteredItems.value.length === 0
-  );
-
-  async function loadTasks(options: LoadDemoTasksOptions = {}) {
-    isListLoading.value = true;
-    errorMessage.value = '';
+  async function loadTasks() {
+    const startedAt = performance.now();
+    isRequesting.value = true;
 
     try {
-      items.value = await listDemoTasks(options);
-      hasLoaded.value = true;
-    } catch (error) {
-      items.value = [];
-      errorMessage.value = error instanceof Error ? error.message : 'Load demo tasks failed.';
+      const items = await listDemoTasks();
+      taskResponse.value = {
+        duration: Math.round(performance.now() - startedAt),
+        items: items.slice(0, 3),
+        status: '200 OK',
+      };
     } finally {
-      isListLoading.value = false;
+      isRequesting.value = false;
     }
-  }
-
-  async function toggleTaskStatus(task: DemoTask) {
-    if (updatingTaskIds.value.includes(task.id)) return;
-
-    updatingTaskIds.value = [...updatingTaskIds.value, task.id];
-
-    try {
-      const updatedTask = await updateDemoTaskStatus(task.id, getNextStatus(task.status));
-      items.value = items.value.map((item) => (item.id === updatedTask.id ? updatedTask : item));
-    } catch (error) {
-      errorMessage.value = error instanceof Error ? error.message : 'Update task status failed.';
-    } finally {
-      updatingTaskIds.value = updatingTaskIds.value.filter((id) => id !== task.id);
-    }
-  }
-
-  function setKeyword(value: string) {
-    keyword.value = value;
-  }
-
-  function setStatusFilter(value: DemoTaskFilter) {
-    statusFilter.value = value;
-  }
-
-  function resetFilters() {
-    keyword.value = '';
-    statusFilter.value = 'all';
   }
 
   return {
-    errorMessage,
-    filteredItems,
-    hasLoaded,
-    isEmpty,
-    isListLoading,
-    items,
-    keyword,
+    activeTab,
+    counter,
+    counterHistory,
+    demoLanguage,
+    isRequesting,
     loadTasks,
-    resetFilters,
-    setKeyword,
-    setStatusFilter,
-    stats,
-    statusFilter,
-    toggleTaskStatus,
-    updatingTaskIds,
+    resetCounter,
+    setActiveTab,
+    setLanguage,
+    taskResponse,
+    updateCounter,
   };
 });

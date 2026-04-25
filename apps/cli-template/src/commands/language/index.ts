@@ -3,8 +3,8 @@ import i18next from '../../i18n';
 import Logger from '../../utils/logger';
 
 const LANGUAGES = [
-  { title: 'English', value: 'en_US' },
-  { title: '中文', value: 'zh_CN' },
+  { title: 'English', value: 'en-US' },
+  { title: '中文', value: 'zh-CN' },
 ];
 /**
  * 处理语言切换

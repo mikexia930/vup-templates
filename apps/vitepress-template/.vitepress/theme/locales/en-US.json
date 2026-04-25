@@ -1,28 +1,59 @@
 {
   "quickstart": {
     "title": "Quick Start",
+    "description": "Use VitePress-native commands for authoring, static build, and local preview.",
     "dev": {
       "title": "Development Server",
       "description": "Start development server with hot reload"
     },
     "build": { "title": "Build Project", "description": "Build for production" },
-    "lint": { "title": "Code Linting", "description": "Run ESLint to check code quality" },
-    "format": { "title": "Code Formatting", "description": "Format code with Prettier" }
+    "preview": { "title": "Preview Output", "description": "Preview the static build locally" }
   },
-  "techstack": {
-    "title": "Tech Stack",
-    "description": "Built with modern technologies, ready to use out of the box",
-    "vitepress": {
-      "description": "Static site generator powered by Vite",
-      "link": "VitePress Docs"
-    },
-    "pnpm": { "description": "Fast, disk space efficient package manager", "link": "pnpm Docs" },
-    "eslint": { "description": "Pluggable JavaScript linting utility", "link": "ESLint Docs" },
-    "prettier": { "description": "Code formatter", "link": "Prettier Docs" },
-    "scss": {
-      "description": "CSS preprocessor that extends CSS capabilities",
-      "link": "SCSS Docs"
-    },
-    "tailwind": { "description": "Utility-first CSS framework", "link": "Tailwind CSS Docs" }
+  "capabilities": {
+    "title": "Template Capabilities",
+    "description": "The boundaries a documentation template should demonstrate first.",
+    "items": {
+      "markdown": {
+        "title": "Markdown Pages",
+        "description": "Markdown files under src automatically become site routes."
+      },
+      "frontmatter": {
+        "title": "Frontmatter Home",
+        "description": "The home page declares hero, actions, and content entry through VitePress frontmatter."
+      },
+      "i18n": {
+        "title": "Bilingual Content",
+        "description": "Root pages are Chinese; src/en keeps the English version."
+      },
+      "theme": {
+        "title": "Theme Extension",
+        "description": ".vitepress/theme extends the default theme and registers global components."
+      },
+      "static": {
+        "title": "Static Build",
+        "description": "Build output goes to .output and can be deployed to static hosting."
+      },
+      "search": {
+        "title": "Local Search",
+        "description": "VitePress local search is configured for Chinese and English."
+      }
+    }
+  },
+  "structure": {
+    "title": "Directory Structure",
+    "description": "Content, config, and theme extension stay separated for a clean docs-site baseline.",
+    "table": { "layer": "Layer", "path": "Path", "responsibility": "Responsibility" },
+    "rows": {
+      "content": { "layer": "Content", "responsibility": "Chinese home and documentation pages." },
+      "locale": { "layer": "English", "responsibility": "English home and documentation pages." },
+      "config": {
+        "layer": "Config",
+        "responsibility": "Site title, nav, sidebar, search, and locales."
+      },
+      "theme": {
+        "layer": "Theme",
+        "responsibility": "Default theme extension, component registration, and theme-token mapping."
+      }
+    }
   }
 }

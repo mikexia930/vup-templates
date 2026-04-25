@@ -1,124 +1,114 @@
 {
   "demo": {
-    "layout": {
-      "title": "Nuxt Template Demo",
-      "description": "Nuxt demo keeps framework conventions while showing API layering and Element Plus Nuxt module integration.",
+    "nav": {
+      "quickstart": "Quick Start",
+      "features": "Features",
+      "structure": "Structure",
+      "runtime": "Demo"
+    },
+    "hero": {
+      "badge": "SSR Ready",
+      "title": "Nuxt App\nTemplate",
+      "description": "A Nuxt 4 template that keeps framework conventions while demonstrating file routing, i18n, Pinia state, ofetch API layering, and MSW mock integration.",
+      "primaryAction": "View Quick Start",
+      "secondaryAction": "View Structure"
+    },
+    "quickstart": {
+      "title": "Quick Start",
+      "description": "Use Nuxt-native commands for development, SSR build, SSG output, and quality checks.",
+      "items": {
+        "dev": {
+          "title": "Development",
+          "description": "Start the Nuxt dev server with HMR."
+        },
+        "build": {
+          "title": "SSR Build",
+          "description": "Build the production Nitro server output."
+        },
+        "generate": {
+          "title": "Static Output",
+          "description": "Generate static pages when the project targets SSG."
+        },
+        "lint": {
+          "title": "Quality Gate",
+          "description": "Run lint checks before shipping changes."
+        }
+      }
+    },
+    "features": {
+      "title": "Core Capabilities",
+      "description": "Show the Nuxt-specific capabilities this template should teach first.",
+      "titles": {
+        "routing": "File Routing",
+        "i18n": "Nuxt i18n",
+        "pinia": "Pinia State",
+        "api": "ofetch Layer",
+        "mock": "MSW Mock",
+        "modules": "Nuxt Modules"
+      },
+      "items": {
+        "routing": "Pages stay in src/pages so routing remains framework-native and predictable.",
+        "i18n": "Language files use BCP 47 names and Nuxt i18n handles localized routes.",
+        "pinia": "Runtime interaction state lives in src/stores/demo with explicit actions.",
+        "api": "src/api/request.ts wraps ofetch while business calls stay in src/api/demo.ts.",
+        "mock": "The shared mock package can intercept /api/template-demo/* during local development.",
+        "modules": "Pinia, i18n, and Element Plus are registered as Nuxt modules, not app.use calls."
+      }
+    },
+    "structure": {
+      "title": "Directory Structure",
+      "description": "Nuxt keeps its framework directories; modularity is expressed through pages, components, stores, and api boundaries.",
+      "table": {
+        "layer": "Layer",
+        "directory": "Directory",
+        "responsibility": "Responsibility"
+      },
+      "layers": {
+        "pages": {
+          "badge": "Pages",
+          "directory": "src/pages",
+          "responsibility": "File-system routing and page composition."
+        },
+        "components": {
+          "badge": "UI",
+          "directory": "src/components/demo",
+          "responsibility": "High-cohesion demo sections with internal display data."
+        },
+        "state": {
+          "badge": "State",
+          "directory": "src/stores/demo",
+          "responsibility": "Pinia runtime state, actions, and interaction flow."
+        },
+        "api": {
+          "badge": "API",
+          "directory": "src/api",
+          "responsibility": "ofetch adapter, shared response types, and business API calls."
+        }
+      }
+    },
+    "runtime": {
+      "title": "Runtime Demo",
+      "description": "Small interactions showing Nuxt i18n, Pinia state, and API/mock boundaries.",
       "tabs": {
-        "guide": "Guide",
-        "example": "Example"
-      }
-    },
-    "guide": {
-      "quickStart": {
-        "title": "Quick Start Commands",
-        "items": {
-          "dev": { "description": "Start Nuxt dev server with HMR." },
-          "build": { "description": "Build production SSR output." },
-          "generate": { "description": "Generate static site output (SSG)." },
-          "lint": { "description": "Run lint checks before commit." }
-        }
+        "i18n": "i18n",
+        "state": "State",
+        "http": "Request"
       },
-      "firstEdit": {
-        "title": "Recommended First Edit Locations",
-        "items": {
-          "config": "Nuxt modules and runtime config entry.",
-          "layout": "Demo layout with tab and locale controls.",
-          "guide": "Guide page for onboarding and conventions.",
-          "example": "Business example page that wires store and component.",
-          "request": "Nuxt request adapter based on ofetch.",
-          "store": "Module state model and async action boundaries."
-        }
+      "i18n": {
+        "heading": "Localized Nuxt Runtime",
+        "description": "Switching language goes through Nuxt i18n and updates the localized route context.",
+        "current": "Current language: English (en-US)"
       },
-      "readOrder": {
-        "title": "Suggested Read Order",
-        "items": {
-          "step1": "Read nuxt.config.ts to understand module/runtime setup.",
-          "step2": "Read src/pages/demo.vue for layout and route shell.",
-          "step3": "Read src/pages/demo/guide.vue and example.vue for page responsibilities.",
-          "step4": "Read src/stores/demo/index.ts for state and flow.",
-          "step5": "Read src/api/request.ts and src/api/demo.ts for API layering (endpoint prefix: /api/template-demo/*)."
-        }
-      }
-    },
-    "example": {
-      "title": "Minimal Business Example",
-      "description": "A task board demo to illustrate status transitions, filters, and module boundaries.",
-      "searchPlaceholder": "Search by title, summary, or tag",
-      "filters": {
-        "all": "All",
-        "pending": "Pending",
-        "inProgress": "In Progress",
-        "done": "Done"
+      "counter": {
+        "reset": "Reset",
+        "none": "none",
+        "history": "Recent changes: {history}"
       },
-      "status": {
-        "pending": "Pending",
-        "inProgress": "In Progress",
-        "done": "Done"
-      },
-      "priority": {
-        "low": "Low Priority",
-        "medium": "Medium Priority",
-        "high": "High Priority"
-      },
-      "actions": {
-        "reload": "Reload",
-        "retry": "Retry",
-        "simulateError": "Simulate Error",
-        "resetFilters": "Reset Filters",
-        "markDone": "Mark Done",
-        "reopen": "Reopen",
-        "updating": "Updating..."
-      },
-      "fields": {
-        "title": "Task",
-        "owner": "Owner",
-        "updatedAt": "Updated At",
-        "tags": "Tags",
-        "noTags": "No tags",
-        "actions": "Actions"
-      },
-      "stats": {
-        "total": "Total",
-        "pending": "Pending",
-        "inProgress": "In Progress",
-        "done": "Done"
-      },
-      "state": {
-        "loading": {
-          "title": "Loading Demo Data",
-          "description": "Task list is loading from module API mocks."
-        },
-        "error": {
-          "title": "Request Failed"
-        },
-        "empty": {
-          "description": "No tasks match current filters. Try reset filters."
-        }
-      },
-      "fileMap": {
-        "title": "File Responsibility Map",
-        "items": {
-          "page": {
-            "title": "src/pages/demo/example.vue",
-            "description": "Compose sections and connect store state with UI component."
-          },
-          "component": {
-            "title": "src/components/demo/DemoTaskBoard.vue",
-            "description": "Render interaction UI and expose events to page/store."
-          },
-          "store": {
-            "title": "src/stores/demo/index.ts",
-            "description": "Handle state, filtering, async loading, and status transitions."
-          },
-          "api": {
-            "title": "src/api/demo.ts",
-            "description": "Define module API functions close to business context (current demo prefix: /api/template-demo/*)."
-          },
-          "types": {
-            "title": "src/api/types.ts",
-            "description": "Provide shared response types for API layer."
-          }
-        }
+      "http": {
+        "action": "Load Mock Data",
+        "loading": "Loading...",
+        "requestLine": "GET /api/template-demo/tasks",
+        "time": "{duration}ms via ofetch"
       }
     }
   }

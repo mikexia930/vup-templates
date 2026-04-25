@@ -1,11 +1,15 @@
 # qiankun Example
 
-`examples/qiankun` 是一个只演示 qiankun 子应用接入的最小 Vue 示例。
+`examples/qiankun` 是 qiankun 子应用接入示例，用于配合 `apps/qiankun-template`
+验证挂载、路由 base、状态下发和子应用上报。
 
 ## 说明
 
 - 保留 `renderWithQiankun()` 和子应用生命周期
-- 保留一个单页路由，方便独立运行和被宿主挂载时都能看清状态
+- 独立运行时展示 standalone 页面
+- 被基座挂载时，根据 `props.mode` 渲染自动加载页或手动加载页
+- 通过 `props.onGlobalStateChange()` 接收基座状态
+- 通过 `props.setGlobalState()` 上报子应用交互
 - 不再混入 mock、PWA、UI demo 逻辑
 
 ## 启动
@@ -24,4 +28,7 @@ pnpm --filter example-qiankun dev
 
 - `vite.config.js`：通过 `vite-plugin-qiankun` 注册子应用
 - `src/main.ts`：处理独立运行和被宿主挂载两种入口
-- `src/views/IntroPage.vue`：展示当前是否运行在 qiankun 环境
+- `src/qiankun/state.ts`：保存基座传入状态和上报方法
+- `src/views/IntroPage.vue`：独立运行页面
+- `src/views/AutoPage.vue`：自动加载模式页面
+- `src/views/ManualPage.vue`：手动加载模式页面

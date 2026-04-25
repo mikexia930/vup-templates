@@ -104,11 +104,59 @@ src/layouts/
 └── AdminLayout.vue     侧边栏 + 顶栏 + 内容区
 ```
 
-### 6. i18n
+### 6. i18n（模块化自动聚合）
 
-- 全局文案：`src/locales/`
-- 模块文案：`src/modules/<name>/locales/`（跟模块走）
-- 使用 `vue-i18n`，auto-import 后直接 `const { t } = useI18n()`
+#### 目录结构
+
+```
+src/locales/
+├── index.ts              # i18n 实例
+├── zh-CN.ts              # 聚合器：common + 自动扫描 modules/*
+├── en-US.ts
+└── common/               # 全局通用文案（命名空间 `common`）
+    ├── zh-CN.ts
+    └── en-US.ts
+
+src/modules/<name>/locales/   # 模块文案（命名空间 = 模块名，自动注册）
+├── zh-CN.ts
+└── en-US.ts
+```
+
+#### 命名空间约定
+
+| 文案位置                               | 调用方式                      |
+| -------------------------------------- | ----------------------------- |
+| `src/locales/common/<lang>.ts`         | `t('common.xxx')`             |
+| `src/modules/<name>/locales/<lang>.ts` | `t('<name>.xxx')`（自动注册） |
+
+聚合器使用 `import.meta.glob('../modules/*/locales/<lang>.ts')`
+编译期静态扫描，**新增模块零改动自动生效**。
+
+#### 文件命名规范
+
+**必须用 BCP 47 中划线格式**：`zh-CN.ts` /
+`en-US.ts`，**不要**用 Java/POSIX 下划线（`zh_CN`）。
+
+理由：BCP 47 是 W3C / IETF 标准，与 HTML `lang` 属性、HTTP
+`Accept-Language`、`navigator.language`、`Intl` API 全部对齐。
+
+#### ⚠️ import.meta.glob 不支持 alias
+
+聚合器中**必须用相对路径** `../modules/...`，不能用 `@/modules/...`。Vite 的
+`import.meta.glob` 是编译期静态分析，不解析路径别名。
+
+#### 使用
+
+```typescript
+const { t } = useI18n(); // useI18n 已 auto-import
+t('common.empty.title');
+t('demo.layout.title');
+```
+
+#### 添加新模块文案
+
+直接在 `modules/<name>/locales/` 下补 `zh-CN.ts` / `en-US.ts` 即可，**无需在
+`locales/index.ts` 注册**。
 
 ### 7. 构建
 
@@ -123,11 +171,13 @@ pnpm --filter <app-name> build     # 产物输出到 .output/
 
 1. 与用户确认模块名（中英文对照）
 2. 创建 `src/modules/<name>/`，含 `views/` `components/` `stores/` `api/`
-   `types/`
+   `locales/`；如存在模块级共享领域类型，再创建 `types/`
 3. 在 `router/routes.ts` 添加路由（或由 permission-rbac 动态注入）
-4. 按 `api-layer` skill 创建 API 文件
+4. 按 `api-layer` skill 创建 API 文件；接口请求 / 响应类型跟 `api`
+   走，只有模块级共享类型才放 `types/`
 5. 按 `vup-ui` skill 选择 UI 组件
-6. 每完成一个文件 Gate 一次
+6. 在 `locales/<lang>.ts` 写文案，**无需手动注册**（自动聚合）
+7. 每完成一个文件 Gate 一次
 
 ## 关键决策点（AI 必须问用户）
 

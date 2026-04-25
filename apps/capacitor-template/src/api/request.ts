@@ -36,7 +36,7 @@ function getAccessToken() {
 }
 
 function getLocale() {
-  return localStorage.getItem('locale') || 'en_US';
+  return localStorage.getItem('locale') || 'en-US';
 }
 
 const request = createHttpClient({

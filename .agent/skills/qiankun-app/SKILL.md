@@ -35,14 +35,16 @@ description: >-
 apps/<qiankun-app>/src/
 ├── main.ts              入口（注册子应用）
 ├── App.vue              主应用壳
+├── micro/
+│   ├── config.ts        子应用清单（entry / container / activeRule / props）
+│   └── state.ts         基座状态、全局通信、生命周期日志
 ├── router/
 │   └── index.ts         主应用路由
 └── views/
-    ├── Index.vue        首页 / 子应用容器
     ├── auto/
-    │   └── Auto.vue     自动加载模式
+    │   └── Index.vue    自动加载模式
     └── manual/
-        └── Manual.vue   手动加载模式
+        └── Index.vue    手动加载模式
 ```
 
 ### 2. 子应用注册
@@ -52,8 +54,8 @@ import { registerMicroApps, start } from 'qiankun';
 
 registerMicroApps([
   {
-    name: 'sub-app-1',
-    entry: '//localhost:9301', // 子应用地址
+    name: 'example-qiankun',
+    entry: 'http://localhost:9393', // examples/qiankun 默认端口
     container: '#subapp-container', // 挂载 DOM
     activeRule: '/sub-app-1', // 激活路由
   },
@@ -68,6 +70,8 @@ start();
 | ------------------ | --------------------------------------- | ------------------ |
 | **自动（Auto）**   | `start()` 后根据 URL 自动匹配加载子应用 | 标准微前端         |
 | **手动（Manual）** | `loadMicroApp()` 手动控制加载时机       | 需要精细控制的场景 |
+
+手动模式必须在页面卸载时调用 `microApp.unmount()`，避免容器和事件残留。
 
 ### 4. 主应用路由
 
@@ -109,14 +113,29 @@ actions.setGlobalState({ user: { name: 'admin' } });
 ```typescript
 start({
   sandbox: {
-    strictStyleIsolation: true, // Shadow DOM 隔离（严格）
-    // 或
-    experimentalStyleIsolation: true, // CSS Scoping（宽松）
+    experimentalStyleIsolation: true, // CSS Scoping，适合模板默认 demo
+    // strictStyleIsolation: true,    // Shadow DOM 隔离，隔离更强但对部分 UI 库更敏感
   },
 });
 ```
 
-### 7. 构建
+### 7. Demo 与样式
+
+模板 demo 是微前端基座控制台，不要改成普通 Vue SPA 介绍页。必须体现：
+
+- 基座壳、导航和子应用挂载容器
+- `registerMicroApps()` 自动加载
+- `loadMicroApp()` 手动加载和卸载
+- 生命周期日志可视化，不只写 `console.log`
+- `initGlobalState()` 主子通信
+- 子应用通过 `onGlobalStateChange` 接收基座状态，并通过 `setGlobalState`
+  上报交互
+- 子应用清单集中配置
+- 样式优先使用 Tailwind CSS 与 `_shared/assets/styles/theme` 语义 token
+
+测试子应用默认使用 `examples/qiankun`，端口 `9393`。
+
+### 8. 构建
 
 ```bash
 pnpm --filter <qiankun-app> dev    # 启动主应用
@@ -126,11 +145,12 @@ pnpm --filter <qiankun-app> build  # 构建
 ## 实现步骤
 
 1. 与用户确认子应用清单（名称 / 入口地址 / 激活路由）
-2. 在 `main.ts` 注册子应用
-3. 在 `App.vue` 提供子应用挂载容器
-4. 配置主应用路由（仅主应用自己的页面）
-5. 如需通信，初始化全局状态
-6. 每完成一步 Gate 一次
+2. 在 `micro/config.ts` 配置子应用
+3. 在 `main.ts` 注册自动加载子应用
+4. 在 `App.vue` 提供基座壳、注册信息和生命周期日志
+5. 在 `views/auto` / `views/manual` 提供挂载容器
+6. 如需通信，在 `micro/state.ts` 初始化和广播全局状态
+7. 每完成一步 Gate 一次
 
 ## 关键决策点（AI 必须问用户）
 
@@ -143,6 +163,8 @@ pnpm --filter <qiankun-app> build  # 构建
 ## 产出位置
 
 - 主应用入口：`apps/<qiankun>/src/main.ts`
+- 子应用配置：`apps/<qiankun>/src/micro/config.ts`
+- 基座运行态：`apps/<qiankun>/src/micro/state.ts`
 - 路由：`apps/<qiankun>/src/router/index.ts`
 - 容器页面：`apps/<qiankun>/src/views/`
 

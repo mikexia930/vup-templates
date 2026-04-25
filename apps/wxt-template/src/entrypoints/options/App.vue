@@ -1,189 +1,86 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
+import type { ExtensionSettings } from '@/common/extension-state';
+import { getExtensionSettings, saveExtensionSettings } from '@/common/extension-state';
 
-const settings = ref({
+const settings = ref<ExtensionSettings>({
+  enableBadge: true,
   enableNotifications: true,
-  enableAutoUpdate: true,
-  themeColor: 'blue',
 });
 
-const saveSettings = () => {
-  chrome.storage.sync.set({ settings: settings.value }, () => {
-    alert('设置已保存！');
-  });
-};
+const saveStatus = ref('');
 
-const loadSettings = () => {
-  chrome.storage.sync.get(['settings'], (result) => {
-    if (result.settings) {
-      settings.value = { ...settings.value, ...result.settings };
-    }
-  });
-};
+async function saveSettings() {
+  await saveExtensionSettings(settings.value);
+  saveStatus.value = 'Saved';
+}
 
-const resetSettings = () => {
+async function resetSettings() {
   settings.value = {
+    enableBadge: true,
     enableNotifications: true,
-    enableAutoUpdate: true,
-    themeColor: 'blue',
   };
-};
+  await saveSettings();
+}
 
-onMounted(() => {
-  loadSettings();
+onMounted(async () => {
+  settings.value = await getExtensionSettings();
 });
 </script>
 
 <template>
-  <div class="options-container">
-    <div class="options-header">
-      <h1>VUP 1.5x 扩展设置</h1>
-      <p>配置您的浏览器扩展</p>
-    </div>
+  <main class="bg-neutral-1 text-neutral-9 min-h-screen px-[24px] py-[48px]">
+    <section class="mx-auto w-[min(720px,100%)]">
+      <header>
+        <p class="text-primary-6 text-sm font-bold">Options entrypoint</p>
+        <h1 class="leading-sm mt-[6px] text-[32px] font-extrabold">Extension Settings</h1>
+        <p class="leading-lg text-neutral-6 mt-[10px] text-[16px]">
+          Shared settings are stored in browser.storage.local so every extension context can read
+          them.
+        </p>
+      </header>
 
-    <div class="options-content">
-      <div class="settings-section">
-        <h2>基本设置</h2>
-        <div class="setting-item">
-          <label>
-            <input v-model="settings.enableNotifications" type="checkbox" />
-            启用通知
-          </label>
-        </div>
-        <div class="setting-item">
-          <label>
-            <input v-model="settings.enableAutoUpdate" type="checkbox" />
-            自动更新
-          </label>
+      <div class="border-neutral-3 mt-[24px] rounded-xl border bg-white p-[22px] shadow-sm">
+        <label class="border-neutral-3 flex items-start gap-[12px] border-b pb-[16px]">
+          <input v-model="settings.enableNotifications" class="mt-[4px]" type="checkbox" />
+          <span>
+            <strong class="text-neutral-9 block text-sm">Enable notifications</strong>
+            <span class="leading-lg text-neutral-6 mt-[4px] block text-sm">
+              Keep notification behavior as an opt-in template setting.
+            </span>
+          </span>
+        </label>
+
+        <label class="mt-[16px] flex items-start gap-[12px]">
+          <input v-model="settings.enableBadge" class="mt-[4px]" type="checkbox" />
+          <span>
+            <strong class="text-neutral-9 block text-sm">Enable badge</strong>
+            <span class="leading-lg text-neutral-6 mt-[4px] block text-sm">
+              Demonstrates a small persisted setting without adding business logic.
+            </span>
+          </span>
+        </label>
+
+        <div class="mt-[24px] flex flex-wrap items-center gap-[10px]">
+          <button
+            class="bg-primary-5 hover:bg-primary-6 inline-flex min-h-[38px] cursor-pointer items-center justify-center rounded-md border-0 px-[16px] text-sm font-bold text-white transition"
+            type="button"
+            @click="saveSettings"
+          >
+            Save
+          </button>
+          <button
+            class="border-neutral-3 text-neutral-9 hover:border-primary-2 hover:text-primary-6 inline-flex min-h-[38px] cursor-pointer items-center justify-center rounded-md border bg-white px-[16px] text-sm font-bold transition"
+            type="button"
+            @click="resetSettings"
+          >
+            Reset
+          </button>
+          <span v-if="saveStatus" class="text-success-6 text-sm font-semibold">{{
+            saveStatus
+          }}</span>
         </div>
       </div>
-
-      <div class="settings-section">
-        <h2>外观设置</h2>
-        <div class="setting-item">
-          <label>
-            主题颜色
-            <select v-model="settings.themeColor">
-              <option value="blue">蓝色</option>
-              <option value="green">绿色</option>
-              <option value="purple">紫色</option>
-            </select>
-          </label>
-        </div>
-      </div>
-
-      <div class="settings-actions">
-        <button class="save-btn" @click="saveSettings">保存设置</button>
-        <button class="reset-btn" @click="resetSettings">重置</button>
-      </div>
-    </div>
-  </div>
+    </section>
+  </main>
 </template>
-
-<style lang="scss" scoped>
-@reference "tailwindcss";
-.options-container {
-  min-height: 100vh;
-  background: #f5f5f5;
-  padding: 20px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-}
-
-.options-header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.options-header h1 {
-  color: #333;
-  margin-bottom: 10px;
-}
-
-.options-header p {
-  color: #666;
-}
-
-.options-content {
-  max-width: 600px;
-  margin: 0 auto;
-  background: white;
-  border-radius: 8px;
-  padding: 30px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.settings-section {
-  margin-bottom: 30px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #eee;
-}
-
-.settings-section:last-of-type {
-  border-bottom: none;
-}
-
-.settings-section h2 {
-  color: #333;
-  margin-bottom: 20px;
-  font-size: 18px;
-}
-
-.setting-item {
-  margin-bottom: 15px;
-}
-
-.setting-item label {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #555;
-  cursor: pointer;
-}
-
-.setting-item input[type='checkbox'] {
-  width: 18px;
-  height: 18px;
-}
-
-.setting-item select {
-  margin-left: 10px;
-  padding: 5px 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.settings-actions {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  margin-top: 30px;
-}
-
-.save-btn,
-.reset-btn {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s;
-}
-
-.save-btn {
-  background: #007bff;
-  color: white;
-}
-
-.save-btn:hover {
-  background: #0056b3;
-}
-
-.reset-btn {
-  background: #6c757d;
-  color: white;
-}
-
-.reset-btn:hover {
-  background: #545b62;
-}
-</style>

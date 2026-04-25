@@ -19,16 +19,9 @@ export default defineManifest({
   background: {
     service_worker: '/background.js',
   },
-  content_scripts: [
-    {
-      matches: ['<all_urls>'],
-      js: ['/content.js'],
-    },
-  ],
   options_page: '/options.html',
   chrome_url_overrides: {
     newtab: '/newtab.html',
   },
-  permissions: ['storage', 'activeTab', 'tabs'],
-  host_permissions: ['<all_urls>'],
+  permissions: ['storage'],
 });

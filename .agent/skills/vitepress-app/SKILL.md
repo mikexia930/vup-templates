@@ -30,6 +30,9 @@ description: >-
 
 ```
 apps/<vitepress-app>/
+├── .vitepress/
+│   ├── config.mts             VitePress 配置
+│   └── theme/                 主题扩展
 ├── src/
 │   ├── index.md               首页（Hero + Features）
 │   ├── docs.md                文档页示例
@@ -39,8 +42,6 @@ apps/<vitepress-app>/
 │   ├── public/                静态资源
 │   │   ├── favicon.ico
 │   │   └── images/
-│   └── .vitepress/            VitePress 配置（如需自定义）
-│       └── config.ts
 ├── package.json
 └── tsconfig.json
 ```
@@ -82,9 +83,6 @@ hero:
     - theme: brand
       text: 快速开始
       link: /guide/start
-    - theme: alt
-      text: GitHub
-      link: https://github.com/xxx
 features:
   - title: 特性 1
     details: 描述...
@@ -93,7 +91,7 @@ features:
 ---
 ```
 
-### 4. 配置（.vitepress/config.ts）
+### 4. 配置（.vitepress/config.mts）
 
 ```typescript
 import { defineConfig } from 'vitepress';
@@ -141,13 +139,29 @@ export default defineConfig({
 VitePress 支持扩展默认主题：
 
 ```
-src/.vitepress/
+.vitepress/
 ├── theme/
 │   ├── index.ts          自定义主题入口
 │   └── CustomLayout.vue  自定义布局
 ```
 
-### 7. 构建 & 部署
+### 7. Demo 与样式
+
+模板 demo 聚焦 VitePress 文档站能力，不要改成普通 Vue SPA 介绍页。应体现：
+
+- Markdown 文件路由
+- home frontmatter
+- 中英文目录
+- nav/sidebar/search 配置
+- theme 扩展和全局组件注册
+- 静态构建输出
+
+样式优先使用 Tailwind CSS 与 `_shared/assets/styles/theme`
+语义 token；不要维护私有 SCSS 颜色变量、mixin 或自定义 dark/light 演示。
+
+模板默认不保留 GitHub social link，除非用户明确提供项目仓库地址。
+
+### 8. 构建 & 部署
 
 ```bash
 pnpm --filter <vitepress-app> dev       # 开发预览
@@ -155,13 +169,13 @@ pnpm --filter <vitepress-app> build     # 构建静态站点
 pnpm --filter <vitepress-app> preview   # 预览构建产物
 ```
 
-产物在 `src/.vitepress/dist/`，可部署到 Vercel / GitHub Pages / Nginx。
+产物在 `.output/`，可部署到 Vercel / Netlify / Nginx 等静态托管服务。
 
 ## 实现新页面的步骤
 
 1. 与用户确认页面内容和导航位置
 2. 在 `src/` 对应目录创建 `.md` 文件
-3. 在 `.vitepress/config.ts` 更新 sidebar / nav
+3. 在 `.vitepress/config.mts` 更新 sidebar / nav
 4. 如有多语言，同步创建 `en/` 对应文件
 5. 每完成一个页面 Gate 一次
 
@@ -176,7 +190,7 @@ pnpm --filter <vitepress-app> preview   # 预览构建产物
 ## 产出位置
 
 - 内容页面：`apps/<vitepress>/src/<path>.md`
-- 配置：`apps/<vitepress>/src/.vitepress/config.ts`
+- 配置：`apps/<vitepress>/.vitepress/config.mts`
 - 静态资源：`apps/<vitepress>/src/public/`
 
 ## 资源

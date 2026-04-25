@@ -1,16 +1,16 @@
 ---
 name: api-layer
 description: >-
-  Use when organizing module-level API functions, shared response types, and
-  request-layer file structure. Covers file naming (resource-name.ts), function
-  naming (verb + resource), type re-export from @vup/http, and mock integration
-  awareness. Works with http-client skill (provides request instance) and
-  module-structure rule (defines directory layout).
+  Use when organizing module-level API functions, API request/response types,
+  and request-layer file structure. Covers file naming (resource-name.ts),
+  function naming (verb + resource), type re-export from @vup/http, and mock
+  integration awareness. Works with http-client skill (provides request
+  instance) and module-structure rule (defines directory layout).
 ---
 
 # api-layer
 
-模块 API 层的文件组织与命名约定。**核心原则：跟模块走、资源名命名、类型从 @vup/http 统一导出。**
+模块 API 层的文件组织与命名约定。**核心原则：跟模块走、资源名命名、接口契约类型跟 API 走、通用类型从 @vup/http 统一导出。**
 
 ## 适用范围
 
@@ -34,8 +34,14 @@ wxt）的模块级 API 组织。
    `.agent/rules/typescript.md`）
 4. **通用类型 re-export**：`src/api/types.ts` 从 `@vup/http` re-export
    `ApiResponse`，不要重复定义
-5. **一文件一资源**：一个 API 文件对应一个资源；跨资源拆新文件
-6. **不要包 class / service factory**：直接导出具名 async 函数
+5. **接口契约类型跟 API 走**：请求参数、响应 DTO、列表返回项等只服务于接口的数据结构，放在
+   `src/modules/<name>/api/types.ts` 或资源 API 文件旁；不要默认塞进模块
+   `types/`
+6. **模块 `types/` 只放模块级共享类型**：只有被 views / components / stores /
+   api 多处共同理解的领域模型、筛选枚举、运行时状态类型，才放
+   `src/modules/<name>/types/`
+7. **一文件一资源**：一个 API 文件对应一个资源；跨资源拆新文件
+8. **不要包 class / service factory**：直接导出具名 async 函数
 
 ## 目录结构
 
@@ -66,13 +72,16 @@ export interface ApiListData<T = unknown> {
 src/modules/
 ├── user/
 │   └── api/
-│       └── user.ts       用户资源 API
+│       ├── user.ts       用户资源 API
+│       └── types.ts      用户接口请求 / 响应类型
 ├── order/
 │   └── api/
-│       └── order.ts      订单资源 API
+│       ├── order.ts      订单资源 API
+│       └── types.ts      订单接口请求 / 响应类型
 └── demo/
     └── api/
-        └── task.ts       示例任务 API
+        ├── task.ts       示例任务 API
+        └── types.ts      示例任务接口契约类型
 ```
 
 ## 标准 API 文件模板
@@ -80,7 +89,7 @@ src/modules/
 ```typescript
 import request from '@/api/request';
 
-// 模块内类型（简单可放这里，复杂拆 types/）
+// 接口契约类型：也可以放到同级 api/types.ts 后再 import type
 export interface Task {
   id: number;
   title: string;
@@ -136,8 +145,8 @@ src/api/
 ## 关键决策点（AI 必须问用户）
 
 1. **资源名**：这个接口对应的"资源"叫什么？（决定文件名和函数名前缀）
-2. **类型放哪**：接口的 TS 类型放 API 文件内（简单），还是拆到 `types/`
-   目录（复杂）？
+2. **类型放哪**：接口契约类型放 API 文件内，还是拆到
+   `api/types.ts`？只有模块级共享领域类型才进入模块 `types/`
 3. **是否需要 cancelKey**：列表查询是否需要搜索防抖 + takeLatest？
 
 ## 产出位置

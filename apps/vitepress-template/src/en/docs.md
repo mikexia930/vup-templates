@@ -123,6 +123,6 @@ src/
 
 ## Need Help?
 
-- Check out our [Examples](/en/start) page
+- Check out our [Home](/en/) page
 - Visit the [Vue.js documentation](https://vuejs.org/)
 - Explore [Vite documentation](https://vitejs.dev/)

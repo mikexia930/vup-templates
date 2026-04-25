@@ -1,19 +1,47 @@
 {
   "quickstart": {
     "title": "快速开始",
+    "description": "使用 VitePress 原生命令完成文档开发、静态构建和本地预览。",
     "dev": { "title": "开发服务器", "description": "启动开发服务器，支持热重载" },
     "build": { "title": "构建项目", "description": "构建生产版本" },
-    "lint": { "title": "代码检查", "description": "运行 ESLint 检查代码质量" },
-    "format": { "title": "代码格式化", "description": "使用 Prettier 格式化代码" }
+    "preview": { "title": "预览产物", "description": "本地预览静态构建结果" }
   },
-  "techstack": {
-    "title": "技术栈",
-    "description": "基于现代化的技术栈，开箱即用",
-    "vitepress": { "description": "基于 Vite 的静态站点生成器", "link": "VitePress 文档" },
-    "pnpm": { "description": "快速、节省磁盘空间的包管理器", "link": "pnpm 文档" },
-    "eslint": { "description": "可插拔的 JavaScript 代码检查工具", "link": "ESLint 文档" },
-    "prettier": { "description": "代码格式化工具", "link": "Prettier 文档" },
-    "scss": { "description": "CSS 预处理器，增强样式编写能力", "link": "SCSS 文档" },
-    "tailwind": { "description": "实用优先的 CSS 框架", "link": "Tailwind CSS 文档" }
+  "capabilities": {
+    "title": "模板能力",
+    "description": "展示文档站模板真正需要保留的能力边界。",
+    "items": {
+      "markdown": {
+        "title": "Markdown 页面",
+        "description": "src 下的 Markdown 文件会自动成为站点路由。"
+      },
+      "frontmatter": {
+        "title": "Frontmatter 首页",
+        "description": "首页通过 VitePress home layout 声明 hero、actions 和内容入口。"
+      },
+      "i18n": { "title": "中英文目录", "description": "根目录为中文内容，src/en 保留英文内容。" },
+      "theme": {
+        "title": "主题扩展",
+        "description": ".vitepress/theme 扩展默认主题并注册全局组件。"
+      },
+      "static": {
+        "title": "静态构建",
+        "description": "构建产物输出到 .output，可部署到静态托管服务。"
+      },
+      "search": {
+        "title": "本地搜索",
+        "description": "VitePress local search 已按中英文分别配置。"
+      }
+    }
+  },
+  "structure": {
+    "title": "目录结构",
+    "description": "内容、配置和主题扩展分层清晰，适合作为文档站起点。",
+    "table": { "layer": "层级", "path": "路径", "responsibility": "职责" },
+    "rows": {
+      "content": { "layer": "内容", "responsibility": "中文首页和文档页面。" },
+      "locale": { "layer": "英文", "responsibility": "英文版首页和文档页面。" },
+      "config": { "layer": "配置", "responsibility": "站点标题、导航、侧边栏、搜索和多语言。" },
+      "theme": { "layer": "主题", "responsibility": "扩展默认主题、注册组件、映射 theme token。" }
+    }
   }
 }

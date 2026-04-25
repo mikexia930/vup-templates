@@ -1,254 +1,135 @@
-# Qiankun 微前端模板
+# Qiankun Template
 
-基于 qiankun + Vue 3 + TypeScript +
-Vite 的现代化微前端开发模板，开箱即用，让你快速构建微前端应用。
+基于 Vue 3 + Vite +
+qiankun 的微前端主应用模板。这个模板只负责基座能力：注册子应用、路由调度、挂载容器、生命周期观察、全局状态通信和样式隔离。
 
-## 🚀 技术栈
+## 技术栈
 
-- **qiankun** - 基于 single-spa 的微前端实现库
-- **Vue 3** - 渐进式 JavaScript 框架
-- **TypeScript** - JavaScript 的超集，提供类型安全
-- **Vite** - 下一代前端构建工具
-- **Vue Router** - Vue.js 官方路由管理器
-- **Pinia** - Vue 3 官方状态管理库
-- **Vue i18n** - Vue.js 国际化插件
-- **Tailwind CSS** - 实用优先的 CSS 框架
-- **SCSS** - CSS 预处理器，增强样式编写能力
-- **ESLint** - 可插拔的 JavaScript 代码检查工具
-- **Prettier** - 代码格式化工具
-- **pnpm** - 快速、节省磁盘空间的包管理器
+- Vue 3
+- Vite
+- Vue Router
+- qiankun
+- Tailwind CSS + `_shared/assets/styles/theme`
 
-## 📚 文档地址
+`vite-plugin-qiankun` 主要用于子应用适配；当前主应用通过 `qiankun`
+注册和调度子应用。
 
-- [qiankun 官方文档](https://qiankun.umijs.org/)
-- [single-spa 官方文档](https://single-spa.js.org/)
-- [Vue 3 官方文档](https://vuejs.org/)
-- [TypeScript 官方文档](https://www.typescriptlang.org/)
-- [Vite 官方文档](https://vitejs.dev/)
-- [Vue Router 官方文档](https://router.vuejs.org/)
-- [Pinia 官方文档](https://pinia.vuejs.org/)
-- [Vue i18n 官方文档](https://vue-i18n.intlify.dev/)
-- [Tailwind CSS 官方文档](https://tailwindcss.com/)
-- [SCSS 官方文档](https://sass-lang.com/)
-- [ESLint 官方文档](https://eslint.org/)
-- [Prettier 官方文档](https://prettier.io/)
-- [pnpm 官方文档](https://pnpm.io/)
+## 快速开始
 
-## 🛠️ 使用方式
-
-### 安装依赖
+启动主应用：
 
 ```bash
-pnpm install
+pnpm --dir apps/qiankun-template dev
 ```
 
-### 开发服务器
+默认地址：
+
+```txt
+http://localhost:9307
+```
+
+启动测试子应用：
 
 ```bash
-pnpm dev
+pnpm --dir examples/qiankun dev
 ```
 
-启动开发服务器，支持热重载，访问 http://localhost:9307
+默认地址：
 
-### 构建项目
+```txt
+http://localhost:9393
+```
+
+主应用默认把子应用 entry 指向 `http://localhost:9393`。如需替换：
 
 ```bash
-pnpm build
+VITE_QIANKUN_CHILD_ENTRY=http://localhost:9393 pnpm --dir apps/qiankun-template dev
 ```
 
-构建生产版本，输出到 `.output` 目录
+## Demo 入口
 
-### 代码检查
+- `/auto/`：通过 `registerMicroApps()` + `activeRule` 自动加载子应用
+- `/manual/`：通过 `loadMicroApp()` 手动加载子应用，离开页面时主动 `unmount()`
 
-```bash
-pnpm lint
-```
+页面中会展示：
 
-运行 ESLint 检查代码质量
+- 子应用注册信息：`name`、`entry`、`container`、`activeRule`
+- 生命周期日志：`beforeLoad`、`beforeMount`、`afterMount`、`beforeUnmount`、`afterUnmount`
+- 基座全局状态：通过 `initGlobalState()` 广播给子应用
+- 子应用上报：子应用通过 `props.setGlobalState()` 把交互事件回传给基座
+- 样式隔离策略：当前使用 `experimentalStyleIsolation`
 
-```bash
-pnpm lint:fix
-```
+## 目录结构
 
-自动修复 ESLint 发现的问题
-
-### 代码格式化
-
-```bash
-pnpm format
-```
-
-使用 Prettier 格式化代码
-
-```bash
-pnpm format:check
-```
-
-检查代码格式是否符合 Prettier 规范
-
-## 🧪 测试微前端
-
-### 启动子应用
-
-本模板使用 `vue-template` 作为子应用进行测试。请确保同时启动子应用：
-
-```bash
-# 在项目根目录下
-cd apps/vue-template
-pnpm dev
-```
-
-子应用将在 http://localhost:9301 运行
-
-### 访问微前端应用
-
-1. 启动主应用：`pnpm dev`
-2. 启动子应用：`cd apps/vue-template && pnpm dev`
-3. 访问 http://localhost:9307/auto/vue/ 查看微前端效果
-
-## 📁 项目结构
-
-```
-qiankun-template/
+```txt
+apps/qiankun-template/
 ├── src/
+│   ├── micro/
+│   │   ├── config.ts        # 子应用 entry、container、activeRule
+│   │   └── state.ts         # 基座状态、全局通信、生命周期日志
+│   ├── router/
+│   │   └── index.ts         # 主应用路由
 │   ├── views/
-│   │   ├── auto/           # 自动加载示例页面
-│   │   │   └── Auto.vue    # 微应用容器组件
-│   │   └── manual/         # 手动加载示例页面
-│   │       └── Manual.vue  # 手动加载容器组件
-│   ├── router/             # 路由配置
-│   ├── App.vue             # 根组件
-│   └── main.ts             # 入口文件
-├── .eslintrc-auto-import.json  # ESLint 自动导入配置
-├── auto-imports.d.ts       # 自动导入类型声明
-├── index.html              # HTML 模板
-├── package.json            # 项目配置
-├── tsconfig.json           # TypeScript 配置
-├── vite.config.js          # Vite 配置
-└── README.md               # 项目说明
+│   │   ├── auto/Index.vue   # 自动加载容器
+│   │   └── manual/Index.vue # 手动加载容器
+│   ├── App.vue              # 基座壳和控制台
+│   └── main.ts              # 注册子应用、启动 qiankun
+├── index.html
+├── vite.config.js
+└── README.md
 ```
 
-## ✨ 特性
+## 微前端模型
 
-- 🎯 **TypeScript 支持** - 完整的类型安全
-- 🚀 **Vite 构建** - 极速的开发体验
-- 🎨 **Tailwind CSS** - 实用优先的样式框架
-- 🌍 **国际化支持** - 多语言切换
-- 📱 **响应式设计** - 适配各种设备
-- 🔧 **代码规范** - ESLint + Prettier
-- 📦 **自动导入** - 无需手动导入 Vue API
-- 🏪 **状态管理** - Pinia 状态管理
-- 🛣️ **路由管理** - Vue Router 路由系统
-- 🔗 **微前端架构** - 基于 qiankun 的微前端解决方案
-- 📊 **全局状态** - 微应用间状态共享
-- 🔄 **生命周期管理** - 完整的微应用生命周期控制
+qiankun 基座本身是一个普通 Vue 应用。它提供页面壳、导航、权限、状态和挂载容器；子应用通过 qiankun 生命周期挂载到指定 DOM 节点。
 
-## 🔗 微前端架构
+它不是 iframe。iframe 会创建独立文档环境；qiankun 会拉取子应用资源，在当前页面中按生命周期挂载和卸载，因此主子应用可以共享路由上下文、全局状态和更统一的用户体验。
 
-### 主应用功能
+## 子应用要求
 
-- **微应用注册** - 注册和管理子应用
-- **路由管理** - 根据路由自动加载微应用
-- **生命周期管理** - 控制微应用的加载、挂载、卸载
-- **全局状态管理** - 微应用间状态共享
-- **通信机制** - 主应用与子应用间的通信
+子应用需要支持 qiankun 生命周期。`examples/qiankun` 已经提供最小实现：
 
-### 子应用要求
-
-子应用需要支持 qiankun 的生命周期函数：
-
-```typescript
-// 子应用需要导出的生命周期函数
-export async function bootstrap() {
-  // 应用启动时调用
-}
-
-export async function mount(props) {
-  // 应用挂载时调用
-}
-
-export async function unmount() {
-  // 应用卸载时调用
-}
-
-export async function update(props) {
-  // 应用更新时调用
-}
-```
-
-### 全局状态管理
-
-主应用使用 qiankun 的全局状态管理功能：
-
-```typescript
-// 主应用
-import { initGlobalState } from 'qiankun';
-
-const state = { name: 'qiankun-template' };
-const actions = initGlobalState(state);
-
-// 子应用
-props.onGlobalStateChange((state, prev) => {
-  console.log('状态变化:', state, prev);
+```ts
+renderWithQiankun({
+  bootstrap() {},
+  mount(props) {
+    // mount Vue app into props.container
+  },
+  unmount() {
+    // app.unmount()
+  },
+  update() {},
 });
 ```
 
-## 🎨 样式系统
+主应用会传入：
 
-项目使用 Tailwind CSS 作为主要样式框架，配合 SCSS 预处理器：
+- `baseRoute`：子应用路由 base
+- `host`：来源基座
+- `mode`：`auto` 或 `manual`
 
-- 使用 `@apply` 指令在 SCSS 中应用 Tailwind 类
-- 支持响应式设计
-- 自定义主题配置
-- 组件级别的样式隔离
-- 微应用样式隔离
+`examples/qiankun` 会根据 `mode` 渲染不同页面：
 
-## 🌍 国际化
+- 自动加载：渲染自动加载子页面
+- 手动加载：渲染手动加载子页面
 
-项目内置了中英文国际化支持：
+子应用通过 `props.onGlobalStateChange(callback, true)` 接收基座状态，通过
+`props.setGlobalState({ childReport })`
+上报交互事件。基座右侧面板会展示最近一次子应用上报。
 
-- 使用 Vue i18n 进行国际化
-- 支持语言切换
-- 类型安全的翻译键
-- 懒加载语言包
+## 构建
 
-## 📱 响应式设计
+```bash
+pnpm --dir apps/qiankun-template build
+```
 
-- 移动端优先的设计理念
-- 适配各种屏幕尺寸
-- 触摸友好的交互设计
-- 优化的移动端性能
+产物输出到 `.output/`。
 
-## 🔧 开发工具
+## 开发建议
 
-- **ESLint** - 代码质量检查
-- **Prettier** - 代码格式化
-- **TypeScript** - 类型检查
-- **Vite HMR** - 热模块替换
-- **自动导入** - 无需手动导入常用 API
-
-## 🚀 微前端最佳实践
-
-### 1. 子应用开发
-
-- 使用 `vite-plugin-qiankun` 插件简化配置
-- 支持独立运行和微应用运行
-- 正确处理生命周期函数
-- 实现样式隔离
-
-### 2. 主应用开发
-
-- 合理规划微应用的路由规则
-- 实现全局状态管理
-- 处理微应用间的通信
-- 监控微应用的生命周期
-
-### 3. 部署策略
-
-- 主应用和子应用可以独立部署
-- 使用 CDN 加速静态资源
-- 实现版本管理和回滚机制
-
-## 📄 许可证
-
-MIT License
+- 子应用清单集中放在 `src/micro/config.ts`
+- 生命周期和通信状态集中放在 `src/micro/state.ts`
+- 主应用只声明自己的路由，子应用内部路由交给子应用管理
+- 手动加载时必须在页面卸载时调用 `microApp.unmount()`
+- 样式优先使用 Tailwind CSS 和 `_shared/assets/styles/theme` 语义 token
+- 主应用与子应用可以独立部署，生产环境只需要替换子应用 `entry`

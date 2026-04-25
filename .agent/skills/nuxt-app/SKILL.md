@@ -127,13 +127,27 @@ Nuxt 的 `pages/` `components/` `composables/` 是框架约定目录，
 - 业务 API 按模块拆分到 `api/<module>.ts`
 - 详见 `.agent/rules/module-structure.md` Nuxt 例外段
 
+### 9. Demo 与样式
+
+模板 demo 使用 `/demo` 单页展示 Nuxt 能力，不使用 Vue SPA 的 `modules/demo`
+目录，也不强行拆成 guide/example 任务板。
+
+- demo 组件放在 `src/components/demo/`
+- demo 状态放在 `src/stores/demo/`
+- demo 接口放在 `src/api/demo.ts`
+- 样式优先使用 Tailwind CSS 与 `_shared/assets/styles/theme` 语义 token
+- 尺寸类需要留意基座 spacing token；需要精确像素时使用 arbitrary class，如
+  `px-[18px]`
+- 不要为 demo 重新定义一套私有颜色变量
+
 ## 实现新页面的步骤
 
 1. 与用户确认页面路径和功能
 2. 在 `src/pages/` 创建对应 `.vue` 文件（路由自动生成）
 3. 按 `api-layer` skill 创建 API 文件（放 `src/api/`）
 4. 如需状态管理，在 `src/stores/` 创建 store
-5. 每完成一个文件 Gate 一次
+5. UI 样式优先 Tailwind/theme；需要 Element Plus 时通过 Nuxt module 使用
+6. 每完成一个文件 Gate 一次
 
 ## 关键决策点（AI 必须问用户）
 
