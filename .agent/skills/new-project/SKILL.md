@@ -145,8 +145,9 @@ AI 收到"用 vup-agent 开发新项目"等触发词后：
 5. 用户对某方案有疑问 → 解释清楚再让用户选，不要替用户决定
 6. 等用户**明确选定一个方案**，落盘（不接受"都可以""你定"等模糊回复）
 7. 选型确认后，如需接入基座资源，按资源类型执行：
-   - 模板接入：`vup add <template-name>`
-   - 功能包接入：`vup use <package-name>`
+   - 正式模板（`type: app`）接入：`vup add <template-name>`
+   - 功能包（`type: package`）接入：`vup use <package-name>`
+   - Examples 参考层（`type: example`）查看/复制：`vup example <example-name>`
 8. `vup`
    命令为交互式时，默认由用户执行；AI 需提供可复制命令，并要求用户回传关键选择和完整输出
 9. 仅在用户明确同意时，AI 才可走降级方案：从本机 `vup-cli`
@@ -241,7 +242,9 @@ server 端口也需确认，避免多个 app 同时开发时冲突。
 - Phase 2 选定栈后，加载对应 stack skill：`vue-app` / `nuxt-app` / `nest-api` 等
 - Phase 3-5 涉及业务模式时，加载对应 pattern skill：`crud-page` / `auth-login` /
   `permission-rbac` / `admin-layout` / `api-layer`
-- Phase 7 编码时，参考对应 stack 的 `examples/` 学习模式
+- Phase 7 编码时，优先按对应 stack
+  skill 的架构约定实现；如用户需要查看专项能力接入，使用 `vup example <name>`
+  引导到根目录 Examples 参考层
 
 ## 资源目录
 

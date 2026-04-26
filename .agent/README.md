@@ -37,14 +37,15 @@ Gemini 等）在本仓库工作时，都以本目录为唯一指令来源（Sing
 
 两者**并列**，AI 加载所有 rules + 按场景加载相关 skills。
 
-### Templates vs Examples
+### Templates vs Skill Examples
 
-`assets/templates/` 和 `examples/` 是两种不同的辅助资源：
+这里的 `examples/` 指 **skill 目录内部的示例片段**，不是仓库根目录的 `examples/`
+参考工程。`assets/templates/` 和 skill 内部 `examples/` 是两种不同的辅助资源：
 
-| 类型                | 用途                           | AI 行为            |
-| ------------------- | ------------------------------ | ------------------ |
-| `assets/templates/` | 产物文档骨架（如需求文档框架） | **复制后填充**     |
-| `examples/`         | 参考代码（如完整的 CRUD 模块） | **学习模式后重写** |
+| 类型                 | 用途                           | AI 行为            |
+| -------------------- | ------------------------------ | ------------------ |
+| `assets/templates/`  | 产物文档骨架（如需求文档框架） | **复制后填充**     |
+| skill 内 `examples/` | 小段参考代码（如请求适配片段） | **学习模式后重写** |
 
 **举例**：
 
@@ -89,7 +90,7 @@ AI 启动时扫描所有 `<skill>/SKILL.md` 的 frontmatter（约 100 tokens 每
 1. 必需创建 `SKILL.md`，frontmatter 至少包含 `name` 和 `description`
 2. `description` 必须写清"何时使用"，这是 AI 自动匹配的关键
 3. SKILL.md 控制在 500 行以内，详细内容拆到 `references/`
-4. 文档模板放 `assets/templates/`，参考代码放 `examples/`
+4. 文档模板放 `assets/templates/`，skill 内部参考代码放 `examples/`
 
 ### 修改 rule / skill
 

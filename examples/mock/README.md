@@ -2,6 +2,8 @@
 
 `examples/mock` 是一个只演示 `@vup/mock` 的最小 Vue 示例。
 
+可通过 `vup example mock` 获取或查看该参考示例。
+
 ## 说明
 
 - 开发环境下会启动 MSW worker

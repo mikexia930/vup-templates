@@ -2,6 +2,8 @@
 
 `examples/pwa` 是一个只演示 `@vup/pwa` 的最小 Vue 示例。
 
+可通过 `vup example pwa` 获取或查看该参考示例。
+
 ## 说明
 
 - 构建时会生成 `manifest.webmanifest`、`sw.js`

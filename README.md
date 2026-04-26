@@ -1,12 +1,12 @@
 # 🚀 VUP CLI Templates - 多框架开发模板集合
 
 VUP
-CLI 的多框架开发模板集合，包含 Vue、Nuxt、VitePress、NestJS、Qiankun、UniApp、Capacitor、Electron、WXT、CLI、Component、Package、MCP 等多种技术栈的完整开发模板。同时仓库内提供共享能力包与示例工程，用于验证 monorepo 接入与能力封装。
+CLI 的多框架开发模板集合，包含 Vue、Nuxt、VitePress、NestJS、Qiankun、UniApp、Capacitor、Electron、WXT、CLI、Component、Package、MCP 等多种技术栈的完整开发模板。同时仓库内提供共享能力包与 Examples 参考层，用于验证 monorepo 接入与能力封装。
 
 ## ✨ 特性
 
-- 🚀 **VUP CLI 集成** - 通过 `vup add` 命令快速创建项目，`vup use`
-  命令快速添加功能包
+- 🚀 **VUP CLI 集成** - 通过 `vup add` 创建项目，`vup use`
+  添加功能包，`vup example` 获取专项能力参考示例
 - 🏗️ **Monorepo 架构** - 基于 pnpm workspace 的多包管理
 - 🎯 **多框架支持** - Vue、Nuxt、VitePress、NestJS、UniApp 等
 - 🔧 **TypeScript** - 完整的类型支持
@@ -61,13 +61,13 @@ CLI 的多框架开发模板集合，包含 Vue、Nuxt、VitePress、NestJS、Qi
 
 ```
 project-vue/
-├── apps/       # 正式应用模板（供 vup add 使用）
-├── examples/   # 单能力示例工程（不作为正式模板分发）
+├── apps/       # 正式应用模板层（供 vup add 使用）
+├── examples/   # Examples 参考层（供 vup example 使用，不作为正式模板分发）
 │   ├── mock/   # @vup/mock 接入示例
 │   ├── pwa/    # @vup/pwa 接入示例
 │   ├── qiankun/ # qiankun 子应用接入示例
 │   └── ui/     # UI 示例
-├── packages/   # 共享功能包
+├── packages/   # 共享功能包层（供 vup use 使用）
 │   ├── http/   # 共享请求层（@vup/http）
 │   ├── mock/   # 共享 Mock 能力（@vup/mock，MSW）
 │   ├── pwa/    # 共享 PWA 接入层（@vup/pwa）
@@ -152,6 +152,12 @@ pnpm dev
 
 `apps/` 目录只放正式模板；专项能力演示请看下方 `examples/`。
 
+`.template.config.json` 是基座资源清单，`type` 决定 CLI 命令：
+
+- `type: "app"`：正式模板层，使用 `vup add <name>`
+- `type: "package"`：共享功能包层，使用 `vup use <name>`
+- `type: "example"`：Examples 参考层，使用 `vup example <name>`
+
 | 模板                   | 技术栈                         | 适用场景                             | 文档                                            |
 | ---------------------- | ------------------------------ | ------------------------------------ | ----------------------------------------------- |
 | **vue-template**       | Vue 3 + Vite + TypeScript      | SPA 应用、管理后台、企业级前端       | [查看文档](./apps/vue-template/README.md)       |
@@ -182,6 +188,20 @@ vup use my-package
     @vup/nest-upload - NestJS 上传模块
 ```
 
+### 5. 查看专项示例
+
+```bash
+# 查看或复制单能力参考示例
+vup example mock
+vup example pwa
+vup example qiankun
+vup example ui
+```
+
+`vup example` 面向 `examples/`
+参考层。它用于学习某个能力如何接入或运行示例工程，不等同于 `vup add`
+创建正式应用模板，也不等同于 `vup use` 安装共享功能包。
+
 ## 📦 功能包概览
 
 `packages/`
@@ -200,19 +220,20 @@ vup use my-package
 
 ## 🧪 示例工程
 
-`examples/`
-目录用于放置“单能力、单目标”的示例工程，它们属于接入参考，不属于正式模板：
+`examples/` 目录是
+**Examples 参考层**，用于放置“单能力、单目标”的示例工程。它们属于接入参考，不属于正式模板：
 
 - 不会作为 `vup add` 的正式模板出现
+- 通过 `vup example <name>` 获取或查看
 - 主要用于验证能力包接入、构建链路和 monorepo 兼容
 - 每个示例都尽量只展示一个主题，避免和正式模板职责混在一起
 
-| 示例                 | 说明                   | 文档                                     |
-| -------------------- | ---------------------- | ---------------------------------------- |
-| **examples/mock**    | `@vup/mock` 接入示例   | [查看文档](./examples/mock/README.md)    |
-| **examples/pwa**     | `@vup/pwa` 接入示例    | [查看文档](./examples/pwa/README.md)     |
-| **examples/qiankun** | qiankun 子应用接入示例 | [查看文档](./examples/qiankun/README.md) |
-| **examples/ui**      | UI 使用示例            | [查看文档](./examples/ui/README.md)      |
+| 命令                  | 示例目录             | 说明                   | 文档                                     |
+| --------------------- | -------------------- | ---------------------- | ---------------------------------------- |
+| `vup example mock`    | **examples/mock**    | `@vup/mock` 接入示例   | [查看文档](./examples/mock/README.md)    |
+| `vup example pwa`     | **examples/pwa**     | `@vup/pwa` 接入示例    | [查看文档](./examples/pwa/README.md)     |
+| `vup example qiankun` | **examples/qiankun** | qiankun 子应用接入示例 | [查看文档](./examples/qiankun/README.md) |
+| `vup example ui`      | **examples/ui**      | UI 使用示例            | [查看文档](./examples/ui/README.md)      |
 
 当前示例默认端口：
 
@@ -296,10 +317,37 @@ pnpm format:all
 
 ### 版本管理
 
+推荐流程是：
+
 ```bash
-# 版本发布（release-it）
+# 1. 确认改动
+git status
+
+# 2. 提交本次业务/文档/模板改动
+git add .
+git commit -m "feat: your change"
+
+# 3. 生成版本号、CHANGELOG、release commit 和 Git tag
 pnpm release
+
+# 4. 确认 release-it 生成的结果
+git log --oneline --decorate -5
+git status
+
+# 5. 推送业务提交、release 提交和 tag
+git push --follow-tags
 ```
+
+当前 `release-it` 配置位于根 `package.json`：
+
+- 使用 `@release-it/conventional-changelog` 生成/更新 `CHANGELOG.md`
+- 提交信息：`chore: release v${version}`
+- 会创建 release commit 和 Git tag
+- `git.push` 为 `false`，所以最后需要人工执行 `git push --follow-tags`
+- `npm.publish` 为 `false`，不会发布 npm 包
+
+注意：不要把业务改动留到 `pnpm release` 里一起提交。先用普通 `git commit`
+提交业务改动，再让 `release-it` 只负责版本提交和 tag。
 
 ### 构建和部署
 
@@ -467,9 +515,9 @@ VITE_ENABLE_ANALYTICS=false
 
 ### 2. 版本控制
 
-- 使用 release-it 管理版本
+- 先提交业务改动，再用 release-it 生成版本提交、CHANGELOG 和 Git tag
 - 语义化版本号
-- 自动化发布流程
+- 远端 push 需要人工执行 `git push --follow-tags`，避免模板仓库误发布
 
 ### 3. 代码质量
 

@@ -336,7 +336,16 @@ VITE_API_BASE_URL=https://api.example.com
 
 ### Workspace 隔离
 
-uni-app 项目在 `pnpm-workspace.yaml` 中被排除（`!apps/uniapp-*`），原因：
+uni-app 模板应在 `package.json` 中声明：
+
+```json
+{
+  "workspaceIsolate": true
+}
+```
+
+vup-cli 拷贝模板后，根据该标识把生成的应用路径精确写入 `pnpm-workspace.yaml`
+排除项（如 `!apps/<appName>`）。原因：
 
 - uniapp 依赖 `@dcloudio/*` 系列，pnpm 严格模式下易冲突
 - HBuilderX 兼容性

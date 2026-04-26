@@ -132,9 +132,8 @@ AI 在每个必停点输出后，**等待用户回复以下任一格式**：
 ## 技术栈约束
 
 - **基座已定型**：技术栈必须从 `.template.config.json` 列出的模板范围内选择
-  - `.template.config.json` 是基座支持的**模板/技术栈清单**（vue / nuxt / nest /
-    electron / capacitor / uniapp / wxt / qiankun / mcp / vitepress / cli /
-    component 等）
+  - `.template.config.json`
+    是基座支持的**资源清单**，包含正式模板（app）、共享功能包（package）和 Examples 参考层（example）
   - AI 在选型阶段（`new-project` skill 的 Phase 2）只能从该清单中选
 - **不允许擅自引入基座外的栈**：如确有必要，先停下问用户，并评估能否放到
   `extends/<feature-name>/` 作为独立项目
@@ -149,14 +148,15 @@ AI 在每个必停点输出后，**等待用户回复以下任一格式**：
 - `.agent/rules/project-global.md`（依赖管理通用规则）
 - 各 stack skill（具体技术栈的依赖安装命令）
 
-### 模板与功能包接入（VUP CLI）
+### 基座资源接入（VUP CLI）
 
-当任务涉及基座模板或可复用功能包接入时，AI 必须遵守以下顺序：
+当任务涉及基座模板、可复用功能包或 Examples 参考层接入时，AI 必须遵守以下顺序：
 
 1. **先完成技术选型，再执行接入命令**（对应 `new-project` 的 Phase 2 之后）
 2. **先判定资源类型，再选命令**：
-   - 模板（template）接入：`vup add <template-name>`
-   - 功能包（package）接入：`vup use <package-name>`
+   - 正式模板（`type: app`）接入：`vup add <template-name>`
+   - 功能包（`type: package`）接入：`vup use <package-name>`
+   - Examples 参考层（`type: example`）查看/复制：`vup example <example-name>`
 3. 禁止未判定资源类型就手工拼目录结构替代 `vup` 命令
 
 执行通道（按优先级）：
@@ -177,7 +177,12 @@ AI 在每个必停点输出后，**等待用户回复以下任一格式**：
 1. 加载所有 `.agent/rules/*.md`（始终生效，约 5K tokens）
 2. 根据用户意图，从 `.agent/skills/` 中按 `description` 匹配相关 skill
 3. 加载相关 skill 的 `SKILL.md`
-4. 按 SKILL.md 内的指引，按需加载该 skill 的 `references/` `assets/` `examples/`
+4. 按 SKILL.md 内的指引，按需加载该 skill 自带的 `references/` `assets/`
+   `examples/`
+
+注意：这里的 `examples/` 是 skill 内部参考片段；仓库根目录 `examples/`
+是给人看的 Examples 参考层，默认通过 `vup example <name>`
+引导用户查看，不作为 AI 默认编码素材。
 
 ## 疑问必停（呼应最高准则）
 

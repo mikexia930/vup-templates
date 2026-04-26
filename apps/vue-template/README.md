@@ -99,9 +99,9 @@ request.get('/api/template-demo/tasks', {
 
 专项能力示例已拆到根目录 `examples/`：
 
-- `examples/mock`：MSW mock 接入示例
-- `examples/pwa`：PWA 接入示例
-- `examples/qiankun`：qiankun 子应用接入示例
+- `vup example mock`：MSW mock 接入示例（`examples/mock`）
+- `vup example pwa`：PWA 接入示例（`examples/pwa`）
+- `vup example qiankun`：qiankun 子应用接入示例（`examples/qiankun`）
 
 ## 文档地址
 

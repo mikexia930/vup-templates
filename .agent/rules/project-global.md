@@ -2,10 +2,10 @@
 
 ## 禁止修改的文件
 
-以下文件由 vup-cli 或基座管理，不要修改：
+以下文件由 vup-cli 或基座管理，不要手工改语义内容：
 
-- `.template.config.json`（vup-cli 模板清单）
-- `pnpm-workspace.yaml`（workspace 排除规则）
+- `.template.config.json`（vup-cli 基座资源清单：app / package / example）
+- `pnpm-workspace.yaml`（workspace 范围与隔离规则，通常由 vup-cli 写入）
 - 根 `eslint.config.js`（全局 lint 配置）
 - 根 `postcss.config.js`（全局 PostCSS 配置）
 
@@ -17,7 +17,8 @@
 - **新增依赖加到子应用的
   `package.json`**，不要加到根目录——除非是所有应用共用的基础依赖
 - 安装后确认 `pnpm install` 能正常执行
-- `uniapp-*` 应用独立于 workspace，在应用目录内单独 `pnpm install`
+- `package.json` 声明 `workspaceIsolate: true`
+  的应用独立于 workspace，在应用目录内单独 `pnpm install`
 - `extends/` 下的非 JS 项目独立管理依赖，不进入 pnpm workspace（详见
   `extends/README.md`）
 
