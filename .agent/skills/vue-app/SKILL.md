@@ -183,8 +183,9 @@ pnpm --filter <app-name> build     # 产物输出到 .output/
 
 1. **后台布局**：用 `admin-layout` pattern 还是自定义布局？
 2. **路由模式**：静态路由（简单项目）还是动态路由（RBAC 权限项目）？
-3. **是否需要专项能力**：若用户提到 mock / pwa / qiankun，优先引导到 `examples/`
-   或对应专项 skill，而不是默认塞进 `vue-template`
+3. **是否需要专项能力**：若用户提到 mock / pwa / qiankun，优先引导用户执行
+   `vup example <name>`
+   查看 Examples 参考层，或加载对应专项 skill，而不是默认塞进 `vue-template`
 
 ## 产出位置
 

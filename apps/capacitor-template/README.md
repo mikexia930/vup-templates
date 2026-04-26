@@ -99,7 +99,7 @@ pnpm build
 - [Vue 3](https://vuejs.org/)
 - [Pinia](https://pinia.vuejs.org/)
 - [Vue i18n](https://vue-i18n.intlify.dev/)
-- [examples/mock](../../examples/mock/README.md)
+- Mock 接入参考：`vup example mock`（[examples/mock](../../examples/mock/README.md)）
 
 ## 平台要求
 

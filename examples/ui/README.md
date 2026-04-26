@@ -3,6 +3,8 @@
 `examples/ui` 是一个只演示 `@vup/ui`、`@vup/richeditor`、`@vup/iconfont`
 的最小示例工程。
 
+可通过 `vup example ui` 获取或查看该参考示例。
+
 ## 说明
 
 - `@vup/ui`

@@ -3,6 +3,8 @@
 `examples/qiankun` 是 qiankun 子应用接入示例，用于配合 `apps/qiankun-template`
 验证挂载、路由 base、状态下发和子应用上报。
 
+可通过 `vup example qiankun` 获取或查看该参考示例。
+
 ## 说明
 
 - 保留 `renderWithQiankun()` 和子应用生命周期
