@@ -43,12 +43,12 @@ description: >-
 
 ### 分层职责
 
-| 层             | 路径                  | 职责                                             |
-| -------------- | --------------------- | ------------------------------------------------ |
-| **页面入口层** | `src/pages/`          | 薄入口，仅引用 `modules/` 下的业务组件           |
-| **业务模块层** | `src/modules/<name>/` | 自治模块：UI + API + 类型 + store + i18n         |
-| **业务通用层** | `src/common/`         | 跨模块共享的业务逻辑（默认 HTTP 实例、业务策略） |
-| **基建抽象层** | `src/libs/`           | 与业务无关的基建（HTTP 封装、工具等）            |
+| 层             | 路径                  | 职责                                       |
+| -------------- | --------------------- | ------------------------------------------ |
+| **页面入口层** | `src/pages/`          | 薄入口，仅引用 `modules/` 下的业务组件     |
+| **业务模块层** | `src/modules/<name>/` | 自治模块：UI + API + 类型 + store + i18n   |
+| **业务通用层** | `src/common/`         | 全局业务策略（默认 HTTP 实例、401 处理等） |
+| **基建抽象层** | `src/libs/`           | 与业务无关的基建（HTTP 封装、工具等）      |
 
 ### 标准目录
 
@@ -59,6 +59,7 @@ apps/<uniapp-app>/src/
 ├── modules/                  业务模块
 │   └── <name>/
 │       ├── index.vue         模块主组件
+│       ├── index.ts          模块 Public API（能力出口）
 │       ├── api/              接口函数（按资源分文件）
 │       ├── common/           模块内测试数据 / 展示配置
 │       ├── types/            接口入参/出参类型
@@ -66,7 +67,7 @@ apps/<uniapp-app>/src/
 │       └── locales/          模块 i18n（自动聚合，命名空间=模块名）
 │           ├── zh-CN.ts
 │           └── en-US.ts
-├── common/                   业务通用层
+├── common/                   全局业务策略
 │   └── api/index.ts          默认 http 实例 + 业务策略
 ├── libs/                     基建抽象层
 │   └── http/                 基于 uni.request 的封装
@@ -93,7 +94,8 @@ apps/<uniapp-app>/src/
   uni 原生组件，避免 Tailwind 在小程序/App 端的类名、选择器和动态 class 兼容成本。
 - 页面风格可以贴近移动端参考页，但实现方式不要照搬 Web 模板的 Tailwind 写法。
 - demo 内部展示数据放在 `modules/demo/common`
-  或组件内部；只有跨模块/跨页面共享能力才放进 `src/common`。
+  或组件内部；只有真正全局通用能力才放进 `src/common`。模块自己的可复用能力通过
+  `modules/<name>/index.ts` 显式暴露。
 - demo 默认不依赖真实后端，也不默认接入 MSW；`modules/demo/api/*`
   可使用模块内测试数据模拟异步请求。真实项目接后端时再替换为 `http.get` /
   `http.post`，并要求后端返回符合 `ApiResponse`。
@@ -101,10 +103,11 @@ apps/<uniapp-app>/src/
 ### 添加新模块的标准流程
 
 1. 建 `src/modules/<name>/index.vue`
-2. 按需建 `api/` `types/` `stores/` `locales/` 子目录
-3. 在 `pages.json` 注册一个对应页面（如需）
-4. 在 `src/pages/<route>/index.vue` 写薄入口引用模块组件
-5. **i18n 不用注册**——`modules/<name>/locales/*.ts` 会被自动聚合
+2. 建 `src/modules/<name>/index.ts` 作为模块 Public API
+3. 按需建 `api/` `types/` `stores/` `locales/` 子目录
+4. 在 `pages.json` 注册一个对应页面（如需）
+5. 在 `src/pages/<route>/index.vue` 写薄入口引用模块组件
+6. **i18n 不用注册**——`modules/<name>/locales/*.ts` 会被自动聚合
 
 ## HTTP 请求（已固化）
 
@@ -362,10 +365,11 @@ vup-cli 拷贝模板后，根据该标识把生成的应用路径精确写入 `p
 1. 与用户确认页面路径和目标平台
 2. 在 `pages.json` 注册新页面
 3. 创建 `src/modules/<name>/index.vue`（业务实现）
-4. 创建 `src/pages/<route>/index.vue`（薄入口，仅引用模块）
-5. 按需补 `modules/<name>/api/` `types/` `stores/` `locales/`
-6. 如有平台差异，用条件编译处理
-7. 每完成一个文件 Gate 一次
+4. 创建 `src/modules/<name>/index.ts`（模块 Public API）
+5. 创建 `src/pages/<route>/index.vue`（薄入口，仅引用模块）
+6. 按需补 `modules/<name>/api/` `types/` `stores/` `locales/`
+7. 如有平台差异，用条件编译处理
+8. 每完成一个文件 Gate 一次
 
 ## 关键决策点（AI 必须问用户）
 
@@ -383,6 +387,9 @@ vup-cli 拷贝模板后，根据该标识把生成的应用路径精确写入 `p
 - 模块实现：`apps/<uniapp>/src/modules/<name>/`
 - 接口函数：`apps/<uniapp>/src/modules/<name>/api/<resource>.ts`
 - 配置：`apps/<uniapp>/src/pages.json` + `manifest.json`
+
+模块边界、Public API 和 `common` 归属遵守
+`.agent/rules/module-structure.md`；uni-app 额外约定 `index.vue` 是模块主组件。
 
 ## 常见问题
 

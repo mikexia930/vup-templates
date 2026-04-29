@@ -1,4 +1,4 @@
-// 范例：apps/<nuxt-app>/composables/useAuth.ts
+// 范例：apps/<nuxt-app>/src/composables/useAuth.ts
 //
 // 适用：nuxt（SSR + cookie + ofetch）
 // 角色：登录 / 登出 / refresh 流程

@@ -30,7 +30,7 @@ description: >-
 | Token 存储   | `token-storage`（nuxt.ts: useCookie）     |                        |
 | 登录 / 登出  | `auth-login`（nuxt-login.ts）             |                        |
 | 路由守卫     | `auth-guard`（nuxt-middleware.ts）        |                        |
-| API 文件组织 | `api-layer`（Nuxt 例外段）                |                        |
+| API 文件组织 | `api-layer`（Nuxt 平台差异）              |                        |
 | 权限         | `permission-rbac`（部分适用）             | 动态路由需适配         |
 | UI 组件      | `vup-ui`（@vup/ui 或 @element-plus/nuxt） |                        |
 
@@ -125,7 +125,8 @@ Nuxt 的 `pages/` `components/` `composables/` 是框架约定目录，
 
 - 业务 store 按模块拆分到 `stores/<module>/`
 - 业务 API 按模块拆分到 `api/<module>.ts`
-- 详见 `.agent/rules/module-structure.md` Nuxt 例外段
+- 通用模块边界见
+  `.agent/rules/module-structure.md`；Nuxt 平台差异以本 skill 为准
 
 ### 9. Demo 与样式
 

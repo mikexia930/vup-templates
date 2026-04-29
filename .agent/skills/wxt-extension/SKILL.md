@@ -25,13 +25,13 @@ description: >-
 
 ## 引用的 capability skills
 
-| 能力         | 加载哪个 skill                                   | WXT 特殊说明               |
-| ------------ | ------------------------------------------------ | -------------------------- |
-| HTTP 请求    | `http-client`（按需引入 @vup/http）              |                            |
-| Token 存储   | `token-storage`（wxt.ts: browser.storage.local） | **必须用 browser.storage** |
-| 登录 / 登出  | `auth-login`                                     |                            |
-| 登录态同步   | `auth-guard`（wxt-context-sync.ts）              | 跨 context 同步            |
-| API 文件组织 | `api-layer`                                      |                            |
+| 能力         | 加载哪个 skill                                   | WXT 特殊说明                    |
+| ------------ | ------------------------------------------------ | ------------------------------- |
+| HTTP 请求    | `http-client`（按需引入 @vup/http）              |                                 |
+| Token 存储   | `token-storage`（wxt.ts: browser.storage.local） | **必须用 browser.storage**      |
+| 登录 / 登出  | `auth-login`                                     |                                 |
+| 登录态同步   | `auth-guard`（wxt-context-sync.ts）              | 跨 context 同步                 |
+| API 文件组织 | 按 context 组织                                  | newtab Vue 页面可参考 api-layer |
 
 ## WXT 平台特有约定
 

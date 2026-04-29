@@ -10,12 +10,19 @@ description: >-
 
 # api-layer
 
-模块 API 层的文件组织与命名约定。**核心原则：跟模块走、资源名命名、接口契约类型跟 API 走、通用类型从 @vup/http 统一导出。**
+模块 API 层的文件组织与命名约定。**核心原则：跟模块走、资源名命名、接口契约类型跟 API 走、通用类型从 @vup/http 统一导出、跨模块使用走模块 Public
+API。**
 
 ## 适用范围
 
-所有前端 stack（vue / nuxt / electron / capacitor / uniapp /
-wxt）的模块级 API 组织。
+Vue / Electron 渲染进程 / Capacitor 的模块级 API 组织。
+
+平台差异：
+
+- Nuxt：不用 `src/modules/`，API 放 `src/api/<resource>.ts`，详见 `nuxt-app`
+  skill
+- uni-app：不用本 skill，API 组织已固化在 `uniapp-app` skill
+- WXT：按 entrypoint/context 组织，只有采用 Vue 页面模块结构的 entrypoint 才参考本 skill
 
 ## 何时被加载
 
@@ -42,6 +49,9 @@ wxt）的模块级 API 组织。
    `src/modules/<name>/types/`
 7. **一文件一资源**：一个 API 文件对应一个资源；跨资源拆新文件
 8. **不要包 class / service factory**：直接导出具名 async 函数
+9. **跨模块使用走 Public API**：如果其他模块需要调用本模块 API，在
+   `src/modules/<name>/index.ts` 显式 re-export；禁止其他模块直接 import
+   `src/modules/<name>/api/<resource>.ts`
 
 ## 目录结构
 
@@ -71,6 +81,7 @@ export interface ApiListData<T = unknown> {
 ```
 src/modules/
 ├── user/
+│   ├── index.ts        用户模块 Public API
 │   └── api/
 │       ├── user.ts       用户资源 API
 │       └── types.ts      用户接口请求 / 响应类型
@@ -82,6 +93,13 @@ src/modules/
     └── api/
         ├── task.ts       示例任务 API
         └── types.ts      示例任务接口契约类型
+```
+
+`index.ts` 只导出允许被外部模块复用的稳定能力：
+
+```typescript
+export { getUserOptions } from './api/user';
+export type { UserOption } from './api/types';
 ```
 
 ## 标准 API 文件模板
@@ -125,7 +143,7 @@ export async function deleteTask(id: number) {
 ## Nuxt 例外
 
 Nuxt 不使用 `src/modules/` 结构（详见 `.agent/rules/module-structure.md`
-Nuxt 例外）。API 文件放在 `src/api/<resource>.ts`：
+平台例外与 `nuxt-app` skill）。API 文件放在 `src/api/<resource>.ts`：
 
 ```
 src/api/

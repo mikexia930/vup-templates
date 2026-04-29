@@ -148,8 +148,8 @@ VITE_API_BASE=https://api.example.com
 1. 确认功能是否需要原生能力（相机 / 定位 / 推送 ...）
 2. 需要原生能力 → 安装对应 Capacitor 插件 + `cap sync`
 3. 路由用 `@ionic/vue-router`
-4. 业务代码结构同 vue-app（modules / views / components / stores / api / types /
-   locales）
+4. 业务代码结构同 vue-app（modules / index.ts / views / components / stores /
+   api / types / locales）
 5. UI 方案按需求选择：模板 demo 使用原生 HTML/CSS；明确需要移动端组件库时再使用
    `@vup/ui-mobile` 的 `VM*`
 6. 页面默认做响应式适配：桌面 Web 预览可用，窄屏再收敛为移动端布局

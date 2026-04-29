@@ -70,7 +70,7 @@ export const WHITELIST = ['/login', '/register', '/forgot-password'];
 
 ### nuxt（route middleware）
 
-- 用 `defineNuxtRouteMiddleware`，在 `middleware/auth.global.ts`
+- 用 `defineNuxtRouteMiddleware`，在 `src/middleware/auth.global.ts`
 - SSR 环境下 cookie 同时在服务端可读
 - 见 `examples/nuxt-middleware.ts`
 
@@ -93,7 +93,7 @@ export const WHITELIST = ['/login', '/register', '/forgot-password'];
 ## 产出位置
 
 - vue 系：`apps/<app>/src/router/index.ts`（或拆 `src/router/guard.ts`）
-- Nuxt：`apps/<nuxt>/middleware/auth.global.ts`
+- Nuxt：`apps/<nuxt>/src/middleware/auth.global.ts`
 - wxt：`apps/<wxt>/src/common/utils/authSync.ts`
 
 ## 引用关系

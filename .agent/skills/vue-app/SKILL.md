@@ -170,8 +170,8 @@ pnpm --filter <app-name> build     # 产物输出到 .output/
 ## 实现新模块的步骤
 
 1. 与用户确认模块名（中英文对照）
-2. 创建 `src/modules/<name>/`，含 `views/` `components/` `stores/` `api/`
-   `locales/`；如存在模块级共享领域类型，再创建 `types/`
+2. 创建 `src/modules/<name>/`，含 `index.ts` `views/` `components/` `stores/`
+   `api/` `locales/`；如存在模块级共享领域类型，再创建 `types/`
 3. 在 `router/routes.ts` 添加路由（或由 permission-rbac 动态注入）
 4. 按 `api-layer` skill 创建 API 文件；接口请求 / 响应类型跟 `api`
    走，只有模块级共享类型才放 `types/`
@@ -202,3 +202,5 @@ vue-app/
 ```
 
 跨平台能力全部引用 capability skills，不在此重复。
+
+模块边界、Public API 和 `common` 归属遵守 `.agent/rules/module-structure.md`。
