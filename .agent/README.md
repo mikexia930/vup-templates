@@ -15,7 +15,8 @@ Gemini 等）在本仓库工作时，都以本目录为唯一指令来源（Sing
 │   ├── typescript.md              TypeScript 规范
 │   ├── vue-component.md           Vue 组件规范
 │   ├── module-structure.md        模块化目录规范
-│   └── http-request-governance.md 请求治理规范
+│   ├── http-request-governance.md 请求治理规范
+│   └── git-workflow.md            Git 工作流规范
 └── skills/                      按需加载的"知识胶囊"（自包含目录）
     └── <skill-name>/
         ├── SKILL.md               必需，含 frontmatter（name + description）
@@ -71,7 +72,8 @@ AI 启动时扫描所有 `<skill>/SKILL.md` 的 frontmatter（约 100 tokens 每
 `.cursor/rules/*.mdc` / `.github/copilot-instructions.md` 等），由 `vup-cli`
 命令在 `vup init` 后按用户选择的模型生成，统一指向本目录。
 
-基座本身不维护任何客户端入口文件。
+基座可维护轻量客户端入口文件（如根 `AGENTS.md`），但入口文件只负责指向
+`.agent/`，不重复维护规则正文。
 
 ## 维护指南
 

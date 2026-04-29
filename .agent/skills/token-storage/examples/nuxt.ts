@@ -1,4 +1,4 @@
-// 范例：apps/<nuxt-app>/utils/tokenStorage.ts
+// 范例：apps/<nuxt-app>/src/utils/tokenStorage.ts
 //
 // 适用：nuxt（SSR + CSR）
 // 底层：useCookie（Nuxt 内置 composable）

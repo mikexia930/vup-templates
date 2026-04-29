@@ -115,3 +115,5 @@ out/
 
 # Husky 内部文件
 .husky/_
+
+AGENTS.md

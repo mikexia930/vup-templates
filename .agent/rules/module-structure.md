@@ -4,17 +4,20 @@
 
 ## 前端模块结构（Vue / Electron / Capacitor）
 
+Vue / Capacitor 适用于 `src/`；Electron 渲染进程适用于 `src/renderer/`。
+
 ```
 src/
 ├── modules/                         # 业务模块（每个可独立剥离）
 │   └── <name>/
+│       ├── index.ts                 # 模块 Public API（唯一对外出口）
 │       ├── views/                   # 页面
 │       ├── components/              # 模块内组件
 │       ├── stores/                  # 模块 store
 │       ├── api/                     # 模块 API 接口
 │       ├── types/                   # 模块类型
 │       └── composables/             # 模块 composable（可选）
-├── common/                          # 跨模块共享代码（app 内公用，勿与仓库根 _shared/ 混淆）
+├── common/                          # 全局通用代码（勿与仓库根 _shared/ 混淆）
 │   ├── components/                  # 公共组件
 │   ├── composables/                 # 公共 composable
 │   ├── utils/                       # 工具函数（含 tokenStorage）
@@ -45,15 +48,15 @@ src/
 └── database/
 ```
 
-## Nuxt 例外
+## 平台例外
 
-Nuxt 的 `pages/`、`components/`、`composables/`
-是框架强制的自动导入目录，不能移入 `modules/`。Nuxt 应用的模块化体现在：
+本规则定义通用业务模块边界。Nuxt、VitePress、uni-app、WXT 等平台有明显框架约定时，以对应 stack
+skill 的差异说明为准：
 
-- 业务 store 按模块拆分到 `stores/<module>/`（如 `stores/user/index.ts`）
-- 业务 API 按模块拆分到 `api/<module>/`（如 `api/user.ts`）
-- 页面仍用 `pages/` 文件系统路由（Nuxt 约定）
-- 组件仍用 `components/` 自动导入（Nuxt 约定）
+- Nuxt：详见 `.agent/skills/nuxt-app/SKILL.md`
+- VitePress：详见 `.agent/skills/vitepress-app/SKILL.md`
+- uni-app：详见 `.agent/skills/uniapp-app/SKILL.md`
+- WXT：详见 `.agent/skills/wxt-extension/SKILL.md`
 
 ## 模块 API 命名
 
@@ -67,8 +70,12 @@ Nuxt 的 `pages/`、`components/`、`composables/`
 
 AI 创建新文件、移动文件或修改 import 时，必须对照以下原则。**违反任一条必须停下修正，不得继续。**
 
-- **模块间禁止互相 import**：如需共享，Vue 侧提取到 `src/common/`，Nest 侧提取到
-  `src/common/`（见上节「后端模块结构」）
+- **模块 Public API**：业务模块如需对外暴露能力，必须通过
+  `src/modules/<name>/index.ts` 显式导出；其他模块只能从该入口引用
+- **禁止深层 import 其他模块**：不要从其他模块的 `api/` `components/` `stores/`
+  `types/` 等内部路径 import；确需复用时先让被依赖模块在 `index.ts` 暴露稳定 API
+- **common 只放真正全局通用能力**：不要为了规避模块间依赖把特定业务域的 API、类型或组件上提到
+  `src/common/`；只有跨多个业务域、且不属于某个模块的能力才进入 `common`
 - **全局 store 仅限 app 级**（auth、permission、app 设置），业务 store 跟模块走
 - **新增业务功能 = 新增一个 module 目录**，不要往已有模块里混入无关逻辑
 - **模块 API 跟模块走**：基础设施放 `src/api/`，业务请求函数放

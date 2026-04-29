@@ -1,4 +1,4 @@
-// 范例：apps/<nuxt-app>/middleware/auth.global.ts
+// 范例：apps/<nuxt-app>/src/middleware/auth.global.ts
 //
 // 适用：nuxt（SSR + cookie + middleware）
 // 角色：未登录拦截 + 登录后回原路 + 已登录禁止访问 /login
@@ -9,7 +9,7 @@
 //   - useCookie 同时在 SSR + CSR 可用，无需特殊处理
 //   - 用 navigateTo 跳转（而非 router.push）
 //
-// AI 使用：直接放到 middleware/auth.global.ts，全局自动生效
+// AI 使用：直接放到 src/middleware/auth.global.ts，全局自动生效
 
 const WHITELIST = ['/login', '/register', '/forgot-password'];
 const AUTH_ONLY_REDIRECT = ['/login', '/register'];
