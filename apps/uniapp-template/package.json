@@ -73,6 +73,7 @@
     "@vue/tsconfig": "^0.1.3",
     "@intlify/core-base": "9.14.5",
     "@intlify/message-compiler": "9.14.5",
-    "@intlify/shared": "9.14.5"
+    "@intlify/shared": "9.14.5",
+    "sass": "^1.97.2"
   }
 }

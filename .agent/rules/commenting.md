@@ -39,3 +39,36 @@ if (user.role === 'admin') {
   return true;
 }
 ```
+
+## ⚠️ 为 AI 可读性写注释（强制执行）
+
+> **注释是 AI 复用代码的导航地图。**
+> 没有注释的抽象等于不存在——AI 无法发现它，就会重复实现，违反 DRY 原则。
+
+### 以下位置必须写注释（零容忍）
+
+- **公共 composable**：说明用途、输入参数、返回值、适用场景
+- **抽象函数 / 工具方法**：说明用途、参数约束、返回值语义、边界行为
+- **模块 `index.ts` 每个导出项**：至少一句话说明「这是什么、谁会用」
+- **复杂类型 / 接口**：关键字段加行内注释说明业务含义
+- **组件 props / emit**：非自解释的 prop 必须加注释说明用途和取值范围
+
+### 注释格式建议
+
+```ts
+/**
+ * 通用分页列表数据管理
+ *
+ * @param fetchFn - 获取列表数据的 API 函数，需返回 ApiResponse<PageResult<T>>
+ * @param options - 可选配置：默认分页大小、是否立即加载
+ * @returns { list, loading, pagination, refresh } 列表数据、加载状态、分页信息、刷新方法
+ *
+ * @example
+ * const { list, loading, pagination } = usePageList(listUsers)
+ */
+export function usePageList<T>(fetchFn: FetchFn<T>, options?: PageListOptions) { ... }
+```
+
+### 目标
+
+**AI 通过搜索注释关键词就能定位到可复用的能力**，避免重复实现。每一个公共抽象都是团队资产，注释是这些资产的索引。

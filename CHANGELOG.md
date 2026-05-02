@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.7.4](/compare/v3.7.3...v3.7.4) (2026-05-02)
+
+### Bug Fixes
+
+- 优化skill文档 242ea66
+
 ## [3.7.3](/compare/v3.7.2...v3.7.3) (2026-04-29)
 
 ### Bug Fixes
