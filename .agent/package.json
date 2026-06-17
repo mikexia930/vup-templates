@@ -1,6 +1,6 @@
 {
-  "name": "ai-agent-rules-and-skills",
+  "name": "vup-agent-guidance",
   "version": "1.0.0",
-  "description": "AI Agent Rules and Skills",
+  "description": "AI Agent Guidance for vup projects",
   "private": true
 }
