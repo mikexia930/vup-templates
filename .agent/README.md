@@ -8,24 +8,28 @@ vup 的 AI 协作指令集。它的目标是让 AI 按 vup 约定开发，而不
 .agent/
 ├── ai.md                 AI 客户端入口模板，由 vup skill add 复制为 AGENTS.md/CLAUDE.md
 ├── project.md            当前项目事实：已添加的 apps/packages/examples 与常用命令
-├── rules/                少量全局硬规则
-│   ├── core.md
-│   ├── module.md
-│   ├── filesystem.md
-│   └── quality.md
-├── tasks/                按工程动作加载的操作卡片
-│   ├── add-app.md
-│   ├── add-module.md
-│   ├── change-existing-module.md
-│   ├── add-api.md
-│   ├── add-page.md
-│   ├── add-auth.md
-│   └── deploy.md
-├── stacks/               平台差异说明，只在 task 要求时读取
-│   ├── vue.md
-│   ├── nuxt.md
-│   ├── nest.md
-│   └── ...
+├── _core/                vup 内置指令，由模板和 vup skill 管理
+│   ├── package.json      内置指令版本元信息
+│   ├── rules/            少量全局硬规则
+│   │   ├── core.md
+│   │   ├── module.md
+│   │   ├── filesystem.md
+│   │   └── quality.md
+│   ├── tasks/            按工程动作加载的操作卡片
+│   │   ├── add-app.md
+│   │   ├── add-module.md
+│   │   ├── change-existing-module.md
+│   │   ├── add-api.md
+│   │   ├── add-page.md
+│   │   ├── add-auth.md
+│   │   ├── release-commit.md
+│   │   └── deploy.md
+│   └── stacks/           平台差异说明，只在 task 要求时读取
+│       ├── vue.md
+│       ├── nuxt.md
+│       ├── nest.md
+│       └── ...
+└── extensions/           项目安装的第三方或团队自定义 skill
 ```
 
 ## 设计原则
@@ -34,6 +38,7 @@ vup 的 AI 协作指令集。它的目标是让 AI 按 vup 约定开发，而不
 - **task 优先**：AI 做的是一个工程动作，比如加接口、加页面、加鉴权，而不是“学习 Vue/Nuxt”。
 - **stack 只写差异**：框架基础知识 AI 本身会，vup 只约束平台差异和文件落点。
 - **project 是事实源**：`.agent/project.md` 记录当前项目实际拥有的 app、package、example 和命令。
+- **内置和扩展分离**：`_core` 只放 vup 自带规范，`extensions` 放项目额外安装的 skill。
 
 ## 维护指南
 
@@ -43,7 +48,7 @@ vup 的 AI 协作指令集。它的目标是让 AI 按 vup 约定开发，而不
 
 ### 新增 task
 
-只有当一个工程动作经常独立发生时，才新增 `.agent/tasks/<name>.md`。task 应包含：
+只有当一个工程动作经常独立发生时，才新增 `.agent/_core/tasks/<name>.md`。task 应包含：
 
 - 何时使用
 - 必读/可选 stack
@@ -54,7 +59,11 @@ vup 的 AI 协作指令集。它的目标是让 AI 按 vup 约定开发，而不
 
 ### 新增 stack
 
-只有当 vup 对某平台有特殊约定时，才新增 `.agent/stacks/<name>.md`。不要写框架教程。
+只有当 vup 对某平台有特殊约定时，才新增 `.agent/_core/stacks/<name>.md`。不要写框架教程。
+
+### 新增扩展 skill
+
+第三方或团队自定义 skill 放在 `.agent/extensions/<name>/`。扩展可以补充领域知识、外部平台流程或团队偏好，但不应覆盖 `_core` 的目录落点、模块拆分、质量检查和发版边界。
 
 ### 更新 project.md
 

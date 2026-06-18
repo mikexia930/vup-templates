@@ -6,10 +6,10 @@
 
 ## 先读
 
-- `.agent/tasks/add-api.md`
-- `.agent/tasks/add-page.md`
-- `.agent/rules/module.md`
-- 目标 app 对应的 `.agent/stacks/<stack>.md`
+- `.agent/_core/tasks/add-api.md`
+- `.agent/_core/tasks/add-page.md`
+- `.agent/_core/rules/module.md`
+- 目标 app 对应的 `.agent/_core/stacks/<stack>.md`
 
 ## 组成
 

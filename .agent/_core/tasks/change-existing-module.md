@@ -6,9 +6,9 @@
 
 ## 先读
 
-- `.agent/rules/core.md`
-- `.agent/rules/module.md`
-- 目标 app 对应的 `.agent/stacks/<stack>.md`
+- `.agent/_core/rules/core.md`
+- `.agent/_core/rules/module.md`
+- 目标 app 对应的 `.agent/_core/stacks/<stack>.md`
 
 ## 执行规则
 

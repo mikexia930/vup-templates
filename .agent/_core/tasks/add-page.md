@@ -6,10 +6,10 @@
 
 ## 先读
 
-- `.agent/rules/quality.md`
-- `.agent/rules/module.md`
-- `.agent/tasks/add-module.md`
-- 目标 app 对应的 `.agent/stacks/<stack>.md`
+- `.agent/_core/rules/quality.md`
+- `.agent/_core/rules/module.md`
+- `.agent/_core/tasks/add-module.md`
+- 目标 app 对应的 `.agent/_core/stacks/<stack>.md`
 
 ## 页面落点
 
@@ -32,7 +32,7 @@
 
 - 主页面：搜索、表格、分页、操作列
 - 表单组件：新增/编辑共用
-- API 文件：list/get/create/update/delete，落点按 `.agent/tasks/add-api.md`
+- API 文件：list/get/create/update/delete，落点按 `.agent/_core/tasks/add-api.md`
 - Store：列表、分页、loading、当前查询
 - 类型：实体、查询、表单
 

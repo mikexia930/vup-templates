@@ -6,8 +6,8 @@
 
 ## 先读
 
-- `.agent/rules/filesystem.md`
-- 目标 app 对应的 `.agent/stacks/<stack>.md`
+- `.agent/_core/rules/filesystem.md`
+- 目标 app 对应的 `.agent/_core/stacks/<stack>.md`
 
 ## 规则
 

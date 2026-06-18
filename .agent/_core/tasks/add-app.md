@@ -6,8 +6,8 @@
 
 ## 先读
 
-- `.agent/rules/filesystem.md`
-- 需要判断平台差异时，再读对应 `.agent/stacks/<stack>.md`
+- `.agent/_core/rules/filesystem.md`
+- 需要判断平台差异时，再读对应 `.agent/_core/stacks/<stack>.md`
 
 ## 规则
 

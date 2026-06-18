@@ -6,14 +6,14 @@
 
 ## 先读
 
-- `.agent/rules/filesystem.md`
-- `.agent/rules/module.md`
-- `.agent/rules/quality.md`
-- 目标 app 对应的 `.agent/stacks/<stack>.md`
+- `.agent/_core/rules/filesystem.md`
+- `.agent/_core/rules/module.md`
+- `.agent/_core/rules/quality.md`
+- 目标 app 对应的 `.agent/_core/stacks/<stack>.md`
 
 ## 执行规则
 
-- 先按 `.agent/rules/module.md` 判断模块边界和平台落点。
+- 先按 `.agent/_core/rules/module.md` 判断模块边界和平台落点。
 - 前端业务模块默认使用 `src/modules/<module>/`。
 - Nest 业务模块默认使用 `src/<module>/`，不要放进 `src/modules/`。
 - uni-app 使用 `src/pages/<page>/index.vue` 薄入口 + `src/modules/<module>/` 实现。
@@ -28,7 +28,7 @@
 ## 命名
 
 - 目录名用 kebab-case 或项目既有风格。
-- 命名细节遵守 `.agent/rules/module.md`。
+- 命名细节遵守 `.agent/_core/rules/module.md`。
 
 ## 验证
 
