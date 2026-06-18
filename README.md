@@ -152,11 +152,15 @@ pnpm dev
 
 `apps/` 目录只放正式模板；专项能力演示请看下方 `examples/`。
 
-`.template.config.json` 是基座资源清单，`type` 决定 CLI 命令：
+`.template.config.json` 是基座资源清单，按资源类型分组：
 
-- `type: "app"`：正式模板层，使用 `vup add <name>`
-- `type: "package"`：共享功能包层，使用 `vup use <name>`
-- `type: "example"`：Examples 参考层，使用 `vup example <name>`
+- 根 `name` / `version` / `description`：当前模板仓库元信息
+- `apps`：正式模板层，使用 `vup add <name>`
+- `packages`：共享功能包层，使用 `vup use <name>`
+- `examples`：Examples 参考层，使用 `vup example <name>`
+- `skills`：AI 引导文件，使用 `vup skill init/add/update`
+
+资源类型由所在分组决定，条目内部不再重复声明 `type`。
 
 | 模板                   | 技术栈                         | 适用场景                             | 文档                                            |
 | ---------------------- | ------------------------------ | ------------------------------------ | ----------------------------------------------- |
