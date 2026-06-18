@@ -1,5 +1,26 @@
 # Changelog
 
+# [3.9.0](https://github.com/mikexia930/vup-templates/compare/v3.5.3...v3.9.0) (2026-06-18)
+
+### Bug Fixes
+
+- config 里缺失了 example 统计 ([25c74f1](https://github.com/mikexia930/vup-templates/commit/25c74f19104cd00b2330aecb8cc5c58c1e024b9f))
+- 优化skill
+  ([5a6a90c](https://github.com/mikexia930/vup-templates/commit/5a6a90ce4ca9378cccafdb3ea94a4c561572a399))
+- 优化skill文档 ([242ea66](https://github.com/mikexia930/vup-templates/commit/242ea6622cc9e60e6353ec72c9cba96381d71944))
+- 优化skill文档 ([aecdcc0](https://github.com/mikexia930/vup-templates/commit/aecdcc0916e556db0b1e08f3f7a5ea1ff9d7ffc2))
+
+### Features
+
+- example和template解藕 ([1dff1ed](https://github.com/mikexia930/vup-templates/commit/1dff1ed6b33503dcd72a816b39806f3772cc425e))
+- 优化 .template.config 结构 ([497f634](https://github.com/mikexia930/vup-templates/commit/497f63488630427899219f94b18781bfa4e388fa))
+- 优化模板的demo页面 ([de12b72](https://github.com/mikexia930/vup-templates/commit/de12b727909d6bd2b39395f2b392c06d6889d48b))
+
+### Performance Improvements
+
+- 优化 rules
+  ([129cca6](https://github.com/mikexia930/vup-templates/commit/129cca6409452c0c5572260b542453baa489be5b))
+
 ## [3.7.4](/compare/v3.7.3...v3.7.4) (2026-05-02)
 
 ### Bug Fixes
