@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.10.0](https://github.com/mikexia930/vup-templates/compare/v3.9.0...v3.10.0) (2026-06-22)
+
+### Features
+
+- 模板自包含化并对齐 AI 指令与文档 ([7aaf134](https://github.com/mikexia930/vup-templates/commit/7aaf134345f03188e2b7c62bc7ceb0831a9ff50f))
+
 # [3.9.0](https://github.com/mikexia930/vup-templates/compare/v3.5.3...v3.9.0) (2026-06-18)
 
 ### Bug Fixes
