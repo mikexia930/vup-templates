@@ -59,8 +59,8 @@ src/
 ├── pages/
 │   ├── demo.vue           # /demo
 │   └── index.vue          # 重定向到 /demo
-├── plugins/
-│   └── msw.client.ts      # 开发期 mock 启动
+├── server/
+│   └── api/template-demo/ # demo 内置接口
 ├── stores/
 │   └── demo/
 │       └── index.ts       # demo Pinia 状态
@@ -80,7 +80,7 @@ i18n/
 - `@nuxtjs/i18n` 语言切换
 - Pinia 运行时状态
 - ofetch 请求适配层
-- `@vup/mock` 拦截 `/api/template-demo/*`
+- 内置 server route 提供 `/api/template-demo/*` demo 数据
 - Nuxt modules 集成方式
 - Nuxt 目录结构和职责边界
 
@@ -97,13 +97,11 @@ i18n/
 Nuxt 不使用 `@vup/http`，因为 SSR、server routes、runtime
 config 和 cookie 行为都更适合交给 Nuxt/ofetch 处理。
 
-## 开发期 Mock
+## Demo 接口
 
-- 共享 mock 包：`@vup/mock`
-- 开关：`NUXT_PUBLIC_USE_MOCK=true`
-- 默认拦截：`/api/template-demo/*`
-
-Mock 只用于模板演示和联调前验证。真实项目接入后端时，保持业务接口函数位置不变，替换 baseURL 或后端实现即可。
+模板内置 Nuxt server route 提供 `/api/template-demo/*`
+demo 数据，因此新项目不需要额外安装 mock
+package 就能直接运行。真实项目接入后端时，保持业务接口函数位置不变，替换 baseURL 或后端实现即可。
 
 ## 国际化
 

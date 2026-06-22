@@ -2,18 +2,20 @@
 
 ## 何时使用
 
-用户要求发版、生成 release commit、打 tag、准备 push、检查为什么 push 会触发发布时使用。
+用户要求发版、生成 release
+commit、打 tag、准备 push、检查为什么 push 会触发发布时使用。
 
 ## 先读
 
-- `.agent/_core/rules/core.md`
-- `.agent/_core/rules/filesystem.md`
-- `.agent/project.md`
+- `.agents/_core/rules/core.md`
+- `.agents/_core/rules/filesystem.md`
+- `.agents/project.md`
 
 ## 原则
 
 - release commit 负责版本、changelog、tag；deploy 负责线上部署。
-- 不把 `git push` 当普通验证步骤，因为 push 到 main/master 可能触发 Vercel 生产发布。
+- 不把 `git push`
+  当普通验证步骤，因为 push 到 main/master 可能触发 Vercel 生产发布。
 - 不自动执行 `git push`、`npm publish`、`vercel --prod`；必须得到用户明确确认。
 - 不在 release 过程中修改业务代码，除非用户明确要求修复 release blocker。
 
@@ -24,7 +26,8 @@
 3. 查看版本：`package.json` 的 `version`
 4. 查看 release 配置：`package.json` 的 `release-it`
 5. 确认是否存在当前版本 tag：`git rev-parse v<version>`
-6. 确认 push 目标分支是否会触发部署：检查 `.github/workflows/`、`vercel.json`、项目 README
+6. 确认 push 目标分支是否会触发部署：检查
+   `.github/workflows/`、`vercel.json`、项目 README
 
 ## 质量检查
 
@@ -52,7 +55,8 @@ pnpm release
 - 创建 release commit
 - 创建 git tag
 
-如果项目配置 `release-it.git.push=false`，release commit/tag 不会自动 push；仍需用户确认后再 push。
+如果项目配置 `release-it.git.push=false`，release
+commit/tag 不会自动 push；仍需用户确认后再 push。
 
 ## Push Gate
 

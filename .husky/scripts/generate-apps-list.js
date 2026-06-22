@@ -33,8 +33,8 @@ const templateConfig = {
   skills: {},
 };
 
-const agentPackageDir = '.agent/_core';
-const agentInstallDir = '.agent';
+const agentPackageDir = '.agents/_core';
+const agentInstallDir = '.agents';
 const agentPackageJson = readPackageJson(agentPackageDir);
 if (agentPackageJson) {
   templateConfig.skills[agentPackageJson.name] = {
@@ -65,7 +65,10 @@ collectWorkspaceEntries('packages', 'packages');
 collectWorkspaceEntries('examples', 'examples');
 
 // 写入文件
-fs.writeFileSync(path.join(_rootDir, './.template.config.json'), JSON.stringify(templateConfig, null, 2));
+fs.writeFileSync(
+  path.join(_rootDir, './.template.config.json'),
+  JSON.stringify(templateConfig, null, 2)
+);
 
 const resourceNames = ['apps', 'packages', 'examples', 'skills']
   .flatMap((group) => Object.values(templateConfig[group]))

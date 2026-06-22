@@ -9,7 +9,7 @@
     "hero": {
       "badge": "SSR Ready",
       "title": "Nuxt App\nTemplate",
-      "description": "基于 Nuxt 4 的应用模板，保留框架目录约定，同时展示文件路由、i18n、Pinia 状态、ofetch 请求分层和 MSW mock 集成。",
+      "description": "基于 Nuxt 4 的应用模板，保留框架目录约定，同时展示文件路由、i18n、Pinia 状态、ofetch 请求分层和 内置 demo 接口集成。",
       "primaryAction": "查看快速开始",
       "secondaryAction": "查看目录结构"
     },
@@ -43,7 +43,7 @@
         "i18n": "Nuxt i18n",
         "pinia": "Pinia 状态",
         "api": "ofetch 请求层",
-        "mock": "MSW Mock",
+        "mock": "Demo API",
         "modules": "Nuxt Modules"
       },
       "items": {
@@ -51,7 +51,7 @@
         "i18n": "语言文件使用 BCP 47 命名，并由 Nuxt i18n 处理本地化路由。",
         "pinia": "运行时交互状态放在 src/stores/demo 中，通过明确 action 流转。",
         "api": "src/api/request.ts 封装 ofetch，业务请求放在 src/api/demo.ts。",
-        "mock": "共享 mock 包可在本地开发时拦截 /api/template-demo/*。",
+        "mock": "内置 server route 提供 /api/template-demo/* demo 数据。",
         "modules": "Pinia、i18n、Element Plus 通过 Nuxt modules 注册，不使用 app.use。"
       }
     },

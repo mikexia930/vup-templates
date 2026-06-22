@@ -2,7 +2,8 @@
 
 ## 原则
 
-vup 使用 module-first architecture：所有业务功能都按业务域拆分模块。统一的是模块边界和注册方式，不是所有平台都使用同一个目录名。
+vup 使用 module-first
+architecture：所有业务功能都按业务域拆分模块。统一的是模块边界和注册方式，不是所有平台都使用同一个目录名。
 
 ## 现有风格优先
 
@@ -47,7 +48,8 @@ src/modules/<module>/
 
 ## Nest 落点
 
-Nest 本身就是 module-first。业务模块直接放在 `src/<module>/`，不要为了和前端统一强行放进 `src/modules/`。
+Nest 本身就是 module-first。业务模块直接放在
+`src/<module>/`，不要为了和前端统一强行放进 `src/modules/`。
 
 ```
 src/<module>/

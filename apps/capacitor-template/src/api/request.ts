@@ -1,13 +1,14 @@
-import { createHttpClient } from '@vup/http';
 import { Preferences } from '@capacitor/preferences';
 
 /**
- * 说明：
- * 1. 共享能力（axios 实例工厂、通用拦截器）放在 @vup/http 包里；
- * 2. 当前文件保留应用侧适配逻辑（环境变量、token、语言、401 行为）；
- * 3. 业务接口函数继续放在 modules/<name>/api 下，不在这里堆业务细节；
- * 4. token 使用 @capacitor/preferences 持久化（移动端必须，避免被系统清理 localStorage）。
+ * 应用侧最小请求适配层。
+ *
+ * 模板默认保持自包含，真实项目需要共享请求能力时再通过 vup package add @vup/http 接入。
  */
+
+export interface RequestOptions extends RequestInit {
+  query?: Record<string, string | number | boolean | null | undefined>;
+}
 
 // 内存缓存：让同步的 getAccessToken() 接口能立刻返回
 // 由 syncTokenFromStorage（启动时）和 setAccessToken（登录时）维护
@@ -39,19 +40,62 @@ function getLocale() {
   return localStorage.getItem('locale') || 'en-US';
 }
 
-const request = createHttpClient({
-  baseURL: import.meta.env.VITE_API_BASE || '',
-  getAccessToken,
-  getLocale,
-  onResponseError: (_error, message) => {
-    if (request.isCanceled(_error)) return;
-    console.error('[request]', message);
+function buildUrl(url: string, query?: RequestOptions['query']) {
+  const baseURL = import.meta.env.VITE_API_BASE || '';
+  const requestUrl = new URL(baseURL + url, window.location.origin);
+
+  Object.entries(query || {}).forEach(([key, value]) => {
+    if (value !== undefined && value !== null && value !== '') {
+      requestUrl.searchParams.set(key, String(value));
+    }
+  });
+
+  return requestUrl.toString();
+}
+
+async function request<T>(url: string, options: RequestOptions = {}): Promise<T> {
+  const { query, headers, ...fetchOptions } = options;
+  const token = getAccessToken();
+  const requestHeaders = new Headers(headers);
+  requestHeaders.set('Accept-Language', getLocale());
+  if (token) requestHeaders.set('Authorization', `Bearer ${token}`);
+
+  const response = await fetch(buildUrl(url, query), {
+    ...fetchOptions,
+    headers: requestHeaders,
+  });
+
+  if (response.status === 401) {
+    await removeAccessToken();
+  }
+
+  if (!response.ok) {
+    throw new Error(response.statusText || 'Request failed');
+  }
+
+  return response.json() as Promise<T>;
+}
+
+export const isRequestCanceled = (error: unknown) =>
+  error instanceof DOMException && error.name === 'AbortError';
+
+export default Object.assign(request, {
+  get: <T>(url: string, options?: RequestOptions) => request<T>(url, { ...options, method: 'GET' }),
+  post: <T>(url: string, body?: unknown, options?: RequestOptions) => {
+    const requestOptions: RequestOptions = {
+      ...options,
+      method: 'POST',
+      headers: {
+        ...Object.fromEntries(new Headers(options?.headers).entries()),
+        'Content-Type': 'application/json',
+      },
+    };
+
+    if (body !== undefined) {
+      requestOptions.body = JSON.stringify(body);
+    }
+
+    return request<T>(url, requestOptions);
   },
-  onUnauthorized: () => {
-    void removeAccessToken();
-  },
+  isCanceled: isRequestCanceled,
 });
-
-export const isRequestCanceled = request.isCanceled;
-
-export default request;

@@ -1,6 +1,9 @@
 /**
  * HTTP 抽象层类型定义
- * 与 @vup/http 的 API 设计对齐，但底层基于 uni.request
+ *
+ * 模板自包含：基于 uni.request 实现，无需额外依赖。
+ * API 设计与可选共享包 @vup/http 对齐，真实项目需要共享请求能力时
+ * 可通过 vup package add @vup/http 接入。
  */
 
 export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'OPTIONS' | 'HEAD';

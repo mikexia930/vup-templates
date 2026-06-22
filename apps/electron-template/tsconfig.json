@@ -14,9 +14,7 @@
     "resolveJsonModule": true,
     "paths": {
       "@/*": ["src/renderer/*"],
-      "@_shared/*": ["../../_shared/*"],
-      "@vup/http": ["../../packages/http/src/index.ts"],
-      "@vup/ui": ["../../packages/ui/src/index.ts"]
+      "@_shared/*": ["../../_shared/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "auto-imports.d.ts"],

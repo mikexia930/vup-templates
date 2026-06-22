@@ -1,6 +1,6 @@
 {
   "name": "vup-templates",
-  "version": "3.9.0",
+  "version": "3.10.0",
   "description": "",
   "apps": {
     "capacitor": {
@@ -161,9 +161,9 @@
   "skills": {
     "vup-agent-guidance": {
       "name": "vup-agent-guidance",
-      "version": "2.0.0",
+      "version": "2.1.0",
       "description": "AI Agent Guidance for vup projects",
-      "path": ".agent"
+      "path": ".agents"
     }
   }
 }

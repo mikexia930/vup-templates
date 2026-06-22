@@ -38,7 +38,7 @@ export default {
   features: {
     description: 'The core capabilities commonly needed by enterprise SPA projects.',
     items: {
-      http: 'Three-layer HTTP structure: @vup/http shared layer, src/api app adapter, and modules/api business APIs.',
+      http: 'Three-layer HTTP structure: local request adapter, src/api app adapter, and modules/api business APIs.',
       i18n: 'Module locale files are collected automatically, so new modules need no manual registration.',
       module:
         'Self-contained modules keep UI, store, API, types, and locales close to the feature.',
@@ -63,7 +63,7 @@ export default {
       base: {
         badge: 'Infrastructure',
         directory: 'api/',
-        responsibility: 'HTTP request adapter based on @vup/http',
+        responsibility: 'HTTP request adapter based on the local request adapter',
       },
       common: {
         badge: 'Shared App',
@@ -119,7 +119,7 @@ export default {
   },
   footer: {
     license: 'Released under the MIT License.',
-    stack: 'Vue 3 · Vite · TypeScript · @vup/ui',
+    stack: 'Vue 3 · Vite · TypeScript · optional UI packages',
   },
   common: {
     copied: 'Copied to clipboard',

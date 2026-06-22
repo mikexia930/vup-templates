@@ -29,7 +29,7 @@ const layerItems = [
 ├── <span class="font-bold text-primary-2">pages/</span>
 │   ├── <span class="text-neutral-3">index.vue</span>
 │   └── <span class="text-neutral-3">demo.vue</span>      <span class="text-neutral-4">文件路由入口</span>
-├── <span class="font-bold text-primary-2">plugins/</span>          <span class="text-neutral-4">MSW 客户端启动</span>
+├── <span class="font-bold text-primary-2">server/api/</span>       <span class="text-neutral-4">内置 Demo 接口</span>
 ├── <span class="font-bold text-primary-2">stores/</span>
 │   └── <span class="font-bold text-primary-2">demo/</span>         <span class="text-neutral-4">Pinia 状态</span>
 └── <span class="text-neutral-3">app.vue</span>

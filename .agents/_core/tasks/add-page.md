@@ -6,15 +6,17 @@
 
 ## 先读
 
-- `.agent/_core/rules/quality.md`
-- `.agent/_core/rules/module.md`
-- `.agent/_core/tasks/add-module.md`
-- 目标 app 对应的 `.agent/_core/stacks/<stack>.md`
+- `.agents/_core/rules/quality.md`
+- `.agents/_core/rules/module.md`
+- `.agents/_core/tasks/add-module.md`
+- 目标 app 对应的 `.agents/_core/stacks/<stack>.md`
 
 ## 页面落点
 
-- Vue/Electron renderer/Capacitor/WXT：业务页面放 `src/modules/<module>/views/`，模块组件放 `src/modules/<module>/components/`。
-- uni-app：页面入口放 `src/pages/<page>/index.vue`，复杂业务放 `src/modules/<module>/`。
+- Vue/Electron renderer/Capacitor/WXT：业务页面放
+  `src/modules/<module>/views/`，模块组件放 `src/modules/<module>/components/`。
+- uni-app：页面入口放 `src/pages/<page>/index.vue`，复杂业务放
+  `src/modules/<module>/`。
 - Nuxt：页面放 `src/pages/`，不要为了统一前端结构强塞 `src/modules`。
 - 全局布局放 `src/layouts/` 或 stack 既有布局目录。
 - 路由、菜单、权限、i18n 按 stack 和现有项目注册方式同步。
@@ -32,7 +34,8 @@
 
 - 主页面：搜索、表格、分页、操作列
 - 表单组件：新增/编辑共用
-- API 文件：list/get/create/update/delete，落点按 `.agent/_core/tasks/add-api.md`
+- API 文件：list/get/create/update/delete，落点按
+  `.agents/_core/tasks/add-api.md`
 - Store：列表、分页、loading、当前查询
 - 类型：实体、查询、表单
 

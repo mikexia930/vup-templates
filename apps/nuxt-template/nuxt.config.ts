@@ -1,3 +1,5 @@
+const apiProxyTarget = process.env.NUXT_PUBLIC_API_BASE || '';
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
@@ -29,8 +31,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiBase: process.env.NUXT_PUBLIC_API_BASE || '',
-      useMock: process.env.NUXT_PUBLIC_USE_MOCK !== 'false',
+      apiBase: apiProxyTarget,
     },
   },
   i18n: {
@@ -51,29 +52,37 @@ export default defineNuxtConfig({
         '@_shared': '../../../_shared',
       },
     },
-    server: {
-      // 客户端代理 api，捕获 path 为 /api 的请求，可以自定义，也可配置多个代理
-      proxy: {
-        '/api': {
-          target: process.env.NUXT_PUBLIC_API_BASE || '',
-          changeOrigin: true,
-          secure: false,
-        },
-      },
-    },
+    ...(apiProxyTarget
+      ? {
+          server: {
+            // 客户端代理 api，捕获 path 为 /api 的请求，可以自定义，也可配置多个代理
+            proxy: {
+              '/api': {
+                target: apiProxyTarget,
+                changeOrigin: true,
+                secure: false,
+              },
+            },
+          },
+        }
+      : {}),
   },
   nitro: {
     // 服务端构建优化（避免大依赖打包）
     externals: {
       inline: ['@vueuse/core'], // 常用工具库内联，减少请求
     },
-    // 服务端代理 api，捕获 path 为 /api 的请求，可以自定义，也可配置多个代理
-    devProxy: {
-      '/api': {
-        target: process.env.NUXT_PUBLIC_API_BASE || '',
-        changeOrigin: true,
-        secure: false,
-      },
-    },
+    ...(apiProxyTarget
+      ? {
+          // 服务端代理 api，捕获 path 为 /api 的请求，可以自定义，也可配置多个代理
+          devProxy: {
+            '/api': {
+              target: apiProxyTarget,
+              changeOrigin: true,
+              secure: false,
+            },
+          },
+        }
+      : {}),
   },
 });

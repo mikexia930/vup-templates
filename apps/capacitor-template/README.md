@@ -47,7 +47,7 @@ pnpm android
 ```txt
 src/
 ├── api/
-│   ├── request.ts            # 应用侧请求适配层（基于 @vup/http）
+│   ├── request.ts            # 应用侧最小请求适配层
 │   └── types.ts
 ├── locales/                  # 根语言包（全局通用文案）
 ├── router/                   # 根路由

@@ -5,8 +5,8 @@ CLI 的多框架开发模板集合，包含 Vue、Nuxt、VitePress、NestJS、Qi
 
 ## ✨ 特性
 
-- 🚀 **VUP CLI 集成** - 通过 `vup add` 创建项目，`vup use`
-  添加功能包，`vup example` 获取专项能力参考示例
+- 🚀 **VUP CLI 集成** - 通过 `vup app add` 创建应用，`vup package add`
+  添加功能包，`vup example add` 获取专项能力参考示例
 - 🏗️ **Monorepo 架构** - 基于 pnpm workspace 的多包管理
 - 🎯 **多框架支持** - Vue、Nuxt、VitePress、NestJS、UniApp 等
 - 🔧 **TypeScript** - 完整的类型支持
@@ -22,19 +22,19 @@ CLI 的多框架开发模板集合，包含 Vue、Nuxt、VitePress、NestJS、Qi
 
 ### 前端框架
 
-| 技术       | 版本 | 说明                    |
-| ---------- | ---- | ----------------------- |
-| Vue        | 3.5+ | 渐进式JavaScript框架    |
-| Nuxt       | 4.0+ | Vue.js全栈框架          |
-| VitePress  | 2.0+ | Vue驱动的静态站点生成器 |
-| UniApp     | 3.0+ | 跨平台应用开发框架      |
-| Capacitor  | 7.0+ | 混合应用开发平台        |
-| Electron   | -    | 桌面应用开发框架        |
-| Qiankun    | -    | 微前端框架              |
-| WXT        | 3.0+ | 浏览器扩展开发框架      |
-| Vue Router | 4.0+ | Vue 路由管理器          |
-| Pinia      | 2.0+ | Vue 状态管理库          |
-| vue-i18n   | 9.0+ | Vue 国际化插件          |
+| 技术       | 版本  | 说明                    |
+| ---------- | ----- | ----------------------- |
+| Vue        | 3.5+  | 渐进式JavaScript框架    |
+| Nuxt       | 4.0+  | Vue.js全栈框架          |
+| VitePress  | 2.0+  | Vue驱动的静态站点生成器 |
+| UniApp     | 3.0+  | 跨平台应用开发框架      |
+| Capacitor  | 7.0+  | 混合应用开发平台        |
+| Electron   | -     | 桌面应用开发框架        |
+| Qiankun    | -     | 微前端框架              |
+| WXT        | 3.0+  | 浏览器扩展开发框架      |
+| Vue Router | 4.0+  | Vue 路由管理器          |
+| Pinia      | 3.0+  | Vue 状态管理库          |
+| vue-i18n   | 11.0+ | Vue 国际化插件          |
 
 ### 后端框架
 
@@ -61,13 +61,13 @@ CLI 的多框架开发模板集合，包含 Vue、Nuxt、VitePress、NestJS、Qi
 
 ```
 project-vue/
-├── apps/       # 正式应用模板层（供 vup add 使用）
-├── examples/   # Examples 参考层（供 vup example 使用，不作为正式模板分发）
+├── apps/       # 正式应用模板层（供 vup app add 使用）
+├── examples/   # Examples 参考层（供 vup example add 使用，不作为正式模板分发）
 │   ├── mock/   # @vup/mock 接入示例
 │   ├── pwa/    # @vup/pwa 接入示例
 │   ├── qiankun/ # qiankun 子应用接入示例
 │   └── ui/     # UI 示例
-├── packages/   # 共享功能包层（供 vup use 使用）
+├── packages/   # 共享功能包层（供 vup package add 使用）
 │   ├── http/   # 共享请求层（@vup/http）
 │   ├── mock/   # 共享 Mock 能力（@vup/mock，MSW）
 │   ├── pwa/    # 共享 PWA 接入层（@vup/pwa）
@@ -113,15 +113,13 @@ npm install -g vup-cli
 ### 2. 创建项目
 
 ```bash
-# 初始项目
-vup init my-project
-# 添加新项目
-vup add my-app
+# 添加新应用
+vup app add my-app
 
 # 选择模板类型
 ? 请选择项目模板:
   ❯ Vue 3 模板 (vue-template)
-    Nuxt 3 模板 (nuxt-template)
+    Nuxt 4 模板 (nuxt-template)
     VitePress 文档模板 (vitepress-template)
     NestJS 后端模板 (nest-template)
     Qiankun 微前端模板 (qiankun-template)
@@ -138,8 +136,8 @@ vup add my-app
 ### 3. 启动开发服务器
 
 ```bash
-# 进入项目目录
-cd my-project
+# 进入应用目录
+cd apps/my-app
 
 # 安装依赖
 pnpm install
@@ -155,9 +153,9 @@ pnpm dev
 `.template.config.json` 是基座资源清单，按资源类型分组：
 
 - 根 `name` / `version` / `description`：当前模板仓库元信息
-- `apps`：正式模板层，使用 `vup add <name>`
-- `packages`：共享功能包层，使用 `vup use <name>`
-- `examples`：Examples 参考层，使用 `vup example <name>`
+- `apps`：正式模板层，使用 `vup app add <name>`
+- `packages`：共享功能包层，使用 `vup package add <name>`
+- `examples`：Examples 参考层，使用 `vup example add <name>`
 - `skills`：AI 引导文件，使用 `vup skill init/add/update`
 
 资源类型由所在分组决定，条目内部不再重复声明 `type`。
@@ -182,7 +180,7 @@ pnpm dev
 
 ```bash
 # 为已有项目添加功能包
-vup use my-package
+vup package add my-package
 
 # 选择功能包
 ? 请选择功能包:
@@ -196,15 +194,15 @@ vup use my-package
 
 ```bash
 # 查看或复制单能力参考示例
-vup example mock
-vup example pwa
-vup example qiankun
-vup example ui
+vup example add mock
+vup example add pwa
+vup example add qiankun
+vup example add ui
 ```
 
-`vup example` 面向 `examples/`
-参考层。它用于学习某个能力如何接入或运行示例工程，不等同于 `vup add`
-创建正式应用模板，也不等同于 `vup use` 安装共享功能包。
+`vup example add` 面向 `examples/`
+参考层。它用于学习某个能力如何接入或运行示例工程，不等同于 `vup app add`
+创建正式应用模板，也不等同于 `vup package add` 安装共享功能包。
 
 ## 📦 功能包概览
 
@@ -227,17 +225,17 @@ vup example ui
 `examples/` 目录是
 **Examples 参考层**，用于放置“单能力、单目标”的示例工程。它们属于接入参考，不属于正式模板：
 
-- 不会作为 `vup add` 的正式模板出现
-- 通过 `vup example <name>` 获取或查看
+- 不会作为 `vup app add` 的正式模板出现
+- 通过 `vup example add <name>` 获取或查看
 - 主要用于验证能力包接入、构建链路和 monorepo 兼容
 - 每个示例都尽量只展示一个主题，避免和正式模板职责混在一起
 
-| 命令                  | 示例目录             | 说明                   | 文档                                     |
-| --------------------- | -------------------- | ---------------------- | ---------------------------------------- |
-| `vup example mock`    | **examples/mock**    | `@vup/mock` 接入示例   | [查看文档](./examples/mock/README.md)    |
-| `vup example pwa`     | **examples/pwa**     | `@vup/pwa` 接入示例    | [查看文档](./examples/pwa/README.md)     |
-| `vup example qiankun` | **examples/qiankun** | qiankun 子应用接入示例 | [查看文档](./examples/qiankun/README.md) |
-| `vup example ui`      | **examples/ui**      | UI 使用示例            | [查看文档](./examples/ui/README.md)      |
+| 命令                      | 示例目录             | 说明                   | 文档                                     |
+| ------------------------- | -------------------- | ---------------------- | ---------------------------------------- |
+| `vup example add mock`    | **examples/mock**    | `@vup/mock` 接入示例   | [查看文档](./examples/mock/README.md)    |
+| `vup example add pwa`     | **examples/pwa**     | `@vup/pwa` 接入示例    | [查看文档](./examples/pwa/README.md)     |
+| `vup example add qiankun` | **examples/qiankun** | qiankun 子应用接入示例 | [查看文档](./examples/qiankun/README.md) |
+| `vup example add ui`      | **examples/ui**      | UI 使用示例            | [查看文档](./examples/ui/README.md)      |
 
 当前示例默认端口：
 
@@ -248,38 +246,45 @@ vup example ui
 
 ## 🌐 请求层分层约定（推荐）
 
-为保证模板可维护性与 AI 可学习性，建议按三层组织请求代码：
+模板默认**自包含**：每个 app 的 `src/api/request.ts`
+直接基于原生 fetch（Nuxt 用 ofetch）实现最小请求适配，不依赖共享包，开箱即可运行。按以下分层组织请求代码：
 
-1. `packages/http`：沉淀共享能力（axios 实例工厂、通用拦截器、统一错误处理、响应解包）。
-2. `apps/*/src/api/request.ts`：应用侧适配层（环境变量、token、locale、401 行为）。
-3. `src/modules/<name>/api/`：模块业务接口（就近管理，避免把业务细节堆到基础层）。
+1. `apps/*/src/api/request.ts`：应用侧请求适配层（baseURL/环境变量、token、locale、401 行为、错误处理）。
+2. `src/modules/<name>/api/`：模块业务接口（就近管理，避免把业务细节堆到基础层）。
+
+当多个 app 需要复用统一请求能力（axios 实例工厂、通用拦截器、统一解包）时，再按需接入可选共享包
+`@vup/http`，把上面第 1 层替换为基于 `@vup/http` 的适配：
+
+```bash
+vup package add @vup/http
+```
 
 参考文档：
 
-- [@vup/http 使用说明](./packages/http/README.md)
-- [vue-template 请求适配示例](./apps/vue-template/src/api/request.ts)
-- [examples/mock 示例](./examples/mock/README.md)
+- [vue-template 自包含请求适配](./apps/vue-template/src/api/request.ts)
+- [@vup/http 共享请求层（可选）](./packages/http/README.md)
 
-## 🧪 Mock 约定（基座推荐）
+## 🧪 Mock / 内置示例接口约定
 
-`@vup/mock` 适合作为可选能力包接入到需要开发期接口模拟的项目里。推荐约定如下：
+模板默认**不内置 MSW mock**。Demo 数据通过各模板最自然的方式提供：
 
-- 真实请求路径保持不变（例如 `/api/template-demo/*`）
-- 开发环境通过开关启用 mock 拦截，生产环境关闭
-- 业务接口函数不内嵌 `wait + 本地数组`，统一走请求层
-- 若只是演示接入方式，优先放到 `examples/`，不要把 mock 默认塞进正式模板
+- Nuxt：内置 Nitro server route（如
+  `server/api/template-demo/*`），无需额外依赖即可联调。
+- 其它 Web 模板：demo 接口直接走应用请求层，指向 `VITE_API_BASE` 配置的后端。
 
-### 开关约定
+需要开发期接口模拟（拦截真实路径、模拟慢请求/错误分支）时，再按需接入可选能力包
+`@vup/mock`（MSW）：
 
-- Vite / Vue / Capacitor：可使用 `VITE_ENABLE_MOCK=true`
-- Nuxt：可使用 `NUXT_PUBLIC_USE_MOCK=true`
-- 是否默认开启，应由具体项目或示例自己决定，不再假定所有模板内置 mock
+```bash
+vup package add @vup/mock
+```
 
-### 典型流程
+约定：
 
-1. 开发联调前：开启 mock，前端先跑通页面和状态流转。
-2. 后端联调时：关闭 mock，直连真实接口，不改业务代码。
-3. 回归测试：可按场景切换 mock，稳定复现错误分支与慢请求。
+- 真实请求路径保持不变（例如 `/api/template-demo/*`），接入 mock 不改业务代码。
+- 业务接口函数不内嵌 `wait + 本地数组`，统一走请求层。
+- 若只是演示接入方式，优先放到 `examples/`（见
+  `vup example add mock`），不要把 mock 默认塞进正式模板。
 
 ## 🧭 Nuxt 模块化例外（重要）
 
@@ -301,7 +306,8 @@ Nuxt 受框架约定影响，`pages/components/composables` 不应强行迁移�
 - 路由：模板首页与核心页面可正常访问，示例工程的介绍页可独立打开
 - i18n：中英文切换正常
 - 示例交互：如接入 mock / pwa / qiankun，对应示例行为可验证
-- 请求分层：`packages/http` + `app/api/request.ts` + `module/api/*` 边界清晰
+- 请求分层：`app/api/request.ts`（自包含，必要时基于 `@vup/http`）+
+  `module/api/*` 边界清晰
 - 可选能力：开启/关闭后行为符合预期，且不污染正式模板
 
 ## 🔧 开发工具
@@ -543,7 +549,7 @@ VITE_ENABLE_ANALYTICS=false
 每个模板都有详细的文档说明，包含技术栈、使用方法、配置说明等：
 
 - [Vue 3 模板文档](./apps/vue-template/README.md) - SPA 应用开发
-- [Nuxt 3 模板文档](./apps/nuxt-template/README.md) - 全栈应用开发
+- [Nuxt 4 模板文档](./apps/nuxt-template/README.md) - 全栈应用开发
 - [VitePress 模板文档](./apps/vitepress-template/README.md) - 文档网站开发
 - [NestJS 模板文档](./apps/nest-template/README.md) - 后端 API 开发
 - [Qiankun 模板文档](./apps/qiankun-template/README.md) - 微前端应用

@@ -38,7 +38,7 @@ export default {
   features: {
     description: '保留企业级开发真正会用到的基础能力。',
     items: {
-      http: 'HTTP 三层封装：@vup/http 共享层、src/api 应用适配、modules/api 业务接口。',
+      http: 'HTTP 三层封装：the local request adapter 共享层、src/api 应用适配、modules/api 业务接口。',
       i18n: '模块语言包自动聚合，新增模块无需手动注册。',
       module: 'modules/ 自治模块，UI、Store、API、Types、Locales 就近聚合。',
       ts: '从路由到接口保留类型边界，减少运行时返工。',
@@ -61,7 +61,7 @@ export default {
       base: {
         badge: '基建抽象层',
         directory: 'api/',
-        responsibility: 'HTTP 请求层，适配 @vup/http，为上层提供统一请求接口',
+        responsibility: 'HTTP 请求层，适配 the local request adapter，为上层提供统一请求接口',
       },
       common: {
         badge: '业务通用层',
@@ -117,7 +117,7 @@ export default {
   },
   footer: {
     license: 'Released under the MIT License.',
-    stack: 'Vue 3 · Vite · TypeScript · @vup/ui',
+    stack: 'Vue 3 · Vite · TypeScript · optional UI packages',
   },
   common: {
     copied: '已复制到剪贴板',

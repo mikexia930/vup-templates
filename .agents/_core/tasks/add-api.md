@@ -6,16 +6,20 @@
 
 ## 先读
 
-- `.agent/_core/rules/quality.md`
-- `.agent/_core/rules/module.md`
-- 目标 app 对应的 `.agent/_core/stacks/<stack>.md`
+- `.agents/_core/rules/quality.md`
+- `.agents/_core/rules/module.md`
+- 目标 app 对应的 `.agents/_core/stacks/<stack>.md`
 
 ## 默认约定
 
-- Vue/Electron/Capacitor/WXT：优先使用 `@vup/http`。
-- Nuxt：使用 ofetch / `$fetch` / `useFetch`，不要引入 `@vup/http`。
+- Vue/Electron/Capacitor/WXT：默认使用模板自带的自包含
+  `src/api/request.ts`（原生 fetch）；项目已接入 `@vup/http`
+  时优先复用，需要共享能力时再用 `vup package add @vup/http` 接入。
+- Nuxt：使用 ofetch / `$fetch` / `useFetch`，不要引入
+  `@vup/http`；内置 demo 数据用 Nitro server route（`src/server/api/*`）。
 - uni-app：使用项目内 `src/libs/http` 适配层。
-- 通用响应类型不要多处重复定义；能从共享层 re-export 就 re-export。
+- 通用响应类型不要多处重复定义；默认在 `src/api/types.ts` 本地定义，接入
+  `@vup/http` 后再从共享层 re-export。
 
 ## 文件落点
 

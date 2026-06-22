@@ -9,7 +9,7 @@
     "hero": {
       "badge": "SSR Ready",
       "title": "Nuxt App\nTemplate",
-      "description": "A Nuxt 4 template that keeps framework conventions while demonstrating file routing, i18n, Pinia state, ofetch API layering, and MSW mock integration.",
+      "description": "A Nuxt 4 template that keeps framework conventions while demonstrating file routing, i18n, Pinia state, ofetch API layering, and built-in demo API integration.",
       "primaryAction": "View Quick Start",
       "secondaryAction": "View Structure"
     },
@@ -43,7 +43,7 @@
         "i18n": "Nuxt i18n",
         "pinia": "Pinia State",
         "api": "ofetch Layer",
-        "mock": "MSW Mock",
+        "mock": "Demo API",
         "modules": "Nuxt Modules"
       },
       "items": {
@@ -51,7 +51,7 @@
         "i18n": "Language files use BCP 47 names and Nuxt i18n handles localized routes.",
         "pinia": "Runtime interaction state lives in src/stores/demo with explicit actions.",
         "api": "src/api/request.ts wraps ofetch while business calls stay in src/api/demo.ts.",
-        "mock": "The shared mock package can intercept /api/template-demo/* during local development.",
+        "mock": "The built-in server route returns /api/template-demo/* demo data during local development.",
         "modules": "Pinia, i18n, and Element Plus are registered as Nuxt modules, not app.use calls."
       }
     },
