@@ -1,6 +1,5 @@
 import { createPinia } from 'pinia';
 import { createApp } from 'vue';
-import VupUI from '@vup/ui';
 
 import App from './App.vue';
 import i18n from './locales';
@@ -9,7 +8,6 @@ import '@_shared/assets/styles/tailwind.scss';
 
 async function bootstrap() {
   const app = createApp(App);
-  app.use(VupUI);
   app.use(router);
   app.use(i18n);
   app.use(createPinia());

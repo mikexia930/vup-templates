@@ -32,15 +32,18 @@
 
 - Architecture: module-first
 - Frontend modules: `src/modules/<module>/`
-- uni-app pages: `src/pages/<page>/index.vue` as thin entries, business in `src/modules/<module>/`
+- uni-app pages: `src/pages/<page>/index.vue` as thin entries, business in
+  `src/modules/<module>/`
 - Nest modules: `src/<module>/`, not `src/modules/<module>/`
 
 ## Reference Style
 
 - Follow existing modules in this project first.
-- If this project intentionally follows a reference implementation, record its path/name here.
+- If this project intentionally follows a reference implementation, record its
+  path/name here.
 
 ## Notes
 
-- 如果本文件与实际目录不一致，以实际目录和 `package.json` 为准，并在本文件补充事实。
+- 如果本文件与实际目录不一致，以实际目录和 `package.json`
+  为准，并在本文件补充事实。
 - `workspaceIsolate: true` 的应用在应用目录内独立安装和运行命令。

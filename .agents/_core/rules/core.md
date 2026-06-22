@@ -8,8 +8,9 @@
 
 - 先确认目标 app/package/example 是否真实存在。
 - 先查目标 app 内已有同类模块、页面、接口、store、路由写法；已有风格明确时优先沿用现有风格。
-- 优先使用 vup 资源：`vup add`、`vup use`、`vup example`。
-- 优先使用已有共享包：`@vup/http`、`@vup/ui`、`@vup/ui-mobile`、`@vup/mock`。
+- 优先使用 vup 资源：`vup app add`、`vup package add`、`vup example add`。
+- 模板默认自包含；项目已接入共享包（`@vup/http`、`@vup/ui`、`@vup/ui-mobile`、`@vup/mock`）时优先复用，未接入时不擅自引入，需要时先用
+  `vup package add` 接入。
 - 代码命名用英文，必要注释用中文，注释解释原因而不是复述代码。
 - 小改动直接实现；业务规则、数据结构、UI 细节不明确时再问用户。
 

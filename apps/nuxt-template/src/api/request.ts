@@ -29,17 +29,12 @@ function createRequest() {
       const accessToken = useCookie('access_token').value;
       const locale = useCookie('i18n_redirected').value || 'en-US';
 
+      const headers = new Headers(options.headers);
       if (accessToken) {
-        options.headers = {
-          ...options.headers,
-          Authorization: `Bearer ${accessToken}`,
-        };
+        headers.set('Authorization', `Bearer ${accessToken}`);
       }
-
-      options.headers = {
-        ...options.headers,
-        'Accept-Language': locale,
-      };
+      headers.set('Accept-Language', locale);
+      options.headers = headers;
     },
     async onResponseError({ response }) {
       if (response.status === 401) {

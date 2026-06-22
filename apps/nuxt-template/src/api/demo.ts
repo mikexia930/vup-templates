@@ -14,14 +14,6 @@ export interface DemoTask {
   tags: string[];
 }
 
-interface ListDemoTasksOptions {
-  forceError?: boolean;
-}
-
-export async function listDemoTasks(options: ListDemoTasksOptions = {}) {
-  return request<DemoTask[]>('/template-demo/tasks', {
-    query: {
-      forceError: options.forceError ? '1' : undefined,
-    },
-  });
+export async function listDemoTasks() {
+  return request<DemoTask[]>('/template-demo/tasks');
 }

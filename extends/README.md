@@ -59,9 +59,9 @@ extends/
 
 各语言的编码规范由对应 rule 文件定义（按需启用）：
 
-- Python → `.agent/rules/python-style.md`
-- Go → `.agent/rules/go-style.md`（按需创建）
-- Rust → `.agent/rules/rust-style.md`（按需创建）
+- Python → `.agents/rules/python-style.md`
+- Go → `.agents/rules/go-style.md`（按需创建）
+- Rust → `.agents/rules/rust-style.md`（按需创建）
 
 通用规范（任何语言都遵守）：
 

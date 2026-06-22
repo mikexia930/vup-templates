@@ -1,5 +1,8 @@
-// 从 @vup/http re-export，避免重复定义漂移
-export type { ApiResponse } from '@vup/http';
+export interface ApiResponse<T = unknown> {
+  code: number;
+  message: string;
+  data: T;
+}
 
 // 项目级扩展类型
 export interface ApiListData<T = unknown> {

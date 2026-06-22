@@ -6,10 +6,10 @@
 
 ## 先读
 
-- `.agent/_core/tasks/add-api.md`
-- `.agent/_core/tasks/add-page.md`
-- `.agent/_core/rules/module.md`
-- 目标 app 对应的 `.agent/_core/stacks/<stack>.md`
+- `.agents/_core/tasks/add-api.md`
+- `.agents/_core/tasks/add-page.md`
+- `.agents/_core/rules/module.md`
+- 目标 app 对应的 `.agents/_core/stacks/<stack>.md`
 
 ## 组成
 
@@ -22,13 +22,19 @@
 
 ## 文件落点
 
-- Vue/Electron renderer/Capacitor/WXT：`src/modules/auth/` 放 auth 页面、API、局部组件。
-- Nuxt：登录页通常放 `src/pages/login.vue`，守卫放 `src/middleware/`，登录态优先 cookie。
-- uni-app：登录页放 `src/pages/login/index.vue`，业务逻辑可放 `src/modules/auth/`。
+- Vue/Electron renderer/Capacitor/WXT：`src/modules/auth/`
+  放 auth 页面、API、局部组件。
+- Nuxt：登录页通常放 `src/pages/login.vue`，守卫放
+  `src/middleware/`，登录态优先 cookie。
+- uni-app：登录页放 `src/pages/login/index.vue`，业务逻辑可放
+  `src/modules/auth/`。
 - Nest：鉴权模块放 `src/auth/`，不要放 `src/modules/auth/`。
-- 全局 store：前端项目按既有风格放 `src/stores/auth.ts`、`src/stores/permission.ts` 或等价位置。
-- Token 工具：前端按 stack 放到 `src/common/utils/tokenStorage.ts` 或既有工具目录。
-- 权限指令：Vue 系通常放 `src/directives/permission.ts`，以项目现有注册方式为准。
+- 全局 store：前端项目按既有风格放
+  `src/stores/auth.ts`、`src/stores/permission.ts` 或等价位置。
+- Token 工具：前端按 stack 放到 `src/common/utils/tokenStorage.ts`
+  或既有工具目录。
+- 权限指令：Vue 系通常放
+  `src/directives/permission.ts`，以项目现有注册方式为准。
 
 ## 平台差异
 

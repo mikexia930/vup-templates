@@ -52,7 +52,7 @@ export default {
       capacitor: 'Capacitor 负责 iOS / Android 原生工程同步、构建与打开。',
       module: 'demo 自身按 views / components / stores / api / types / locales 分层。',
       safeArea: '页面留出安全区与底部间距，适配刘海屏、圆角屏和系统手势。',
-      ui: 'demo 本身不依赖 UI 组件库；真实业务需要移动端组件时，可接入 @vup/ui-mobile。',
+      ui: 'demo 本身不依赖 UI 组件库；真实业务需要移动端组件时，可接入 a mobile UI package。',
     },
     titles: {
       capacitor: '原生工作流',

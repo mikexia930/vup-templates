@@ -26,7 +26,6 @@ export default mergeConfig(
       alias: {
         '@': path.resolve(__dirname, './src'),
         '@_shared': path.resolve(__dirname, '../../_shared'),
-        '@vup/http': path.resolve(__dirname, '../../packages/http/src/index.ts'),
       },
     },
     build: {

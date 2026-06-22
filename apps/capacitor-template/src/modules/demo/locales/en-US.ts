@@ -53,7 +53,7 @@ export default {
       module: 'The demo itself is split into views, components, stores, api, types, and locales.',
       safeArea:
         'Pages reserve safe-area and bottom spacing for notches, rounded screens, and gestures.',
-      ui: 'The demo itself does not depend on a UI component library. Real apps can add @vup/ui-mobile when needed.',
+      ui: 'The demo itself does not depend on a UI component library. Real apps can add a mobile UI package when needed.',
     },
     titles: {
       capacitor: 'Native Workflow',

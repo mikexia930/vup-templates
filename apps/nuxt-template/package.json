@@ -22,7 +22,6 @@
     "@element-plus/nuxt": "^1.1.5",
     "@nuxtjs/i18n": "^10.0.6",
     "@pinia/nuxt": "^0.11.2",
-    "@vup/mock": "workspace:*",
     "nuxt": "^4.1.0"
   }
 }

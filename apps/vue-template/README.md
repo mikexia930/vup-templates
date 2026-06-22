@@ -3,8 +3,8 @@
 基于 Vue 3 + TypeScript + Vite 的 SPA 模板，默认包含：
 
 - 模块化模板能力演示（`src/modules/demo`）
-- 基础请求层（`@vup/http` + `src/api/request.ts`）
-- UI 封装层（`@vup/ui`，`V*` 组件）
+- 基础请求层（`src/api/request.ts`，默认自包含）
+- 可选 UI 封装层（需要时通过 `vup package add @vup/ui` 接入）
 
 ## 模板定位
 
@@ -37,7 +37,7 @@ pnpm format:check
 ```txt
 src/
 ├── api/
-│   ├── request.ts                # 应用侧请求适配层（基于 @vup/http）
+│   ├── request.ts                # 应用侧最小请求适配层
 │   └── types.ts
 ├── locales/                      # 根语言包（全局公共文案）
 ├── modules/
@@ -57,8 +57,7 @@ src/
 
 ## 请求层约定
 
-当前模板使用 `@vup/http` 作为共享基础请求能力，应用侧保留 `src/api/request.ts`
-做适配：
+当前模板默认使用自包含的 `src/api/request.ts` 做最小请求适配：
 
 - token、语言、401 行为放应用层
 - 业务接口函数放 `src/modules/<name>/api`
@@ -83,7 +82,7 @@ request.get('/api/template-demo/tasks', {
 
 ## UI 约定
 
-- 统一使用 `@vup/ui` 的 `V*` 组件
+- 需要统一组件封装时，通过 `vup package add @vup/ui` 接入 `V*` 组件
 - 页面层尽量保持结构清晰，样式轻量
 - 组件命名和封装边界优先于“炫技样式”
 
